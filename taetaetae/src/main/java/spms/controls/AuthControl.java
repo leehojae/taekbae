@@ -74,7 +74,7 @@ public class AuthControl {
   }
 	
 	public void test(){
-		System.out.println(" test");
+		System.out.println(" testtesttest");
 	}
 }
 
