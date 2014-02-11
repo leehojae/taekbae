@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jee="http://www.springframework.org/schema/jee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee
+        http://www.springframework.org/schema/jee/spring-jee.xsd">
+        
+  <context:component-scan base-package="spms">
+    <context:exclude-filter type="regex" expression=".*mysql.*"/>
+    <context:exclude-filter type="regex" expression=".*oracle.*"/>
+    <context:exclude-filter type="regex" expression=".*mssql.*"/>
+  </context:component-scan>   
+  
+  <bean id="sqlSessionFactory" 
+      class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource" />
+    
+    <!-- <settings> 태그에 특별히 지정할 것이 없다면 다음 설정 파일은 지정하지 않아도 된다. -->
+    <!--  
+    <property name="configLocation" 
+      value="classpath:spms/dao/mybatis-config.xml"/>
+    -->
+      
+    <!-- 파일명이 Mapper.xml로 끝나는 Sql 맵퍼 파일을 자동 로딩 --> 
+    <property name="mapperLocations" 
+      value="classpath*:spms/dao/*Mapper.xml"/>
+    <!--  
+    <property name="mapperLocations" 
+      value="classpath*:spms/**/*Mapper.xml"/>
+    -->  
+    <!--   
+    <property name="mapperLocations">
+      <list>
+        <value>classpath*:spms/dao/ProjectMapper.xml</value>
+        <value>classpath*:spms/dao/MemberMapper.xml</value>
+      </list>
+    </property> 
+    -->
+    
+    <!-- spms.vo 패키지에 있는 클래스들에 대해서는 자동으로 별명을 붙임.
+     => 클래스명의 첫 알파벳을 소문자로 한 이름을 별명으로 사용함.
+     -->
+    <property name="typeAliasesPackage" value="spms.vo"/>
+  </bean>
+  
+  <!-- 인터페이스에 해당하는 구현체 자동 생성 
+    => 인터페이스가 선언된 패키지를 등록한다.
+  --> 
+  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="basePackage" value="spms.dao" />
+  </bean>
+  
+  <jee:jndi-lookup id="dataSource" 
+      jndi-name="java:comp/env/jdbc/spmsdb"/>
+  
+  <!--  
+  <bean id="dataSource" 
+      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    <property name="url" value="jdbc:mysql://localhost:3306/spmsdb?useUnicode=true&amp;characterEncoding=UTF-8"/>
+    <property name="username" value="spms"/>
+    <property name="password" value="spms"/>
+  </bean>
+  -->
+</beans>
+
+
+
+
+
+
+

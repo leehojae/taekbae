@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--  
+  <settings>
+    <setting name="logImpl" value="LOG4J"/>
+  </settings>
+-->
+  <!-- 아래의 정의는 스프링 설정으로 옮김.
+  <typeAliases>
+    <typeAlias type="spms.vo.Member" alias="member"/>
+    <typeAlias type="spms.vo.Project" alias="project"/>
+    <typeAlias type="spms.vo.Task" alias="task"/>
+  </typeAliases>
+  -->  
+</configuration>

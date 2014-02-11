@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spms.dao.ProjectDao">
+	<select id="selectList" parameterType="map" resultType="project">
+		select
+		  PNO as no,
+		  TITLE,
+		  SDATE as startDate,
+		  EDATE as endDate,
+		  STATE
+		from PROJECTS
+		<if test="keywords != null">
+    <where>
+      <if test="search == 'all' or search == 'title'">
+	      <foreach collection="keywords" item="keyword">
+	        or TITLE like concat('%',#{keyword},'%')
+	      </foreach>
+      </if>
+      <if test="search == 'all' or search == 'description'">
+        <foreach collection="keywords" item="keyword">
+          or CONTENTS like concat('%',#{keyword},'%')
+        </foreach>
+      </if>
+    </where>
+    </if>
+    
+		<!--  
+		<if test="keyword != null and keyword != ''">
+		<where>
+      <if test="search == 'all' or search == 'title'">
+      TITLE like concat('%',#{keyword},'%')
+      </if>
+      <if test="search == 'all' or search == 'description'">
+      or CONTENTS like concat('%',#{keyword},'%')
+      </if>
+    </where>
+    </if>
+    -->
+		<!-- 
+		<if test="keyword != null and keyword != ''">
+		where 1=2
+		  <if test="search == 'all' or search == 'title'">
+		  or TITLE like concat('%',#{keyword},'%')
+		  </if>
+		  <if test="search == 'all' or search == 'description'">
+		  or CONTENTS like concat('%',#{keyword},'%')
+		  </if>
+		</if>
+		 -->
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="project">
+    select
+      PNO as no,
+      TITLE,
+      CONTENTS as description,
+      SDATE as startDate,
+      EDATE as endDate,
+      STATE,
+      TAGS
+    from PROJECTS
+    where PNO=#{value}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    delete from PROJECTS where PNO=#{no}
+  </delete>
+  
+  <insert id="insert" parameterType="project">
+    insert into PROJECTS(TITLE,CONTENTS,SDATE,EDATE,STATE,TAGS) 
+    values(#{title},#{description},
+      #{startDate},#{endDate},#{state},#{tags})
+  </insert>
+  
+  <update id="update" parameterType="project">
+    update PROJECTS
+    <set>
+      <if test="title != null">TITLE=#{title},</if>
+      <if test="description != null">CONTENTS=#{description},</if>
+      <if test="startDate != null">SDATE=#{startDate},</if>
+      <if test="endDate != null">EDATE=#{endDate},</if>
+      <if test="state != -1">STATE=#{state},</if>
+      <if test="tags != null">TAGS=#{tags}</if>
+    </set>
+    where PNO=#{no}
+  </update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

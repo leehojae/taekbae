@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원관리</title>
+<script type="text/javascript" src="../js/bit.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+<h1>회원 목록</h1>
+<table border='1' id='listTable'>
+<tr>
+<th>번호</th>
+<th>이름</th>
+<th>이메일</th>
+<th>전화</th>
+</tr>
+</table>
+
+<hr>
+
+<h2>회원등록폼</h2>
+<form action="add.do" method="post"
+  enctype="multipart/form-data">
+<img id="mPhoto" src="../images/person.jpeg" height="100"><br>
+<span class="view">번호: <input id="mNo" type="text" name="no" readonly><br></span>
+이름: <input id="mName" type="text" name="name"><br>
+이메일: <input id="mEmail" type="text" name="email"><br>
+암호: <input id="mPassword" type="password" name="password"><br>
+전화: <input id="mTel" type="tel" name="tel"><br>
+나이: <input id="mAge" type="text" name="age"><br>
+사진: <input type="file" name="photoFile"><br>
+<input id="addBtn" type="button" value="등록">
+<input id="updateBtn" type="button" value="변경" class="view">
+<input id="delBtn" type="button" value="삭제">
+<input id="cancelBtn" type="reset" value="취소">
+</form>
+
+</body>
+</html>
