@@ -89,6 +89,10 @@ public class AuthControl {
 		System.out.println(" tesddddd");
 		System.out.println(" c11fdfff11hell01444");
 	}
+	public void chelltest03(){
+		System.out.println(" tesddddd");
+		System.out.println(" c11fdfff11hell01444");
+	}
 }
 
 
