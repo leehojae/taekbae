@@ -2,9 +2,46 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상세화면</title>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
 </head>
 <body>
-
+<div data-role="page" id="home">
+ <div data-role="header">
+  <h1>Header</h1>
+ </div>
+ <div data-role="content">
+<div class="contact-thankyou" style="display: none;">
+      Thank you.  Your message has been sent.  We will get back to you as soon as we can.
+    </div>
+    <div class="contact-form">
+      <div data-role="fieldcontain" class="text-field">
+        <label for="firstname">수취인</label>
+        <input type="text" name="firstname" value="" placeholder="" class="required" id="firstname" />
+      </div>
+      <div data-role="fieldcontain" class="text-field">
+        <label for="surname">연락처</label>
+        <input type="text" name="surname" value="" placeholder="" id="surname" />
+      </div>
+      <div data-role="fieldcontain" class="text-field">
+        <label for="email">도로명주소</label>
+        <input type="email" name="email" value="" placeholder="" class="required" id="email"  />
+      </div>
+      <div data-role="fieldcontain" class="text-field">
+        <label for="mobilephone">옛지번주소</label>
+        <input type="text" name="mobilephone" value="" placeholder="" id="mobilephone" />
+      </div>
+      <div data-role="fieldcontain">
+        <label for="message">Message*:</label>
+        <textarea name="message" id="message" placeholder="" class="required"></textarea>
+      </div>
+    </div><!-- //.contact-form -->
+ <div data-role="footer">
+  <h4>Footer</h4>
+ </div>
+</div>
+</div>
 </body>
 </html>
