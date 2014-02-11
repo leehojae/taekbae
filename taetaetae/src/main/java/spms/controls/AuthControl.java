@@ -73,7 +73,9 @@ public class AuthControl {
 		return "auth/loginUser";
   }
 	
-	
+	public void test(){
+		System.out.println(" test");
+	}
 }
 
 
