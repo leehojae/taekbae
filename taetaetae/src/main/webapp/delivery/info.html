@@ -10,37 +10,34 @@
 <body>
 <div data-role="page" id="home">
  <div data-role="header">
-  <h1>Header</h1>
+  <h1>상세정보</h1>
  </div>
  <div data-role="content">
-<div class="contact-thankyou" style="display: none;">
-      Thank you.  Your message has been sent.  We will get back to you as soon as we can.
+<div id="info" style="display: none;">
     </div>
     <div class="contact-form">
       <div data-role="fieldcontain" class="text-field">
-        <label for="firstname">수취인</label>
-        <input type="text" name="firstname" value="" placeholder="" class="required" id="firstname" />
+        <div>수취인</div><br>
+        <div id="customer">홍길동</div>
       </div>
       <div data-role="fieldcontain" class="text-field">
-        <label for="surname">연락처</label>
-        <input type="text" name="surname" value="" placeholder="" id="surname" />
+        <div>연락처</div><br>
+        <div id="tel">007-000-0000</div>
       </div>
       <div data-role="fieldcontain" class="text-field">
-        <label for="email">도로명주소</label>
-        <input type="email" name="email" value="" placeholder="" class="required" id="email"  />
+        <div>도로명주소</div><br>
+        <div id="roadNameAddr">삼성대로</div>
       </div>
       <div data-role="fieldcontain" class="text-field">
-        <label for="mobilephone">옛지번주소</label>
-        <input type="text" name="mobilephone" value="" placeholder="" id="mobilephone" />
+        <div>지번주소</div><br>
+        <div id="bunjiAddr">삼성동 09번지</div>
       </div>
       <div data-role="fieldcontain">
-        <label for="message">Message*:</label>
-        <textarea name="message" id="message" placeholder="" class="required"></textarea>
+        <div>Comment</div>
+        <p id="comment">오늘도 무사히</p>
       </div>
     </div><!-- //.contact-form -->
- <div data-role="footer">
-  <h4>Footer</h4>
- </div>
+    <a href="#" data-role="button"  data-theme="a" >닫기</a>
 </div>
 </div>
 </body>
