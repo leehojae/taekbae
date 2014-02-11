@@ -16,7 +16,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import spms.dao.MemberDao;
 import spms.vo.Member;
-
+//chelleyt
 @Controller
 @RequestMapping("/auth")
 @SessionAttributes("loginUser") // 모델에 들어 있는 값 중에서 loginUser는 세션에 보관하라.
@@ -86,10 +86,6 @@ public class AuthControl {
 		System.out.println(" c11fdfff11hell01444");
 	}
 	public void chelltest02(){
-		System.out.println(" tesddddd");
-		System.out.println(" c11fdfff11hell01444");
-	}
-	public void chelltest03(){
 		System.out.println(" tesddddd");
 		System.out.println(" c11fdfff11hell01444");
 	}
