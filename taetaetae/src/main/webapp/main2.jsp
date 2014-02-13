@@ -14,29 +14,19 @@ SDMS(Smart Delivery Management System)
 <a href="${pageContext.request.contextPath}/auth/logout.do">[로그아웃]</a>
 </div>
 <div id="main">
-<div id="list">
-
-</div>
-
-<div id="map">
-
-</div>
 </div>
 <div id="sidebar" class="section">
-<jsp:include page="auth/loginUser.do"/>
+<%-- <jsp:include page="auth/loginUser.do"/>
 <jsp:include page="project/myProjects.do"/>
-<jsp:include page="task/myTasks.do"/>
+<jsp:include page="task/myTasks.do"/> --%>
 </div>
 <div id="contents" class="section" >
 <!-- <textarea rows="25" cols="90">excel이나 디비 저장파일 불러옴(배달이나 반품받을 주소리스트)</textarea> -->
-
-
-<iframe  width="650" height="800" src="list.html"></iframe>
-<iframe src="delivery/map.html" width="650" height="800"></iframe>
+<iframe  width="650" height="510" src="list.html"></iframe>
+<iframe src="delivery/map.html" width="650" height="510"></iframe>
 </div>
 <div id="feedbar" class="section">
 </div>
-
 </body>
 </html>
 
