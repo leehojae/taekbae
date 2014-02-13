@@ -23,9 +23,9 @@ SDMS(Smart Delivery Management System)
 </div>
 </div>
 <div id="sidebar" class="section">
-<jsp:include page="auth/loginUser.do"/>
+<%-- <jsp:include page="auth/loginUser.do"/>
 <jsp:include page="project/myProjects.do"/>
-<jsp:include page="task/myTasks.do"/>
+<jsp:include page="task/myTasks.do"/> --%>
 </div>
 <div id="contents" class="section" >
 <!-- <textarea rows="25" cols="90">excel이나 디비 저장파일 불러옴(배달이나 반품받을 주소리스트)</textarea> -->
