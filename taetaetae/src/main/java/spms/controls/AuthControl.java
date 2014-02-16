@@ -1,5 +1,4 @@
 package spms.controls;
-//asdf
 import java.util.HashMap;
 
 import javax.servlet.http.Cookie;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import spms.dao.MemberDao;
 import spms.vo.Member;
-//chelleyt
 @Controller
 @RequestMapping("/auth")
 @SessionAttributes("loginUser") // 모델에 들어 있는 값 중에서 loginUser는 세션에 보관하라.
@@ -72,23 +70,6 @@ public class AuthControl {
   public String loginUser() throws Exception {
 		return "auth/loginUser";
   }
-	
-	public void test(){
-		System.out.println(" testtesttest");
-		System.out.println(" c1111hell01444");
-	}
-	public void test01(){
-		System.out.println(" testtesttest");
-		System.out.println(" c11fdfff11hell01444");
-	}
-	public void test02(){
-		System.out.println(" test-00-000");
-		System.out.println(" c11fdfff11hell01444");
-	}
-	public void chelltest02(){
-		System.out.println(" tesddddd");
-		System.out.println(" c11fdfff11hell01444");
-	}
 }
 
 
