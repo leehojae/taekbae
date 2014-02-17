@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+td {
+  /* border: 1px dotted green; */
+}
+
+#loginUser {
+  display: table;
+  vertical-align: middle;
+}
+#loginUser img {
+  display: table-cell;
+  width: 60px;
+  height: 80px;
+/*   border: 1px solid black; */
+}
+#loginUser .username {
+  display: table-cell;
+/*   border: 1px solid black; */
+  vertical-align: middle;
+}
+
+#projectMembers ul {
+/*   border: 1px dashed gray; */
+  padding-left: 0;
+}
+#projectMembers li {
+/*   border: 1px solid red; */
+  display: inline-block;
+  list-style-type: none;
+  text-align: center;
+}
+#projectMembers img {
+  width: 60px;
+  height: 75px;
+}
+
+#projectMembers span {
+	position: relative;
+	background-color: black;
+	color: white;
+	opacity:0.7;
+	top: -20px;
+}
+
+
+
+
+
