@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spms.dao.ExcelDao">
+
+	<resultMap type="excel" id="excelResultMap">
+		<id property="num" column="num" />
+		<result property="receiver" column="receiver" />
+		<result property="sender" column="sender" />
+		<result property="date" column="date" />
+	</resultMap>
+
+	<insert id="addExcel" parameterType="list">
+		INSERT INTO EXCEL_UPLOAD (SENDER, RECEIVER, DATE) VALUES
+		<foreach item="excel" collection="list" separator=",">
+			(#{excel.sender}, #{excel.receiver}, now())
+		</foreach>
+	</insert>
+
+	<select id="selectList" resultMap="excelResultMap">
+		select num,sender,receiver,date
+		from EXCEL_UPLOAD
+	</select>
+</mapper>
