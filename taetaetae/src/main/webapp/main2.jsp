@@ -6,16 +6,26 @@
 <meta charset="UTF-8">
 <title>SDMS 시작화면</title>
 <link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/main2.css">
+<link rel="stylesheet" href="css/main.css">
+<script type="text/javascript" src="js/bit.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
 <div>
 SDMS(Smart Delivery Management System)
 <a href="${pageContext.request.contextPath}/auth/logout.do">[로그아웃]</a>
+<a href="${pageContext.request.contextPath}/excel/add.do">엑셀등록</a>
 </div>
 <div id="main">
 <div id="list">
-
+<table border='1' id='listTable'>
+<tr>
+<th>번호</th>
+<th>이름</th>
+<th>이메일</th>
+<th>전화</th>
+</tr>
+</table>
 </div>
 
 <div id="map">
