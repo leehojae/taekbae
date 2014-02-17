@@ -18,4 +18,5 @@
   </c:otherwise>
 </c:choose>
 <a href="${pageContext.request.contextPath}/excel/add.do">엑셀등록</a>
+<a href="${pageContext.request.contextPath}/excel/delete.do">디비초기화</a>
 </div>
