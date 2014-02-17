@@ -129,7 +129,7 @@ public class ExcelControl {
             
 	        list.clear();
 	        
-   		return "redirect:../main2.jsp";
+   		return "redirect:../main.do";
 	}
 	return "excel/addForm";
 }	
