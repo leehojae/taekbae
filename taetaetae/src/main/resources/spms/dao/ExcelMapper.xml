@@ -10,7 +10,11 @@
 		<result property="sender" column="sender" />
 		<result property="date" column="date" />
 	</resultMap>
-
+  
+	<delete id="delete">
+		TRUNCATE `spmsdb`.`EXCEL_UPLOAD`
+	</delete>
+	
 	<insert id="addExcel" parameterType="list">
 		INSERT INTO EXCEL_UPLOAD (SENDER, RECEIVER, DATE) VALUES
 		<foreach item="excel" collection="list" separator=",">
