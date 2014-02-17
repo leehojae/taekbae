@@ -6,7 +6,7 @@ function listExcel() {
     $.ajax('excel/ajax/list.do', {
             method: 'GET', 
             success: function(excels){
-                var m = null;
+                var e = null;
                 var tr = null;
                 var html = null;
                 var table = $('listTable');
