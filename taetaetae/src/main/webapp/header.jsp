@@ -17,4 +17,5 @@
   <a href="${pageContext.request.contextPath}/auth/login.do">[로그인]</a>
   </c:otherwise>
 </c:choose>
+<a href="${pageContext.request.contextPath}/excel/add.do">엑셀등록</a>
 </div>
