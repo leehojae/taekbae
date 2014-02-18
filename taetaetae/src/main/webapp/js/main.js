@@ -14,11 +14,26 @@ function listExcel() {
                     e = excels[i];
                     tr = document.createElement('tr');
                     html = '';
-                    html += '<td>' + e.num + '</td>'; 
-                    html += '<td><a href="#" class="excelName" data-no="' + 
-                        e.num + '">' + 
-                        e.sender + '</a></td>';   
-                    html += '<td>' + e.receiver + '</td>'; 
+                    html += '<td>' + e.tno + '</td>'; 
+                    html += '<td>' + e.trcno + '</td>'; 
+                    html += '<td>' + e.receiveDate + '</td>'; 
+                    html += '<td>' + e.deliveDate + '</td>'; 
+                    html += '<td>' + e.senderName + '</td>'; 
+                    html += '<td>' + e.senderAddr + '</td>'; 
+                    html += '<td>' + e.senderTel1 + '</td>'; 
+                    html += '<td>' + e.senderTel2 + '</td>'; 
+                    html += '<td>' + e.receiverName + '</td>'; 
+                    html += '<td>' + e.receiverAddr + '</td>'; 
+                    html += '<td>' + e.receiverTel1 + '</td>'; 
+                    html += '<td>' + e.receiverTel2 + '</td>'; 
+                    html += '<td>' + e.sendPoint + '</td>'; 
+                    html += '<td>' + e.receivePoint + '</td>'; 
+                    html += '<td>' + e.packing + '</td>'; 
+                    html += '<td>' + e.productName + '</td>'; 
+                    html += '<td>' + e.count + '</td>'; 
+                    html += '<td>' + e.size + '</td>'; 
+                    html += '<td>' + e.weight + '</td>'; 
+                    html += '<td>' + e.payment + '</td>'; 
                     html += '<td>' + e.date + '</td>';   
                   tr.innerHTML = html;
                   table.appendChild(tr);
