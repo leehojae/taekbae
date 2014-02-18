@@ -3,7 +3,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div style="border:1px red solid;background-color:lightgray;">
-*SPMS
+*SDMS
+<a href="${pageContext.request.contextPath}/excel/add.do">엑셀등록</a>
 <a href="${pageContext.request.contextPath}/member/list.do">회원</a>
 <a href="${pageContext.request.contextPath}/project/list.do">프로젝트</a>
 <a href="${pageContext.request.contextPath}/task/list.do">작업</a>
@@ -17,6 +18,4 @@
   <a href="${pageContext.request.contextPath}/auth/login.do">[로그인]</a>
   </c:otherwise>
 </c:choose>
-<a href="${pageContext.request.contextPath}/excel/add.do">엑셀등록</a>
-<a href="${pageContext.request.contextPath}/excel/delete.do">디비초기화</a>
 </div>
