@@ -5,6 +5,7 @@
 <div style="border:1px red solid;background-color:lightgray;">
 *SDMS
 <a href="${pageContext.request.contextPath}/excel/add.do">엑셀등록</a>
+<a href="${pageContext.request.contextPath}/excel/delete.do">디비초기화</a>
 <a href="${pageContext.request.contextPath}/member/list.do">회원</a>
 <a href="${pageContext.request.contextPath}/project/list.do">프로젝트</a>
 <a href="${pageContext.request.contextPath}/task/list.do">작업</a>
