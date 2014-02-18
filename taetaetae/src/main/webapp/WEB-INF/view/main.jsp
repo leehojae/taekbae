@@ -15,6 +15,7 @@
 
 </head>
 <body>
+
 <jsp:include page="/header.jsp"/>
 
 <h1>SDMS 홈페이지</h1>
@@ -25,22 +26,31 @@
 <h2>금일 작업리스트</h2>
 <table border='1' id='listTable'>
 <tr>
-<th>번호</th>
-<th>이름</th>
-<th>이메일</th>
-<th>전화</th>
+<th>배송번호</th>
+<th>운송장번호</th>
+<th>접수일</th>
+<th>배달예정일</th>
+<th>보내는분</th>
+<th>보내는분주소</th>
+<th>보내는분전화1</th>
+<th>보내는분전화2</th>
+<th>받는분</th>
+<th>받는분주소</th>
+<th>받는분전화1</th>
+<th>받는분전화2</th>
+<th>발송점</th>
+<th>도착점</th>
+<th>취급구분</th>
+<th>품명</th>
+<th>수량</th>
+<th>크기</th>
+<th>중량</th>
+<th>운임구분</th>
+<th>날짜</th>
 </tr>
 </table>
 </div>
-
+<iframe src="delivery/map.html" width="650" height="510"></iframe>
 <jsp:include page="/tail.jsp"/>
 </body>
 </html>
-
-
-
-
-
-
-
-
