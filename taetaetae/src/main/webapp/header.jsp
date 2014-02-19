@@ -7,8 +7,9 @@
 <a href="${pageContext.request.contextPath}/excel/add.do">엑셀등록</a>
 <a href="${pageContext.request.contextPath}/excel/delete.do">디비초기화</a>
 <a href="${pageContext.request.contextPath}/member/list.do">회원</a>
-<a href="${pageContext.request.contextPath}/project/list.do">프로젝트</a>
-<a href="${pageContext.request.contextPath}/task/list.do">작업</a>
+<a href="${pageContext.request.contextPath}/project/list.do">점소등록</a>
+<a href="${pageContext.request.contextPath}/task/list.do">차량등록</a>
+<a href="${pageContext.request.contextPath}/task/list.do">배송구역등록</a>
 <c:choose>
 	<c:when test="${!empty loginUser}">
 	<a href="#">${loginUser.name}</a>
