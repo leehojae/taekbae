@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spms.dao.OfficeDao">
+  <resultMap type="office" id="officeResultMap">
+    <id     property="officeNum"       column="OFFICE_NUM"/>
+    <result property="officeName"     column="OFFICE_NAME"/>
+    <result property="officeTel"    column="OFFICE_TEL"/>
+    <result property="officePostNum"      column="OFFICE_POST_NUM"/>
+    <result property="officeAddr" column="OFFICE_ADDR"/>
+    <result property="officeFax" column="OFFICE_FAX"/>
+  </resultMap>
+
+  <insert id="insert" parameterType="office">
+    INSERT INTO OFFICE(OFFICE_NUM,OFFICE_NAME,OFFICE_TEL,OFFICE_POST_NUM,OFFICE_ADDR,OFFICE_FAX) 
+    VALUES(#{officeNum},#{officeName},#{officeTel},#{officePostNum},#{officeAddr},#{officeFax})
+  </insert>
+  
+  <select id="selectList" resultMap="officeResultMap">
+		select OFFICE_NUM,OFFICE_NAME,OFFICE_TEL,OFFICE_POST_NUM,OFFICE_ADDR,OFFICE_FAX
+		from OFFICE
+</select>
+	
+  <select id="selectOne" parameterType="int" resultMap="officeResultMap">
+    select OFFICE_NUM,OFFICE_NAME,OFFICE_TEL,OFFICE_POST_NUM,OFFICE_ADDR,OFFICE_FAX
+		from OFFICE
+    where OFFICE_NUM=#{value}
+  </select>
+  
+  <update id="update" parameterType="office">
+    update OFFICE set 
+      OFFICE_NUM=#{officeNum},
+      OFFICE_NAME=#{officeName},
+      OFFICE_TEL=#{officeTel},
+      OFFICE_POST_NUM=#{officePostNum},
+      OFFICE_ADDR=#{officeAddr} ,
+      OFFICE_FAX=#{officeFax} 
+    where OFFICE_NUM=#{officeNum}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from OFFICE where OFFICE_NUM=#{no}
+  </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
