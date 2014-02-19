@@ -12,10 +12,10 @@ window.onload = function() {
 				method: 'POST',
 				data: {
 					name: $('mName').value,
-					email: $('mEmail').value,
+					id: $('mID').value,
+					password: $('mPassword').value,
 					tel: $('mTel').value,
-					age: $('mAge').value,
-					password: $('mPassword').value
+					personalNumber: $('mPersonalNo').value
 				},
 				success: function(members){
 					location.href = 'app.html';
@@ -28,10 +28,10 @@ window.onload = function() {
 				data: {
 					no: $('mNo').value,
 					name: $('mName').value,
-					email: $('mEmail').value,
+					id: $('mID').value,
+					password: $('mPassword').value,
 					tel: $('mTel').value,
-					age: $('mAge').value,
-					password: $('mPassword').value
+					personalNumber: $('mPersonalNo').value
 				},
 				success: function(members){
 					location.href = 'app.html';
@@ -50,6 +50,7 @@ window.onload = function() {
 };
 
 function listMember() {
+	
 	$.ajax('ajax/list.do', {
 			method: 'GET', 
 			success: function(members){
@@ -65,8 +66,10 @@ function listMember() {
 					html += '<td><a href="#" class="memberName" data-no="' + 
 						m.no + '">' + 
 						m.name + '</a></td>';	
-					html += '<td>' + m.email + '</td>';	
+					html += '<td>' + m.id + '</td>';	
 					html += '<td>' + m.tel + '</td>';	
+					html += '<td>' + m.personalNumber + '</td>';	
+					html += '<td>' + m.rank + '</td>';	
 				  tr.innerHTML = html;
 				  table.appendChild(tr);
 				}
@@ -88,10 +91,12 @@ function loadMember(no) {
 			method: 'GET', 
 			success: function(member){
 		$("mNo").value = member.no;
+		$("mID").value = member.id;
+		$("mPassword").value = member.password;
 		$("mName").value = member.name;
 		$("mTel").value = member.tel;
 		$("mAge").value = member.age;
-		$("mEmail").value = member.email;
+		$("mPersonalNo").value = member.personalNumber;
 		$("mPhoto").src = "../files/" + member.photo;
 		
 		showViewItems(true);
