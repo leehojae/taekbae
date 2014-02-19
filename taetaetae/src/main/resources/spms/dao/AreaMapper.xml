@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spms.dao.AreaDao">
+  <resultMap type="area" id="areaResultMap">
+    <id     property="no"       column="AREA_NUM"/>
+    <result property="memberNo"     column="MNO"/>
+    <result property="taskArea"    column="TASK_AREA"/>
+    <result property="areaClass"      column="AREA_CLASS"/>
+  </resultMap>
+	
+	<select id="selectList" resultMap="areaResultMap">
+		select AREA_NUM,MNO,TASK_AREA,AREA_CLASS
+		from AREAS
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultMap="areaResultMap">
+    select AREA_NUM,MNO,TASK_AREA,AREA_CLASS
+    from AREAS
+    where AREA_NUM=#{value}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    delete from AREAS where AREA_NUM=#{no}
+  </delete>
+  
+  <insert id="insert" parameterType="area">
+    INSERT INTO AREAS(MNO,TASK_AREA,AREA_CLASS) 
+    VALUES(#{memberNo},#{taskArea},#{areaClass})
+  </insert>
+  
+  <update id="update" parameterType="area">
+    update AREAS set 
+      MNO=#{memberNo},
+      TASK_AREA=#{taskArea},
+      AREA_CLASS=#{areaClass}
+    where AREA_NUM=#{no}
+  </update>
+</mapper>
