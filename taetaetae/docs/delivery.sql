@@ -47,7 +47,7 @@ CREATE TABLE `MEMBERS` (
 	`RANK`       VARCHAR(10)  NULL     COMMENT '직급', -- 직급
 	`MNAME`      VARCHAR(50)  NOT NULL COMMENT '이름', -- 이름
 	`TEL`        VARCHAR(30)  NULL     COMMENT '전화번호', -- 전화번호
-	`AGE`        VARCHAR(13)  NULL     COMMENT '주민번호', -- 주민번호
+	`PERSONAL_NO`        VARCHAR(13)  NULL     COMMENT '주민번호', -- 주민번호
 	`PHOTO`      VARCHAR(255) NULL     COMMENT '사진', -- 사진
 	`PWD`        VARCHAR(20)  NOT NULL COMMENT '암호' -- 암호
 )
