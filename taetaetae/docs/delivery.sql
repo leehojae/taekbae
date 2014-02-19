@@ -43,7 +43,7 @@ ALTER TABLE `EXCEL_UPLOAD`
 CREATE TABLE `MEMBERS` (
 	`MNO`        INTEGER      NOT NULL COMMENT '직원번호', -- 직원번호
 	`OFFICE_NUM` INTEGER      NULL     COMMENT '사업자번호', -- 사업자번호
-	`EMAIL`      VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
+	`ID`      VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
 	`RANK`       VARCHAR(10)  NULL     COMMENT '직급', -- 직급
 	`MNAME`      VARCHAR(50)  NOT NULL COMMENT '이름', -- 이름
 	`TEL`        VARCHAR(30)  NULL     COMMENT '전화번호', -- 전화번호
@@ -63,7 +63,7 @@ ALTER TABLE `MEMBERS`
 -- 사용자 유니크 인덱스
 CREATE UNIQUE INDEX `UIX_MEMBERS`
 	ON `MEMBERS` ( -- 사용자
-		`EMAIL` ASC -- 이메일
+		`ID` ASC -- 이메일
 	);
 
 ALTER TABLE `MEMBERS`
