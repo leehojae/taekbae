@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>배송구역관리</title>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="../js/bit.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+<h1>배송구역 목록</h1>
+<table border='1' id='listTable'>
+<tr>
+<th>일련번호</th>
+<th>직원번호</th>
+<th>담당지역</th>
+<th>구분</th>
+</tr>
+</table>
+
+<hr>
+
+<h2>배송구역등록폼</h2>
+<form action="add.do" method="post"
+  enctype="multipart/form-data">
+<!-- <img id="mPhoto" src="../files/" height="100"><br> -->
+<span class="view">일련번호: <input id="aNo" type="text" name="no" readonly><br></span>
+직원번호: <input id="mNo" type="text" name="mNo"><br>
+담당지역: <input id="area" type="text" name="area"><br>
+구분: <input id="areaClass" type="text" name="class"><br>
+<input id="addBtn" type="button" value="등록">
+<input id="updateBtn" type="button" value="변경" class="view">
+<input id="delBtn" type="button" value="삭제">
+<input id="cancelBtn" type="reset" value="취소">
+</form>
+
+</body>
+</html>
