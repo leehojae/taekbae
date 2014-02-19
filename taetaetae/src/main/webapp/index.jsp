@@ -5,15 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SPMS 시작</title>
+<title>SDMS 시작</title>
 </head>
 <body>
-<jsp:include page="/header.jsp"/>
 
 <h1>SPMS 홈페이지</h1>
 <p>SPMS 시스템에 오신걸 환영합니다.</p>
-<a href="main2.jsp">main2 테스트</a>
 
+<a href="${pageContext.request.contextPath}/auth/login.do">[로그인]</a>
+<a href="member/app.html">[회원가입]</a>
+<a href="member/app.html">[점소등록]</a>
 <jsp:include page="/tail.jsp"/>
 </body>
 </html>
