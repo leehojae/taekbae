@@ -8,8 +8,8 @@ public class Excel {
 
 	int tno;
 	int trcno;
-	Date receiveDate;
-	Date deliveDate;
+	String receiveDate;
+	String deliveDate;
 	String senderName;
 	String senderAddr;
 	String senderTel1;
@@ -35,8 +35,8 @@ public class Excel {
 	
 	public Excel(
 			int trcno, 
-			Date receiveDate, 
-			Date deliveDate,
+			String receiveDate, 
+			String deliveDate,
 			String senderName, 
 			String senderAddr, 
 			String senderTel1,
@@ -93,20 +93,20 @@ public class Excel {
 		return this;
 	}
 
-	public Date getReceiveDate() {
+	public String getReceiveDate() {
 		return receiveDate;
 	}
 
-	public Excel setReceiveDate(Date receiveDate) {
+	public Excel setReceiveDate(String receiveDate) {
 		this.receiveDate = receiveDate;
 		return this;
 	}
 
-	public Date getDeliveDate() {
+	public String getDeliveDate() {
 		return deliveDate;
 	}
 
-	public Excel setDeliveDate(Date deliveDate) {
+	public Excel setDeliveDate(String deliveDate) {
 		this.deliveDate = deliveDate;
 		return this;
 	}

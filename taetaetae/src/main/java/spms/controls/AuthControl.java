@@ -23,34 +23,34 @@ public class AuthControl {
 	MemberDao memberDao;
 	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
-	public String form(@CookieValue(required=false) String email, Model model) {
-  		if (email != null) {
-  			model.addAttribute("email", email);
-  			model.addAttribute("checkSaveEmail", "checked");
+	public String form(@CookieValue(required=false) String id, Model model) {
+  		if (id != null) {
+  			model.addAttribute("id", id);
+  			model.addAttribute("checkSaveId", "checked");
   		}
   		return "auth/login";
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public String login(String email, String password, String saveEmail,
+	public String login(String id, String password, String saveId,
 			HttpServletResponse response, 
 			Model model) throws Exception {
 		
 		Cookie cookie = null;
-		if (saveEmail != null) {
-			cookie = new Cookie("email", email);
+		if (saveId != null) {
+			cookie = new Cookie("id", id);
 			cookie.setMaxAge(60 * 60 * 24 * 3);
 		} else {
-			cookie = new Cookie("email", null);
+			cookie = new Cookie("id", null);
 			cookie.setMaxAge(0);
   		}
 		response.addCookie(cookie);
 		
 		HashMap<String,String> sqlparamMap = new HashMap<String,String>();
-		sqlparamMap.put("email", email);
+		sqlparamMap.put("id", id);
 		sqlparamMap.put("password", password);
 		
-		Member member = memberDao.selectByEmailPassword(sqlparamMap);
+		Member member = memberDao.selectByIdPassword(sqlparamMap);
 		
 		if (member != null) {
 			model.addAttribute("loginUser", member);

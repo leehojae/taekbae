@@ -11,7 +11,7 @@ public interface MemberDao {
 	public int insert(Member member) throws Exception;
 	public int update(Member member) throws Exception;
 	public int delete(int no) throws Exception;
-	public Member selectByEmailPassword(Map<String,String> paramMap)  
+	public Member selectByIdPassword(Map<String,String> paramMap)  
 			throws Exception;
 	public List<Member> selectListByProject(int projectNo); 	
 }

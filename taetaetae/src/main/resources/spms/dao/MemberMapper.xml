@@ -6,20 +6,21 @@
   <resultMap type="member" id="memberResultMap">
     <id     property="no"       column="MNO"/>
     <result property="name"     column="MNAME"/>
-    <result property="email"    column="EMAIL"/>
+    <result property="id"    column="ID"/>
     <result property="tel"      column="TEL"/>
-    <result property="age"      column="AGE"/>
     <result property="password" column="PWD"/>
+    <result property="personalNumber" column="PERSONAL_NO"/>
+    <result property="rank" column="RANK"/>
     <result property="photo"    column="PHOTO"/>
   </resultMap>
 	
 	<select id="selectList" resultMap="memberResultMap">
-		select MNO,MNAME,EMAIL,TEL
+		select MNO,MNAME,ID,TEL,PERSONAL_NO,RANK
 		from MEMBERS
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultMap="memberResultMap">
-    select MNO,MNAME,EMAIL,TEL,AGE,PHOTO
+    select MNO,MNAME,ID, PWD,TEL,PERSONAL_NO,RANK,PHOTO
     from MEMBERS
     where MNO=#{value}
   </select>
@@ -29,26 +30,26 @@
   </delete>
   
   <insert id="insert" parameterType="member">
-    INSERT INTO MEMBERS(MNAME,EMAIL,TEL,AGE,PHOTO) 
-    VALUES(#{name},#{email},#{tel},#{age},#{photo})
+    INSERT INTO MEMBERS(MNAME,ID,TEL,PWD,PERSONAL_NO,PHOTO) 
+    VALUES(#{name},#{id},#{tel},#{password},#{personalNumber},#{photo})
   </insert>
   
   <update id="update" parameterType="member">
     update MEMBERS set 
       MNAME=#{name},
-      EMAIL=#{email},
+      ID=#{id},
       TEL=#{tel},
-      AGE=#{age},
+      PERSONAL_NO=#{personalNumber},
       PHOTO=#{photo} 
     where MNO=#{no}
   </update>
   
-  <select id="selectByEmailPassword" 
+  <select id="selectByIDPassword" 
       parameterType="map" 
       resultMap="memberResultMap">
-    select MNO,MNAME,EMAIL,PHOTO
+    select MNO,MNAME,ID,PHOTO
     from MEMBERS
-    where EMAIL=#{email} and PWD=#{password}
+    where ID=#{id} and PWD=#{password}
   </select>
   
   <select id="selectListByProject" parameterType="int" 

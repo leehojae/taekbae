@@ -104,9 +104,9 @@ public class ExcelControl {
 				} else {
 
 					list.add(new Excel((int) (row.getCell(0)
-							.getNumericCellValue()), row.getCell(1)
-							.getDateCellValue(), row.getCell(2)
-							.getDateCellValue(), row.getCell(3)
+							.getNumericCellValue()), sdf.format(row.getCell(1)
+							.getDateCellValue()), sdf.format(row.getCell(2)
+							.getDateCellValue()), row.getCell(3)
 							.getStringCellValue(), row.getCell(4)
 							.getStringCellValue(), row.getCell(5)
 							.getStringCellValue(), row.getCell(6)

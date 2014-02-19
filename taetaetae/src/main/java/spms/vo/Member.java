@@ -6,13 +6,28 @@ public class Member implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	protected int 			no;
-  protected String 	name;
-	protected int 			age;
-	protected String 	email;
-	protected String 	tel;
+	protected String 		name;
+	protected String 		id;
+	protected String 		tel;
 	protected String		password;
+	protected String 		personalNumber;
+	protected int 			rank;
 	protected String		photo;
 	
+	public String getPersonalNumber() {
+		return personalNumber;
+	}
+	public Member setPersonalNumber(String personalNumber) {
+		this.personalNumber = personalNumber;
+		return this;
+	}
+	public int getRank() {
+		return rank;
+	}
+	public Member setRank(int rank) {
+		this.rank = rank;
+		return this;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -27,22 +42,12 @@ public class Member implements Serializable {
 		this.name = name;
 		return this;
 	}
-	public int getAge() {
-		return age;
+	
+	public String getId() {
+		return id;
 	}
-	public Member setAge(int age) {
-		if(age > 7 && age < 101) {
-			this.age = age;
-		} else { 
-			this.age = 20;
-		}
-		return this;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public Member setEmail(String email) {
-		this.email = email;
+	public Member setId(String id) {
+		this.id = id;
 		return this;
 	}
 	public String getTel() {

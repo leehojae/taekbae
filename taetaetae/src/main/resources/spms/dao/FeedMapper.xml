@@ -13,7 +13,7 @@
       <result property="no"    column="MNO"/>
       <result property="name"  column="MNAME"/>
       <result property="photo" column="PHOTO"/>
-      <result property="email" column="EMAIL"/>
+      <result property="id" column="ID"/>
     </association>
   </resultMap>
   
