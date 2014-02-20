@@ -13,43 +13,49 @@
 <script type="text/javascript" src="js/bit.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 
+<link rel="stylesheet" type="text/css" href="//w2ui.com/src/w2ui-1.3.min.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script type="text/javascript" src="//w2ui.com/src/w2ui-1.3.min.js"></script>
+
 </head>
 <body>
 
 <jsp:include page="/header.jsp"/>
 
-<h1>SDMS 홈페이지</h1>
-<p>SDMS 시스템에 오신걸 환영합니다.</p>
-<a href="main2.jsp">main2 테스트</a>
-
-<div>
-<h2>금일 작업리스트</h2>
-<table border='1' id='listTable'>
-<tr>
-<th>배송번호</th>
-<th>운송장번호</th>
-<th>접수일</th>
-<th>배달예정일</th>
-<th>보내는분</th>
-<th>보내는분주소</th>
-<th>보내는분전화1</th>
-<th>보내는분전화2</th>
-<th>받는분</th>
-<th>받는분주소</th>
-<th>받는분전화1</th>
-<th>받는분전화2</th>
-<th>발송점</th>
-<th>도착점</th>
-<th>취급구분</th>
-<th>품명</th>
-<th>수량</th>
-<th>크기</th>
-<th>중량</th>
-<th>운임구분</th>
-<th>날짜</th>
-</tr>
-</table>
-</div>
+<div id="grid" style="width: 100%; height: 250px;"></div>
+<br>
+<script type="text/javascript">
+$(function () {
+  $('#grid').w2grid({ 
+    name: 'grid', 
+    header: '금일 작업리스트',
+    //url: 'data/list.json',
+    show: {
+      header    : true,
+      toolbar   : true,
+      footer    : true,
+      lineNumbers : true,
+      selectColumn: true,
+      expandColumn: true
+    },    
+    columns: [        
+      { field: 'fname', caption: '운송장번호', size: '1.2%' },
+      { field: 'lname', caption: 'Last Name', size: '30%' },
+      { field: 'email', caption: 'Email', size: '40%' },
+      { field: 'sdate', caption: 'Start Date', size: '120px' },
+    ],
+    searches: [
+      { type: 'int',  field: 'recid', caption: 'ID' },
+      { type: 'text', field: 'fname', caption: 'First Name' },
+      { type: 'text', field: 'lname', caption: 'Last Name' },
+      { type: 'date', field: 'sdate', caption: 'Start Date' }
+    ],
+    onExpand: function (event) {
+      $('#'+event.box_id).html('<div style="padding: 10px">Expanded content</div>').animate({ 'height': 100 }, 100);
+    }
+  }); 
+});
+</script>
 <iframe src="delivery/map.html" width="650" height="510"></iframe>
 <jsp:include page="/tail.jsp"/>
 </body>
