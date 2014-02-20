@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import spms.dao.OfficeDao;
+import spms.vo.Area;
 import spms.vo.JsonResult;
 import spms.vo.Office;
 
@@ -70,20 +71,34 @@ public class OfficeControl {
 		return "office/updateForm";
 	}
 	
-	@RequestMapping(value="/ajax/updateOffice",method=RequestMethod.POST)
-  public String update(Office office,
-  		Model model) throws Exception {
-		
-		
-		 officeDao.update(office);
-		int count = officeDao.update(office);
-		if (count > 0) {
-			model.addAttribute("message", "변경 성공입니다!");
-		} else {
-			model.addAttribute("message", "해당 번호의 점소 정보를 찾을 수 없습니다!");
+//	@RequestMapping(value="/ajax/updateOffice",method=RequestMethod.POST)
+//  public String update(Office office,
+//  		Model model) throws Exception {
+//		
+//		
+//		 officeDao.update(office);
+//		int count = officeDao.update(office);
+//		if (count > 0) {
+//			model.addAttribute("message", "변경 성공입니다!");
+//		} else {
+//			model.addAttribute("message", "해당 번호의 점소 정보를 찾을 수 없습니다!");
+//		}
+//		return "office/update";
+//  }
+//	
+	
+	@RequestMapping(value="/ajax/updateOffice", method=RequestMethod.POST, 
+			produces="application/json")
+	public Object update(Office office) throws Exception {
+		try {
+			 officeDao.update(office);
+			return new JsonResult().setResultStatus(JsonResult.SUCCESS);
+			
+		} catch (Throwable ex) {
+			return new JsonResult().setResultStatus(JsonResult.FAILURE)
+					.setError(ex.getMessage());
 		}
-		return "office/update";
-  }
+	}
 
 
 
