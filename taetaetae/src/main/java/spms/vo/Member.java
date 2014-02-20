@@ -88,10 +88,3 @@ public class Member implements Serializable {
 	
 
 }
-
-
-
-
-
-
-
