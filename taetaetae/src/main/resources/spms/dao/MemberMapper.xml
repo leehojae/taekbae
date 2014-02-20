@@ -12,6 +12,7 @@
     <result property="personalNumber" column="PERSONAL_NO"/>
     <result property="rank" column="RANK"/>
     <result property="photo"    column="PHOTO"/>
+    <result property="officeNum"    column="OFFICE_NUM"/>
   </resultMap>
 	
 	<select id="selectList" resultMap="memberResultMap">
@@ -44,7 +45,7 @@
     where MNO=#{no}
   </update>
   
-  <select id="selectByIDPassword" 
+  <select id="selectByIdPassword" 
       parameterType="map" 
       resultMap="memberResultMap">
     select MNO,MNAME,ID,PHOTO
