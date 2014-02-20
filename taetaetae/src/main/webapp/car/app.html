@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>배송차량관리</title>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="../js/bit.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+<h1>배송차량 목록</h1>
+<table border='1' id='listTable'>
+<tr>
+<th>직원번호</th>
+<th>차량번호</th>
+<th>차량적재구분</th>
+<th>특수차</th>
+</tr>
+</table>
+
+<hr>
+
+<h2>배송차량등록폼</h2>
+<form action="add.do" method="post"
+  enctype="multipart/form-data">
+<!-- <span class="view">직원번호: <input id="mNo" type="text" name=" mNo" readonly><br></span>  -->
+직원번호: <input id="mNo" type="text" name="mNo"><br>  
+차량번호: <input id="carNumber" type="text" name="Number"><br>
+차량적재구분: <input id="carLoad" type="text" name="Load"><br>
+특수차: <input id="carType" type="text" name="type"><br>
+<input id="addBtn" type="button" value="등록">
+<input id="updateBtn" type="button" value="변경" class="view">
+<input id="delBtn" type="button" value="삭제">
+<input id="cancelBtn" type="reset" value="취소">
+</form>
+
+</body>
+</html>

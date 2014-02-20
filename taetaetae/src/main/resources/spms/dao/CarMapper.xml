@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spms.dao.CarDao">
+  <resultMap type="car" id="carResultMap">
+    <id     property="no"           column="MNO"/>
+    <result property="carNumber"        column="CAR_NUM"/>
+    <result property="carLoad"        column="CAR_LOAD"/>
+    <result property="carType"    column="CAR_TYPE"/>
+   </resultMap>
+  
+  <select id="selectList" resultMap="carResultMap">
+        select MNO,CAR_NUM,CAR_LOAD,CAR_TYPE
+        from CARS
+    </select>
+    
+    <select id="selectOne" parameterType="int" resultMap="carResultMap">
+    select MNO,CAR_NUM,CAR_LOAD,CAR_TYPE
+    from CARS
+    where CAR_NUM=#{value}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    delete from CARS where CAR_NUM=#{carNumber}
+  </delete>
+  
+  <insert id="insert" parameterType="car">
+    INSERT INTO CARS(MNO,CAR_NUM,CAR_LOAD,CAR_TYPE) 
+    VALUES(#{no},#{carNumber},#{carLoad},#{carType})
+  </insert>
+  
+  <update id="update" parameterType="car">
+    update CARS set 
+      MNO=#{no},
+      CAR_NUMBER=#{carNumber},
+      CAR_LOAD=#{carLoad},
+      CAR_TYPE=#{carType}
+    where CAR_NUM=#{carNumber}
+  </update>
+</mapper>
+
+
