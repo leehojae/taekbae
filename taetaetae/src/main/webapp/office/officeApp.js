@@ -36,7 +36,7 @@ window.onload = function() {
 					officeAddr: $('oOfficeAddr').value,
 					officeFax: $('oFax').value
 				},
-				success: function(offices){
+				success: function(office){
 					location.href = 'officeApp.html';
 		}});
 	});

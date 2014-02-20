@@ -105,7 +105,7 @@ function selectOffice() {
 				o = office[i];
 				option = document.createElement('option');
 				html = '';
-				html += ' <option value="'+ o.officeNum  +'">' +o.officeName + '</option>'; 
+				html += ' <option value='+ o.officeNum  +'>' +o.officeName + '</option>'; 
 				
 				option.innerHTML = html;
 				selectbox.appendChild(option);
