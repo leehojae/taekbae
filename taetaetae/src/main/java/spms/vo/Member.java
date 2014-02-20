@@ -13,7 +13,17 @@ public class Member implements Serializable {
 	protected String 		personalNumber;
 	protected int 			rank;
 	protected String		photo;
+	private int  officeNum;
 	
+	
+	
+	public int getOfficeNum() {
+		return officeNum;
+	}
+	public Member setOfficeNum(int officeNum) {
+		this.officeNum = officeNum;
+		return this;
+	}
 	public String getPersonalNumber() {
 		return personalNumber;
 	}
