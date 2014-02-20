@@ -2,6 +2,7 @@ window.onload = function() {
 	showViewItems(false);
 	
 	listMember();
+	selectOffice();
 	
 	$('cancelBtn').click( function() {
 		showViewItems(false);
@@ -11,6 +12,7 @@ window.onload = function() {
 		$.ajax( 'ajax/add.do', {
 				method: 'POST',
 				data: {
+					officeNum: $('selectOffice').value,
 					name: $('mName').value,
 					id: $('mID').value,
 					password: $('mPassword').value,
@@ -85,6 +87,41 @@ function listMember() {
 				alert('시스템이 바쁩니다.\n나중에 다시 시도해 주세요!');
 	}});
 }
+
+
+function selectOffice() {
+	
+	$.ajax('ajax/officeList.do', {
+		method: 'GET', 
+		success: function(office)
+		{
+			var o = null;
+			var option = null;
+			var html = null;
+			var selectbox = $('selectOffice');
+			
+			for (var i = 0; i < office.length; i++)
+			{
+				o = office[i];
+				option = document.createElement('option');
+				html = '';
+				html += ' <option value="'+ o.officeNum  +'">' +o.officeName + '</option>'; 
+				
+				option.innerHTML = html;
+				selectbox.appendChild(option);
+			}
+		}, 
+		error: function()
+		{
+			alert('시스템이 바쁩니다.\n나중에 다시 시도해 주세요!'); 
+		}
+			
+	}
+	);
+}
+
+
+
 
 function loadMember(no) {
 	$.ajax('ajax/read.do?no=' + no, {
