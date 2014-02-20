@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import spms.dao.MemberDao;
 import spms.vo.JsonResult;
 import spms.vo.Member;
+import spms.vo.Office;
+import spms.dao.OfficeDao;
 
 @Controller
 @RequestMapping("/member")
@@ -28,6 +30,9 @@ public class MemberControl {
 	
 	@Autowired(required=false)
 	MemberDao memberDao;
+	
+	@Autowired(required=false)
+	OfficeDao officeDao;
 	
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String form() {
@@ -172,6 +177,20 @@ public class MemberControl {
 		try {
 			return new JsonResult().setResultStatus(JsonResult.SUCCESS) 
 					.setData(memberDao.selectList());
+			
+		} catch (Throwable ex) {
+			return new JsonResult().setResultStatus(JsonResult.FAILURE)
+					.setError(ex.getMessage());
+		}
+		
+	}
+	
+	
+	@RequestMapping(value="/ajax/officeList.do", produces="application/json")
+	public Object ajaxListmem() throws Exception {
+		try {
+			return new JsonResult().setResultStatus(JsonResult.SUCCESS) 
+					.setData(officeDao.selectList());
 			
 		} catch (Throwable ex) {
 			return new JsonResult().setResultStatus(JsonResult.FAILURE)
