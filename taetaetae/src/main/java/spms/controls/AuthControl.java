@@ -28,7 +28,7 @@ public class AuthControl {
   			model.addAttribute("id", id);
   			model.addAttribute("checkSaveId", "checked");
   		}
-  		return "redirect:/main.do";
+  		return "redirect:/index.jsp";
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
@@ -56,14 +56,14 @@ public class AuthControl {
 			model.addAttribute("loginUser", member);
 			return "redirect:/main.do";
 		} else {
-			return "auth/loginFail";
+			return "redirect:/index.jsp";
 		}
   }
 	
 	@RequestMapping("/logout")
   public String logout(SessionStatus status) throws Exception {
 		status.setComplete();
-		return "redirect:login.do";
+		return "redirect:/index.jsp";
   }
 	
 	@RequestMapping("/loginUser")
