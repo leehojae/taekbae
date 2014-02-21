@@ -12,10 +12,13 @@
 </head>
 <body>
 <div>
-SDMS(Smart Delivery Management System)
-<a href="${pageContext.request.contextPath}/auth/logout.do">[로그아웃]</a>
-<a href="${pageContext.request.contextPath}/excel/add.do">엑셀등록</a>
+<h1>SDMS(Smart Delivery Management System)</h1>
+
+<%-- <a href="${pageContext.request.contextPath}/auth/logout.do">[로그아웃]</a> --%>
+<%-- <a href="${pageContext.request.contextPath}/excel/add.do">엑셀등록</a> --%>
+
 </div>
+<jsp:include page="/header.jsp"></jsp:include>
 <div id="main">
 <div id="list">
 <table border='1' id='listTable'>
