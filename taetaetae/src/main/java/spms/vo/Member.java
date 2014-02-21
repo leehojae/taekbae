@@ -15,7 +15,24 @@ public class Member implements Serializable {
 	protected String		photo;
 	private int  officeNum;
 	
-	
+	@Override
+	public String toString() {
+	   return "{"
+	   		+ "no='" + no + 
+	   		"', name='" + name +
+	   		"', id="+ id +  
+	   		"', tel='"+ tel +  
+	   		"', password='"+ password +  
+	   		"', personalNumber='"+ personalNumber +  
+	   		"', rank='"+ rank +  
+	   		"', photo='"+ photo +  
+	   		"', officeNum='"+ officeNum +  
+	   		
+	   		"' }";
+			  
+			  
+		
+	}
 	
 	public int getOfficeNum() {
 		return officeNum;
@@ -86,5 +103,14 @@ public class Member implements Serializable {
 		return this;
 	}
 	
+	
+	
 
 }
+
+
+
+
+
+
+
