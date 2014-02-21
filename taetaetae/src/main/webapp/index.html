@@ -32,12 +32,12 @@
         <input type="text" class="form-control" placeholder="운송장번호입력" autofocus>
         <button class="btn btn-lg btn-primary btn-block" type="submit">입력</button>
       </form>
-      <form class="form-signin" action="main.do">
+      <form class="form-signin" action="auth/login.do" method="post">
         <h2 class="form-signin-heading">사용자 로그인</h2>
-        <input type="text" class="form-control" placeholder="아이디" autofocus>
+        <input type="text" class="form-control" placeholder="아이디" autofocus >
         <input type="password" class="form-control" placeholder="암호">
         <label class="checkbox">
-          <input type="checkbox" value="아이디기억">아이디기억
+          <input type="checkbox" value="아이디기억" ${checkSaveEmail}>아이디기억
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
       </form>
