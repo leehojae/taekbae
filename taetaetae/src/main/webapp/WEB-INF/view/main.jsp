@@ -44,7 +44,7 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li><a href="#about"><h1>SDMS(Smart Delivery Management System)</h1></a></li>
-          <li><a href="#about">홍길동님</a></li>
+          <li><a href="#about">${loginUser.name}님</a></li>
           <li><a href="#contact">로그아웃</a></li>
         </ul>
       </div>
