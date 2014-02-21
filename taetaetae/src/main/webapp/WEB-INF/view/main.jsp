@@ -51,6 +51,11 @@
       <!--/.nav-collapse -->
     </div>
   </div>
+
+  <div class="container">
+
+    <div class="starter-template">
+      <br>
   <div id="grid" style="width: 100%; height: 250px;"></div>
   <script type="text/javascript">
 $(function () {
@@ -84,11 +89,6 @@ $(function () {
   }); 
 });
 </script>
-
-  <div class="container">
-
-    <div class="starter-template">
-      <br>
       <iframe src="delivery/map.html" width="1000" height="510"></iframe>
     </div>
 
