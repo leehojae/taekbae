@@ -28,7 +28,7 @@ public class AuthControl {
   			model.addAttribute("id", id);
   			model.addAttribute("checkSaveId", "checked");
   		}
-  		return "auth/login";
+  		return "redirect:/main.do";
 	}
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
@@ -54,7 +54,7 @@ public class AuthControl {
 		
 		if (member != null) {
 			model.addAttribute("loginUser", member);
-			return "redirect:../main.do";
+			return "redirect:/main.do";
 		} else {
 			return "auth/loginFail";
 		}
