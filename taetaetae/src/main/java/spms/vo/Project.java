@@ -6,7 +6,7 @@ import java.sql.Date;
 public class Project implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final int READY = 0;
+    public static final int READY = 0;
 	public static final int WORKING = 1;
 	public static final int COMPLETE = 2;
 	public static final int CANCEL = 3;
