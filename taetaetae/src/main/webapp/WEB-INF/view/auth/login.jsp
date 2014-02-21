@@ -7,7 +7,6 @@
 <title>로그인폼</title>
 
 <script type="text/javascript">
-
 function openPopup () {
   $().w2form({
       name: 'foo',
@@ -84,7 +83,7 @@ function openPopup () {
 <!-- <input type="text" name="fname" placeholder="E-mail"><br> -->
 <!-- <input type="text" name="fname" placeholder="Password"><br> -->
 
-<input type="checkbox" name="saveID" ${checkSaveID}>이메일 저장<br>
+<input type="checkbox" name="saveID" ${checkSaveID}>아이디 저장<br>
 <input type="submit" value="로그인">
 
 
