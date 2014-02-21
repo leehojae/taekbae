@@ -35,11 +35,11 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">입력</button>
       </form>
       <form class="form-signin" action="auth/login.do" method="post">
-        <h2 class="form-signin-heading">사용자 로그인</h2>
-        <input type="text" class="form-control" placeholder="아이디" autofocus >
-        <input type="password" class="form-control" placeholder="암호">
+        <h2 class="form-signin-heading">관리자 로그인</h2>
+        <input type="text" name="id" class="form-control" placeholder="아이디" autofocus value="${id}">
+        <input type="password" name="password" class="form-control" placeholder="암호">
         <label class="checkbox">
-          <input type="checkbox" value="아이디기억" ${checkSaveEmail}>아이디기억
+          <input type="checkbox" name="checkSaveId" value="아이디기억" ${checkSaveId}>아이디기억
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
       </form>
