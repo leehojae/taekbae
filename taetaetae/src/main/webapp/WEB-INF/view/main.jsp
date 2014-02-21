@@ -45,7 +45,7 @@
         <ul class="nav navbar-nav">
           <li><a href="#about"><h1>SDMS(Smart Delivery Management System)</h1></a></li>
           <li><a href="#about">${loginUser.name}님</a></li>
-          <li><a href="#contact">로그아웃</a></li>
+          <li><a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a></li>
         </ul>
       </div>
       <!--/.nav-collapse -->
@@ -55,6 +55,34 @@
   <div class="container">
 
     <div class="starter-template">
+    <br>
+    <script type="text/javascript">
+$(function () { 
+  $('#toolbar').w2toolbar({
+    name: 'toolbar',
+    items: [
+      { type: 'button',  id: 'item1',  caption: '엑셀등록', img: 'icon-page', hint: 'Hint for item 1' },
+      { type: 'button',  id: 'item2',  caption: '디비초기화', img: 'icon-page', hint: 'Hint for item 2' },
+      { type: 'button',  id: 'item3',  caption: '회원등록', img: 'icon-page', hint: 'Hint for item 3' },
+      { type: 'button',  id: 'item4',  caption: '점소등록', img: 'icon-page', hint: 'Hint for item 4' },
+      { type: 'button',  id: 'item5',  caption: '차량등록', img: 'icon-page', hint: 'Hint for item 5' },
+      { type: 'button',  id: 'item5',  caption: '배송구역등록', img: 'icon-page', hint: 'Hint for item 5' },
+      { type: 'spacer' },
+      { type: 'html',  id: 'item6',
+      html: '<div style="padding: 3px 10px;">'+
+            '<a href="#">${loginUser.name}</a>'+
+            '<a href="${pageContext.request.contextPath}/auth/logout.do">[로그아웃]</a>'+
+            '</div>' 
+      },
+    ],
+    onClick: function (event) {
+      console.log('Target: '+ event.target, event);
+    }
+  });
+});
+</script>
+
+<div id="toolbar" style="padding: 4px; border: 1px solid silver; border-radius: 3px"></div>
       <br>
   <div id="grid" style="width: 100%; height: 250px;"></div>
   <script type="text/javascript">
