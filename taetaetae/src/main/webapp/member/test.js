@@ -1,12 +1,3 @@
-var obj ={
-		name : 'eeee',
-		age :'33'
-};
-
-
-var copy = JSON.parse(JSON.stringify(obj));
-
-alert("dsefrf");
 
 
 var config = {
@@ -24,9 +15,6 @@ var config = {
 		          
 			{ field: 'no', caption: 'no', size: '33%', sortable: true, searchable: true },
 			{ field: 'name', caption: 'Name', size: '33%', sortable: true, searchable: true },
-			{ field: 'id', caption: 'id', size: '33%', sortable: true, searchable: true },
-			{ field: 'tel', caption: 'tel', size: '33%', sortable: true, searchable: true },
-			{ field: 'personalNumber', caption: 'personalNumber', size: '33%', sortable: true, searchable: true },
 			
 		],
 
