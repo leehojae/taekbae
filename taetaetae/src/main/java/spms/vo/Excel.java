@@ -6,10 +6,14 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class Excel {
 
-	int tno;
 	int trcno;
-	String receiveDate;
-	String deliveDate;
+	int orderNo;
+	int state;
+	String office;
+	String member;
+	Date receiveDate;
+	Date deliverDate;
+	Date deliverEndDate;
 	String senderName;
 	String senderAddr;
 	String senderTel1;
@@ -25,38 +29,30 @@ public class Excel {
 	int count;
 	String size;
 	int weight;
-	int payment;
+	String payment;
+	int pay;
 	Date date;
+	int returnBox;
+	int boxState;
+	int id;
 	
 	private CommonsMultipartFile file = null;
 	
 	public Excel() {
 	}
-	
-	public Excel(
-			int trcno, 
-			String receiveDate, 
-			String deliveDate,
-			String senderName, 
-			String senderAddr, 
-			String senderTel1,
-			String senderTel2, 
-			String receiverName, 
-			String receiverAddr,
-			String receiverTel1, 
-			String receiverTel2, 
-			String sendPoint,
-			String receivePoint, 
-			String packing, 
-			String productName, 
-			int count,
-			String size, 
-			int weight, 
-			int payment
-			) {
+
+	public Excel(int trcno, int orderNo, String office, Date receiveDate,
+			Date deliverDate, String senderName, String senderAddr,
+			String senderTel1, String senderTel2, String receiverName,
+			String receiverAddr, String receiverTel1, String receiverTel2,
+			String sendPoint, String receivePoint, String packing,
+			String productName, int count, String size, int weight,
+			String payment, int pay, int returnBox) {
 		this.trcno = trcno;
+		this.orderNo = orderNo;
+		this.office = office;
 		this.receiveDate = receiveDate;
-		this.deliveDate = deliveDate;
+		this.deliverDate = deliverDate;
 		this.senderName = senderName;
 		this.senderAddr = senderAddr;
 		this.senderTel1 = senderTel1;
@@ -73,15 +69,8 @@ public class Excel {
 		this.size = size;
 		this.weight = weight;
 		this.payment = payment;
-	}
-
-	public int getTno() {
-		return tno;
-	}
-
-	public Excel setTno(int tno) {
-		this.tno = tno;
-		return this;
+		this.pay = pay;
+		this.returnBox = returnBox;
 	}
 
 	public int getTrcno() {
@@ -93,21 +82,12 @@ public class Excel {
 		return this;
 	}
 
-	public String getReceiveDate() {
+	public Date getReceiveDate() {
 		return receiveDate;
 	}
 
-	public Excel setReceiveDate(String receiveDate) {
+	public Excel setReceiveDate(Date receiveDate) {
 		this.receiveDate = receiveDate;
-		return this;
-	}
-
-	public String getDeliveDate() {
-		return deliveDate;
-	}
-
-	public Excel setDeliveDate(String deliveDate) {
-		this.deliveDate = deliveDate;
 		return this;
 	}
 	
@@ -231,6 +211,8 @@ public class Excel {
 	public String getSize() {
 		return size;
 	}
+	
+	
 
 	public Excel setSize(String size) {
 		this.size = size;
@@ -246,11 +228,11 @@ public class Excel {
 		return this;
 	}
 
-	public int getPayment() {
+	public String getPayment() {
 		return payment;
 	}
 
-	public Excel setPayment(int payment) {
+	public Excel setPayment(String payment) {
 		this.payment = payment;
 		return this;
 	}
@@ -272,4 +254,87 @@ public class Excel {
 		this.file = file;
 		return this;
 	}
+
+	public int getOrderNo() {
+		return orderNo;
+	}
+
+	public Excel setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
+		return this;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public Excel setState(int state) {
+		this.state = state;
+		return this;
+	}
+
+	public String getOffice() {
+		return office;
+	}
+
+	public Excel setOffice(String office) {
+		this.office = office;
+		return this;
+	}
+
+	public String getMember() {
+		return member;
+	}
+
+	public Excel setMember(String member) {
+		this.member = member;
+		return this;
+	}
+
+	public Date getDeliverDate() {
+		return deliverDate;
+	}
+
+	public Excel setDeliverDate(Date deliverDate) {
+		this.deliverDate = deliverDate;
+		return this;
+	}
+
+	public int getPay() {
+		return pay;
+	}
+
+	public Excel setPay(int pay) {
+		this.pay = pay;
+		return this;
+	}
+
+	public int getReturnBox() {
+		return returnBox;
+	}
+
+	public Excel setReturnBox(int returnBox) {
+		this.returnBox = returnBox;
+		return this;
+	}
+
+	public int getBoxState() {
+		return boxState;
+	}
+
+	public Excel setBoxState(int boxState) {
+		this.boxState = boxState;
+		return this;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public Excel setId(int id) {
+		this.id = id;
+		return this;
+	}
+	
+	
 }
