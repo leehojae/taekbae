@@ -5,10 +5,14 @@
 <mapper namespace="spms.dao.ExcelDao">
 
 	<resultMap type="excel" id="excelResultMap">
-		<id property="tno" column="TNO" />
-		<result property="trcno" column="TRCNO" />
+		<id property="trcno" column="TRCNO" />
+		<result property="orderNo" column="ORDER_NO" />
+		<result property="state" column="STATE" />
+		<result property="office" column="OFFICE" />
+		<result property="member" column="MEMBER" />
 		<result property="receiveDate" column="RECEIVE_DATE" />
-		<result property="deliveDate" column="DELIVE_DATE" />
+		<result property="deliverDate" column="DELIVER_DATE" />
+		<result property="deliverEndDate" column="DELIVER_END_DATE" />
 		<result property="senderName" column="SENDER_NAME" />
 		<result property="senderAddr" column="SENDER_ADDR" />
 		<result property="senderTel1" column="SENDER_TEL1" />
@@ -21,11 +25,15 @@
 		<result property="receivePoint" column="RECEIVE_POINT" />
 		<result property="packing" column="PACKING" />
 		<result property="productName" column="PRODUCT_NAME" />
-		<result property="count" column="COUNT" />
-		<result property="size" column="SIZE" />
+		<result property="count" column="GOODS_COUNT" />
+		<result property="size" column="GOODS_SIZE" />
 		<result property="weight" column="WEIGHT" />
 		<result property="payment" column="PAYMENT" />
-		<result property="date" column="DATE" />
+		<result property="pay" column="PAY" />
+		<result property="date" column="TODAY_DATE" />
+		<result property="returnBox" column="RETURN_BOX" />
+		<result property="boxState" column="BOX_STATE" />
+		<result property="id" column="ID" />
 	</resultMap>
   
 	<delete id="delete">
@@ -35,10 +43,12 @@
 	<insert id="addExcel" parameterType="list">
 		INSERT INTO EXCEL_UPLOAD (
 		TRCNO, 
+		ORDER_NO, 
+		OFFICE, 
 		RECEIVE_DATE, 
-		DELIVE_DATE, 
-		SENDER_NAME, 
-		SENDER_ADDR, 
+		DELIVER_DATE,
+		SENDER_NAME,  
+		SENDER_ADDR,  
 		SENDER_TEL1, 
 		SENDER_TEL2, 
 		RECEIVER_NAME, 
@@ -52,12 +62,16 @@
 		COUNT, 
 		SIZE, 
 		WEIGHT, 
-		PAYMENT,DATE) VALUES
+		PAYMENT, 
+		PAY, 
+		RETURN_BOX) VALUES
 		<foreach item="excel" collection="list" separator=",">
 			(
 			#{excel.trcno}, 
+			#{excel.orderNo}, 
+			#{excel.office}, 
 			#{excel.receiveDate}, 
-			#{excel.deliveDate}, 
+			#{excel.deliverDate}, 
 			#{excel.senderName}, 
 			#{excel.senderAddr}, 
 			#{excel.senderTel1}, 
@@ -74,18 +88,20 @@
 			#{excel.size}, 
 			#{excel.weight}, 
 			#{excel.payment}, 
-			now())
+			#{excel.pay}, 
+			#{excel.returnBox} 
 		</foreach>
 	</insert>
 
 	<select id="selectList" resultMap="excelResultMap">
 		select
-		TNO,
-		TRCNO,
+		TRCNO, 
+    ORDER_NO, 
+    OFFICE, 
     RECEIVE_DATE, 
-    DELIVE_DATE, 
-    SENDER_NAME, 
-    SENDER_ADDR, 
+    DELIVER_DATE,
+    SENDER_NAME,  
+    SENDER_ADDR,  
     SENDER_TEL1, 
     SENDER_TEL2, 
     RECEIVER_NAME, 
@@ -99,8 +115,9 @@
     COUNT, 
     SIZE, 
     WEIGHT, 
-    PAYMENT,
-    DATE
+    PAYMENT, 
+    PAY, 
+    RETURN_BOX 
 		from EXCEL_UPLOAD
 	</select>
 </mapper>
