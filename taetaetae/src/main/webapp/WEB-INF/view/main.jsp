@@ -56,6 +56,21 @@
 
     <div class="starter-template">
     <br>
+    <form enctype="multipart/form-data" action="excel/add.do" method="POST" id="upload_form">
+      <input type="file" id="excelFile" name="excelFile" />
+      <input type="submit" value="파일 전송" />
+</form>
+    <script>
+    var fileInput = document.getElementById("upload_file");
+    var file = fileInput.files[0];
+    var formData = new FormData();
+    formData.append("excelFile" , file);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST" , "excel/add.do" , true);
+    xhr.send(formData);
+</script>
+
     <script type="text/javascript">
 $(function () { 
   $('#toolbar').w2toolbar({
@@ -88,6 +103,13 @@ $(function () {
 });
 </script>
 
+
+
+<!-- <script>
+$(function () {
+  $('#excelFile').w2field({ type: 'upload', hint: w2utils.lang('파일넣으세요') });
+});
+</script>
 <script type="text/javascript">
 function openPopup () {
   $().w2form({
@@ -95,17 +117,9 @@ function openPopup () {
     style: 'border: 0px; background-color: transparent;',
     formHTML: 
       '<div class="w2ui-page page-0">'+
-      ' <div class="w2ui-label">First Name:</div>'+
+      ' <div class="w2ui-label">엑셀파일:</div>'+
       ' <div class="w2ui-field">'+
-      '   <input name="first_name" type="text" size="35"/>'+
-      ' </div>'+
-      ' <div class="w2ui-label">Last Name:</div>'+
-      ' <div class="w2ui-field">'+
-      '   <input name="last_name" type="text" size="35"/>'+
-      ' </div>'+
-      ' <div class="w2ui-label">Email:</div>'+
-      ' <div class="w2ui-field">'+
-      '   <input name="email" type="text" size="35"/>'+
+      '   <input id="excelFile" name="excelFile" type="upload" size="35" style="height: 60px;"/>'+
       ' </div>'+
       '</div>'+
       '<div class="w2ui-buttons">'+
@@ -113,22 +127,22 @@ function openPopup () {
       ' <input type="button" value="Save" name="save">'+
       '</div>',
     fields: [
-      { name: 'first_name', type: 'text', required: true },
-      { name: 'last_name', type: 'text', required: true },
-      { name: 'email', type: 'email' },
+      { name: 'excelFile', type: 'upload', required: true }
     ],
-    record: { 
-      first_name  : 'John',
-      last_name   : 'Doe',
-      email     : 'jdoe@email.com'
+    options : {
+      hint            : w2utils.lang('파일넣으세요'),
+      max             : 0,        // max number of files, 0 - unlim
+      maxSize         : 0,        // max size of all files, 0 - unlim
+      maxFileSize     : 0        // max size of a single file, 0 -unlim
     },
     actions: {
       "save": function () { this.validate(); },
       "reset": function () { this.clear(); },
     }
   });
+
   $().w2popup('open', {
-    title : 'Form in a Popup',
+    title : '엑셀등록',
     body  : '<div id="form" style="width: 100%; height: 100%;"></div>',
     style : 'padding: 15px 0px 0px 0px',
     width : 500,
@@ -155,7 +169,7 @@ function openPopup () {
     }
   });
 }
-</script>
+</script> -->
 
 <div id="toolbar" style="padding: 4px; border: 1px solid silver; border-radius: 3px"></div>
       <br>
