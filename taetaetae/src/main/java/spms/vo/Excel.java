@@ -11,8 +11,8 @@ public class Excel {
 	int state;
 	String office;
 	String member;
-	Date receiveDate;
-	Date deliverDate;
+	String receiveDate;
+	String deliverDate;
 	Date deliverEndDate;
 	String senderName;
 	String senderAddr;
@@ -41,13 +41,31 @@ public class Excel {
 	public Excel() {
 	}
 
-	public Excel(int trcno, int orderNo, String office, Date receiveDate,
-			Date deliverDate, String senderName, String senderAddr,
-			String senderTel1, String senderTel2, String receiverName,
-			String receiverAddr, String receiverTel1, String receiverTel2,
-			String sendPoint, String receivePoint, String packing,
-			String productName, int count, String size, int weight,
-			String payment, int pay, int returnBox) {
+	public Excel(
+			int trcno, 
+			int orderNo, 
+			String office, 
+			String receiveDate,
+			String deliverDate, 
+			String senderName, 
+			String senderAddr,
+			String senderTel1, 
+			String senderTel2, 
+			String receiverName,
+			String receiverAddr, 
+			String receiverTel1, 
+			String receiverTel2,
+			String sendPoint, 
+			String receivePoint, 
+			String packing,
+			String productName, 
+			int count, 
+			String size, 
+			int weight,
+			String payment, 
+			int pay, 
+			int returnBox
+			) {
 		this.trcno = trcno;
 		this.orderNo = orderNo;
 		this.office = office;
@@ -82,11 +100,11 @@ public class Excel {
 		return this;
 	}
 
-	public Date getReceiveDate() {
+	public String getReceiveDate() {
 		return receiveDate;
 	}
 
-	public Excel setReceiveDate(Date receiveDate) {
+	public Excel setReceiveDate(String receiveDate) {
 		this.receiveDate = receiveDate;
 		return this;
 	}
@@ -291,11 +309,11 @@ public class Excel {
 		return this;
 	}
 
-	public Date getDeliverDate() {
+	public String getDeliverDate() {
 		return deliverDate;
 	}
 
-	public Excel setDeliverDate(Date deliverDate) {
+	public Excel setDeliverDate(String deliverDate) {
 		this.deliverDate = deliverDate;
 		return this;
 	}
