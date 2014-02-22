@@ -103,27 +103,31 @@ public class ExcelControl {
 					System.out.println("====Excel to DB Insert====");
 				} else {
 
-					list.add(new Excel((int) (row.getCell(0)
-							.getNumericCellValue()), sdf.format(row.getCell(1)
-							.getDateCellValue()), sdf.format(row.getCell(2)
-							.getDateCellValue()), row.getCell(3)
-							.getStringCellValue(), row.getCell(4)
-							.getStringCellValue(), row.getCell(5)
-							.getStringCellValue(), row.getCell(6)
-							.getStringCellValue(), row.getCell(7)
-							.getStringCellValue(), row.getCell(8)
-							.getStringCellValue(), row.getCell(9)
-							.getStringCellValue(), row.getCell(10)
-							.getStringCellValue(), row.getCell(11)
-							.getStringCellValue(), row.getCell(12)
-							.getStringCellValue(), row.getCell(13)
-							.getStringCellValue(), row.getCell(14)
-							.getStringCellValue(), (int) (row.getCell(15)
-							.getNumericCellValue()), row.getCell(16)
-							.getStringCellValue(), (int) (row.getCell(17)
-							.getNumericCellValue()), (int) (row.getCell(18)
-							.getNumericCellValue())));
-					System.out.println("dd2 : " + list);
+					list.add(new Excel(
+							(int) (row.getCell(0).getNumericCellValue()), 
+							(int) (row.getCell(1).getNumericCellValue()), 
+							row.getCell(2).getStringCellValue(), 
+							sdf.format(row.getCell(3).getDateCellValue()), 
+							sdf.format(row.getCell(4).getDateCellValue()), 
+							row.getCell(5).getStringCellValue(), 
+							row.getCell(6).getStringCellValue(), 
+							row.getCell(7).getStringCellValue(), 
+							row.getCell(8).getStringCellValue(), 
+							row.getCell(9).getStringCellValue(), 
+							row.getCell(10).getStringCellValue(), 
+							row.getCell(11).getStringCellValue(), 
+							row.getCell(12).getStringCellValue(), 
+							row.getCell(13).getStringCellValue(), 
+							row.getCell(14).getStringCellValue(), 
+							row.getCell(15).getStringCellValue(), 
+							row.getCell(16).getStringCellValue(), 
+							(int) (row.getCell(17).getNumericCellValue()), 
+							row.getCell(18).getStringCellValue(), 
+							(int) (row.getCell(19).getNumericCellValue()), 
+							row.getCell(20).getStringCellValue(), 
+							(int) (row.getCell(21).getNumericCellValue()), 
+							(int) (row.getCell(22).getNumericCellValue())
+							));
 
 				}
 
