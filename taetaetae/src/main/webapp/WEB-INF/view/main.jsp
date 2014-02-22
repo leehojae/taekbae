@@ -98,18 +98,37 @@ $(function () {
       lineNumbers : true,
       selectColumn: true,
       expandColumn: true
-    },    
-    columns: [        
-      { field: 'fname', caption: '운송장번호', size: '1.2%' },
-      { field: 'lname', caption: 'Last Name', size: '30%' },
-      { field: 'email', caption: 'Email', size: '40%' },
-      { field: 'sdate', caption: 'Start Date', size: '120px' },
-    ],
+    },
     searches: [
-      { type: 'int',  field: 'recid', caption: 'ID' },
-      { type: 'text', field: 'fname', caption: 'First Name' },
-      { type: 'text', field: 'lname', caption: 'Last Name' },
-      { type: 'date', field: 'sdate', caption: 'Start Date' }
+               { type: 'int',  field: 'trcno', caption: '운송장번호' },
+               { type: 'int', field: 'orderNo', caption: '주문번호' },
+               { type: 'text', field: 'office', caption: '배송사' },
+               { type: 'date', field: 'receiveDate', caption: '접수일' }
+             ],
+    columns: [        
+      { field: 'trcno', caption: '운송장번호', size: '30%' },
+      { field: 'orderNo', caption: '주문번호', size: '30%' },
+      { field: 'office', caption: '배송사', size: '40%' },
+      { field: 'receiveDate', caption: '접수일', size: '30%' },
+      { field: 'deliverDate', caption: '배달예정일', size: '30%' },
+      { field: 'senderName', caption: '보내는분', size: '30%' },
+      { field: 'senderAddr', caption: '보내는분주소', size: '30%' },
+      { field: 'senderTel1', caption: '보내는분전화1', size: '30%' },
+      { field: 'senderTel2', caption: '보내는분전화2', size: '30%' },
+      { field: 'receiverName', caption: '받는분', size: '30%' },
+      { field: 'receiverAddr', caption: '받는분주소', size: '30%' },
+      { field: 'receiverTel1', caption: '받는분전화1', size: '30%' },
+      { field: 'receiverTel2', caption: '받는분전화2', size: '30%' },
+      { field: 'sendPoint', caption: '발송점', size: '30%' },
+      { field: 'receivePoint', caption: '도착점', size: '30%' },
+      { field: 'packing', caption: '취급구분', size: '30%' },
+      { field: 'productName', caption: '품명', size: '30%' },
+      { field: 'count', caption: '수량', size: '30%' },
+      { field: 'size', caption: '크기', size: '30%' },
+      { field: 'weight', caption: '중량', size: '30%' },
+      { field: 'payment', caption: '운임구분', size: '30%' },
+      { field: 'pay', caption: '운임결제', size: '30%' },
+      { field: 'returnBox', caption: '반품', size: '30%' }
     ],
     onExpand: function (event) {
       $('#'+event.box_id).html('<div style="padding: 10px">Expanded content</div>').animate({ 'height': 100 }, 100);
