@@ -237,6 +237,9 @@ $(function(){
   });
 });
 </script>
+<script type="text/javascript">
+</script>
+
       <iframe src="delivery/map.html" width="1000" height="510"></iframe>
     </div>
 
