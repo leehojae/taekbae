@@ -224,6 +224,18 @@ $(function () {
     }
   }); 
 });
+$(function(){
+  $.getJSON('excel/ajax/list.do', function(data){
+    var records = data.jsonResult.data;
+    for (var i = 0; i < records.length; i++){
+      records[i].recid = records[i].no;
+    }
+    
+    console.log(records);
+    w2ui.grid.records = records;
+    w2ui.grid.refresh();
+  });
+});
 </script>
       <iframe src="delivery/map.html" width="1000" height="510"></iframe>
     </div>
