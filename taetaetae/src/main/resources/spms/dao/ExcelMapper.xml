@@ -59,15 +59,15 @@
 		RECEIVE_POINT, 
 		PACKING, 
 		PRODUCT_NAME, 
-		COUNT, 
-		SIZE, 
+		GOODS_COUNT, 
+		GOODS_SIZE, 
 		WEIGHT, 
 		PAYMENT, 
 		PAY, 
 		RETURN_BOX) VALUES
 		<foreach item="excel" collection="list" separator=",">
 			(
-			#{excel.trcno}, 
+		  #{excel.trcno}, 
 			#{excel.orderNo}, 
 			#{excel.office}, 
 			#{excel.receiveDate}, 
@@ -89,7 +89,7 @@
 			#{excel.weight}, 
 			#{excel.payment}, 
 			#{excel.pay}, 
-			#{excel.returnBox} 
+			#{excel.returnBox}) 
 		</foreach>
 	</insert>
 
@@ -112,8 +112,8 @@
     RECEIVE_POINT, 
     PACKING, 
     PRODUCT_NAME, 
-    COUNT, 
-    SIZE, 
+    GOODS_COUNT, 
+    GOODS_SIZE, 
     WEIGHT, 
     PAYMENT, 
     PAY, 
