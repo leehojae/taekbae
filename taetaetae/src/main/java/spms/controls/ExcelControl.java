@@ -97,7 +97,6 @@ public class ExcelControl {
 
 			while (rowIterator.hasNext()) {
 				Row row = rowIterator.next();
-				System.out.println("dd1 : " + row.getRowNum());
 
 				if (row.getRowNum() == 0) {
 					System.out.println("====Excel to DB Insert====");
