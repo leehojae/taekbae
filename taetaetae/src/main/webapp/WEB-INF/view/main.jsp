@@ -45,7 +45,7 @@
         <ul class="nav navbar-nav">
           <li><a href="#about"><h1>SDMS(Smart Delivery Management System)</h1></a></li>
           <li><a href="#about">${loginUser.name}님</a></li>
-          <li><a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a></li>
+          <li><a href="#contact">로그아웃</a></li>
         </ul>
       </div>
       <!--/.nav-collapse -->
@@ -228,7 +228,7 @@ $(function(){
   $.getJSON('excel/ajax/list.do', function(data){
     var records = data.jsonResult.data;
     for (var i = 0; i < records.length; i++){
-      records[i].recid = records[i].no;
+      records[i].recid = records[i].trcno;
     }
     
     console.log(records);
@@ -238,9 +238,33 @@ $(function(){
 });
 </script>
 <script type="text/javascript">
+var addr;
+var apiAddr = "http://apis.daum.net/local/geo/addr2coord?apikey=";
+var apiKey = "28cfce6944a0730f400b070b2da4abbe05010b0f";
+$(function(){
+	$.getJSON('excel/ajax/list.do', function(data){
+		addr = data.jsonResult.data[0].receiverAddr;
+		
+		console.log(addr);
+		
+		addr = encodeURI(addr);
+		
+		console.log(addr);
+		
+		test();
+	});
+});
+function test(){
+	$.getJSON(apiAddr + apiKey +"&q="+addr+"&output=json&callback=?", function(data){
+		console.log(data);
+		var lat = data.channel.item[0].lat;
+		var lng = data.channel.item[0].lng;
+		console.log(lat+" "+lng);
+	});
+};
 </script>
 
-      <iframe src="delivery/map.html" width="1000" height="510"></iframe>
+      <!--   <iframe src="delivery/map.html" width="1000" height="510"></iframe>-->
     </div>
 
   </div>
