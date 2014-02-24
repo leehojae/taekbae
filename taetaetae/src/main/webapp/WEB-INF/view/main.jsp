@@ -197,16 +197,16 @@ $(function () {
     columns: [        
       { field: 'trcno', caption: '운송장번호', size: '30%' },
       { field: 'orderNo', caption: '주문번호', size: '30%' },
-      { field: 'deliverDate', caption: '배달예정일', size: '30%' },
-      { field: 'receiverName', caption: '받는분', size: '30%' },
+      { field: 'deliverDate', caption: '배달예정일', size: '26%' },
+      { field: 'receiverName', caption: '받는분', size: '15%' },
       { field: 'receiverAddr', caption: '받는분주소', size: '30%' },
       { field: 'receiverTel1', caption: '받는분전화1', size: '30%' },
       { field: 'productName', caption: '품명', size: '30%' },
-      { field: 'size', caption: '크기', size: '30%' },
-      { field: 'weight', caption: '중량', size: '30%' },
-      { field: 'payment', caption: '운임구분', size: '30%' },
-      { field: 'pay', caption: '운임결제', size: '30%' },
-      { field: 'returnBox', caption: '반품', size: '30%' }
+      { field: 'size', caption: '크기', size: '10%' },
+      { field: 'weight', caption: '중량', size: '10%' },
+      { field: 'payment', caption: '운임구분', size: '20%' },
+      { field: 'pay', caption: '운임결제', size: '20%' },
+      { field: 'returnBox', caption: '반품', size: '10%' }
     ],
     onExpand: function (event) {
       $('#'+event.box_id).html('<div style="padding: 10px">Expanded content</div>').animate({ 'height': 100 }, 100);
