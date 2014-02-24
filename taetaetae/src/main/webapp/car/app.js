@@ -68,10 +68,10 @@ function listCar() {
 				  table.appendChild(tr);
 				}
 				
-				var alist = document.querySelectorAll('.carNumber');
+				var alist = document.querySelectorAll('.carName');
 				for (var i = 0; i < alist.length; i++) {
 					alist[i].onclick = function() {
-						loadMember(this.getAttribute("data-no"));
+						loadArea(this.getAttribute("data-no"));
 					};
 				}
 			}, 
@@ -84,8 +84,8 @@ function loadArea(no) {
 	$.ajax('ajax/read.do?no=' + no, {
 			method: 'GET', 
 			success: function(car){
-		$("cNo").value = car.no;
-		$("mNo").value = area.memberNo;
+		$("mNo").value = car.no;
+		//$("mNo").value = car.memberNo;
 		$("carNumber").value = car.carNumber;
   	$("carLoad").value = car.carLoad;
 		$("carType").value = car.carType;
