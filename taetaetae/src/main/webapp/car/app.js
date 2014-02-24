@@ -43,7 +43,7 @@ window.onload = function() {
 			}});
 		}
 	});
-};
+
 
 function listCar() {
 	
@@ -113,8 +113,35 @@ function showViewItems(b) {
 	}
 }
 
+$('#form').w2form({ 
+	name   : 'form',
+	header : 'Large Form',
+	url    : 'server/post',
+	fields : [
+		{ name: 'first_name', type: 'text', required: true },
+		{ name: 'last_name',  type: 'text', required: true },
+		{ name: 'comments',   type: 'text'},
+		{ name: 'address1', type: 'text', required: true },
+		{ name: 'address2', type: 'text' },
+		{ name: 'city', type: 'text', required: true },
+		{ name: 'state', type: 'text', required: true },
+		{ name: 'zip', type: 'int', required: true },
+		{ name: 'short_bio', type: 'text' },
+		{ name: 'talk_name', type: 'text', required: true },
+		{ name: 'description', type: 'text' }
+	],
+	actions: {
+		reset: function () {
+			this.clear();
+		},
+		save: function () {
+			this.save();
+		}
+	}
+});
 
 
+}
 
 
 
