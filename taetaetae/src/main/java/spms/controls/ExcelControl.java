@@ -103,8 +103,8 @@ public class ExcelControl {
 				} else {
 
 					list.add(new Excel(
-							(int) (row.getCell(0).getNumericCellValue()), 
-							(int) (row.getCell(1).getNumericCellValue()), 
+							(long) (row.getCell(0).getNumericCellValue()), 
+							(long) (row.getCell(1).getNumericCellValue()), 
 							row.getCell(2).getStringCellValue(), 
 							sdf.format(row.getCell(3).getDateCellValue()), 
 							sdf.format(row.getCell(4).getDateCellValue()), 
