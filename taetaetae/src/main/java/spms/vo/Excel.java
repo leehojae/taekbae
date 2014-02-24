@@ -6,8 +6,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class Excel {
 
-	int trcno;
-	int orderNo;
+	long trcno;
+	long orderNo;
 	int state;
 	String office;
 	String member;
@@ -42,8 +42,8 @@ public class Excel {
 	}
 
 	public Excel(
-			int trcno, 
-			int orderNo, 
+			long trcno, 
+			long orderNo, 
 			String office, 
 			String receiveDate,
 			String deliverDate, 
@@ -91,11 +91,11 @@ public class Excel {
 		this.returnBox = returnBox;
 	}
 
-	public int getTrcno() {
+	public long getTrcno() {
 		return trcno;
 	}
 
-	public Excel setTrcno(int trcno) {
+	public Excel setTrcno(long trcno) {
 		this.trcno = trcno;
 		return this;
 	}
@@ -273,11 +273,11 @@ public class Excel {
 		return this;
 	}
 
-	public int getOrderNo() {
+	public long getOrderNo() {
 		return orderNo;
 	}
 
-	public Excel setOrderNo(int orderNo) {
+	public Excel setOrderNo(long orderNo) {
 		this.orderNo = orderNo;
 		return this;
 	}
