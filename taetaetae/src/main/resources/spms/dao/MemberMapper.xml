@@ -13,15 +13,16 @@
     <result property="rank" column="RANK"/>
     <result property="photo"    column="PHOTO"/>
     <result property="officeNum"    column="OFFICE_NUM"/>
+    <result property="officeName"    column="OFFICE_NAME"/>
   </resultMap>
 	
 	<select id="selectList" resultMap="memberResultMap">
-		select MNO,MNAME,ID,TEL,PERSONAL_NO,RANK
-		from MEMBERS
+		select m.MNO,m.MNAME,m.ID,m.TEL,m.PERSONAL_NO,m.RANK , m.OFFICE_NUM, o.OFFICE_NUM, o.OFFICE_NAME
+		from MEMBERS m , OFFICE o
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultMap="memberResultMap">
-    select MNO,MNAME,ID, PWD,TEL,PERSONAL_NO,RANK,PHOTO
+    select MNO,MNAME,ID, PWD,TEL,PERSONAL_NO,RANK,PHOTO, OFFICE_NUM
     from MEMBERS
     where MNO=#{value}
   </select>
