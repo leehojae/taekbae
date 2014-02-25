@@ -15,20 +15,18 @@
   href="//w2ui.com/src/w2ui-1.3.min.css" />
 <link href="css/starter-template.css" rel="stylesheet">
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery/jquery-1.11.0.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="//w2ui.com/src/w2ui-1.3.min.css" />
+<!-- <link rel="stylesheet" type="text/css" href="//w2ui.com/src/w2ui-1.3.min.css" /> -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 <script type="text/javascript" src="//w2ui.com/src/w2ui-1.3.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/w2ui-1.3.1.min.css" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script type="text/javascript" src="//w2ui.com/src/w2ui-1.3.min.js"></script>
+<script type="text/javascript" src="member.js"></script>
 </head>
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -45,7 +43,7 @@
         <ul class="nav navbar-nav">
           <li><a href="#about"><h1>SDMS(Smart Delivery Management System)</h1></a></li>
           <li><a href="#about">${loginUser.name}님</a></li>
-          <li><a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a></li>
+          <li><a href="#contact">로그아웃</a></li>
         </ul>
       </div>
       <!--/.nav-collapse -->
@@ -96,6 +94,9 @@ $(function () {
     	  console.log('success');
     	  openPopup();
     		break;
+    	case 'item3':
+    	  openPopup();
+    		break;
     	}
       console.log('Target: '+ event.target, event);
     }
@@ -104,72 +105,6 @@ $(function () {
 </script>
 
 
-
-<!-- <script>
-$(function () {
-  $('#excelFile').w2field({ type: 'upload', hint: w2utils.lang('파일넣으세요') });
-});
-</script>
-<script type="text/javascript">
-function openPopup () {
-  $().w2form({
-    name: 'foo',
-    style: 'border: 0px; background-color: transparent;',
-    formHTML: 
-      '<div class="w2ui-page page-0">'+
-      ' <div class="w2ui-label">엑셀파일:</div>'+
-      ' <div class="w2ui-field">'+
-      '   <input id="excelFile" name="excelFile" type="upload" size="35" style="height: 60px;"/>'+
-      ' </div>'+
-      '</div>'+
-      '<div class="w2ui-buttons">'+
-      ' <input type="button" value="Reset" name="reset">'+
-      ' <input type="button" value="Save" name="save">'+
-      '</div>',
-    fields: [
-      { name: 'excelFile', type: 'upload', required: true }
-    ],
-    options : {
-      hint            : w2utils.lang('파일넣으세요'),
-      max             : 0,        // max number of files, 0 - unlim
-      maxSize         : 0,        // max size of all files, 0 - unlim
-      maxFileSize     : 0        // max size of a single file, 0 -unlim
-    },
-    actions: {
-      "save": function () { this.validate(); },
-      "reset": function () { this.clear(); },
-    }
-  });
-
-  $().w2popup('open', {
-    title : '엑셀등록',
-    body  : '<div id="form" style="width: 100%; height: 100%;"></div>',
-    style : 'padding: 15px 0px 0px 0px',
-    width : 500,
-    height  : 300, 
-    showMax : true,
-    onMin : function (event) {
-      $(w2ui.foo.box).hide();
-      event.onComplete = function () {
-        $(w2ui.foo.box).show();
-        w2ui.foo.resize();
-      }
-    },
-    onMax : function (event) {
-      $(w2ui.foo.box).hide();
-      event.onComplete = function () {
-        $(w2ui.foo.box).show();
-        w2ui.foo.resize();
-      }
-    },
-    onOpen  : function (event) {
-      event.onComplete = function () {
-        $('#w2ui-popup #form').w2render('foo');
-      }
-    }
-  });
-}
-</script> -->
 
 <div id="toolbar" style="padding: 4px; border: 1px solid silver; border-radius: 3px"></div>
       <br>
@@ -197,16 +132,27 @@ $(function () {
     columns: [        
       { field: 'trcno', caption: '운송장번호', size: '30%' },
       { field: 'orderNo', caption: '주문번호', size: '30%' },
-      { field: 'deliverDate', caption: '배달예정일', size: '26%' },
-      { field: 'receiverName', caption: '받는분', size: '15%' },
+      { field: 'office', caption: '배송사', size: '40%' },
+      { field: 'receiveDate', caption: '접수일', size: '30%' },
+      { field: 'deliverDate', caption: '배달예정일', size: '30%' },
+      { field: 'senderName', caption: '보내는분', size: '30%' },
+      { field: 'senderAddr', caption: '보내는분주소', size: '30%' },
+      { field: 'senderTel1', caption: '보내는분전화1', size: '30%' },
+      { field: 'senderTel2', caption: '보내는분전화2', size: '30%' },
+      { field: 'receiverName', caption: '받는분', size: '30%' },
       { field: 'receiverAddr', caption: '받는분주소', size: '30%' },
       { field: 'receiverTel1', caption: '받는분전화1', size: '30%' },
+      { field: 'receiverTel2', caption: '받는분전화2', size: '30%' },
+      { field: 'sendPoint', caption: '발송점', size: '30%' },
+      { field: 'receivePoint', caption: '도착점', size: '30%' },
+      { field: 'packing', caption: '취급구분', size: '30%' },
       { field: 'productName', caption: '품명', size: '30%' },
-      { field: 'size', caption: '크기', size: '10%' },
-      { field: 'weight', caption: '중량', size: '10%' },
-      { field: 'payment', caption: '운임구분', size: '20%' },
-      { field: 'pay', caption: '운임결제', size: '20%' },
-      { field: 'returnBox', caption: '반품', size: '10%' }
+      { field: 'count', caption: '수량', size: '30%' },
+      { field: 'size', caption: '크기', size: '30%' },
+      { field: 'weight', caption: '중량', size: '30%' },
+      { field: 'payment', caption: '운임구분', size: '30%' },
+      { field: 'pay', caption: '운임결제', size: '30%' },
+      { field: 'returnBox', caption: '반품', size: '30%' }
     ],
     onExpand: function (event) {
       $('#'+event.box_id).html('<div style="padding: 10px">Expanded content</div>').animate({ 'height': 100 }, 100);
@@ -252,12 +198,8 @@ function test(){
 	});
 };
 </script>
-
-      <!--   <iframe src="delivery/map.html" width="1000" height="510"></iframe>-->
     </div>
-
   </div>
-  <!-- /.container -->
 
 </body>
 </html>
