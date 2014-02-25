@@ -14,6 +14,7 @@ public class Member implements Serializable {
 	protected int 			rank;
 	protected String		photo;
 	private int  officeNum;
+	protected String 		officeName;
 	
 	@Override
 	public String toString() {
@@ -44,6 +45,17 @@ public class Member implements Serializable {
 	public String getPersonalNumber() {
 		return personalNumber;
 	}
+	public String getOfficeName() {
+		return officeName;
+		
+	}
+
+	public Member setOfficeName(String officeName) {
+		
+		this.officeName = officeName;
+		return this;
+	}
+
 	public Member setPersonalNumber(String personalNumber) {
 		this.personalNumber = personalNumber;
 		return this;
