@@ -35,12 +35,19 @@ public class Excel {
 	int returnBox;
 	int boxState;
 	int id;
+	double lat;
+	double lng;
 	
 	private CommonsMultipartFile file = null;
 	
 	public Excel() {
 	}
-
+	
+	public Excel(double lat, double lng) {
+		this.lat = lat;
+		this.lng = lng;
+	}
+	
 	public Excel(
 			long trcno, 
 			long orderNo, 
@@ -99,7 +106,7 @@ public class Excel {
 		this.trcno = trcno;
 		return this;
 	}
-
+	
 	public String getReceiveDate() {
 		return receiveDate;
 	}
