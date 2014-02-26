@@ -4,5 +4,5 @@ var formData = new FormData();
 formData.append("excelFile", file);
 
 var xhr = new XMLHttpRequest();
-xhr.open("POST", "excel/add.do", false);
+xhr.open("POST", "excel/add.do", true);
 xhr.send(formData);
