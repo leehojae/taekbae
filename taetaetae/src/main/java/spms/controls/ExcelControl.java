@@ -2,6 +2,7 @@ package spms.controls;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import spms.dao.ExcelDao;
+import spms.services.RestRequest;
 import spms.vo.Excel;
 import spms.vo.JsonResult;
 
@@ -33,13 +35,15 @@ public class ExcelControl {
 	Logger log = Logger.getLogger(ExcelControl.class);
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	RestRequest restRequest = new RestRequest();
+	private static List<Excel> list = new ArrayList<Excel>();
 
 	@Autowired
 	ServletContext servletContext;
 
 	@Autowired(required = false)
 	ExcelDao excelDao;
-
+	
 	@RequestMapping("/delete")
 	public String delete(Model model) throws Exception {
 		excelDao.delete();
@@ -62,10 +66,8 @@ public class ExcelControl {
 			return new JsonResult().setResultStatus(JsonResult.FAILURE)
 					.setError(ex.getMessage());
 		}
-
 	}
-
-	private static List<Excel> list = new ArrayList<Excel>();
+	
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String showForm(Excel excel, ModelMap model) {
@@ -127,19 +129,41 @@ public class ExcelControl {
 							(int) (row.getCell(21).getNumericCellValue()), 
 							(int) (row.getCell(22).getNumericCellValue())
 							));
-
 				}
-
 			}
 			file.close();
-
+			
 			excelDao.addExcel(list);
-
+			ArrayList<Excel> addrList = (ArrayList<Excel>)excelDao.selectAddr();
+			ArrayList<String> addrResult = new ArrayList<String>();
+			ArrayList<String> encodeResult = new ArrayList<String>();
+			ArrayList<Excel> requestResult = new ArrayList<Excel>();
+			for (int i = 0; i < addrList.size(); i++){
+				addrResult.add(addrList.get(i).getReceiverAddr());
+				System.out.println(addrResult.get(i));
+				System.out.println(i);
+				encodeResult.add(URLEncoder.encode(addrResult.get(i), "UTF-8"));
+				System.out.println(encodeResult.get(i));
+				System.out.println(i);
+			}
+			
+			for (int i = 0; i < addrList.size(); i++){
+				System.out.println(i);
+			requestResult.add(restRequest.requests(encodeResult.get(i)));
+			requestResult.get(i).setTrcno(addrList.get(i).getTrcno());
+			}
+			
+			excelDao.addLatLngs(requestResult);
+			
+			requestResult.clear();
+			encodeResult.clear();
+			addrResult.clear();
+			addrList.clear();
 			list.clear();
-
+			
 			return "redirect:../main.do";
 		}
-		return "excel/addForm";
+		return "redirect:../main.do";
 	}
 
 }
