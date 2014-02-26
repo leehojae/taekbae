@@ -34,11 +34,32 @@
 		<result property="returnBox" column="RETURN_BOX" />
 		<result property="boxState" column="BOX_STATE" />
 		<result property="id" column="ID" />
+		<result property="lat" column="LAT" />
+		<result property="lng" column="LNG" />
 	</resultMap>
   
 	<delete id="delete">
 		TRUNCATE `spmsdb`.`EXCEL_UPLOAD`
 	</delete>
+<!-- 	<insert id="addLatLngs" parameterType="list">
+	 INSERT INTO EXCEL_UPLOAD (TRCNO,LAT,LNG)
+	 VALUES
+	 <foreach item="excel" collection="list">
+	 </foreach>
+	  (
+    #{excel.lat}, 
+    #{excel.lng}
+    )
+	</insert> -->
+
+	<update id="addLatLngs" parameterType="list">
+		update excel_upload set
+		<foreach item="excel" collection="list">
+			(LAT= #{excel.lat},
+			LNG= #{excel.lng}
+  		where TRCNO = #{excel.trcno})
+		</foreach>
+	</update>
 	
 	<insert id="addExcel" parameterType="list">
 		INSERT INTO EXCEL_UPLOAD (
@@ -119,5 +140,11 @@
     PAY, 
     RETURN_BOX 
 		from EXCEL_UPLOAD
+	</select>
+	<select id="selectAddr" resultMap="excelResultMap">
+	  select
+	  TRCNO, 
+    RECEIVER_ADDR 
+    from EXCEL_UPLOAD
 	</select>
 </mapper>
