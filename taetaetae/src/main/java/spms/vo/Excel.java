@@ -360,6 +360,33 @@ public class Excel {
 		this.id = id;
 		return this;
 	}
+
+	public Date getDeliverEndDate() {
+		return deliverEndDate;
+	}
+
+	public Excel setDeliverEndDate(Date deliverEndDate) {
+		this.deliverEndDate = deliverEndDate;
+		return this;
+	}
+
+	public double getLat() {
+		return lat;
+	}
+
+	public Excel setLat(double lat) {
+		this.lat = lat;
+		return this;
+	}
+
+	public double getLng() {
+		return lng;
+	}
+
+	public Excel setLng(double lng) {
+		this.lng = lng;
+		return this;
+	}
 	
 	
 }
