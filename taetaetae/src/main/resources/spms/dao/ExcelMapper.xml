@@ -140,7 +140,9 @@
     WEIGHT, 
     PAYMENT, 
     PAY, 
-    RETURN_BOX 
+    RETURN_BOX, 
+    LAT, 
+    LNG  
 		from EXCEL_UPLOAD
 	</select>
 	<select id="selectAddr" resultMap="excelResultMap">
