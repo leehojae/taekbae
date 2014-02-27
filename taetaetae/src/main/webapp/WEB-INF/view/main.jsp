@@ -72,7 +72,7 @@
 				<input type="file" id="excelFile" name="excelFile" /> <input
 					type="submit" value="파일 전송" />
 			</form>
-			<script type="text/javascript" src="js/excelUpload"></script>
+			<script type="text/javascript" src="js/excelUpload.js"></script>
 			<script type="text/javascript" src="js/toolbar.js"></script>
 			<div id="toolbar"
 				style="padding: 4px; border: 1px solid silver; border-radius: 3px"></div>
