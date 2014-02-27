@@ -52,14 +52,16 @@
     )
 	</insert> -->
 
-	<update id="addLatLngs" parameterType="list">
-		update excel_upload set
-		<foreach item="excel" collection="list">
-			(LAT= #{excel.lat},
-			LNG= #{excel.lng}
-  		where TRCNO = #{excel.trcno})
-		</foreach>
-	</update>
+<!-- <update id="addLatLngs" parameterType="list">
+	<foreach item="excel" collection="list" index="index" separator=";">
+		UPDATE EXCEL_UPLOAD SET 
+			LAT=#{excel.lat}, 
+			LNG=#{excel.lng} 
+    WHERE TRCNO=#{excel.trcno}
+	</foreach>
+</update> -->
+
+
 	
 	<insert id="addExcel" parameterType="list">
 		INSERT INTO EXCEL_UPLOAD (
