@@ -3,12 +3,15 @@ package spms.controls;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URLEncoder;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Row;
@@ -28,6 +31,7 @@ import spms.dao.ExcelDao;
 import spms.services.RestRequest;
 import spms.vo.Excel;
 import spms.vo.JsonResult;
+import spms.vo.Member;
 
 @Controller
 @RequestMapping("/excel")
@@ -37,7 +41,10 @@ public class ExcelControl {
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	RestRequest restRequest = new RestRequest();
 	private static List<Excel> list = new ArrayList<Excel>();
-
+	
+	@Autowired
+	DataSource ds; // 의존 객체(dependencies)
+	
 	@Autowired
 	ServletContext servletContext;
 
@@ -141,19 +148,23 @@ public class ExcelControl {
 			for (int i = 0; i < addrList.size(); i++){
 				addrResult.add(addrList.get(i).getReceiverAddr());
 				System.out.println(addrResult.get(i));
-				System.out.println(i);
 				encodeResult.add(URLEncoder.encode(addrResult.get(i), "UTF-8"));
 				System.out.println(encodeResult.get(i));
-				System.out.println(i);
+				requestResult.add(restRequest.requests(encodeResult.get(i)));
+				requestResult.get(i).setTrcno(addrList.get(i).getTrcno());
 			}
 			
-			for (int i = 0; i < addrList.size(); i++){
-				System.out.println(i);
-			requestResult.add(restRequest.requests(encodeResult.get(i)));
-			requestResult.get(i).setTrcno(addrList.get(i).getTrcno());
+//			for (int i = 0; i < addrList.size(); i++){
+//			}
+			
+			for (Excel e : requestResult) {
+				System.out.println(e.getTrcno());
+				System.out.println(e.getLat());
+				System.out.println(e.getLng());
+				update(e);
 			}
 			
-			excelDao.addLatLngs(requestResult);
+			//excelDao.addLatLngs(requestResult);
 			
 			requestResult.clear();
 			encodeResult.clear();
@@ -165,5 +176,32 @@ public class ExcelControl {
 		}
 		return "redirect:../main.do";
 	}
-
+	
+	public void setDataSource(DataSource ds) {
+		this.ds = ds;
+	}
+	
+	public void update(Excel excel) throws Exception {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = ds.getConnection();
+			stmt = conn.prepareStatement(
+					"UPDATE EXCEL_UPLOAD SET LAT=?,LNG=? WHERE TRCNO=?");
+			stmt.setDouble(1, excel.getLat());
+			stmt.setDouble(2, excel.getLng());
+			stmt.setLong(3, excel.getTrcno());
+			stmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+			
+		} finally {
+			try {stmt.close();} catch (Exception e) {}
+			try {if(conn != null) conn.close();} catch (Exception e) {}
+		}		
+	}
+	
 }
