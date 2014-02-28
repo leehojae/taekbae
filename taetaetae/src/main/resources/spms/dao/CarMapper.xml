@@ -21,19 +21,19 @@
     where CAR_NUM=#{value}
   </select>
   
-  <delete id="delete" parameterType="int">
+  <delete id="delete" parameterType="int" >
     delete from CARS where CAR_NUM=#{carNumber}
   </delete>
   
-  <insert id="insert" parameterType="car">
+  <insert id="insert" parameterType="car" >
     INSERT INTO CARS(MNO,CAR_NUM,CAR_LOAD,CAR_TYPE) 
     VALUES(#{no},#{carNumber},#{carLoad},#{carType})
   </insert>
   
-  <update id="update" parameterType="car">
+  <update id="update" parameterType="car" >
     update CARS set 
       MNO=#{no},
-      CAR_NUMBER=#{carNumber},
+      CAR_NUM=#{carNumber},
       CAR_LOAD=#{carLoad},
       CAR_TYPE=#{carType}
     where CAR_NUM=#{carNumber}
