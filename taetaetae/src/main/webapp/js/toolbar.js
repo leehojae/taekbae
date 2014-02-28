@@ -71,3 +71,9 @@
                         }
                   });
         });
+       
+       
+       function openPopup() {
+    		location.href = "member/list.do";
+
+    	}
