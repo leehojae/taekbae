@@ -15,7 +15,7 @@
 
 <!-- Bootstrap -->
 <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/w2ui-1.3.1.min.css" />
+<!-- <link rel="stylesheet" type="text/css" href="css/w2ui-1.3.1.min.css" /> -->
 <link href="css/starter-template.css" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
