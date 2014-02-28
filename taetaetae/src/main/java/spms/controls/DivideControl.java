@@ -62,7 +62,9 @@ public class DivideControl {
 		carCount = carList.size();
 		excelCount = excelList.size();
 		
-		System.out.println(carCount/excelCount);
+		System.out.println(excelCount/carCount);
+		
+		
 		
 		return null;
 	}
