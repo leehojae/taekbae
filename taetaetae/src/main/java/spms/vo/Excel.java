@@ -19,7 +19,13 @@ public class Excel {
 	String senderTel1;
 	String senderTel2;
 	String receiverName;
-	String receiverAddr;
+	String receiverAddrDo;
+	String receiverAddrKoo;
+	String receiverAddrDong;
+	String receiverAddrRoad;
+	int receiverAddrBun;
+	int receiverAddrJi;
+	String receiverAddrName;
 	String receiverTel1;
 	String receiverTel2;
 	String sendPoint;
@@ -59,7 +65,13 @@ public class Excel {
 			String senderTel1, 
 			String senderTel2, 
 			String receiverName,
-			String receiverAddr, 
+			String receiverAddrDo, 
+			String receiverAddrKoo, 
+			String receiverAddrDong, 
+			String receiverAddrRoad, 
+			int receiverAddrBun, 
+			int receiverAddrJi, 
+			String receiverAddrName, 
 			String receiverTel1, 
 			String receiverTel2,
 			String sendPoint, 
@@ -83,7 +95,13 @@ public class Excel {
 		this.senderTel1 = senderTel1;
 		this.senderTel2 = senderTel2;
 		this.receiverName = receiverName;
-		this.receiverAddr = receiverAddr;
+		this.receiverAddrDo = receiverAddrDo;
+		this.receiverAddrKoo = receiverAddrKoo;
+		this.receiverAddrDong = receiverAddrDong;
+		this.receiverAddrRoad = receiverAddrRoad;
+		this.receiverAddrBun = receiverAddrBun;
+		this.receiverAddrJi = receiverAddrJi;
+		this.receiverAddrName = receiverAddrName;
 		this.receiverTel1 = receiverTel1;
 		this.receiverTel2 = receiverTel2;
 		this.sendPoint = sendPoint;
@@ -161,12 +179,66 @@ public class Excel {
 		return this;
 	}
 
-	public String getReceiverAddr() {
-		return receiverAddr;
+	
+	public String getReceiverAddrDo() {
+		return receiverAddrDo;
 	}
 
-	public Excel setReceiverAddr(String receiverAddr) {
-		this.receiverAddr = receiverAddr;
+	public Excel setReceiverAddrDo(String receiverAddrDo) {
+		this.receiverAddrDo = receiverAddrDo;
+		return this;
+	}
+
+	public String getReceiverAddrKoo() {
+		return receiverAddrKoo;
+	}
+
+	public Excel setReceiverAddrKoo(String receiverAddrKoo) {
+		this.receiverAddrKoo = receiverAddrKoo;
+		return this;
+	}
+
+	public String getReceiverAddrDong() {
+		return receiverAddrDong;
+	}
+
+	public void setReceiverAddrDong(String receiverAddrDong) {
+		this.receiverAddrDong = receiverAddrDong;
+	}
+
+	public String getReceiverAddrRoad() {
+		return receiverAddrRoad;
+	}
+
+	public Excel setReceiverAddrRoad(String receiverAddrRoad) {
+		this.receiverAddrRoad = receiverAddrRoad;
+		return this;
+	}
+
+	public int getReceiverAddrBun() {
+		return receiverAddrBun;
+	}
+
+	public Excel setReceiverAddrBun(int receiverAddrBun) {
+		this.receiverAddrBun = receiverAddrBun;
+		return this;
+	}
+
+	public int getReceiverAddrJi() {
+		return receiverAddrJi;
+	}
+
+	public Excel setReceiverAddrJi(int receiverAddrJi) {
+		this.receiverAddrJi = receiverAddrJi;
+		return this;
+	}
+
+	public String getReceiverAddrName() {
+		return receiverAddrName;
+	}
+
+	public Excel setReceiverAddrName(String receiverAddrName) {
+		this.receiverAddrName = receiverAddrName;
 		return this;
 	}
 

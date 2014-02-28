@@ -18,7 +18,13 @@
 		<result property="senderTel1" column="SENDER_TEL1" />
 		<result property="senderTel2" column="SENDER_TEL2" />
 		<result property="receiverName" column="RECEIVER_NAME" />
-		<result property="receiverAddr" column="RECEIVER_ADDR" />
+		<result property="receiverAddrDo" column="RECEIVER_ADDR_DO" />
+		<result property="receiverAddrKoo" column="RECEIVER_ADDR_KOO" />
+		<result property="receiverAddrDong" column="RECEIVER_ADDR_DONG" />
+		<result property="receiverAddrRoad" column="RECEIVER_ADDR_ROAD" />
+		<result property="receiverAddrBun" column="RECEIVER_ADDR_BUN" />
+		<result property="receiverAddrJi" column="RECEIVER_ADDR_JI" />
+		<result property="receiverAddrName" column="RECEIVER_ADDR_NAME" />
 		<result property="receiverTel1" column="RECEIVER_TEL1" />
 		<result property="receiverTel2" column="RECEIVER_TEL2" />
 		<result property="sendPoint" column="SEND_POINT" />
@@ -75,7 +81,13 @@
 		SENDER_TEL1, 
 		SENDER_TEL2, 
 		RECEIVER_NAME, 
-		RECEIVER_ADDR, 
+		RECEIVER_ADDR_DO, 
+		RECEIVER_ADDR_KOO, 
+		RECEIVER_ADDR_DONG, 
+		RECEIVER_ADDR_ROAD, 
+		RECEIVER_ADDR_BUN, 
+		RECEIVER_ADDR_JI, 
+		RECEIVER_ADDR_NAME, 
 		RECEIVER_TEL1, 
 		RECEIVER_TEL2, 
 		SEND_POINT, 
@@ -100,7 +112,13 @@
 			#{excel.senderTel1}, 
 			#{excel.senderTel2}, 
 			#{excel.receiverName}, 
-			#{excel.receiverAddr}, 
+			#{excel.receiverAddrDo}, 
+			#{excel.receiverAddrKoo}, 
+			#{excel.receiverAddrDong}, 
+			#{excel.receiverAddrRoad}, 
+			#{excel.receiverAddrBun}, 
+			#{excel.receiverAddrJi}, 
+			#{excel.receiverAddrName}, 
 			#{excel.receiverTel1}, 
 			#{excel.receiverTel2}, 
 			#{excel.sendPoint}, 
@@ -128,7 +146,7 @@
     SENDER_TEL1, 
     SENDER_TEL2, 
     RECEIVER_NAME, 
-    RECEIVER_ADDR, 
+    RECEIVER_ADDR_ROAD, 
     RECEIVER_TEL1, 
     RECEIVER_TEL2, 
     SEND_POINT, 
@@ -148,7 +166,7 @@
 	<select id="selectAddr" resultMap="excelResultMap">
 	  select
 	  TRCNO, 
-    RECEIVER_ADDR 
+    RECEIVER_ADDR_ROAD 
     from EXCEL_UPLOAD
 	</select>
 </mapper>

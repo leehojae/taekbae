@@ -4,6 +4,8 @@
                 name : 'grid',
                 header : '금일 작업리스트',
                 //url: 'data/list.json',
+                options : 
+                       		{ overflow: 'auto' },
                 show : {
                   header : true,
                   toolbar : true,
@@ -46,7 +48,7 @@
                   caption : '받는분',
                   size : '15%'
                 }, {
-                  field : 'receiverAddr',
+                  field : 'receiverAddrRoad',
                   caption : '받는분주소',
                   size : '60%'
                 }, {
@@ -93,8 +95,7 @@
             for (var i = 0; i < records.length; i++) {
               records[i].recid = records[i].trcno;
             }
-
-            console.log(records);
+            
             w2ui.grid.records = records;
             w2ui.grid.refresh();
 

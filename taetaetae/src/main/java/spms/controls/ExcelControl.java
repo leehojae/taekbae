@@ -125,15 +125,21 @@ public class ExcelControl {
 							row.getCell(11).getStringCellValue(), 
 							row.getCell(12).getStringCellValue(), 
 							row.getCell(13).getStringCellValue(), 
-							row.getCell(14).getStringCellValue(), 
-							row.getCell(15).getStringCellValue(), 
+							(int) (row.getCell(14).getNumericCellValue()), 
+							(int) (row.getCell(15).getNumericCellValue()), 
 							row.getCell(16).getStringCellValue(), 
-							(int) (row.getCell(17).getNumericCellValue()), 
+							row.getCell(17).getStringCellValue(), 
 							row.getCell(18).getStringCellValue(), 
-							(int) (row.getCell(19).getNumericCellValue()), 
+							row.getCell(19).getStringCellValue(), 
 							row.getCell(20).getStringCellValue(), 
-							(int) (row.getCell(21).getNumericCellValue()), 
-							(int) (row.getCell(22).getNumericCellValue())
+							row.getCell(21).getStringCellValue(), 
+							row.getCell(22).getStringCellValue(), 
+							(int) (row.getCell(23).getNumericCellValue()), 
+							row.getCell(24).getStringCellValue(), 
+							(int) (row.getCell(25).getNumericCellValue()), 
+							row.getCell(26).getStringCellValue(), 
+							(int) (row.getCell(27).getNumericCellValue()), 
+							(int) (row.getCell(28).getNumericCellValue())
 							));
 				}
 			}
@@ -145,23 +151,26 @@ public class ExcelControl {
 			ArrayList<String> encodeResult = new ArrayList<String>();
 			ArrayList<Excel> requestResult = new ArrayList<Excel>();
 			for (int i = 0; i < addrList.size(); i++){
-				addrResult.add(addrList.get(i).getReceiverAddr());
+				addrResult.add(addrList.get(i).getReceiverAddrRoad());
 				System.out.println(addrResult.get(i));
 				encodeResult.add(URLEncoder.encode(addrResult.get(i), "UTF-8"));
 				System.out.println(encodeResult.get(i));
 				requestResult.add(restRequest.requests(encodeResult.get(i)));
+				System.out.println(i + ": lat : " + requestResult.get(i).getLat() + " : lng : " + requestResult.get(i).getLng());
 				requestResult.get(i).setTrcno(addrList.get(i).getTrcno());
 			}
 			
-//			for (int i = 0; i < addrList.size(); i++){
-//			}
+//			List<BigDecimal> testList = new ArrayList<BigDecimal>();
 			
 			for (Excel e : requestResult) {
-				System.out.println(e.getTrcno());
-				System.out.println(e.getLat());
-				System.out.println(e.getLng());
 				update(e);
+//				testList.add(BigDecimal.valueOf(e.getLat()).add(BigDecimal.valueOf(e.getLat())));
 			}
+			
+//			for (BigDecimal d : testList) {
+//				System.out.println(d);
+//			}
+			
 			
 			//excelDao.addLatLngs(requestResult);
 			
@@ -179,7 +188,7 @@ public class ExcelControl {
 	public void setDataSource(DataSource ds) {
 		this.ds = ds;
 	}
-	
+//	
 	public void update(Excel excel) throws Exception {
 		Connection conn = null;
 		PreparedStatement stmt = null;

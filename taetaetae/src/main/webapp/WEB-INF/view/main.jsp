@@ -62,7 +62,7 @@
 			<!--/.nav-collapse -->
 		</div>
 	</div>
-
+	
 	<div class="container">
 
 		<div class="starter-template">
@@ -74,6 +74,16 @@
 			</form>
 			<script type="text/javascript" src="js/excelUpload.js"></script>
 			<script type="text/javascript" src="js/toolbar.js"></script>
+			<br>
+		  <script type="text/javascript">
+		  function divide() {
+		  	$.get("divide/ajax/execute.do", function (data){
+		  		console.log("divide");
+		  	});
+		  }
+		  </script>
+			<button id="divide" type="button" onclick="divide()">자동분배</button>
+			<br>
 			<div id="toolbar"
 				style="padding: 4px; border: 1px solid silver; border-radius: 3px"></div>
 			<br>
@@ -82,5 +92,7 @@
 			<div id="map" style="width: 1024px; height: 768px"></div>
 		</div>
 	</div>
+<script type="text/javascript">
+</script>
 </body>
 </html>
