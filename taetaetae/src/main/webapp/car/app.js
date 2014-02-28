@@ -25,6 +25,7 @@ window.onload = function() {
 		$.ajax( 'ajax/update.do', {
 				method: 'POST',
 				data: {
+					no: $('mNo').value,
 					carNumber: $('carNumber').value,
 					carLoad: $('carLoad').value,
 					carType: $('carType').value
@@ -36,7 +37,7 @@ window.onload = function() {
 	
 	$('delBtn').click( function() {
 		if (confirm('정말 삭제하시겠습니까?')) {
-			$.ajax( 'ajax/delete.do?no=' + $('cNo').value, { 
+			$.ajax( 'ajax/delete.do?no=' + $('carNumber').value, { 
 					method: 'GET', 
 					success: function(cars){
 						location.href = 'app.html';
@@ -84,11 +85,10 @@ function loadArea(no) {
 	$.ajax('ajax/read.do?no=' + no, {
 			method: 'GET', 
 			success: function(car){
-		$("mNo").value = car.no;
-		//$("mNo").value = car.memberNo;
+		$("mNo").value       = car.no;
 		$("carNumber").value = car.carNumber;
-  	$("carLoad").value = car.carLoad;
-		$("carType").value = car.carType;
+  	    $("carLoad").value   = car.carLoad;
+		$("carType").value   = car.carType;
 		
 		showViewItems(true);
 	}});
@@ -112,34 +112,6 @@ function showViewItems(b) {
 		}
 	}
 }
-
-$('#form').w2form({ 
-	name   : 'form',
-	header : 'Large Form',
-	url    : 'server/post',
-	fields : [
-		{ name: 'first_name', type: 'text', required: true },
-		{ name: 'last_name',  type: 'text', required: true },
-		{ name: 'comments',   type: 'text'},
-		{ name: 'address1', type: 'text', required: true },
-		{ name: 'address2', type: 'text' },
-		{ name: 'city', type: 'text', required: true },
-		{ name: 'state', type: 'text', required: true },
-		{ name: 'zip', type: 'int', required: true },
-		{ name: 'short_bio', type: 'text' },
-		{ name: 'talk_name', type: 'text', required: true },
-		{ name: 'description', type: 'text' }
-	],
-	actions: {
-		reset: function () {
-			this.clear();
-		},
-		save: function () {
-			this.save();
-		}
-	}
-});
-
 
 }
 

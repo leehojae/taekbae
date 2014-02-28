@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>배송차량관리</title>
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="../js/bit.js"></script>
 <script type="text/javascript" src="app.js"></script>
+
 </head>
 <body>
 <h1>배송차량 목록</h1>
@@ -22,9 +21,7 @@
 <hr>
 
 <h2>배송차량등록폼</h2>
-<form action="add.do" method="post"
-  enctype="multipart/form-data">
-<!-- <span class="view">직원번호: <input id="mNo" type="text" name=" mNo" readonly><br></span>  -->
+<form action="add.do" method="post">
 직원번호: <input id="mNo" type="text" name="mNo"><br>  
 차량번호: <input id="carNumber" type="text" name="Number"><br>
 차량적재구분: <input id="carLoad" type="text" name="Load"><br>
@@ -34,71 +31,7 @@
 <input id="delBtn" type="button" value="삭제">
 <input id="cancelBtn" type="reset" value="취소">
 </form>
-<div id="form" style="width: 750px;">
-    <div class="w2ui-page page-0">
-        <div style="width: 340px; float: left;">
-            <div style="padding: 3px; font-weight: bold; color: #777;">직원정보입력</div>
-            <div class="w2ui-group" style="height: 185px;">
-                <div class="w2ui-label w2ui-span4" id="mNo" type="text" name="mNo" >직원번호:</div>
-                <div class="w2ui-field w2ui-span4">
-                    <input name="mNo" type="text" maxlength="100" style="width: 100%"/>
-                </div>
-                
-                <div class="w2ui-label w2ui-span4" id="carNumber" type="text" name="carNumber" >차량번호:</div>
-                <div class="w2ui-field w2ui-span4">
-                    <input name="carNumber" type="text" maxlength="100" style="width: 100%"/>
-                </div>
-            </div>
-        </div>
-        <div style="margin-left: 350px;">
-            <div style="padding: 3px; font-weight: bold; color: #777;">직원차량지정입력</div>
-            <div class="w2ui-group" style="height: 185px;">
-                <div class="w2ui-label w2ui-span5">차량번호:</div>
-                <div class="w2ui-field w2ui-span5">
-                    <input name="1" type="text" maxlength="100" style="width: 100%"/>
-                </div>
-                <div class="w2ui-label w2ui-span5">Address Line 2:</div>
-                <div class="w2ui-field w2ui-span5">
-                    <input name="address2" type="text" maxlength="100" style="width: 100%"/>
-                </div>
-                <div class="w2ui-label w2ui-span5">City:</div>
-                <div class="w2ui-field w2ui-span5">
-                    <input name="city" type="text" maxlength="50" size="25"/>
-                </div>
-                <div class="w2ui-label w2ui-span5">State:</div>
-                <div class="w2ui-field w2ui-span5">
-                    <input name="state" type="text" maxlength="2" size="2"/>
-                </div>
-                <div class="w2ui-label w2ui-span5">Zip:</div>
-                <div class="w2ui-field w2ui-span5">
-                    <input name="zip" type="text" maxlength="10" size="10"/>
-                </div>
-            </div>
-        </div>
-        <div style="clear: both; padding-top: 15px;">
-            <div style="padding: 3px; font-weight: bold; color: #777;">Additional Fields</div>
-            <div class="w2ui-group">
-                <div class="w2ui-label">Short Bio:</div>
-                <div class="w2ui-field">
-                    <textarea name="short_bio" type="text" style="width: 100%; height: 80px; resize: none"></textarea>
-                </div>
-                <div class="w2ui-label">Talk Name:</div>
-                <div class="w2ui-field">
-                    <input name="talk_name" type="text" maxlength="100" style="width: 100%;"/>
-                </div>
-                <div class="w2ui-label">Talk Description:</div>
-                <div class="w2ui-field">
-                    <textarea name="description" type="text" style="width: 100%; height: 80px; resize: none"></textarea>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="w2ui-buttons">
-        <input type="button" value="Reset" name="reset">
-        <input type="button" value="Save" name="save">
-    </div>
-</div>
 </body>
 </html>
 
