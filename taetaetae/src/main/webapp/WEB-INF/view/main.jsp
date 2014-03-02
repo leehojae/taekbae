@@ -14,7 +14,7 @@
 	href="//w2ui.com/src/w2ui-1.3.min.css" />
 
 <!-- Bootstrap -->
-<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap/bootstrap.css" rel="stylesheet">
 <!-- <link rel="stylesheet" type="text/css" href="css/w2ui-1.3.1.min.css" /> -->
 <link href="css/starter-template.css" rel="stylesheet">
 
@@ -51,12 +51,14 @@
 				</button>
 			</div>
 			<div class="collapse navbar-collapse">
+			   <h1>SDMS(Smart Delivery Management System)</h1>
 				<ul class="nav navbar-nav">
-					<li><a href="#about"><h1>SDMS(Smart Delivery
-								Management System)</h1></a></li>
-					<li><a href="#about">${loginUser.name}님</a></li>
-					<li><a
-						href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a></li>
+					<li>
+					<a href="#about">${loginUser.name}님</a>
+					</li>
+					<li>
+					<a	href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a>
+					</li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -89,7 +91,7 @@
 			<br>
 			<div id="grid" style="width: 100%; height: 250px;"></div>
 			<script type="text/javascript" src="js/excelGrid.js"></script>
-			<div id="map" style="width: 1024px; height: 768px"></div>
+			<div id="map" style="width: 100%; height: 768px;"></div>
 		</div>
 	</div>
 <script type="text/javascript">
