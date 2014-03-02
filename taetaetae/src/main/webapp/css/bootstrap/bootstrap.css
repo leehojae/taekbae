@@ -3782,13 +3782,16 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     display: none;
   }
 }
+.navbar-collapse h1 {width:500px; font-size:22px; color:#fff;}
 .navbar-nav {
-  margin: 7.5px -15px;
+	position:absolute;
+	top:5px; right:10px;
 }
 .navbar-nav > li > a {
   padding-top: 10px;
   padding-bottom: 10px;
   line-height: 20px;
+  text-align:right;
 }
 @media (max-width: 767px) {
   .navbar-nav .open .dropdown-menu {
