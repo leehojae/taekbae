@@ -74,21 +74,110 @@
 				<input type="file" id="excelFile" name="excelFile" /> <input
 					type="submit" value="파일 전송" />
 			</form>
+			
 			<script type="text/javascript" src="js/excelUpload.js"></script>
 			<script type="text/javascript" src="js/toolbar.js"></script>
 			<br>
-		  <script type="text/javascript">
-		  function divide() {
-		  	$.get("divide/ajax/execute.do", function (data){
-		  		console.log("divide");
-		  	});
-		  }
-		  </script>
-			<button id="divide" type="button" onclick="divide()">자동분배</button>
+<!-- 			<script type="text/javascript">
+			$(function() {
+				var mems = null;
+				var cars = null;
+				var areas = null;
+				var table = null;
+				var tr = null;
+				var html = null;
+				
+ 				list();
+				
+				function list() {
+					$.getJSON("member/ajax/list.do", function(data) {
+						console.log(data);
+						mems = data.jsonResult.data;
+					});
+					$.getJSON("car/ajax/list.do", function(data) {
+						console.log(data);
+						cars = data.jsonResult.data;
+					});
+					$.getJSON("area/ajax/list.do", function(data) {
+						console.log(data);
+						areas = data.jsonResult.data;
+					});
+					
+					table = $('listTable');
+					console.log(mems);
+ 					for (int i = 0; mems.length; i++){
+						m = mems[i];
+						c = cars[i];
+						a = areas[i];
+						
+						tr = document.createElement('tr');
+						
+						html = '';
+						html += '<td>1</td>';
+						
+						tr.innerHTML = html;
+						table.appendChild(tr);
+						
+					}
+					
+				}
+			});
+			</script> -->
 			<br>
 			<div id="toolbar"
 				style="padding: 4px; border: 1px solid silver; border-radius: 3px"></div>
 			<br>
+      
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion"
+								href="#collapseOne">
+								배송직원 리스트
+							</a>
+						</h4>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse in">
+						<div class="panel-body">
+ 							<table class="table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>이름</th>
+										<th>차량</th>
+										<th>담당구역</th>
+										<th>전송</th>
+									</tr>
+								</thead>
+								<tbody>
+ 									<tr>
+										<td>1</td>
+										<td>홍길동</td>
+										<td>1111</td>
+										<td>강남대로</td>
+										<td><button type="submit" class="btn btn-default">Submit</button></td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>고등어</td>
+										<td>2222</td>
+										<td>서초대로</td>
+										<td><button type="submit" class="btn btn-default">Submit</button></td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>꽁치</td>
+										<td>3333</td>
+										<td>남부대로</td>
+										<td><button type="submit" class="btn btn-default">Submit</button></td>
+									</tr>
+								</tbody>
+							</table> 
+						</div>
+					</div>
+				</div>
+			</div>
 			<div id="grid" style="width: 100%; height: 250px;"></div>
 			<script type="text/javascript" src="js/excelGrid.js"></script>
 			<div id="map" style="width: 100%; height: 768px;"></div>
