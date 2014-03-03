@@ -11,6 +11,7 @@ $(function() {
 				multiSearch : true,
 				fixedBody : true,
 				
+				
 				show : {
 					header : true,
 					toolbar : true,
@@ -21,12 +22,70 @@ $(function() {
 				},
 				
 				toolbar: {
+					
 					items: [
 						{ type: 'break' },
-						{ type: 'button', id: 'mybutton', caption: 'My other button', img: 'icon-folder' }
+						{ type: 'menu',   id: 'roadSel', caption: '도로선택', icon: 'icon-add'},
+						{ type: 'button',   id: 'memSel', caption: '기사선택', icon: 'icon-add'},
+						{ type: 'html',   id: 'item3', html: '<select>' + 
+																								 '<option>Option</option>' +
+																								 '</select>'},
+						                                                                           
+						{ type: 'button', id: 'mybutton', caption: '전송', img: 'icon-add' }
 					],
 					onClick: function (target, data) {
 						console.log(target);
+						console.log(data);
+						console.log(data.item.items);
+						
+						switch (data.subItem) {
+						case '강남대로':
+							w2ui.grid.search('receiverAddrRoad', '강남대로');
+						break;
+						case '고무래로':
+							w2ui.grid.search('receiverAddrRoad', '고무래로');
+							break;
+						case '남부순환로':
+							w2ui.grid.search('receiverAddrRoad', '남부순환로');
+							break;
+						case '명달로':
+							w2ui.grid.search('receiverAddrRoad', '명달로');
+							break;
+						case '반포대로':
+							w2ui.grid.search('receiverAddrRoad', '반포대로');
+							break;
+						case '법원로':
+							w2ui.grid.search('receiverAddrRoad', '법원로');
+							break;
+						case '사임당로':
+							w2ui.grid.search('receiverAddrRoad', '사임당로');
+							break;
+						case '사평대로':
+							w2ui.grid.search('receiverAddrRoad', '사평대로');
+							break;
+						case '서리풀길':
+							w2ui.grid.search('receiverAddrRoad', '서리풀길');
+							break;
+						case '서운로':
+							w2ui.grid.search('receiverAddrRoad', '서운로');
+							break;
+						case '서초대로':
+							w2ui.grid.search('receiverAddrRoad', '서초대로');
+							break;
+						case '서초중앙로':
+							w2ui.grid.search('receiverAddrRoad', '서초중앙로');
+							break;
+						case '효령로':
+							w2ui.grid.search('receiverAddrRoad', '효령로');
+							break;
+						}
+						
+						
+//						if (data.subItem == '강남대로') {
+//							console.log("ok");
+//							w2ui.grid.search('receiverAddrRoad', '강남대로');
+//						}
+						
 					}
 				},
 				
@@ -54,6 +113,7 @@ $(function() {
 						'height' : 100
 					}, 100);
 				}
+				
 			});
 });
 
@@ -61,10 +121,41 @@ $(function() {
 	$.getJSON('excel/ajax/list.do', function(data) {
 		var records = data.jsonResult.data;
 		for (var i = 0; i < records.length; i++) {
-			records[i].recid = records[i].trcno;
+			if (records[i].id != 0){
+				records[i].recid = records[i].trcno;
+			}
 		}
-
+		
 		w2ui.grid.records = records;
 		w2ui.grid.refresh();
+		w2ui.grid.multiSelect = true;
+		w2ui.grid.multiSort = true;
+	});
+});
+
+$(function() {
+	$.getJSON('excel/ajax/list.do', function(data) {
+		var addrItem = data.jsonResult.data;
+		var uniqueAddrItem = [];
+		for (var i = 0; i < addrItem.length; i++) {
+			addrItem[i] = (addrItem[i].receiverAddrRoad);
+		}
+		$.each(addrItem, function(i, el){
+	    if($.inArray(el, uniqueAddrItem) === -1) uniqueAddrItem.push(el);
+		});
+		
+		uniqueAddrItem.sort();
+		
+		w2ui.grid.toolbar.set('roadSel', { items: uniqueAddrItem });
+	});
+});
+
+$(function() {
+	$.getJSON('member/ajax/list.do', function(data) {
+		var memItem = data.jsonResult.data;
+		for (var i = 0; i < memItem.length; i++) {
+			memItem[i] = memItem[i].name;
+		}
+		w2ui.grid.toolbar.set('memSel', { items: memItem });
 	});
 });

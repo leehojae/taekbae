@@ -45,18 +45,7 @@
                           caption : '배송구역등록',
                           img : 'icon-page',
                           hint : 'Hint for item 5'
-                        },
-                        {
-                          type : 'spacer'
-                        },
-                        {
-                          type : 'html',
-                          id : 'item6',
-                          html : '<div style="padding: 3px 10px;">'
-                              + '<a href="#">${loginUser.name}</a>'
-                              + '<a href="${pageContext.request.contextPath}/auth/logout.do">[로그아웃]</a>'
-                              + '</div>'
-                        }, ],
+                        } ],
                         onClick: function (event) {
                           switch (event.target) {
                           case 'item1':
