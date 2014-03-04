@@ -4,22 +4,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!--  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> -->
-<link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/jquery-ui-1.10.1.custom.css"/>
+<link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/jquery-ui-1.10.4.custom.css"/>
 <link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/ui.jqgrid.css"/>
 
-
-<script src = "../js/jquery-1.11.0.min.js" type = "text/javascript"></script>
+<script src = "../js/jquery-1.5.2.js" type = "text/javascript"></script>
 <script src = "../js/i18n/grid.locale-kr.js" type = "text/javascript"></script>
 <script src = "../js/jquery.jqGrid.min.js" type = "text/javascript"></script>
 <script>
+
+
 
     $(window.document).ready(function() {
     	
         $("#grid").jqGrid({
             //url : 'http://apis.daum.net/socialpick/search?output=json',
-            url : 'http://localhost:8080/taetaetae/member/ajax/list.do',
-            caption : '직원 현황',    // caption : 그리드의 제목을 지정한다.
+            url : 'http://localhost:8080/taetaetae/office//ajax/officeList.do',
+            caption : '지점 목록',    // caption : 그리드의 제목을 지정한다.
             datatype : 'json',               // datatype : 데이터 타입을 지정한다.
                                                     // (json 으로 외부에 요청을 보내면 보안정책에 위배되어 요청이 나가질 않는다.
                                                     //  따라서 datatype 을 jsonp로 변경하고 보내야 한다.)
@@ -32,18 +32,20 @@
             rowList : [10, 20, 30],       // rowList : rowNum을 선택할 수 있는 옵션을 지정한다.
  
             // colNames : 열의 이름을 지정한다.
-            colNames : [ 'no','지점', '이름', 'ID',  '직위',   '전화','생년월일' ],
+            colNames : [ '사업자번호','지점명', '전화', '우편번호',  '주소',   '팩스' ],
             colModel : [
                         
-                        { name : 'no',         index : 'no',         width : 50,    align : 'center' },
+                        { name : 'officeNum',         index : 'officeNum',         width : 150,    align : 'center' },
                         { name : 'officeName',         index : 'officeName',         width : 150,    align : 'center' },
-                        { name : 'name',         index : 'name',         width : 150,    align : 'center' },
-                        { name : 'id',         index : 'id',         width : 110,    align : 'center' },
-                        { name : 'rank',         index : 'rank',         width : 150,    align : 'center' },
-                        { name : 'tel',         index : 'tel',         width : 150,    align : 'center' , hidden : true},
-                        { name : 'personalNumber',         index : 'personalNumber',         width : 150,    align : 'center' , hidden : true}
+                        { name : 'officeTel',         index : 'officeTel',         width : 150,    align : 'center' },
+                        { name : 'officePostNum',         index : 'officePostNum',         width : 150,    align : 'center'  , hidden : true},
+                        { name : 'officeAddr',         index : 'officeAddr',         width : 300,    align : 'center' , hidden : true},
+                        { name : 'officeFax',         index : 'officeFax',         width : 300,    align : 'center' , hidden : true},
                         ],
-            
+                        postData:{
+                			searchKeywordA: $("#searchKeywordA").val(),
+                			searchKeywordB: $("#searchKeywordB").val()
+                			},
             jsonReader : {
             	 repeatitems : false,
                  id : "no",
@@ -54,15 +56,15 @@
  },
 
  onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
+	 
 	 $("#status").val("edit");
 		var $rowData = $(this).getRowData(rowid);
-		$("#mno").val($rowData['no']);
-		$("#mname").val($rowData['name']);
-		$("#mofficeName").val($rowData['officeName']);
-		$("#mrank").val($rowData['rank']);
-		$("#mtel").val($rowData['tel']);
-		$("#mid").val($rowData['id']);
-		$("#mpersonalNumber").val($rowData['personalNumber']);
+		$("#ono").val($rowData['officeNum']);
+		$("#oname").val($rowData['officeName']);
+		$("#oTel").val($rowData['officeTel']);
+		$("#oPostNum").val($rowData['officePostNum']);
+		$("#oAddr").val($rowData['officeAddr']);
+		$("#oFax").val($rowData['officeFax']);
 		
 	}	
  
@@ -74,71 +76,145 @@
             del : true
         });
         
-        
-        
-    	
-    	  
+  	  
         $("#addBtn").click( function() {
-    		//alert($('#mid').val());
-        	$.ajax( 'ajax/add.do', {
+        	$.ajax( 'ajax/addOffice.do', {
 				method: 'POST',
 				data: {
-					
-					name: $('#mname').val(),
-					id: $('#mid').val(),
-					tel: $('#mtel').val(),
-					personalNumber: $('#mpersonalNumber').val()
+					officeNum: $('#ono').val(),
+					officeName: $('#oname').val(),
+					officeTel: $('#oTel').val(),
+					officePostNum: $('#oPostNum').val(),
+					officeAddr: $('#oAddr').val(),
+					officeFax: $('#oFax').val()
 				},
 				success: function(members){
-					location.href = 'app.html';
+					location.href = 'list.do';
 		}});
-        	
-        	
-        	
-//      			document.listform.action = "<c:url value='http://localhost:8080/taetaetae/member/add.do'/>";
-//      		   	document.listform.submit();
     		
-    	});
-    	
-    	
+    }
+       
         
-        $("#delBtn").click( function() {
-    		var answer  = confirm( '삭제 하시겠습니까?' );
-    		if( answer ) 
-    		{
-    			document.listform.action = "<c:url value='/delLocationRuleLibrary.das'/>";
-    		   	document.listform.submit();
-    		}; 	
-    	});
+        );
+        
+        
+        $("#updateBtn").click( function() {
+        	alert("updateBtn");
+        	$.ajax( 'ajax/updateOffice.do', {
+				method: 'POST',
+				data: {
+					officeNum: $('#ono').val(),
+					officeName: $('#oname').val(),
+					officeTel: $('#oTel').val(),
+					officePostNum: $('#oPostNum').val(),
+					officeAddr: $('#oAddr').val(),
+					officeFax: $('#oFax').val()
+				},
+				success: function(members){
+					location.href = 'list.do';
+		}});
+    		
+    }
+       
+        
+        );
+        
+      
+        
+      
+        
+        
+       
     });
     
     
-    
-
-  
-   
-    
+    function deleteFunction()
+    {
     	
-  
+    	var answer  = confirm( '삭제 하시겠습니까?' );
+		if( answer ) 
+		{
+			
+			location.href = 'ajax/deleteOffice.do?no=' + $('#ono').val();
+			
+		}	
+    	
+    	return;
+    	
+    	alert( " ddd :  " +   $('#ono').val()   );
+    }
+    function updateFunction()
+    {
+    	alert( " 444 :  " +   $('#ono').val()   );
+    }
 </script>
 
-<title>직원관리</title>
+<title>점소관리</title>
 </head>
-<body>   
+
+
+
+<div id="header">
+	<%@ include file="/common/include/top.inc.jsp"%>
+	</div>
+	<br>
+<body onload="init()">
+<div id="menu" style="background-color:#000000;height:500px;width:200px;float:left;">
+			<br>
+			<br>
+			<br>
+      		<ul>
+		        <li><a href="../main.do"><span></span>엑셀등록</a>
+		        <li><a href="getTransportSimulationConfigView.das"><span></span>디비초기화</a>
+		        <li><a href="getTransportSimulationConfigView.das"><span></span>회원등록</a>
+		        <li><a href="getTransportSimulationConfigView.das"><span></span>점소등록</a>
+		        <li><a href="getTransportSimulationConfigView.das"><span></span>차량등록</a>
+		        <li><a href="getTransportSimulationConfigView.das"><span></span>배송구역등록</a>
+      		</ul>
+</div>
+<div id="content" style=" height:500px;width:1000px;float:left;">
+ <br>
+  <form  method="post"  enctype="multipart/form-data">
+<select id="officeName"  style="margin:1px 0 0 0;"> 
+<option value="volvo">지점</option>
+  <option value="saab">이름</option>
+  <option value="mercedes">아이디</option>
+</select>
+<input id=searchKeywordA type="text" name="mname">
+		<input id="delBtn" type="button" value="검색">
     <table id = "grid"></table>
     <div id = "pager"></div>
-    <form  method="post"  enctype="multipart/form-data">
-		<img id="mPhoto" src="../images/person.jpeg" height="100"><br>
-		지점: <select id="officeName"></select>
-		이름: <input id=mname type="text" name="mname"><br>
-		아이디: <input id="mid" type="text" name="mid">
-		전화: <input id="mtel" type="text" name="mtel"><br>
-		생년월일: <input id="mpersonalNumber" type="text" name="mpersonalNumber">
-		사진: <input type="file" name="photoFile"><br>
-		<input id="addBtn" type="button" value="등록">
-		<input id="updateBtn" type="button" value="변경" class="view">
-		<input id="delBtn" type="button" value="삭제">
-		<input id="cancelBtn" type="reset" value="취소">
+   <table border=1    WIDTH="635"   bgcolor="#EAEAEA">
+	<tr>
+	<td>
+		사업자번호 : <input id=ono type="text" name="ono">
+	</td>
+	<td>
+		점소명 : <input id=oname type="text" name="oname">
+	</td>	
+	</tr>
+	<tr>
+	<td>
+		전화 : <input id=oTel type="text" name="oTel">
+	</td>
+	<td>
+		우편번호 : <input id=oPostNum type="text" name="oPostNum">
+	</td>	
+	</tr>
+	<tr>
+	<td>
+		팩스 : <input id=oFax type="text" name="oFax">
+	</td>
+	<td>
+		주소 : <input id=oAddr type="text" name="oAddr">
+	</td>	
+	</tr>
+</table>
+		<input id="addBtn" type="button" value="등록" />
+		<input id="updateBtn" type="button" value="변경"  />
+		<input id="delBtn" type="button" value="삭제"    onclick="deleteFunction(   )" />
+		<input id="cancelBtn" type="reset" value="취소" />
 	</form>
+</div>
 </body>
 </html>
