@@ -36,8 +36,8 @@
             colModel : [
                         
                         { name : 'officeNum',         index : 'officeNum',         width : 150,    align : 'center' },
-                        { name : 'officeName',         index : 'officeName',         width : 150,    align : 'center' },
-                        { name : 'officeTel',         index : 'officeTel',         width : 150,    align : 'center' },
+                        { name : 'officeName',         index : 'officeName',         width : 250,    align : 'center' },
+                        { name : 'officeTel',         index : 'officeTel',         width : 250,    align : 'center' },
                         { name : 'officePostNum',         index : 'officePostNum',         width : 150,    align : 'center'  , hidden : true},
                         { name : 'officeAddr',         index : 'officeAddr',         width : 300,    align : 'center' , hidden : true},
                         { name : 'officeFax',         index : 'officeFax',         width : 300,    align : 'center' , hidden : true},
@@ -172,7 +172,7 @@
 		        <li><a href="getTransportSimulationConfigView.das"><span></span>배송구역등록</a>
       		</ul>
 </div>
-<div id="content" style=" height:500px;width:1000px;float:left;">
+<div id="content" style=" float:left;">
  <br>
   <form  method="post"  enctype="multipart/form-data">
 <select id="officeName"  style="margin:1px 0 0 0;"> 
