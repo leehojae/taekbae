@@ -88,7 +88,7 @@
         $("#addBtn").click( function() {
     		//alert($('#mid').val());
         	$.ajax( 'ajax/add.do', {
-				method: 'POST',
+				type: 'POST',
 				data: {
 					
 					photo: $('#mphoto').val(),
