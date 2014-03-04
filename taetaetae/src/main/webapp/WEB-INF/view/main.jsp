@@ -27,6 +27,11 @@
 
 <!-- 맵 -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+$('.collapse').collapse('hide');
+});
+</script>
 <!-- <script src="js/jquery/jquery-1.11.0.js"></script>  -->
 <script type="text/javascript" src="//w2ui.com/src/w2ui-1.3.min.js"></script>
 <script src="js/bootstrap/bootstrap.min.js"></script>
