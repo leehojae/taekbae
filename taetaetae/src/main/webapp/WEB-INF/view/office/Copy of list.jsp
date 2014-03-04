@@ -15,7 +15,7 @@
 
 
     $(window.document).ready(function() {
-      
+    	
         $("#grid").jqGrid({
             //url : 'http://apis.daum.net/socialpick/search?output=json',
             url : 'http://localhost:9999/taetaetae/office//ajax/officeList.do',
@@ -43,11 +43,11 @@
                         { name : 'officeFax',         index : 'officeFax',         width : 300,    align : 'center' , hidden : true},
                         ],
                         postData:{
-                      searchKeywordA: $("#searchKeywordA").val(),
-                      searchKeywordB: $("#searchKeywordB").val()
-                      },
+                			searchKeywordA: $("#searchKeywordA").val(),
+                			searchKeywordB: $("#searchKeywordB").val()
+                			},
             jsonReader : {
-               repeatitems : false,
+            	 repeatitems : false,
                  id : "no",
                  root : function (obj) { return obj.jsonResult.data; },
                  page : function (obj) { return 1; },
@@ -56,17 +56,17 @@
  },
 
  onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
-   
-   $("#status").val("edit");
-    var $rowData = $(this).getRowData(rowid);
-    $("#ono").val($rowData['officeNum']);
-    $("#oname").val($rowData['officeName']);
-    $("#oTel").val($rowData['officeTel']);
-    $("#oPostNum").val($rowData['officePostNum']);
-    $("#oAddr").val($rowData['officeAddr']);
-    $("#oFax").val($rowData['officeFax']);
-    
-  } 
+	 
+	 $("#status").val("edit");
+		var $rowData = $(this).getRowData(rowid);
+		$("#ono").val($rowData['officeNum']);
+		$("#oname").val($rowData['officeName']);
+		$("#oTel").val($rowData['officeTel']);
+		$("#oPostNum").val($rowData['officePostNum']);
+		$("#oAddr").val($rowData['officeAddr']);
+		$("#oFax").val($rowData['officeFax']);
+		
+	}	
  
         // navGrid() 메서드는 검색 및 기타기능을 사용하기위해 사용된다.
         }).navGrid('#pager', {
@@ -76,23 +76,23 @@
             del : true
         });
         
-      
+  	  
         $("#addBtn").click( function() {
-          alert($('#oname').val());
-          $.ajax( 'ajax/addOffice.do', {
-        method: 'POST',
-        data: {
-          officeNum: $('#ono').val(),
-          officeName: $('#oname').val(),
-          officeTel: $('#oTel').val(),
-          officePostNum: $('#oPostNum').val(),
-          officeAddr: $('#oAddr').val(),
-          officeFax: $('#oFax').val()
-        },
-        success: function(members){
-          location.href = 'list.do';
-    }});
-        
+        	alert($('#oname').val());
+        	$.ajax( 'ajax/addOffice.do', {
+				method: 'POST',
+				data: {
+					officeNum: $('#ono').val(),
+					officeName: $('#oname').val(),
+					officeTel: $('#oTel').val(),
+					officePostNum: $('#oPostNum').val(),
+					officeAddr: $('#oAddr').val(),
+					officeFax: $('#oFax').val()
+				},
+				success: function(members){
+					location.href = 'list.do';
+		}});
+    		
     }
        
         
@@ -100,20 +100,20 @@
         
         
         $("#updateBtn").click( function() {
-          $.ajax( 'ajax/updateOffice.do', {
-        method: 'POST',
-        data: {
-          officeNum: $('#ono').val(),
-          officeName: $('#oname').val(),
-          officeTel: $('#oTel').val(),
-          officePostNum: $('#oPostNum').val(),
-          officeAddr: $('#oAddr').val(),
-          officeFax: $('#oFax').val()
-        },
-        success: function(members){
-          location.href = 'list.do';
-    }});
-        
+        	$.ajax( 'ajax/updateOffice.do', {
+				method: 'POST',
+				data: {
+					officeNum: $('#ono').val(),
+					officeName: $('#oname').val(),
+					officeTel: $('#oTel').val(),
+					officePostNum: $('#oPostNum').val(),
+					officeAddr: $('#oAddr').val(),
+					officeFax: $('#oFax').val()
+				},
+				success: function(members){
+					location.href = 'list.do';
+		}});
+    		
     }
        
         
@@ -130,22 +130,22 @@
     
     function deleteFunction()
     {
-      
-      var answer  = confirm( '삭제 하시겠습니까?' );
-    if( answer ) 
-    {
-      
-      location.href = 'ajax/deleteOffice.do?no=' + $('#ono').val();
-      
-    } 
-      
-      return;
-      
-      alert( " ddd :  " +   $('#ono').val()   );
+    	
+    	var answer  = confirm( '삭제 하시겠습니까?' );
+		if( answer ) 
+		{
+			
+			location.href = 'ajax/deleteOffice.do?no=' + $('#ono').val();
+			
+		}	
+    	
+    	return;
+    	
+    	alert( " ddd :  " +   $('#ono').val()   );
     }
     function updateFunction()
     {
-      alert( " 444 :  " +   $('#ono').val()   );
+    	alert( " 444 :  " +   $('#ono').val()   );
     }
 </script>
 
@@ -155,22 +155,22 @@
 
 
 <div id="header">
-  <%@ include file="/common/include/top.inc.jsp"%>
-  </div>
-  <br>
+	<%@ include file="/common/include/top.inc.jsp"%>
+	</div>
+	<br>
 <body onload="init()">
 <div id="menu" style="background-color:#000000;height:500px;width:200px;float:left;">
-      <br>
-      <br>
-      <br>
-          <ul>
-            <li><a href="../main.do"><span></span>엑셀등록</a>
-            <li><a href="getTransportSimulationConfigView.das"><span></span>디비초기화</a>
-            <li><a href="getTransportSimulationConfigView.das"><span></span>회원등록</a>
-            <li><a href="getTransportSimulationConfigView.das"><span></span>점소등록</a>
-            <li><a href="getTransportSimulationConfigView.das"><span></span>차량등록</a>
-            <li><a href="getTransportSimulationConfigView.das"><span></span>배송구역등록</a>
-          </ul>
+			<br>
+			<br>
+			<br>
+      		<ul>
+		        <li><a href="../main.do"><span></span>엑셀등록</a>
+		        <li><a href="getTransportSimulationConfigView.das"><span></span>디비초기화</a>
+		        <li><a href="getTransportSimulationConfigView.das"><span></span>회원등록</a>
+		        <li><a href="getTransportSimulationConfigView.das"><span></span>점소등록</a>
+		        <li><a href="getTransportSimulationConfigView.das"><span></span>차량등록</a>
+		        <li><a href="getTransportSimulationConfigView.das"><span></span>배송구역등록</a>
+      		</ul>
 </div>
 <div id="content" style=" float:left;">
  <br>
@@ -181,40 +181,40 @@
   <option value="mercedes">아이디</option>
 </select>
 <input id=searchKeywordA type="text" name="mname">
-    <input id="delBtn" type="button" value="검색">
+		<input id="delBtn" type="button" value="검색">
     <table id = "grid"></table>
     <div id = "pager"></div>
    <table border=1    WIDTH="635"   bgcolor="#EAEAEA">
-  <tr>
-  <td>
-    사업자번호 : <input id=ono type="text" name="ono">
-  </td>
-  <td>
-    점소명 : <input id=oname type="text" name="oname">
-  </td> 
-  </tr>
-  <tr>
-  <td>
-    전화 : <input id=oTel type="text" name="oTel">
-  </td>
-  <td>
-    우편번호 : <input id=oPostNum type="text" name="oPostNum">
-  </td> 
-  </tr>
-  <tr>
-  <td>
-    팩스 : <input id=oFax type="text" name="oFax">
-  </td>
-  <td>
-    주소 : <input id=oAddr type="text" name="oAddr">
-  </td> 
-  </tr>
+	<tr>
+	<td>
+		사업자번호 : <input id=ono type="text" name="ono">
+	</td>
+	<td>
+		점소명 : <input id=oname type="text" name="oname">
+	</td>	
+	</tr>
+	<tr>
+	<td>
+		전화 : <input id=oTel type="text" name="oTel">
+	</td>
+	<td>
+		우편번호 : <input id=oPostNum type="text" name="oPostNum">
+	</td>	
+	</tr>
+	<tr>
+	<td>
+		팩스 : <input id=oFax type="text" name="oFax">
+	</td>
+	<td>
+		주소 : <input id=oAddr type="text" name="oAddr">
+	</td>	
+	</tr>
 </table>
-    <input id="addBtn" type="button" value="등록" />
-    <input id="updateBtn" type="button" value="변경"  />
-    <input id="delBtn" type="button" value="삭제"    onclick="deleteFunction(   )" />
-    <input id="cancelBtn" type="reset" value="취소" />
-  </form>
+		<input id="addBtn" type="button" value="등록" />
+		<input id="updateBtn" type="button" value="변경"  />
+		<input id="delBtn" type="button" value="삭제"    onclick="deleteFunction(   )" />
+		<input id="cancelBtn" type="reset" value="취소" />
+	</form>
 </div>
 </body>
 </html>
