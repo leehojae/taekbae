@@ -30,8 +30,6 @@ public class Member implements Serializable {
 	   		"', officeNum='"+ officeNum +  
 	   		
 	   		"' }";
-			  
-			  
 		
 	}
 	
@@ -114,15 +112,5 @@ public class Member implements Serializable {
 		this.photo = photo;
 		return this;
 	}
-	
-	
-	
 
 }
-
-
-
-
-
-
-
