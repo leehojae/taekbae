@@ -1,7 +1,5 @@
 package spms.controls;
 
-
-
 import javax.servlet.ServletContext;
 
 import org.apache.log4j.Logger;
@@ -11,9 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 import spms.dao.OfficeDao;
-
 import spms.vo.JsonResult;
 import spms.vo.Office;
 
@@ -85,7 +81,7 @@ public class OfficeControl {
 //  }
 //	
 	
-	@RequestMapping(value="/ajax/updateOffice", method=RequestMethod.GET, 
+	@RequestMapping(value="/ajax/updateOffice", method=RequestMethod.POST, 
 			produces="application/json")
 	public Object update(Office office) throws Exception {
 		try {
@@ -101,10 +97,13 @@ public class OfficeControl {
 
 
 	
-	@RequestMapping(value="/ajax/addOffice", method=RequestMethod.GET, 
+	@RequestMapping(value="/ajax/addOffice", method=RequestMethod.POST, 
 			produces="application/json")
 	public Object ajaxAdd(Office office) throws Exception {
 		try {
+			
+			System.out.println("1  :" +  office.getOfficeName());
+			System.out.println("2  :" +  office.getOfficeName());
 			officeDao.insert(office);
 			return new JsonResult().setResultStatus(JsonResult.SUCCESS);
 			
@@ -158,13 +157,3 @@ public class OfficeControl {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
