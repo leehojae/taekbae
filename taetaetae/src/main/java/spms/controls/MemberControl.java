@@ -149,14 +149,17 @@ public class MemberControl {
 	}
 	
 	@RequestMapping(value="/ajax/delete", produces="application/json")
-	public Object ajaxDelete(int no) throws Exception {
+	public String ajaxDelete(int no) throws Exception {
 		try {
 			memberDao.delete(no);
-			return new JsonResult().setResultStatus(JsonResult.SUCCESS);
+			//return new JsonResult().setResultStatus(JsonResult.SUCCESS);
+			return "redirect:/office/list.do";
 			
 		} catch (Throwable ex) {
-			return new JsonResult().setResultStatus(JsonResult.FAILURE)
-					.setError(ex.getMessage());
+//			return new JsonResult().setResultStatus(JsonResult.FAILURE)
+//					.setError(ex.getMessage());
+			//return new JsonResult().setResultStatus(JsonResult.SUCCESS);
+			return "redirect:/office/list.do";
 		}
 	}
 	
