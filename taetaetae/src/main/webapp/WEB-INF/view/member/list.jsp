@@ -19,7 +19,7 @@
     	
         $("#grid").jqGrid({
             //url : 'http://apis.daum.net/socialpick/search?output=json',
-            url : 'http://localhost:9999/taetaetae/member/ajax/list.do',
+            url : 'http://localhost:8080/taetaetae/member/ajax/list.do',
             caption : '직원 현황',    // caption : 그리드의 제목을 지정한다.
             datatype : 'json',               // datatype : 데이터 타입을 지정한다.
                                                     // (json 으로 외부에 요청을 보내면 보안정책에 위배되어 요청이 나가질 않는다.
@@ -32,7 +32,6 @@
             loadonce : true,                // loadonce : rowNum 설정을 사용하기 위해서 true로 지정한다.
             rowList : [10, 20, 30],       // rowList : rowNum을 선택할 수 있는 옵션을 지정한다.
  
-            // colNames : 열의 이름을 지정한다.
             colNames : [ 'no','지점', '이름', 'ID',  '직위',   '전화','생년월일','사' ],
             colModel : [
                         
@@ -45,10 +44,6 @@
                         { name : 'personalNumber',         index : 'personalNumber',         width : 150,    align : 'center' , hidden : true},
                         { name : 'photo',         index : 'photo',         width : 1,    align : 'center' , hidden : true},
                         ],
-                        postData:{
-                			searchKeywordA: $("#searchKeywordA").val(),
-                			searchKeywordB: $("#searchKeywordB").val()
-                			},
             jsonReader : {
             	 repeatitems : false,
                  id : "no",
@@ -86,38 +81,64 @@
     	
     	  
         $("#addBtn").click( function() {
-    		//alert($('#mid').val());
         	$.ajax( 'ajax/add.do', {
-				type: 'POST',
+				method: 'POST',
 				data: {
-					
-					photo: $('#mphoto').val(),
-					name: $('#mname').val(),
+					no : $('#mno').val(),
+					name : $('#mname').val(),
 					id: $('#mid').val(),
 					tel: $('#mtel').val(),
-					rank: $('#mrank').val(),
 					personalNumber: $('#mpersonalNumber').val(),
-					officeName: $('#officeName').val(),
-					personalNumber: $('#mpersonalNumber').val()
+					photo: $('#oAddr').val(),
+					officeNum: $('#oAddr').val(),
+					officeName: $('#oAddr').val(),
+					rank: $('#mrank').val()
 				},
 				success: function(members){
 					location.href = 'list.do';
 		}});
     		
+    }
+       
+        
+        );
+        
+        
+        $("#updateBtn").click( function() {
+        	$.ajax( 'ajax/update.do', {
+				method: 'POST',
+				data: {
+					no : $('#mno').val(),
+					name : $('#mname').val(),
+					id: $('#mid').val(),
+					tel: $('#mtel').val(),
+					personalNumber: $('#mpersonalNumber').val(),
+					photo: $('#oAddr').val(),
+					officeNum: $('#oAddr').val(),
+					officeName: $('#oAddr').val(),
+					rank: $('#mrank').val()
+				},
+				success: function(members){
+					location.href = 'list.do';
+		}});
+    		
+    }
+       
+        );
+        
     });
-    	
-    	
-        $("#delBtn").click( function() {
-    		var answer  = confirm( '삭제 하시겠습니까?' );
-    		if( answer ) 
-    		{
-    			
-    			document.listform.action = "<c:url value='/delLocationRuleLibrary.das'/>";
-    		   	document.listform.submit();
-    		}; 	
-    	});
-    });
-
+    
+    
+    function deleteFunction()
+    {
+    	var answer  = confirm( '삭제 하시겠습니까?' );
+		if( answer ) 
+		{
+			location.href = 'ajax/delete.do?no=' + $('#mno').val();
+		}	
+    	return;
+    }
+    
 </script>
 
 <title>직원관리</title>
@@ -135,16 +156,18 @@
 		        <li><a href="../main.do"><span></span>엑셀등록</a>
 		        <li><a href="getTransportSimulationConfigView.das"><span></span>디비초기화</a>
 		         <li><a href="../member/list.do"><span></span>회원등록</a>
-		        <li><a href="getTransportSimulationConfigView.das"><span></span>점소등록</a>
+		        <li><a href="../office/list.do"><span></span>점소등록</a>
 		        <li><a href="getTransportSimulationConfigView.das"><span></span>차량등록</a>
 		        <li><a href="getTransportSimulationConfigView.das"><span></span>배송구역등록</a>
       		</ul>
 </div>
 
-<div id="content" style=" float:left;">
+<div id="content" style="float:left;">
  <br>
   <table id = "grid"></table>
     <div id = "pager"></div>
+   
+
 
   <form  method="post"  enctype="multipart/form-data">
 <select id="officeName">
@@ -187,13 +210,20 @@
 		ID : <input id=mid type="text" name="mid">
 	</td>	
 	</tr>
+	<tr>
+	<td>
+		전화 : <input id=mno type="text" name="mno">
+	</td>
+		
+	</tr>
 	
 
 </table>
 		<input id="addBtn" type="button" value="등록">
 		<input id="updateBtn" type="button" value="변경" class="view">
-		<input id="delBtn" type="button" value="삭제">
+		<input id="delBtn" type="button" value="삭제"  onclick="deleteFunction()" />
 		<input id="cancelBtn" type="reset" value="취소">
 	</form>
+	</div>
 </body>
 </html>
