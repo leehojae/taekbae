@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,51 +88,6 @@ $('.collapse').collapse('hide');
 			<script type="text/javascript" src="js/excelUpload.js"></script>
 			<script type="text/javascript" src="js/toolbar.js"></script>
 			<br>
-<!-- 			<script type="text/javascript">
-			$(function() {
-				var mems = null;
-				var cars = null;
-				var areas = null;
-				var table = null;
-				var tr = null;
-				var html = null;
-				
- 				list();
-				
-				function list() {
-					$.getJSON("member/ajax/list.do", function(data) {
-						console.log(data);
-						mems = data.jsonResult.data;
-					});
-					$.getJSON("car/ajax/list.do", function(data) {
-						console.log(data);
-						cars = data.jsonResult.data;
-					});
-					$.getJSON("area/ajax/list.do", function(data) {
-						console.log(data);
-						areas = data.jsonResult.data;
-					});
-					
-					table = $('listTable');
-					console.log(mems);
- 					for (int i = 0; mems.length; i++){
-						m = mems[i];
-						c = cars[i];
-						a = areas[i];
-						
-						tr = document.createElement('tr');
-						
-						html = '';
-						html += '<td>1</td>';
-						
-						tr.innerHTML = html;
-						table.appendChild(tr);
-						
-					}
-					
-				}
-			});
-			</script> -->
 			<br>
 			<div id="toolbar"
 				style="padding: 4px; border: 1px solid silver; border-radius: 3px"></div>
@@ -156,27 +116,46 @@ $('.collapse').collapse('hide');
 									</tr>
 								</thead>
 								<tbody>
- 									<tr>
-										<td>1</td>
-										<td>홍길동</td>
-										<td>1111</td>
-										<td>강남대로</td>
-										<td><button type="submit" class="btn btn-default">Submit</button></td>
-									</tr>
+									<%
+										Class.forName("com.mysql.jdbc.Driver");
+										Connection conn = null;
+										PreparedStatement pstmt = null;
+										ResultSet rs = null;
+
+										try {
+											String jdbcDriver = "jdbc:mysql://localhost/spmsdb?useUnicode=true&amp;characterEncoding=UTF-8";
+											String dbUser = "spms";
+											String dbPwd = "spms";
+											conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPwd);
+
+											pstmt = conn
+													.prepareStatement("select a.mname, b.car_num, c.task_area from members a, cars b, areas c where a.mno = b.mno and a.mno=c.mno");
+											rs = pstmt.executeQuery();
+											int count = 0;
+											while (rs.next()) {
+												count++;
+									%>
 									<tr>
-										<td>2</td>
-										<td>고등어</td>
-										<td>2222</td>
-										<td>서초대로</td>
-										<td><button type="submit" class="btn btn-default">Submit</button></td>
+										<td><%=count%></td>
+										<td><%=rs.getString("mname")%></td>
+										<td><%=rs.getString("car_num")%></td>
+										<td><%=rs.getString("task_area")%></td>
+										<td><button id="divButton<%=count%>" type="submit"
+												class="btn btn-default">Submit</button></td>
 									</tr>
-									<tr>
-										<td>3</td>
-										<td>꽁치</td>
-										<td>3333</td>
-										<td>남부대로</td>
-										<td><button type="submit" class="btn btn-default">Submit</button></td>
-									</tr>
+									<%
+										}
+										} catch (SQLException se) {
+											se.printStackTrace();
+										} finally {
+											if (rs != null)
+												rs.close();
+											if (pstmt != null)
+												pstmt.close();
+											if (conn != null)
+												conn.close();
+										}
+									%>
 								</tbody>
 							</table> 
 						</div>
