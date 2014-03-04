@@ -45,7 +45,18 @@
                           caption : '배송구역등록',
                           img : 'icon-page',
                           hint : 'Hint for item 5'
-                        } ],
+                        },
+                        {
+                          type : 'spacer'
+                        },
+                        {
+                          type : 'html',
+                          id : 'item6',
+                          html : '<div style="padding: 3px 10px;">'
+                              + '<a href="#">${loginUser.name}</a>'
+                              + '<a href="${pageContext.request.contextPath}/auth/logout.do">[로그아웃]</a>'
+                              + '</div>'
+                        }, ],
                         onClick: function (event) {
                           switch (event.target) {
                           case 'item1':
@@ -53,8 +64,11 @@
                             openPopup();
                             break;
                           case 'item3':
-                            openPopup();
+                        	  goToMemberInfo();
                             break;
+                          case 'item4':
+                        	  goToOfficeInfo();
+                        	  break;
                           }
                           console.log('Target: '+ event.target, event);
                         }
@@ -62,7 +76,9 @@
         });
        
        
-       function openPopup() {
+       function goToMemberInfo() {
     		location.href = "member/list.do";
-
     	}
+       function goToOfficeInfo() {
+   		location.href = "office/list.do";
+   	}
