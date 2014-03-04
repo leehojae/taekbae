@@ -1,7 +1,6 @@
 package spms.controls;
 
-import java.io.File;
-import java.io.IOException;
+
 
 import javax.servlet.ServletContext;
 
@@ -11,11 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import spms.dao.OfficeDao;
-import spms.vo.Area;
+
 import spms.vo.JsonResult;
 import spms.vo.Office;
 
@@ -87,7 +85,7 @@ public class OfficeControl {
 //  }
 //	
 	
-	@RequestMapping(value="/ajax/updateOffice", method=RequestMethod.POST, 
+	@RequestMapping(value="/ajax/updateOffice", method=RequestMethod.GET, 
 			produces="application/json")
 	public Object update(Office office) throws Exception {
 		try {
@@ -103,7 +101,7 @@ public class OfficeControl {
 
 
 	
-	@RequestMapping(value="/ajax/addOffice", method=RequestMethod.POST, 
+	@RequestMapping(value="/ajax/addOffice", method=RequestMethod.GET, 
 			produces="application/json")
 	public Object ajaxAdd(Office office) throws Exception {
 		try {
@@ -146,14 +144,16 @@ public class OfficeControl {
 	
 	
 	@RequestMapping(value="/ajax/deleteOffice", produces="application/json")
-	public Object ajaxDelete(int no) throws Exception {
+	public String ajaxDelete(int no) throws Exception {
 		try {
 			officeDao.delete(no);
-			return new JsonResult().setResultStatus(JsonResult.SUCCESS);
+			//return new JsonResult().setResultStatus(JsonResult.SUCCESS);
+			return "redirect:/office/list.do";
 			
 		} catch (Throwable ex) {
-			return new JsonResult().setResultStatus(JsonResult.FAILURE)
-					.setError(ex.getMessage());
+			//return new JsonResult().setResultStatus(JsonResult.FAILURE)
+			//		.setError(ex.getMessage());
+			return "redirect:/office/list.do";
 		}
 	}
 
