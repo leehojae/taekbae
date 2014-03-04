@@ -18,7 +18,7 @@
     	
         $("#grid").jqGrid({
             //url : 'http://apis.daum.net/socialpick/search?output=json',
-            url : 'http://localhost:8080/taetaetae/office//ajax/officeList.do',
+            url : 'http://localhost:9999/taetaetae/office//ajax/officeList.do',
             caption : '지점 목록',    // caption : 그리드의 제목을 지정한다.
             datatype : 'json',               // datatype : 데이터 타입을 지정한다.
                                                     // (json 으로 외부에 요청을 보내면 보안정책에 위배되어 요청이 나가질 않는다.
@@ -99,7 +99,6 @@
         
         
         $("#updateBtn").click( function() {
-        	alert("updateBtn");
         	$.ajax( 'ajax/updateOffice.do', {
 				method: 'POST',
 				data: {
