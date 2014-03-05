@@ -115,7 +115,7 @@ $('.collapse').collapse('hide');
 										<th>전송</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="tableData">
 									<%
 										Class.forName("com.mysql.jdbc.Driver");
 										Connection conn = null;
@@ -140,8 +140,8 @@ $('.collapse').collapse('hide');
 										<td><%=rs.getString("mname")%></td>
 										<td><%=rs.getString("car_num")%></td>
 										<td><%=rs.getString("task_area")%></td>
-										<td><button id="divButton<%=count%>" type="submit"
-												class="btn btn-default">Submit</button></td>
+										<td><button id="<%=rs.getString("car_num")%>" type="submit"
+												class="btn btn-default" value="1212">Submit</button></td>
 									</tr>
 									<%
 										}
@@ -157,7 +157,22 @@ $('.collapse').collapse('hide');
 										}
 									%>
 								</tbody>
-							</table> 
+							</table>
+							<script type="text/javascript">
+							$(document).ready(function(){
+								$('.btn').click(function(){
+									alert('okok');
+									update(this);
+								});
+								
+								function update(obj) {
+									var index = obj.parentNode.parentNode.rowIndex;
+									var row = document.getElementById("tableData").rows[index-1];
+									;
+									alert(row.cells[3].innerHTML);
+								}
+							});
+							</script> 
 						</div>
 					</div>
 				</div>
@@ -167,7 +182,5 @@ $('.collapse').collapse('hide');
 			<div id="map" style="width: 100%; height: 768px;"></div>
 		</div>
 	</div>
-<script type="text/javascript">
-</script>
 </body>
 </html>
