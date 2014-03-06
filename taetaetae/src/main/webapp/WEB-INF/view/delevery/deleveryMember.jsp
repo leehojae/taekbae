@@ -29,6 +29,11 @@
 <script type="text/javascript"
 	src="http://api.ktgis.com:10080/v3/olleh/mapAPI.js?key=T2xsZWhNYXBBUEkwMDA0OnZUMVM0TnFWZGk="></script>
 <script type="text/javascript" src="../js/map.js"></script>
+<script type="text/javascript">
+$(function() {
+$('.collapse').collapse('hide');
+});
+</script>
 
 
 
@@ -90,13 +95,15 @@
 					+' 	  </div>'  
 		 );
   }
+		acco();
 			
    });
   }
   
 	
-  
-  
+  function acco() {
+  $('.collapse').collapse('hide');
+  };
   </script>
 </head>
 <body>
