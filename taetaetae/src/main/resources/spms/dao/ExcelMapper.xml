@@ -160,8 +160,9 @@
     PAY, 
     RETURN_BOX, 
     LAT, 
-    LNG  
-		from EXCEL_UPLOAD
+    LNG, 
+    ID  
+		from EXCEL_UPLOAD WHERE ID IS NULL
 	</select>
 	<select id="selectAddr" resultMap="excelResultMap">
 	  select
