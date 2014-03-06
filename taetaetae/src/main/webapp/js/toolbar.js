@@ -47,6 +47,13 @@
                           hint : 'Hint for item 5'
                         },
                         {
+                        	type : 'button',
+                        	id : 'item6',
+                        	caption : '기사배당표',
+                        	img : 'icon-page',
+                        	hint : 'Hint for item 6'
+                        },
+                        {
                           type : 'spacer'
                         },
                         {
@@ -69,6 +76,9 @@
                           case 'item4':
                         	  goToOfficeInfo();
                         	  break;
+                          case 'item6':  //  /delevery/deleveryMember.jsp
+                        	  goToDeleveryMember();
+                        	  break;
                           }
                           console.log('Target: '+ event.target, event);
                         }
@@ -79,6 +89,9 @@
        function goToMemberInfo() {
     		location.href = "member/list.do";
     	}
+       function goToDeleveryMember() {
+    	   location.href = "excel/deleveryMember.do";
+       }
        function goToOfficeInfo() {
    		location.href = "office/list.do";
    	}
