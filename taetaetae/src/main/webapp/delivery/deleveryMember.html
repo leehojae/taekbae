@@ -1,0 +1,109 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset="UTF-8">
+<title>배송목록</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <style type="text/css">
+  	header{
+    width: 100%;
+    background: yellow;
+    position: fixed; 
+    top: 0;
+    height: 25px !important;
+    z-index:100;
+}
+  
+  </style>
+  <script>
+  $(function() {
+	
+	  load_list();
+    accordionOption();
+   
+  }
+ 
+  );
+  
+  //
+  
+//   <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active" id="ui-accordion-accordion-panel-1" aria-labelledby="ui-accordion-accordion-header-1" role="tabpanel" aria-hidden="false" style="display: block; height: 81.79999923706055px;">
+//     <p>
+//     Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+//     purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+//     velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+//     suscipit faucibus urna.
+//     </p>
+//   </div>
+  
+  //
+		
+  function load_list() {
+   $.getJSON('http://192.168.0.48:9999/taetaetae/excel/ajax/list.do', function(data) {
+		var records = data.jsonResult.data;
+		console.log("records : " + records);
+		
+		for (var i = 0; i < 10; i++){
+
+			 $('#accordion').append( '<h3 style="background:#E7FF84" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all ui-accordion-icons" role="tab" id="ui-accordion-accordion-header-2" aria-controls="ui-accordion-accordion-panel-2" aria-selected="false" aria-expanded="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>eee</h3><h3 style="background:#E7FF84" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all ui-accordion-icons" role="tab" id="ui-accordion-accordion-header-2" aria-controls="ui-accordion-accordion-panel-2" aria-selected="false" aria-expanded="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>'+records[i].trcno+'</h3>'
+					 +'<div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="ui-accordion-accordion-panel-2" aria-labelledby="ui-accordion-accordion-header-2" role="tabpanel" aria-hidden="true" style="display: none; height: 81.79999923706055px;">'+records[i].receiverName+'</div>'
+               );
+
+		}
+	
+  });
+  }
+  
+	function accordionOption(){
+		$( "#accordion" ).accordion({  
+	    	active: false,
+	  		collapsible: true
+	 	});
+	}	
+  
+  
+  </script>
+</head>
+<body>
+
+          <select>
+      <option>배송중</option>
+      <option>배송완료</option>
+      <option>수취인불명</option>
+      <option>주소 불확실</option>
+    </select>
+    <select>
+            <option>도로명</option>
+             <option>번지명</option>
+      </select>
+      <input type="button" name="버튼" value="배송처리" onclick="location.href='#"/>
+      <input type="button" name="버튼" value="설정" onclick="location.href='map.html'"/>
+
+<div id="accordion">
+<h3  style="background:#E7FF84">777 1 <input type="checkbox" ></h3>
+  <div>
+    <p>
+    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+    </p>
+  </div>
+  <h3  style="background:#E7FF84">888 1  <input type="checkbox" id="cb1"></h3>
+  <div>
+    <p>
+    Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+    purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+    velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+    suscipit faucibus urna.
+    </p>
+  </div>
+</div>
+ 
+ 
+</body>
+</html>
