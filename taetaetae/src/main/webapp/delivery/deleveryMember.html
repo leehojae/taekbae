@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -43,7 +41,7 @@
   //
 		
   function load_list() {
-   $.getJSON('http://192.168.0.48:9999/taetaetae/excel/ajax/list.do', function(data) {
+   $.getJSON('http://192.168.0.48:8080/taetaetae/excel/ajax/list.do', function(data) {
 		var records = data.jsonResult.data;
 		console.log("records : " + records);
 		
