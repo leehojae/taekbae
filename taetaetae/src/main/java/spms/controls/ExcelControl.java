@@ -61,6 +61,11 @@ public class ExcelControl {
 		model.addAttribute("excels", excelDao.selectList());
 		return "excel/list";
 	}
+	@RequestMapping("/deleveryMember")
+	public String deleveryMember(Model model) throws Exception {
+		model.addAttribute("excels", excelDao.selectList());
+		return "delevery/deleveryMember";
+	}
 
 	@RequestMapping(value = "/ajax/list", produces = "application/json")
 	public Object ajaxList() throws Exception {
@@ -188,38 +193,7 @@ public class ExcelControl {
 	public void setDataSource(DataSource ds) {
 		this.ds = ds;
 	}
-	
-	@RequestMapping(value = "/divide", method = RequestMethod.POST, 
-			produces="application/json")
-	public String divideForm(Excel excel) throws Exception{
-		
-		updateDivide(excel);
-		
-		return "redirect:../main.do";
-	}
-	
-	public void updateDivide(Excel excel) throws Exception {
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		
-		try {
-			conn = ds.getConnection();
-			stmt = conn.prepareStatement(
-					"UPDATE EXCEL_UPLOAD SET ID=? WHERE RECEIVER_ADDR_ROAD LIKE ?");
-			stmt.setInt(1, excel.getId());
-			stmt.setString(2, "%" + excel.getReceiverAddrRoad() + "%");
-			stmt.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-			
-		} finally {
-			try {stmt.close();} catch (Exception e) {}
-			try {if(conn != null) conn.close();} catch (Exception e) {}
-		}		
-	}
-	
+//	
 	public void update(Excel excel) throws Exception {
 		Connection conn = null;
 		PreparedStatement stmt = null;
