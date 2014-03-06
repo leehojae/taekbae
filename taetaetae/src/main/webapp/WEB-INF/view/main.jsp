@@ -158,27 +158,29 @@ $('.collapse').collapse('hide');
 									%>
 								</tbody>
 							</table>
-							<script type="text/javascript">
-							$(document).ready(function(){
-								$('.btn').click(function(){
-									alert('okok');
-									update(this);
-								});
-								
-								function update(obj) {
-									var index = obj.parentNode.parentNode.rowIndex;
-									var row = document.getElementById("tableData").rows[index-1];
-									;
-									alert(row.cells[3].innerHTML);
-								}
-							});
-							</script> 
 						</div>
 					</div>
 				</div>
 			</div>
 			<div id="grid" style="width: 100%; height: 250px;"></div>
 			<script type="text/javascript" src="js/excelGrid.js"></script>
+							<script type="text/javascript">
+							$(document).ready(function(){
+								$('.btn').click(function(){
+									update(this);
+									alert("전송완료");
+								});
+								
+								function update(obj) {
+									var index = obj.parentNode.parentNode.rowIndex;
+									var row = document.getElementById("tableData").rows[index-1];
+									$.post('excel/divide.do', {
+										id:row.cells[0].innerHTML,
+										receiverAddrRoad:row.cells[3].innerHTML
+									});
+								}
+							});
+							</script> 
 			<div id="map" style="width: 100%; height: 768px;"></div>
 		</div>
 	</div>
