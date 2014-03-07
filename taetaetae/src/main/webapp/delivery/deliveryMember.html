@@ -7,6 +7,7 @@
 
 <!-- Bootstrap -->
 <link href="css/bootstrap/bootstrap.css" rel="stylesheet">
+<script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 
@@ -29,12 +30,12 @@
   );
 		
   function load_list() {
-   $.getJSON('http://192.168.0.10:8080/taetaetae/excel/ajax/list.do', function(data) {
+   $.getJSON('http://192.168.0.48:8080/taetaetae/excel/ajax/list.do', function(data) {
 		var records = data.jsonResult.data;
 		var contents = '<div id="accordion" class="ui-accordion ui-widget ui-helper-reset" role="tablist">';
 		console.log("records : " + records);
 		
-		for (var i = 0; i < 10; i++){
+		for (var i = 0; i < records.length; i++){
 		
 		 $('#accordion').append(   '<div class="panel panel-default">'
 					+'    <div class="panel-heading">'
