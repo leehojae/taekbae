@@ -22,6 +22,9 @@ public class AuthControl {
 	@Autowired(required=false)
 	MemberDao memberDao;
 	
+	
+	ExcelControl excelControl = new ExcelControl();
+	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String form(@CookieValue(required=false) String id, Model model) {
   		if (id != null) {
@@ -51,10 +54,15 @@ public class AuthControl {
 		sqlparamMap.put("password", password);
 		
 		Member member = memberDao.selectByIdPassword(sqlparamMap);
-		
+		System.err.println("dddd : " +  member.getNo());
 		if (member != null) {
+			excelControl.staticId  = member.getNo();
 			model.addAttribute("loginUser", member);
+			if (member.getNo()==1){
 			return "redirect:/main.do";
+			} else{
+				return "redirect:../delivery/deliveryMember.html";
+			}
 		} else {
 			return "redirect:/index.jsp";
 		}

@@ -41,6 +41,9 @@ public class ExcelControl {
 	RestRequest restRequest = new RestRequest();
 	private static List<Excel> list = new ArrayList<Excel>();
 	
+	public static int staticId = 0;
+	
+	
 	@Autowired
 	DataSource ds; // 의존 객체(dependencies)
 	
@@ -49,6 +52,11 @@ public class ExcelControl {
 
 	@Autowired(required = false)
 	ExcelDao excelDao;
+	
+	@RequestMapping("/listUpdate")
+	public void listUpdate(List<Excel> lists) {
+		
+	}
 	
 	@RequestMapping("/delete")
 	public String delete(Model model) throws Exception {
@@ -73,6 +81,17 @@ public class ExcelControl {
 			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
 					.setData(excelDao.selectList());
 
+		} catch (Throwable ex) {
+			return new JsonResult().setResultStatus(JsonResult.FAILURE)
+					.setError(ex.getMessage());
+		}
+	}
+	@RequestMapping(value = "/ajax/deleveryMember", produces = "application/json")
+	public Object deleveryMember() throws Exception {
+		try {
+			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
+					.setData(excelDao.selectDeleveryMember(staticId));
+			
 		} catch (Throwable ex) {
 			return new JsonResult().setResultStatus(JsonResult.FAILURE)
 					.setError(ex.getMessage());
