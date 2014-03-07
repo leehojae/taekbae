@@ -87,24 +87,39 @@ header {
 	</select>
 	<input type="button" name="버튼" value="배송처리" onclick="test()" />
 	<script type="text/javascript">
+	var updates = [];
+	var temp = [];
 	function test(){
 
 		alert(listLength);
 		
 		for (i = 0; i < listLength; i++){
 			$('#'+(i+1)+'').change(function(){
+				console.log($('#'+(i+1)+'').val());
+			updates.push($('#'+(i+1)+'').val());
+			//var test = $('#'+(i+1)+'').val();
+			//alert(test);
+			 });
+		}
+		console.log(updates);
+	};
+/* 	function test(){
+
+		alert(listLength);
+		
+		for (i = 0; i < listLength; i++){
+			$('#'+(i+1)+'').change(function(){
 				if (this.checked) {
-					alert("1212");
+				temp = $('#'+(i+1)+'').val();
+				console.log(temp);
+				updates.push(temp);
 				}
 			});
 			//var test = $('#'+(i+1)+'').val();
 			//alert(test);
 		}
-		
-	};
-	
-	$(function (){
-	});
+		console.log(updates);
+	}; */
 	</script>
 	<input type="button" name="버튼" value="설정"
 		onclick="location.href='map.html'" />
