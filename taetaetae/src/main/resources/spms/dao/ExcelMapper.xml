@@ -165,7 +165,43 @@
     LAT, 
     LNG, 
     ID  
-		from EXCEL_UPLOAD WHERE ID IS NULL
+		from EXCEL_UPLOAD WHERE ID = '1'
+<!-- from EXCEL_UPLOAD WHERE ID IS NULL --> 
+	</select>
+	
+	<select id="selectDeleveryMember"   parameterType="int" resultMap="excelResultMap">
+		select
+		TRCNO, 
+    ORDER_NO, 
+    OFFICE, 
+    RECEIVE_DATE, 
+    DELIVER_DATE,
+    SENDER_NAME,  
+    SENDER_ADDR,  
+    SENDER_TEL1, 
+    SENDER_TEL2, 
+    RECEIVER_NAME, 
+    RECEIVER_ADDR_ROAD, 
+    RECEIVER_ADDR_BUN, 
+    RECEIVER_ADDR_JI, 
+    RECEIVER_ADDR_NAME, 
+    RECEIVER_TEL1, 
+    RECEIVER_TEL2, 
+    SEND_POINT, 
+    RECEIVE_POINT, 
+    PACKING, 
+    PRODUCT_NAME, 
+    GOODS_COUNT, 
+    GOODS_SIZE, 
+    WEIGHT, 
+    PAYMENT, 
+    PAY, 
+    RETURN_BOX, 
+    LAT, 
+    LNG, 
+    ID  
+		from EXCEL_UPLOAD WHERE ID =#{value}
+		<!-- from EXCEL_UPLOAD WHERE ID IS NULL --> 
 	</select>
 	<select id="selectAddr" resultMap="excelResultMap">
 	  select
