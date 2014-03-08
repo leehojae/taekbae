@@ -200,7 +200,7 @@
     LAT, 
     LNG, 
     ID  
-		from EXCEL_UPLOAD WHERE ID =#{value}
+		from EXCEL_UPLOAD WHERE ID =#{value} AND STATE != 0
 		<!-- from EXCEL_UPLOAD WHERE ID IS NULL --> 
 	</select>
 	<select id="selectAddr" resultMap="excelResultMap">
