@@ -23,22 +23,24 @@ header {
 
   $(function() {
 var listLength;
-	
+var id;
+
 	  load_list();
 	  
   });
 		
   function load_list() {
-   $.getJSON('http://192.168.0.48:9999/taetaetae/excel/ajax/deleveryMember.do', function(data) {
+   $.getJSON('../excel/ajax/deleveryMember.do', function(data) {
 		var records = data.jsonResult.data;
 		var contents = '<div id="accordion" class="ui-accordion ui-widget ui-helper-reset" role="tablist">';
 		console.log("records : " + records);
 		listLength = records.length;
+		id = records[0].id;
 		for (var i = 0; i < records.length; i++){
 		 $('#accordion').append(   '<div class="panel panel-default">'
 					+'    <div class="panel-heading">'
 					+'       <h4 class="panel-title">'
-					+'         <input type="checkbox" id="'+ (i+1) +'" value='+records[i].trcno+'><a data-toggle="collapse" data-parent="#accordion" href="#'+records[i].receiverName+' ">'
+					+'         <input type="checkbox" id="'+ (i+1) +'" class="checkGroup" value='+records[i].trcno+'><a data-toggle="collapse" data-parent="#accordion" href="#'+records[i].receiverName+' ">'
 					+' 	  '+records[i].receiverName+'&nbsp'+ records[i].receiverAddrRoad + '&nbsp'+ records[i].receiverAddrBun + '&nbsp'+ records[i].receiverAddrJi  + '&nbsp'+ records[i].receiverAddrName  + '&nbsp'+ records[i].receiverTel1  +'  </a>'
 					+' 	      </h4>'
 					+' 	    </div>'
@@ -53,7 +55,7 @@ var listLength;
 		 );}
 		
 		acco();
-			
+		$.post('excel/stateUpdate.do', id, listLength, {values});
    });}
 	
   function acco() {
@@ -87,39 +89,33 @@ header {
 	</select>
 	<input type="button" name="버튼" value="배송처리" onclick="test()" />
 	<script type="text/javascript">
-	var updates = [];
-	var temp = [];
-	function test(){
 
-		alert(listLength);
-		
-		for (i = 0; i < listLength; i++){
-			$('#'+(i+1)+'').change(function(){
-				console.log($('#'+(i+1)+'').val());
-			updates.push($('#'+(i+1)+'').val());
-			//var test = $('#'+(i+1)+'').val();
-			//alert(test);
-			 });
-		}
-		console.log(updates);
-	};
-/* 	function test(){
+		function test() {
 
-		alert(listLength);
+			var values = $('input:checkbox:checked.checkGroup').map(function() {
+				return this.value;
+			}).get();
+			console.log(values);
+			  
+			$.post('excel/stateUpdate.do', id, listLength, {values});
+		};
+		/* 	function test(){
+
+		 alert(listLength);
 		
-		for (i = 0; i < listLength; i++){
-			$('#'+(i+1)+'').change(function(){
-				if (this.checked) {
-				temp = $('#'+(i+1)+'').val();
-				console.log(temp);
-				updates.push(temp);
-				}
-			});
-			//var test = $('#'+(i+1)+'').val();
-			//alert(test);
-		}
-		console.log(updates);
-	}; */
+		 for (i = 0; i < listLength; i++){
+		 $('#'+(i+1)+'').change(function(){
+		 if (this.checked) {
+		 temp = $('#'+(i+1)+'').val();
+		 console.log(temp);
+		 updates.push(temp);
+		 }
+		 });
+		 //var test = $('#'+(i+1)+'').val();
+		 //alert(test);
+		 }
+		 console.log(updates);
+		 }; */
 	</script>
 	<input type="button" name="버튼" value="설정"
 		onclick="location.href='map.html'" />
