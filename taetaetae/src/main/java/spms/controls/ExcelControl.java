@@ -74,6 +74,73 @@ public class ExcelControl {
 		model.addAttribute("excels", excelDao.selectList());
 		return "delevery/deleveryMember";
 	}
+	
+	public void stateUpdate (int id, int count) throws Exception {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = ds.getConnection();
+			stmt = conn.prepareStatement(
+					"UPDATE EXCEL_UPLOAD SET STATE=? WHERE ID = ? AND STATE != 0");
+			stmt.setInt(1, count);
+			stmt.setInt(2, id);
+			stmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+			
+		} finally {
+			try {stmt.close();} catch (Exception e) {}
+			try {if(conn != null) conn.close();} catch (Exception e) {}
+		}
+	}
+	
+	public void stateReUpdate (long trcno) throws Exception {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = ds.getConnection();
+			stmt = conn.prepareStatement(
+					"UPDATE EXCEL_UPLOAD SET STATE=0 WHERE TRCNO = ?");
+			stmt.setLong(1, trcno);
+			stmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+			
+		} finally {
+			try {stmt.close();} catch (Exception e) {}
+			try {if(conn != null) conn.close();} catch (Exception e) {}
+		}
+	}
+	
+	@RequestMapping(value = "/stateUpdate", method = RequestMethod.POST, 
+			produces="application/json")
+	public String updateRefresh(int id, int count, List<Long> updateList) throws Exception {
+		
+		if (updateList == null) {
+
+			for (int i = 0; i < count; i++) {
+				stateUpdate(id, i+1);
+			}
+			
+		} else {
+			
+			for (Long l : updateList) {
+				stateReUpdate(l.longValue());
+			}
+			
+			for (int i = 0; i < count-updateList.size(); i++) {
+				stateUpdate(id, i+1);
+			}
+		}
+		
+		return null;
+	}
 
 	@RequestMapping(value = "/ajax/list", produces = "application/json")
 	public Object ajaxList() throws Exception {
