@@ -129,7 +129,7 @@ $('.collapse').collapse('hide');
 											conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPwd);
 
 											pstmt = conn
-													.prepareStatement("select a.mname, b.car_num, c.task_area from members a, cars b, areas c where a.mno = b.mno and a.mno=c.mno");
+													.prepareStatement("SELECT a.MNAME, b.CAR_NUM, c.TASK_AREA FROM MEMBERS a, CARS b, AREAS c WHERE a.MNO = b.MNO AND a.MNO=c.MNO");
 											rs = pstmt.executeQuery();
 											int count = 0;
 											while (rs.next()) {
