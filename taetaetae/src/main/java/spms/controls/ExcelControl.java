@@ -32,8 +32,6 @@ import spms.services.RestRequest;
 import spms.vo.Excel;
 import spms.vo.JsonResult;
 
-import com.google.gson.Gson;
-
 @Controller
 @RequestMapping("/excel")
 public class ExcelControl {
@@ -123,15 +121,13 @@ public class ExcelControl {
 	
 	@RequestMapping(value = "/stateUpdate", method = RequestMethod.POST, 
 			produces="application/json")
-	public String updateRefresh(int id, int count, Object updateList) throws Exception {
-			Gson gson = new Gson();
-			gson.fromJson((String) updateList, String.class);
-//			Type collectionType = new TypeToken<Collection<String>>(){}.getType();
-//			Collection<String> ints2 = gson.fromJson(updateList, collectionType);
-			
+	public String updateRefresh(int id, int count, String[] updateList) throws Exception {
 			System.out.println(id);
 			System.out.println(count);
-			System.out.println(updateList);
+			System.out.println(updateList.length);
+			for (String s : updateList){
+				System.out.println(s);
+			}
 //			System.out.println(updateList);
 //			for (Object o : updateList) {
 //				System.out.println(l);
