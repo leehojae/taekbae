@@ -76,16 +76,17 @@ public class ExcelControl {
 		return "delevery/deleveryMember";
 	}
 	
-	public void stateUpdate (int id, int count) throws Exception {
+	public void stateUpdate (int id, int count, int state) throws Exception {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
 		try {
 			conn = ds.getConnection();
 			stmt = conn.prepareStatement(
-					"UPDATE EXCEL_UPLOAD SET STATE=? WHERE ID = ? AND STATE != 0");
+					"UPDATE EXCEL_UPLOAD SET STATE=? WHERE ID = ? AND STATE != 0 AND STATE = ?");
 			stmt.setInt(1, count);
 			stmt.setInt(2, id);
+			stmt.setInt(3, state);
 			stmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -130,9 +131,9 @@ public class ExcelControl {
 				stateReUpdate(Long.parseLong(s));
 			}
 			
-//			for (int i = 0; i < count-updateList.length; i++) {
-//				stateUpdate(id, i+1);
-//			}
+			for (int i = 0; i < count; i++) {
+				stateUpdate(id, i+1, i+1+updateList.length);
+			}
 		
 		return null;
 	}
