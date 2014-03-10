@@ -169,6 +169,7 @@ $('.collapse').collapse('hide');
 								$('.btn').click(function(){
 									update(this);
 									alert("전송완료");
+									location.reload();
 								});
 								
 								function update(obj) {
