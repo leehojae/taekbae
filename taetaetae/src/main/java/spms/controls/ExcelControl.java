@@ -127,14 +127,10 @@ public class ExcelControl {
 			System.out.println(updateList.length);
 			for (String s : updateList){
 				System.out.println(s);
+				stateReUpdate(Long.parseLong(s));
 			}
-//			System.out.println(updateList);
-//			for (Object o : updateList) {
-//				System.out.println(l);
-//				stateReUpdate(l.longValue());
-//			}
 			
-//			for (int i = 0; i < count-updateList.size(); i++) {
+//			for (int i = 0; i < count-updateList.length; i++) {
 //				stateUpdate(id, i+1);
 //			}
 		
