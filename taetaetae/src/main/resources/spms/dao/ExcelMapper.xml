@@ -133,7 +133,7 @@
 			#{excel.returnBox}) 
 		</foreach>
 	</insert>
-
+	
 	<select id="selectList" resultMap="excelResultMap">
 		select
 		TRCNO, 
@@ -200,7 +200,7 @@
     LAT, 
     LNG, 
     ID  
-		from EXCEL_UPLOAD WHERE ID =#{value}
+		from EXCEL_UPLOAD WHERE ID =#{value} AND STATE != 0 ORDER BY STATE ASC
 		<!-- from EXCEL_UPLOAD WHERE ID IS NULL --> 
 	</select>
 	<select id="selectAddr" resultMap="excelResultMap">
@@ -208,5 +208,12 @@
 	  TRCNO, 
     RECEIVER_ADDR_ROAD 
     from EXCEL_UPLOAD
+	</select>
+	<select id="selectByIdCoord" parameterType="int" resultMap="excelResultMap">
+	    SELECT 
+	    TRCNO, 
+	    LAT, 
+	    LNG 
+	    FROM EXCEL_UPLOAD WHERE ID=#{value}
 	</select>
 </mapper>
