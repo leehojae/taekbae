@@ -32,9 +32,12 @@ import spms.services.RestRequest;
 import spms.vo.Excel;
 import spms.vo.JsonResult;
 
+import com.google.gson.Gson;
+
 @Controller
 @RequestMapping("/excel")
 public class ExcelControl {
+	
 	Logger log = Logger.getLogger(ExcelControl.class);
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -120,24 +123,24 @@ public class ExcelControl {
 	
 	@RequestMapping(value = "/stateUpdate", method = RequestMethod.POST, 
 			produces="application/json")
-	public String updateRefresh(int id, int count, List<Long> updateList) throws Exception {
-		
-		if (updateList == null) {
-
-			for (int i = 0; i < count; i++) {
-				stateUpdate(id, i+1);
-			}
+	public String updateRefresh(int id, int count, Object updateList) throws Exception {
+			Gson gson = new Gson();
+			gson.fromJson((String) updateList, String.class);
+//			Type collectionType = new TypeToken<Collection<String>>(){}.getType();
+//			Collection<String> ints2 = gson.fromJson(updateList, collectionType);
 			
-		} else {
+			System.out.println(id);
+			System.out.println(count);
+			System.out.println(updateList);
+//			System.out.println(updateList);
+//			for (Object o : updateList) {
+//				System.out.println(l);
+//				stateReUpdate(l.longValue());
+//			}
 			
-			for (Long l : updateList) {
-				stateReUpdate(l.longValue());
-			}
-			
-			for (int i = 0; i < count-updateList.size(); i++) {
-				stateUpdate(id, i+1);
-			}
-		}
+//			for (int i = 0; i < count-updateList.size(); i++) {
+//				stateUpdate(id, i+1);
+//			}
 		
 		return null;
 	}
@@ -153,6 +156,7 @@ public class ExcelControl {
 					.setError(ex.getMessage());
 		}
 	}
+	
 	@RequestMapping(value = "/ajax/deleveryMember", produces = "application/json")
 	public Object deleveryMember() throws Exception {
 		try {
@@ -251,19 +255,9 @@ public class ExcelControl {
 				requestResult.get(i).setTrcno(addrList.get(i).getTrcno());
 			}
 			
-//			List<BigDecimal> testList = new ArrayList<BigDecimal>();
-			
 			for (Excel e : requestResult) {
 				update(e);
-//				testList.add(BigDecimal.valueOf(e.getLat()).add(BigDecimal.valueOf(e.getLat())));
 			}
-			
-//			for (BigDecimal d : testList) {
-//				System.out.println(d);
-//			}
-			
-			
-			//excelDao.addLatLngs(requestResult);
 			
 			requestResult.clear();
 			encodeResult.clear();
@@ -280,13 +274,74 @@ public class ExcelControl {
 		this.ds = ds;
 	}
 	
+	private double d2r = Math.PI / 180;
+
+	public double distance(double startPointLon, double startPointLat,
+			double endPointLon, double endPointLat) throws Exception {
+		double dLon = (endPointLon - startPointLon) * d2r;
+		double dLat = (endPointLat - startPointLat) * d2r;
+
+		double a = Math.pow(Math.sin(dLat / 2.0), 2)
+				+ Math.cos(startPointLat * d2r) * Math.cos(endPointLat * d2r)
+				* Math.pow(Math.sin(dLon / 2.0), 2);
+
+		double c = Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)) * 2;
+
+		double distance = c * 6378;
+
+		return distance;
+	}
+	
 	@RequestMapping(value = "/divide", method = RequestMethod.POST, 
 			produces="application/json")
 	public String divideForm(Excel excel) throws Exception{
+
+		Excel temp = null;
 		
 		updateDivide(excel);
+		ArrayList<Excel> coordList = (ArrayList<Excel>)excelDao.selectByIdCoord(excel.getId());
+		
+		for (int j = 0; j < coordList.size()-1; j++){
+			for (int i = 0; i < coordList.size()-1; i++){
+				if((distance(127.02801704406481, 37.494539069596186, coordList.get(i).getLng(), coordList.get(i).getLat()) > 
+				(distance(127.02801704406481, 37.494539069596186, coordList.get(i+1).getLng(), coordList.get(i+1).getLat())))){
+					temp = coordList.get(i+1);
+					coordList.set(i+1, coordList.get(i));
+					coordList.set(i, temp);
+				}
+			}
+		}
+		
+		for (int i = 0; i < coordList.size(); i++){
+			System.out.println(coordList.get(i).setState(i+1).getState());
+			updateState(coordList.get(i));
+		}
+		
+		coordList.clear();
 		
 		return "redirect:../main.do";
+	}
+	
+	public void updateState(Excel excel) throws Exception {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = ds.getConnection();
+			stmt = conn.prepareStatement(
+					"UPDATE EXCEL_UPLOAD SET STATE=? WHERE TRCNO=?");
+			stmt.setInt(1, excel.getState());
+			stmt.setLong(2, excel.getTrcno());
+			stmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+			
+		} finally {
+			try {stmt.close();} catch (Exception e) {}
+			try {if(conn != null) conn.close();} catch (Exception e) {}
+		}		
 	}
 	
 	public void updateDivide(Excel excel) throws Exception {
