@@ -295,7 +295,7 @@ public class ExcelControl {
 		ArrayList<Excel> coordList = (ArrayList<Excel>)excelDao.selectByIdCoord(excel.getId());
 		
 		for (int j = 0; j < coordList.size()-1; j++){
-			for (int i = 0; i < coordList.size()-1; i++){
+			for (int i = 0; i < coordList.size()-j-1; i++){
 				if((distance(127.02801704406481, 37.494539069596186, coordList.get(i).getLng(), coordList.get(i).getLat()) > 
 				(distance(127.02801704406481, 37.494539069596186, coordList.get(i+1).getLng(), coordList.get(i+1).getLat())))){
 					temp = coordList.get(i+1);
