@@ -35,7 +35,7 @@ var id;
 		var contents = '<div id="accordion" class="ui-accordion ui-widget ui-helper-reset" role="tablist">';
 		console.log("records : " + records);
 		listLength = records.length;
-		id = records[0].id;
+/* 		id = records[0].id; */
 		for (var i = 0; i < records.length; i++){
 		 $('#accordion').append(   '<div class="panel panel-default">'
 					+'    <div class="panel-heading">'
@@ -55,8 +55,8 @@ var id;
 		 );}
 		
 		acco();
-		$.post('excel/stateUpdate.do', id, listLength, {values});
-   });}
+/* 		$.post('excel/stateUpdate.do', id, listLength, values); */
+   });};
 	
   function acco() {
   $('.collapse').collapse('hide');
@@ -97,7 +97,7 @@ header {
 			}).get();
 			console.log(values);
 			  
-			$.post('excel/stateUpdate.do', id, listLength, {values});
+/* 			$.post('excel/stateUpdate.do', id, listLength, values); */
 		};
 		/* 	function test(){
 
