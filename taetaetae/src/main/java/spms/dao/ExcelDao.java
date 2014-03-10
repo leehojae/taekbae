@@ -10,5 +10,6 @@ public interface ExcelDao {
 	public void delete() throws Exception;
 	public List<Excel> selectAddr() throws Exception;
 	public void addLatLngs(List<Excel> requestResult) throws Exception;
-	public List<Excel> selectDeleveryMember(int staticId);
+	public List<Excel> selectDeleveryMember(int staticId) throws Exception;
+	public List<Excel> selectByIdCoord(int id) throws Exception;
 }
