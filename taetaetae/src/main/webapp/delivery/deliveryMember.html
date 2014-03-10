@@ -99,7 +99,7 @@ header {
 			console.log(typeof values);
 			console.log(id);
 			console.log(listLength);
-			 
+//			$.ajaxSettings.traditional = true;
  			$.post('../excel/stateUpdate.do', {id: id, count: listLength, updateList: values});
 		};
 		/* 	function test(){
