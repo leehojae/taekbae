@@ -6,9 +6,10 @@
 
 <!-- Bootstrap -->
 <link href="css/bootstrap/bootstrap.css" rel="stylesheet">
-<!-- <script type="text/javascript" src="cordova.js"></script> -->
+<script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="plugins/info.asankan.phonegap.smsplugin/www/smsplugin.js"></script>
 <style type="text/css">
 header {
 	width: 100%;
@@ -20,6 +21,7 @@ header {
 }
 </style>
 <script>
+var smsplugin = cordova.require("info.asankan.phonegap.smsplugin.smsplugin");
 
 	$(function() {
 		var listLength;
@@ -28,10 +30,10 @@ header {
 		load_list();
 
 	});
+	
 
 	function load_list() {
-		$
-				.getJSON(
+		$.getJSON(
 						'../excel/ajax/deleveryMember.do',
 						function(data) {
 							var tel = null;
@@ -64,6 +66,7 @@ header {
 														+ records[i].receiverAddrName
 														+ '&nbsp'
 														+ '<button id="tel"><a href="tel:'+ tel[0] + tel[1] + tel[2] +'">전화걸기</a></button>'
+                            + '<button id="sms"><a href="sms:'+ tel[0] + tel[1] + tel[2] +'">문자보내기</a></button>'
 														+ '  </a>'
 														+ ' 	      </h4>'
 														+ ' 	    </div>'
@@ -87,7 +90,12 @@ header {
 							acco();
 						});
 	};
-
+  
+	function smsSend(number) {
+		smsplugin.send(number,"sendokok");
+	};
+	
+	
 	function acco() {
 		$('.collapse').collapse('hide');
 	};
@@ -137,6 +145,6 @@ header {
 	<input type="button" name="버튼" value="설정"
 		onclick="location.href='map.html'" />
 	<div class="panel-group" id="accordion"></div>
-	<button id="tel"><a href="tel:">전화걸기</a></button>
+	<button id="tel" onclick="smsSend('01047311909')">전화걸기</a></button>
 </body>
 </html>
