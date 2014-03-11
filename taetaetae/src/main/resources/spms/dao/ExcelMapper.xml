@@ -216,4 +216,10 @@
 	    LNG 
 	    FROM EXCEL_UPLOAD WHERE ID=#{value}
 	</select>
+	<select id="searchUser" parameterType="long" resultMap="excelResultMap">
+	    SELECT 
+	    STATE 
+	    FROM EXCEL_UPLOAD WHERE TRCNO=#{value}
+	</select>
+	
 </mapper>
