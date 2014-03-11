@@ -54,11 +54,6 @@ public class ExcelControl {
 	@Autowired(required = false)
 	ExcelDao excelDao;
 	
-	@RequestMapping("/listUpdate")
-	public void listUpdate(List<Excel> lists) {
-		
-	}
-	
 	@RequestMapping("/delete")
 	public String delete(Model model) throws Exception {
 		excelDao.delete();
@@ -283,6 +278,15 @@ public class ExcelControl {
 		double distance = c * 6378;
 
 		return distance;
+	}
+	
+	@RequestMapping(value = "/searchUser", method = RequestMethod.POST, 
+			produces="application/json")
+	public Object searchUser(String trcno) throws Exception {
+		System.err.println(trcno);
+		
+		return new JsonResult().setResultStatus(JsonResult.SUCCESS)
+				.setData(excelDao.searchUser(Long.parseLong(trcno)));
 	}
 	
 	@RequestMapping(value = "/divide", method = RequestMethod.POST, 
