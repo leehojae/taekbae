@@ -49,7 +49,7 @@ function userSearch() {
 	$.ajaxSettings.traditional = true;
   $.post('../excel/searchUser.do', {trcno: data}, function(data){
   	console.log(data.jsonResult.data[0].state);
-  	$('#countUser').append(data.jsonResult.data[0].state);
+  	$('#countUser').text(data.jsonResult.data[0].state);
   });
 };
 </script>
