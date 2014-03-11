@@ -4,43 +4,60 @@
 <head>
 <meta charset="UTF-8">
 <title>delivery</title>
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 </head>
 
 <style>
-        .font_big { font-size: 2em }
-        .font_italic { font-style: italic }
-        .font_bold { font-weight: bold }
-        .font_center { text-align: center }
-        .button {
-            width: 150px;
-            height: 70px;
-            background-color: #FF6A00;
-            border: 10px solid #FFFFFF;
-            border-radius: 30px;
-            box-shadow: 5px 5px 5px #A9A9A9;
-        }
-        .button > a {
-            display: block;
-            line-height: 80px;
-            
-        }
-        }
-    </style>
+.font_big {
+	font-size: 2em
+}
+
+.font_italic {
+	font-style: italic
+}
+
+.font_bold {
+	font-weight: bold
+}
+
+.font_center {
+	text-align: center
+}
+
+.button {
+	width: 150px;
+	height: 70px;
+	background-color: #FF6A00;
+	border: 10px solid #FFFFFF;
+	border-radius: 30px;
+	box-shadow: 5px 5px 5px #A9A9A9;
+}
+
+.button>a {
+	display: block;
+	line-height: 80px;
+}
+</style>
 <body>
 
-<input type="text" name="invoiceNumber" placeholder="송장번호입력">
+<input id="trcno" type="text" name="invoiceNumber" placeholder="송장번호입력">
 <input id="srhBtn" type="button" value="조회" onclick="userSearch()"><br>
 <script type="text/javascript">
 function userSearch() {
-//	$.post
-}
+	var data = $('#trcno').val();
+	console.log(data);
+	$.ajaxSettings.traditional = true;
+  $.post('../excel/searchUser.do', {trcno: data}, function(data){
+  	console.log(data.jsonResult.data[0].state);
+  	$('#countUser').append(data.jsonResult.data[0].state);
+  });
+};
 </script>
 <hr/>
 
 <div class="button">
-        <a href="#" class="font_big font_italic font_bold font_center">00</a>
-    </div>
-
+  <a id="countUser" href="#" class="font_big font_italic font_bold font_center"></a>
+</div>
 
 </body>
 
