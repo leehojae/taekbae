@@ -97,24 +97,7 @@ public class OfficeControl {
 			return "redirect:/fail.jsp";
 		}
 	}
-//	
-//	@RequestMapping(value="/ajax/addOffice", method=RequestMethod.POST, 
-//			produces="application/json")
-//	public Object ajaxAdd(Office office) throws Exception {
-//		try {
-//			
-//			System.out.println("1  :" +  office.getOfficeName());
-//			System.out.println("2  :" +  office.getOfficeName());
-//			officeDao.insert(office);
-//			return new JsonResult().setResultStatus(JsonResult.SUCCESS);
-//			
-//		} catch (Throwable ex) {
-//			return new JsonResult().setResultStatus(JsonResult.FAILURE)
-//					.setError(ex.getMessage());
-//		}
-//	}
-	
-	
+
 	
 	@RequestMapping(value="/ajax/readOffice", produces="application/json")
 	public Object ajaxRead(int no) throws Exception {
@@ -147,12 +130,9 @@ public class OfficeControl {
 	public String ajaxDelete(int no) throws Exception {
 		try {
 			officeDao.delete(no);
-			//return new JsonResult().setResultStatus(JsonResult.SUCCESS);
 			return "redirect:/office/list.do";
 			
 		} catch (Throwable ex) {
-			//return new JsonResult().setResultStatus(JsonResult.FAILURE)
-			//		.setError(ex.getMessage());
 			return "redirect:/office/list.do";
 		}
 	}
