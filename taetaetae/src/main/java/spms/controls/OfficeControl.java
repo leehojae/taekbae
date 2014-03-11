@@ -65,21 +65,7 @@ public class OfficeControl {
 		return "office/updateForm";
 	}
 	
-//	@RequestMapping(value="/ajax/updateOffice",method=RequestMethod.POST)
-//  public String update(Office office,
-//  		Model model) throws Exception {
-//		
-//		
-//		 officeDao.update(office);
-//		int count = officeDao.update(office);
-//		if (count > 0) {
-//			model.addAttribute("message", "변경 성공입니다!");
-//		} else {
-//			model.addAttribute("message", "해당 번호의 점소 정보를 찾을 수 없습니다!");
-//		}
-//		return "office/update";
-//  }
-//	
+
 	
 	@RequestMapping(value="/ajax/updateOffice", method=RequestMethod.POST, 
 			produces="application/json")
@@ -99,19 +85,34 @@ public class OfficeControl {
 	
 	@RequestMapping(value="/ajax/addOffice", method=RequestMethod.POST, 
 			produces="application/json")
-	public Object ajaxAdd(Office office) throws Exception {
+	public String ajaxAdd(Office office) throws Exception {
 		try {
 			
 			System.out.println("1  :" +  office.getOfficeName());
 			System.out.println("2  :" +  office.getOfficeName());
 			officeDao.insert(office);
-			return new JsonResult().setResultStatus(JsonResult.SUCCESS);
+			return "redirect:/success.jsp";
 			
 		} catch (Throwable ex) {
-			return new JsonResult().setResultStatus(JsonResult.FAILURE)
-					.setError(ex.getMessage());
+			return "redirect:/fail.jsp";
 		}
 	}
+//	
+//	@RequestMapping(value="/ajax/addOffice", method=RequestMethod.POST, 
+//			produces="application/json")
+//	public Object ajaxAdd(Office office) throws Exception {
+//		try {
+//			
+//			System.out.println("1  :" +  office.getOfficeName());
+//			System.out.println("2  :" +  office.getOfficeName());
+//			officeDao.insert(office);
+//			return new JsonResult().setResultStatus(JsonResult.SUCCESS);
+//			
+//		} catch (Throwable ex) {
+//			return new JsonResult().setResultStatus(JsonResult.FAILURE)
+//					.setError(ex.getMessage());
+//		}
+//	}
 	
 	
 	
