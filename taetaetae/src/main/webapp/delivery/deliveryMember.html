@@ -21,46 +21,73 @@ header {
 </style>
 <script>
 
-  $(function() {
-var listLength;
-var id;
+	$(function() {
+		var listLength;
+		var id;
 
-	  load_list();
-	  
-  });
-		
-  function load_list() {
-   $.getJSON('../excel/ajax/deleveryMember.do', function(data) {
-		var records = data.jsonResult.data;
-		var contents = '<div id="accordion" class="ui-accordion ui-widget ui-helper-reset" role="tablist">';
-		console.log("records : " + records);
-		listLength = records.length;
- 		id = records[0].id;
-		for (var i = 0; i < records.length; i++){
-		 $('#accordion').append(   '<div class="panel panel-default">'
-					+'    <div class="panel-heading">'
-					+'       <h4 class="panel-title">'
-					+'         <input type="checkbox" id="'+ (i+1) +'" class="checkGroup" value='+records[i].trcno+'><a data-toggle="collapse" data-parent="#accordion" href="#'+records[i].receiverName+' ">'
-					+' 	  '+records[i].receiverName+'&nbsp'+ records[i].receiverAddrRoad + '&nbsp'+ records[i].receiverAddrBun + '&nbsp'+ records[i].receiverAddrJi  + '&nbsp'+ records[i].receiverAddrName  + '&nbsp'+ records[i].receiverTel1  +'  </a>'
-					+' 	      </h4>'
-					+' 	    </div>'
-					+' 	    <div id="'+records[i].receiverName+'" class="panel-collapse collapse in">'
-					+' 	      <div class="panel-body">'
-					+'       수취인 :  '+records[i].receiverName+' <br> '
-					+'      전화번호1 : '+records[i].receiverTel1+' <br> '
-					+'      전화번호2 : '+records[i].receiverTel2+' <br> '
-					+'       </div>'
-					+' 	    </div>'
-					+' 	  </div>'  
-		 );}
-		
-		acco();
-/* 		$.post('excel/stateUpdate.do', id, listLength, values); */
-   });};
-	
-  function acco() {
-  $('.collapse').collapse('hide');
-  };
+		load_list();
+
+	});
+
+	function load_list() {
+		$
+				.getJSON(
+						'../excel/ajax/deleveryMember.do',
+						function(data) {
+							var records = data.jsonResult.data;
+							var contents = '<div id="accordion" class="ui-accordion ui-widget ui-helper-reset" role="tablist">';
+							console.log("records : " + records);
+							listLength = records.length;
+							id = records[0].id;
+							for (var i = 0; i < records.length; i++) {
+								$('#accordion')
+										.append(
+												'<div class="panel panel-default">'
+														+ '    <div class="panel-heading">'
+														+ '       <h4 class="panel-title">'
+														+ '         <input type="checkbox" id="'
+														+ (i + 1)
+														+ '" class="checkGroup" value='
+														+ records[i].trcno
+														+ '><a data-toggle="collapse" data-parent="#accordion" href="#'+records[i].receiverName+' ">'
+														+ ' 	  '
+														+ records[i].receiverName
+														+ '&nbsp'
+														+ records[i].receiverAddrRoad
+														+ '&nbsp'
+														+ records[i].receiverAddrBun
+														+ '&nbsp'
+														+ records[i].receiverAddrJi
+														+ '&nbsp'
+														+ records[i].receiverAddrName
+														+ '&nbsp'
+														+ records[i].receiverTel1
+														+ '  </a>'
+														+ ' 	      </h4>'
+														+ ' 	    </div>'
+														+ ' 	    <div id="'+records[i].receiverName+'" class="panel-collapse collapse in">'
+														+ ' 	      <div class="panel-body">'
+														+ '       수취인 :  '
+														+ records[i].receiverName
+														+ ' <br> '
+														+ '      전화번호1 : '
+														+ records[i].receiverTel1
+														+ ' <br> '
+														+ '      전화번호2 : '
+														+ records[i].receiverTel2
+														+ ' <br> '
+														+ '       </div>'
+														+ ' 	    </div>'
+														+ ' 	  </div>');
+							}
+
+							acco();
+						});
+	};
+
+	function acco() {
+		$('.collapse').collapse('hide');
+	};
 </script>
 
 <style type="text/css">
@@ -103,23 +130,6 @@ header {
  			$.post('../excel/stateUpdate.do', {id: id, count: listLength, updateList: values});
  			location.reload();
 		};
-		/* 	function test(){
-
-		 alert(listLength);
-		
-		 for (i = 0; i < listLength; i++){
-		 $('#'+(i+1)+'').change(function(){
-		 if (this.checked) {
-		 temp = $('#'+(i+1)+'').val();
-		 console.log(temp);
-		 updates.push(temp);
-		 }
-		 });
-		 //var test = $('#'+(i+1)+'').val();
-		 //alert(test);
-		 }
-		 console.log(updates);
-		 }; */
 	</script>
 	<input type="button" name="버튼" value="설정"
 		onclick="location.href='map.html'" />
