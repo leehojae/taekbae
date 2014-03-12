@@ -122,10 +122,11 @@
 						</div>
 					</form>
 				<script type="text/javascript" src="js/excelUpload.js"></script>
+				<hr>
 				<!-- 				<div class="hero-unit">
 				</div> -->
 				
-				      <div class="panel-group" id="accordion">
+				<div class="panel-group" id="accordion">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
@@ -212,8 +213,10 @@
 						}
 					});
 				</script>
+				<hr>
       <div id="grid" style="width: 100%; height: 250px;"></div>
       <script type="text/javascript" src="js/excelGrid.js"></script>
+      <hr>
       <div id="map" style="width: 100%; height: 768px;"></div>
 				<div class="row-fluid">
           </div><!--/row-->
