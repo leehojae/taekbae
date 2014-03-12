@@ -234,7 +234,7 @@
     <!-- 자바스크립트
     ================================================== -->
     <!-- 페이지를 빨리 읽어들이도록 문서 마지막에 배치 -->
-    <script src="assets/js/jquery.js"></script>
+<!--     <script src="assets/js/jquery.js"></script> -->
     <script src="assets/js/bootstrap-transition.js"></script>
     <script src="assets/js/bootstrap-alert.js"></script>
     <script src="assets/js/bootstrap-modal.js"></script>
