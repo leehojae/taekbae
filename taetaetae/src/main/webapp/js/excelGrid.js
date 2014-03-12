@@ -2,7 +2,6 @@
 //btn['reload'].icon = 'icon/icon-repeat';
 //btn['columns'].icon = 'icon-layers';
 
-$(function() {
 	$('#grid').w2grid(
 			{
 				name : 'grid',
@@ -115,7 +114,6 @@ $(function() {
 				}
 				
 			});
-});
 
 $(function() {
 	$.getJSON('excel/ajax/list.do', function(data) {
