@@ -23,14 +23,7 @@
 				toolbar: {
 					
 					items: [
-						{ type: 'break' },
-						{ type: 'menu',   id: 'roadSel', caption: '도로선택', icon: 'icon-add'},
-						{ type: 'button',   id: 'memSel', caption: '기사선택', icon: 'icon-add'},
-						{ type: 'html',   id: 'item3', html: '<select>' + 
-																								 '<option>Option</option>' +
-																								 '</select>'},
-						                                                                           
-						{ type: 'button', id: 'mybutton', caption: '전송', img: 'icon-add' }
+						{ type: 'break' }
 					],
 					onClick: function (target, data) {
 						console.log(target);

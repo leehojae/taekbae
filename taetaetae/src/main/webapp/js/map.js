@@ -15,7 +15,11 @@ function init() {
 	map = new olleh.maps.Map(document.getElementById('map'), mapOpts);
 
 	clusterer = new olleh.maps.overlay.MarkerClusterer({
-		gap : 100
+		gap : 100,
+		clusterOpts : {
+			clickToZoom : false,
+			clickToExpand : false
+		}
 	});
 	$.getJSON('excel/ajax/list.do', function(data) {
 		addr = data.jsonResult.data;
@@ -26,5 +30,14 @@ function init() {
 			clusterer.add(marker);
 		}
 		clusterer.setMap(map);
+		console.log(marker);
+		console.log(clusterer);
+		clusterer.onEvent = marker.onEvent;
+		clusterer.onEvent('click', function (event, payload) {
+			alert("12");
+		});
 	}, true);
+//	marker.onEvent('click', function (event, payload) {
+//		 map.zoomIn();
+//	 });
 }
