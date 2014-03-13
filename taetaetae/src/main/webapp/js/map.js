@@ -1,4 +1,5 @@
 function init() {
+
 	var mapOpts;
 	var map;
 	var clusterer;
@@ -30,14 +31,37 @@ function init() {
 			clusterer.add(marker);
 		}
 		clusterer.setMap(map);
-		console.log(marker);
-		console.log(clusterer);
-		clusterer.onEvent = marker.onEvent;
-		clusterer.onEvent('click', function (event, payload) {
-			alert("12");
-		});
+		map.onEvent('click', function (event, payload) {
+			
+			var positions = [];
+			var positionLats = new Array();
+			var positionLngs = new Array();
+			var src = event.getSource();
+			console.log(src.getAllMarkers());
+			var coords = src.getAllMarkers();
+			
+			if(confirm("문자를 전송하시겠습니까?")){
+				for (var i = 0; i < coords.length; i++){
+							positions[i] = new olleh.maps.LatLng.valueOf(coords[i].getPosition()).x;
+//							positions.push({lat: new olleh.maps.LatLng.valueOf(coords[i].getPosition()).y,
+//								lng: new olleh.maps.LatLng.valueOf(coords[i].getPosition()).x});
+				}
+						positions = removeArrayDuplicate(positions);
+						console.log(positions);
+						$.ajaxSettings.traditional = true;
+			 			$.post('excel/lngsSmsSend.do', {lngs: positions});
+						function removeArrayDuplicate(array) {
+							var a = {};
+							for (var i = 0; i < array.length; i++) {
+								if (typeof a[array[i]] == "undefined")
+									a[array[i]] = 1;
+							}
+							array.length = 0;
+							for ( var i in a)
+								array[array.length] = i;
+							return array;
+						}
+					}
+				});
 	}, true);
-//	marker.onEvent('click', function (event, payload) {
-//		 map.zoomIn();
-//	 });
 }

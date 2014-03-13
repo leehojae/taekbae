@@ -221,5 +221,10 @@
 	    STATE 
 	    FROM EXCEL_UPLOAD WHERE TRCNO=#{value}
 	</select>
+	<select id="getTelFromLngs" parameterType="double" resultMap="excelResultMap">
+	    SELECT 
+	    RECEIVER_TEL2 
+	    FROM EXCEL_UPLOAD WHERE LNG=#{value}
+	</select>
 	
 </mapper>

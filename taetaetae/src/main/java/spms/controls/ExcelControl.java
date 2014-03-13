@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import spms.dao.ExcelDao;
 import spms.services.RestRequest;
+import spms.services.SmsSendService;
 import spms.vo.Excel;
 import spms.vo.JsonResult;
 
@@ -53,6 +54,9 @@ public class ExcelControl {
 
 	@Autowired(required = false)
 	ExcelDao excelDao;
+	
+	@Autowired(required = false)
+	SmsSendService smsSendService;
 	
 	@RequestMapping("/delete")
 	public String delete(Model model) throws Exception {
@@ -132,7 +136,27 @@ public class ExcelControl {
 		
 		return null;
 	}
-
+	
+	@RequestMapping(value = "/lngsSmsSend", method = RequestMethod.POST, 
+			produces="application/json")
+	public String lngsSmsSend(String[] lngs) throws Exception {
+		ArrayList<String> telList = new ArrayList<String>();
+		
+		for (int i = 0; i < lngs.length; i++) {
+			for (int j = 0; j < excelDao.getTelFromLngs((Double.parseDouble(lngs[i]))).size(); j++){
+				telList.add(excelDao.getTelFromLngs((Double.parseDouble(lngs[i]))).get(j).getReceiverTel2());
+			}
+		}
+		for (String s : telList) {
+			System.err.println(s);
+		}
+		
+//		smsSendService.smsSend();
+		
+		return null;
+		
+	}
+	
 	@RequestMapping(value = "/ajax/list", produces = "application/json")
 	public Object ajaxList() throws Exception {
 		try {
@@ -288,6 +312,8 @@ public class ExcelControl {
 		return new JsonResult().setResultStatus(JsonResult.SUCCESS)
 				.setData(excelDao.searchUser(Long.parseLong(trcno)));
 	}
+	
+
 	
 	@RequestMapping(value = "/divide", method = RequestMethod.POST, 
 			produces="application/json")

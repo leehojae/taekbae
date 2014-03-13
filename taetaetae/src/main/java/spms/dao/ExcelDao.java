@@ -13,4 +13,5 @@ public interface ExcelDao {
 	public List<Excel> selectDeleveryMember(int staticId) throws Exception;
 	public List<Excel> selectByIdCoord(int id) throws Exception;
 	public List<Excel> searchUser(long trcno) throws Exception;
+	public List<Excel> getTelFromLngs(double d) throws Exception;
 }
