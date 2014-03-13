@@ -139,10 +139,10 @@ public class OfficeControl {
 	public String ajaxDelete(int no) throws Exception {
 		try {
 			officeDao.delete(no);
-			return "redirect:/office/list.do";
+			return "redirect:/office/officeList.do";
 			
 		} catch (Throwable ex) {
-			return "redirect:/office/list.do";
+			return "redirect:/office/officeList.do";
 		}
 	}
 
