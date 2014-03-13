@@ -4,22 +4,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/jquery-ui-1.10.4.custom.css"/>
-<link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/ui.jqgrid.css"/>
-
-<script src = "../js/jquery-1.5.2.js" type = "text/javascript"></script>
-<script src = "../js/i18n/grid.locale-kr.js" type = "text/javascript"></script>
+<link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/jquery-ui-1.10.1.custom.css"/>
+<link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/ui.jqgrid.css"/>  
+ 
+<script src = "../js/jquery-1.7.2.min.js" type = "text/javascript"></script> 
 <script src = "../js/jquery.jqGrid.min.js" type = "text/javascript"></script>
+<script src = "../js/i18n/grid.locale-kr.js" type = "text/javascript"></script>
+
+
+
+
+
+
 <script>
-
-
 
     $(window.document).ready(function() {
       
-        $("#grid").jqGrid({
+    	  $("#searchBtn").click( function() {
+    		  fn_reloadPjtList();
+    		});
+    	
+    	
+        $("#grid").jqGrid({   //   keywordA=' + $('#searchKeywordA').val()+'keywordB=' + $('#searchKeywordB').val()
             //url : 'http://apis.daum.net/socialpick/search?output=json',
-            url : 'http://localhost:9999/taetaetae/office//ajax/officeList.do',
-            caption : 'rrreeee지점 목록',    // caption : 그리드의 제목을 지정한다.
+           url : 'http://localhost:9999/taetaetae/office//ajax/officeList.do',
+           // url : 'http://localhost:9999/taetaetae/office//ajax/officeList.do?keywordA=' + $('#searchKeywordA').val()+'&keywordB=' + $('#searchKeywordB').val(),
+            caption : '지점 목록',    // caption : 그리드의 제목을 지정한다.
             datatype : 'json',               // datatype : 데이터 타입을 지정한다.
                                                     // (json 으로 외부에 요청을 보내면 보안정책에 위배되어 요청이 나가질 않는다.
                                                     //  따라서 datatype 을 jsonp로 변경하고 보내야 한다.)
@@ -30,7 +40,10 @@
             rowNum : 20,                      // rowNum : 한 화면에 표시할 행 개수를 지정한다.
             loadonce : true,                // loadonce : rowNum 설정을 사용하기 위해서 true로 지정한다.
             rowList : [10, 20, 30],       // rowList : rowNum을 선택할 수 있는 옵션을 지정한다.
- 
+            
+            postData:{
+            	keywordA: $("#searchKeywordA").val(),
+            	keywordB: $("#searchKeywordB").val()},
             // colNames : 열의 이름을 지정한다.
             colNames : [ '사업자번호','지점명', '전화', '우편번호',  '주소',   '팩스' ],
             colModel : [
@@ -94,71 +107,36 @@
     }});
         
     }
-       
-        
         );
         
-        
-        $("#updateBtn").click( function() {
-          $.ajax( 'ajax/updateOffice.do', {
-        type: 'POST',
-        data: {
-          officeNum: $('#ono').val(),
-          officeName: $('#oname').val(),
-          officeTel: $('#oTel').val(),
-          officePostNum: $('#oPostNum').val(),
-          officeAddr: $('#oAddr').val(),
-          officeFax: $('#oFax').val()
-        },
-        success: function(members){
-          location.href = 'list.do';
-    }});
-        
-    }
-       
-        
-        );
-        
-      
-        
-      
-        
-        
-       
+  
     });
+
     
     
-    function deleteFunction()
+    /* 서고 목록 검색 function */
+    function fn_reloadPjtList() 
     {
-      
-      var answer  = confirm( '삭제 하시겠습니까?' );
-    if( answer ) 
-    {
-      
-      location.href = 'ajax/deleteOffice.do?no=' + $('#ono').val();
-      
-    } 
-      
-      return;
-      
-      alert( " ddd :  " +   $('#ono').val()   );
+    	alert("TTT");
+    	$("#grid").setGridParam({
+    		postData : {
+        		keywordA: $("#searchKeywordA").val(),
+        		keywordB: $("#searchKeywordB").val()
+    		}
+    	}).trigger("reloadGrid");
+    	alert("DDDD");
+    	
     }
-    function updateFunction()
-    {
-      alert( " 444 :  " +   $('#ono').val()   );
-    }
+    
 </script>
 
 <title>점소관리</title>
 </head>
-
-
-
 <div id="header">
   <%@ include file="/common/include/top.inc.jsp"%>
   </div>
   <br>
-<body onload="init()">
+<body >
 <div id="menu" style="background-color:#000000;height:500px;width:200px;float:left;">
       <br>
       <br>
@@ -175,13 +153,7 @@
 <div id="content" style=" float:left;">
  <br>
   <form  method="post"  enctype="multipart/form-data">
-<select id="officeName"  style="margin:1px 0 0 0;"> 
-<option value="volvo">지점</option>
-  <option value="saab">이름</option>
-  <option value="mercedes">아이디</option>
-</select>
-<input id=searchKeywordA type="text" name="mname">
-    <input id="delBtn" type="button" value="검색">
+
     <table id = "grid"></table>
     <div id = "pager"></div>
    <table border=1    WIDTH="635"   bgcolor="#EAEAEA">
@@ -211,7 +183,7 @@
   </tr>
 </table>
     <input id="updateBtn" type="button" value="변경"  />
-    <input id="delBtn" type="button" value="삭제"    onclick="deleteFunction(   )" />
+    <input id="delBtn" type="button" value="삭제"    onclick="deleteFunction( )" />
     <input id="cancelBtn" type="reset" value="취소" />
   </form>
 </div>
