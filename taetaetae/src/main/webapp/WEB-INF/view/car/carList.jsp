@@ -71,14 +71,14 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 	  
     $("#addBtn").click( function() {
     	$.ajax( 'ajax/add.do', {
-			method: 'POST',
+    		   type: 'POST',
 			data: {
 				no : $('#mno').val(),
 				carNumber : $('#mname').val(),
 				carLoad: $('#mid').val()
 			},
 			success: function(members){
-				location.href = 'list.do';
+				location.href = 'carList.do';
 	}});
 		
 }
@@ -89,7 +89,7 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
     
     $("#updateBtn").click( function() {
     	$.ajax( 'ajax/update.do', {
-			method: 'POST',
+    		   type: 'POST',
 			data: {
 				no : $('#mno').val(),
 				carNumber : $('#mname').val(),
@@ -97,7 +97,7 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 				
 			},
 			success: function(car){
-				location.href = 'list.do';
+				location.href = 'carList.do';
 	}});
 		
 }
@@ -137,19 +137,19 @@ function deleteFunction()
 
 <tr>
 <td>
-	이름 : <input id=cno type="text" name="cno">
+	번호 : <input id=cno type="text" name="cno">
 </td>
 <td>
-	생년월일 : <input id=cNumber type="text" name="cNumber">
+	차량번호 : <input id=cNumber type="text" name="cNumber">
 </td>	
 </tr>
 <tr>
 <td>
-	전화 : <input id=cType type="text" name="cType">
+	차종 : <input id=cType type="text" name="cType">
 </td>
 	
 
-
+</tr>
 </table>
 	<input id="addBtn" type="button" value="등록">
 	<input id="updateBtn" type="button" value="변경" class="view">
