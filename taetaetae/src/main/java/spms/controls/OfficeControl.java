@@ -52,9 +52,14 @@ public class OfficeControl {
 		return "redirect:list.do";
 	}
 	
+	@RequestMapping("/officeList.do")
+	public String officeList(Model model) throws Exception {
+		//model.addAttribute("offices", officeDao.selectList());
+		return "office/officeList";
+	}
 	@RequestMapping("/list")
 	public String list(Model model) throws Exception {
-		model.addAttribute("offices", officeDao.selectList());
+		//model.addAttribute("offices", officeDao.selectList());
 		return "office/list";
 	}
 	
@@ -111,11 +116,15 @@ public class OfficeControl {
 		}
 	}
 	
-	@RequestMapping(value="/ajax/officeList.do", produces="application/json")
-	public Object ajaxList() throws Exception {
+	@RequestMapping(value="/ajax/officeList.do", produces="application/json" )
+	//@RequestMapping(value = "/ajax/officeList.do", method = RequestMethod.GET, 
+	//produces="application/json")
+	public Object ajaxList(String keywordA , String keywordB) throws Exception {
 		try {
-			return new JsonResult().setResultStatus(JsonResult.SUCCESS) 
-					.setData(officeDao.selectList());
+			System.out.println("ddddA : "  +keywordA);
+			System.out.println("ddddB : "  +keywordB);
+			return new JsonResult().setResultStatus(JsonResult.SUCCESS).setData(officeDao.selectList());
+					
 			
 		} catch (Throwable ex) {
 			return new JsonResult().setResultStatus(JsonResult.FAILURE)
