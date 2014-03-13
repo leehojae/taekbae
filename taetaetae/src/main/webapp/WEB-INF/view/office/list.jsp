@@ -100,7 +100,8 @@
             <ul class="nav nav-list">
               <li class="nav-header">사이드바</li>
               <li class="active"><a href="#">Link</a></li>
-              <li><a href="office/list.do">사업소목록</a></li>
+              <li><a href="list.do">사업소목록</a></li>
+              <li><a href="../member/list.do">직원목록</a></li>
               <li><a href="#">링크</a></li>
               <li><a href="#">링크</a></li>
               <li class="nav-header">사이드바</li>
@@ -122,9 +123,6 @@
 scrolling=no name=ce width=1200 height=600 frameborder=0 style="border-width:0px; border-color:white; border-style:solid;"></iframe>
 <!-- <iframe src="list.do" scrolling=no name=ce width=600 height=180 frameborder=0 style="border-width:0px; border-color:white; border-style:solid;"></iframe> -->
 
-
-
-<%--   <%@ include file="officeList.jsp"%> --%>
 
         </div><!--/span-->
       </div><!--/row-->
