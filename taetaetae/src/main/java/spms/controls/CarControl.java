@@ -48,7 +48,7 @@ public class CarControl {
 		return "redirect:list.do";
 	}
 
-	@RequestMapping("/list")
+	@RequestMapping("/list") // chell
 	public String list(Model model) throws Exception {
 		model.addAttribute("cars", carDao.selectList());
 		return "car/list";
@@ -132,4 +132,11 @@ public class CarControl {
 					.setError(ex.getMessage());
 		}
 	}
+	
+	@RequestMapping("/carList.do")  //chell
+	public String carList(Model model) throws Exception {
+		//model.addAttribute("offices", officeDao.selectList());
+		return "car/carList";
+	}
+	
 }
