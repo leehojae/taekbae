@@ -12,10 +12,6 @@
 <script src = "../js/i18n/grid.locale-kr.js" type = "text/javascript"></script>
 
 
-
-
-
-
 <script>
 
 $(window.document).ready(function() {
@@ -84,8 +80,9 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 	
 	  
     $("#addBtn").click( function() {
+    	alert("dddd");
     	$.ajax( 'ajax/add.do', {
-			method: 'POST',
+    		   type: 'POST',
 			data: {
 				no : $('#mno').val(),
 				name : $('#mname').val(),
@@ -98,18 +95,17 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 				rank: $('#mrank').val()
 			},
 			success: function(members){
-				location.href = 'list.do';
+				location.href = 'memberList.do';
 	}});
 		
 }
-   
-    
     );
     
     
     $("#updateBtn").click( function() {
+     	alert("updateBtn");
     	$.ajax( 'ajax/update.do', {
-			method: 'POST',
+    		   type: 'POST',
 			data: {
 				no : $('#mno').val(),
 				name : $('#mname').val(),
@@ -122,7 +118,7 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 				rank: $('#mrank').val()
 			},
 			success: function(members){
-				location.href = 'list.do';
+				location.href = 'memberList.do';
 	}});
 		
 }
