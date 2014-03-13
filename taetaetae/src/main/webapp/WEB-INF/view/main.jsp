@@ -77,11 +77,7 @@
             <p class="navbar-text pull-right">
               <a href="#" class="navbar-link">${loginUser.name}</a>으로 로그인됨
             </p>
-<!--             <ul class="nav">
-              <li class="active"><a href="#">대문</a></li>
-              <li><a href="#about">소개</a></li>
-              <li><a href="#contact">연락처</a></li>
-            </ul> -->
+
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -94,7 +90,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">사이드바</li>
               <li class="active"><a href="#">Link</a></li>
-              <li><a href="#">링크</a></li>
+              <li><a href="office/list.do">사업소목록</a></li>
               <li><a href="#">링크</a></li>
               <li><a href="#">링크</a></li>
               <li class="nav-header">사이드바</li>
