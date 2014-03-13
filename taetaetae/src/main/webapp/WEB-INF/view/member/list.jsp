@@ -96,26 +96,7 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">사이드바</li>
-              <li class="active"><a href="#">Link</a></li>
-              <li><a href="office/list.do">사업소목록</a></li>
-              <li><a href="#">링크</a></li>
-              <li><a href="#">링크</a></li>
-              <li class="nav-header">사이드바</li>
-              <li><a href="#">링크</a></li>
-              <li><a href="#">링크</a></li>
-              <li><a href="#">링크</a></li>
-              <li><a href="#">링크</a></li>
-              <li><a href="#">링크</a></li>
-              <li><a href="#">링크</a></li>
-              <li class="nav-header">사이드바</li>
-              <li><a href="#">링크</a></li>
-              <li><a href="#">링크</a></li>
-              <li><a href="#">링크</a></li>
-            </ul>
-          </div><!--/.well -->
+          <%@ include file="../common/leftMenu.jsp"%>
         </div><!--/span-->
         <div class="span9">
 <iframe src="memberList.do" 
