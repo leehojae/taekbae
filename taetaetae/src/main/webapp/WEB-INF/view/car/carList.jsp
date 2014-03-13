@@ -33,9 +33,9 @@ $(window.document).ready(function() {
         colNames : [ 'no','번호', '차종' ],
         colModel : [
                     
-                    { name : 'no',         index : 'no',         width : 50,    align : 'center' },
-                    { name : 'carNumber',         index : 'officeName',         width : 150,    align : 'center' },
-                    { name : 'carType',         index : 'name',         width : 150,    align : 'center' },
+                    { name : 'no',         index : 'no',         width : 70,    align : 'center' },
+                    { name : 'carNumber',         index : 'officeName',         width : 270,    align : 'center' },
+                    { name : 'carType',         index : 'name',         width : 270,    align : 'center' },
                     ],
         jsonReader : {
         	 repeatitems : false,
