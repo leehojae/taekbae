@@ -1,191 +1,147 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/jquery-ui-1.10.1.custom.css"/>
-<link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/ui.jqgrid.css"/>  
- 
-<script src = "../js/jquery-1.7.2.min.js" type = "text/javascript"></script> 
-<script src = "../js/jquery.jqGrid.min.js" type = "text/javascript"></script>
-<script src = "../js/i18n/grid.locale-kr.js" type = "text/javascript"></script>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>SDMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <!-- 스타일 -->
+    <link href="../assets/css/bootstrap-ko.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
 
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
 
+    <!-- IE6~8에서 HTML5 태그를 지원하기위한 HTML5 shim -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
 
-
-
-<script>
-
-    $(window.document).ready(function() {
-      
-    	  $("#searchBtn").click( function() {
-    		  fn_reloadPjtList();
-    		});
-    	
-    	
-        $("#grid").jqGrid({   //   keywordA=' + $('#searchKeywordA').val()+'keywordB=' + $('#searchKeywordB').val()
-            //url : 'http://apis.daum.net/socialpick/search?output=json',
-           url : 'http://localhost:9999/taetaetae/office//ajax/officeList.do',
-           // url : 'http://localhost:9999/taetaetae/office//ajax/officeList.do?keywordA=' + $('#searchKeywordA').val()+'&keywordB=' + $('#searchKeywordB').val(),
-            caption : '지점 목록',    // caption : 그리드의 제목을 지정한다.
-            datatype : 'json',               // datatype : 데이터 타입을 지정한다.
-                                                    // (json 으로 외부에 요청을 보내면 보안정책에 위배되어 요청이 나가질 않는다.
-                                                    //  따라서 datatype 을 jsonp로 변경하고 보내야 한다.)
- 
-            mtype : 'get',                     // mtype : 데이터 전송방식을 지정한다.
-            height : '300px',                 // height : 그리드의 높이를 지정한다.
-            pager : '#pager',               // pager : 도구 모임이 될 div 태그를 지정한다.
-            rowNum : 20,                      // rowNum : 한 화면에 표시할 행 개수를 지정한다.
-            loadonce : true,                // loadonce : rowNum 설정을 사용하기 위해서 true로 지정한다.
-            rowList : [10, 20, 30],       // rowList : rowNum을 선택할 수 있는 옵션을 지정한다.
-            
-            postData:{
-            	keywordA: $("#searchKeywordA").val(),
-            	keywordB: $("#searchKeywordB").val()},
-            // colNames : 열의 이름을 지정한다.
-            colNames : [ '사업자번호','지점명', '전화', '우편번호',  '주소',   '팩스' ],
-            colModel : [
-                        
-                        { name : 'officeNum',         index : 'officeNum',         width : 150,    align : 'center' },
-                        { name : 'officeName',         index : 'officeName',         width : 250,    align : 'center' },
-                        { name : 'officeTel',         index : 'officeTel',         width : 250,    align : 'center' },
-                        { name : 'officePostNum',         index : 'officePostNum',         width : 150,    align : 'center'  , hidden : true},
-                        { name : 'officeAddr',         index : 'officeAddr',         width : 300,    align : 'center' , hidden : true},
-                        { name : 'officeFax',         index : 'officeFax',         width : 300,    align : 'center' , hidden : true},
-                        ],
-                        postData:{
-                      searchKeywordA: $("#searchKeywordA").val(),
-                      searchKeywordB: $("#searchKeywordB").val()
-                      },
-            jsonReader : {
-               repeatitems : false,
-                 id : "no",
-                 root : function (obj) { return obj.jsonResult.data; },
-                 page : function (obj) { return 1; },
-                 total : function (obj) { return 1; },
-                 records : function (obj) {return  obj.jsonResult.data.length; }
- },
-
- onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
-   
-   $("#status").val("edit");
-    var $rowData = $(this).getRowData(rowid);
-    $("#ono").val($rowData['officeNum']);
-    $("#oname").val($rowData['officeName']);
-    $("#oTel").val($rowData['officeTel']);
-    $("#oPostNum").val($rowData['officePostNum']);
-    $("#oAddr").val($rowData['officeAddr']);
-    $("#oFax").val($rowData['officeFax']);
-    
-  } 
- 
-        // navGrid() 메서드는 검색 및 기타기능을 사용하기위해 사용된다.
-        }).navGrid('#pager', {
-            search : true,
-            edit : true,
-            add : true,
-            del : true
-        });
-        
-      
-        $("#addBtn").click( function() {
-          alert($('#oname').val());
-          $.ajax( 'ajax/addOffice.do', {
-        type: 'POST',
-        data: {
-          officeNum: $('#ono').val(),
-          officeName: $('#oname').val(),
-          officeTel: $('#oTel').val(),
-          officePostNum: $('#oPostNum').val(),
-          officeAddr: $('#oAddr').val(),
-          officeFax: $('#oFax').val()
-        },
-        success: function(members){
-          location.href = 'list.do';
-    }});
-        
-    }
-        );
-        
-  
-    });
-
-    
-    
-    /* 서고 목록 검색 function */
-    function fn_reloadPjtList() 
-    {
-    	alert("TTT");
-    	$("#grid").setGridParam({
-    		postData : {
-        		keywordA: $("#searchKeywordA").val(),
-        		keywordB: $("#searchKeywordB").val()
-    		}
-    	}).trigger("reloadGrid");
-    	alert("DDDD");
-    	
-    }
-    
+    <!-- 파비콘과 앱 아이콘 -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+                                   
+    <link rel="stylesheet" type="text/css" href="//w2ui.com/src/w2ui-1.3.min.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script type="text/javascript" src="//w2ui.com/src/w2ui-1.3.min.js"></script>
+        <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('.collapse').collapse('hide');
+	});
 </script>
 
-<title>점소관리</title>
 </head>
-<div id="header">
-  <%@ include file="/common/include/top.inc.jsp"%>
-  </div>
-  <br>
-<body >
-<div id="menu" style="background-color:#000000;height:500px;width:200px;float:left;">
-      <br>
-      <br>
-      <br>
-          <ul>
-            <li><a href="../main.do"><span></span>엑셀등록</a>
-            <li><a href="getTransportSimulationConfigView.das"><span></span>디비초기화</a>
-            <li><a href="getTransportSimulationConfigView.das"><span></span>회원등록</a>
-            <li><a href="getTransportSimulationConfigView.das"><span></span>점소등록</a>
-            <li><a href="getTransportSimulationConfigView.das"><span></span>차량등록</a>
-            <li><a href="getTransportSimulationConfigView.das"><span></span>배송구역등록</a>
-          </ul>
-</div>
-<div id="content" style=" float:left;">
- <br>
-  <form  method="post"  enctype="multipart/form-data">
 
-    <table id = "grid"></table>
-    <div id = "pager"></div>
-   <table border=1    WIDTH="635"   bgcolor="#EAEAEA">
-  <tr>
-  <td>
-    사업자번호 : <input id=ono type="text" name="ono">
-  </td>
-  <td>
-    점소명 : <input id=oname type="text" name="oname">
-  </td> 
-  </tr>
-  <tr>
-  <td>
-    전화 : <input id=oTel type="text" name="oTel">
-  </td>
-  <td>
-    우편번호 : <input id=oPostNum type="text" name="oPostNum">
-  </td> 
-  </tr>
-  <tr>
-  <td>
-    팩스 : <input id=oFax type="text" name="oFax">
-  </td>
-  <td>
-    주소 : <input id=oAddr type="text" name="oAddr">
-  </td> 
-  </tr>
-</table>
-    <input id="updateBtn" type="button" value="변경"  />
-    <input id="delBtn" type="button" value="삭제"    onclick="deleteFunction( )" />
-    <input id="cancelBtn" type="reset" value="취소" />
-  </form>
-</div>
-</body>
+  <body onload="init()">
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">SDMS(Smart Delivery Management System)</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              <a href="#" class="navbar-link">${loginUser.name}</a>으로 로그인됨
+            </p>
+
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">사이드바</li>
+              <li class="active"><a href="#">Link</a></li>
+              <li><a href="office/list.do">사업소목록</a></li>
+              <li><a href="#">링크</a></li>
+              <li><a href="#">링크</a></li>
+              <li class="nav-header">사이드바</li>
+              <li><a href="#">링크</a></li>
+              <li><a href="#">링크</a></li>
+              <li><a href="#">링크</a></li>
+              <li><a href="#">링크</a></li>
+              <li><a href="#">링크</a></li>
+              <li><a href="#">링크</a></li>
+              <li class="nav-header">사이드바</li>
+              <li><a href="#">링크</a></li>
+              <li><a href="#">링크</a></li>
+              <li><a href="#">링크</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+<iframe src="officeList.do" 
+scrolling=no name=ce width=1200 height=600 frameborder=0 style="border-width:0px; border-color:white; border-style:solid;"></iframe>
+<!-- <iframe src="list.do" scrolling=no name=ce width=600 height=180 frameborder=0 style="border-width:0px; border-color:white; border-style:solid;"></iframe> -->
+
+
+
+<%--   <%@ include file="officeList.jsp"%> --%>
+
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; 비트 2014</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- 자바스크립트
+    ================================================== -->
+    <!-- 페이지를 빨리 읽어들이도록 문서 마지막에 배치 -->
+<!--     <script src="assets/js/jquery.js"></script> -->
+
+
+  </body>
 </html>
