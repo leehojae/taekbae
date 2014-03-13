@@ -15,30 +15,15 @@ public class SmsSendService {
 		boolean bSSL = true;
 		// Make Parameters
 		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("sender", "01047311909");
-		params.put("receivers", "01047311909");
-//		params.put("receivers", "01047311909, "
-//							  + "01047311909, "
-//							  + "01047311909, "
-//							  + "01047311909, "
-//							  + "01047311909, "
-//							  + "01047311909, "
-//							  + "01047311909, "
-//							  + "01047311909, "
-//							  + "01047311909, "
-//							  + "01047311909, "
-//							  + "01047311909, "
-//							  + "01047311909, "
-//							  + "01047311909, "
-//							  + "01047311909, "
-//							  + "01047311909, "
-//							  + "01047311909");
+		params.put("sender", "");
+		params.put("receivers", "");
+
 		params.put("displayaddress", "01047311909");
 		params.put("text", "문자메시지 내용을 넣어주세요");
 		// make xauth params
 		HashMap<String, String> xauth_params = new HashMap<String, String>();
-		xauth_params.put("username", "goodddong@gmail.com");
-		xauth_params.put("password", "!dhffpppong85");
+		xauth_params.put("username", "");
+		xauth_params.put("password", "");
 		KTOpenApiHandler handler = KTOpenApiHandler.createHandler(auth_key,	auth_secret);
 
 		HashMap<?, ?> r = handler.call(apiId, params, xauth_params, bSSL);
