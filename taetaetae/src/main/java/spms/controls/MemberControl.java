@@ -64,7 +64,7 @@ public class MemberControl {
 	}
 	
 	@RequestMapping("/list")
-	public String list(Model model) throws Exception {
+	public String memberList(Model model) throws Exception {
 		model.addAttribute("members", memberDao.selectList());
 		return "member/list";
 	}
@@ -201,6 +201,14 @@ public class MemberControl {
 		}
 		
 	}
+	
+	
+	@RequestMapping("/memberList.do")
+	public String officeList(Model model) throws Exception {
+		//model.addAttribute("offices", officeDao.selectList());
+		return "member/memberList";
+	}
+	
 	
 	/*
 	@RequestMapping("/ajax/list")
