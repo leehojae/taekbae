@@ -90,9 +90,9 @@
         });
         
       
-        $("#addBtn").click( function() {
+        $("#updateBtn").click( function() {
           alert($('#oname').val());
-          $.ajax( 'ajax/addOffice.do', {
+          $.ajax( 'ajax/updateOffice.do', {
         type: 'POST',
         data: {
           officeNum: $('#ono').val(),
@@ -103,7 +103,7 @@
           officeFax: $('#oFax').val()
         },
         success: function(members){
-          location.href = 'list.do';
+          location.href = 'officeList.do';
     }});
         
     }
@@ -112,21 +112,22 @@
   
     });
 
-    
-    
-    /* 서고 목록 검색 function */
-    function fn_reloadPjtList() 
+    function deleteFunction()
     {
-    	alert("TTT");
-    	$("#grid").setGridParam({
-    		postData : {
-        		keywordA: $("#searchKeywordA").val(),
-        		keywordB: $("#searchKeywordB").val()
-    		}
-    	}).trigger("reloadGrid");
-    	alert("DDDD");
-    	
+      
+      var answer  = confirm( '삭제 하시겠습니까?' );
+    if( answer ) 
+    {
+      
+      location.href = 'ajax/deleteOffice.do?no=' + $('#ono').val();
+      
+    } 
+      
+      return;
+      
+      alert( " ddd :  " +   $('#ono').val()   );
     }
+
     
 </script>
 
