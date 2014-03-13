@@ -135,7 +135,7 @@ public class MemberControl {
 		}
 	}
 	
-	@RequestMapping(value="/ajax/add", method=RequestMethod.POST, 
+	@RequestMapping(value="/ajax/add.do", method=RequestMethod.POST, 
 			produces="application/json")
 	public Object ajaxAdd(Member member) throws Exception {
 		try {
@@ -152,14 +152,10 @@ public class MemberControl {
 	public String ajaxDelete(int no) throws Exception {
 		try {
 			memberDao.delete(no);
-			//return new JsonResult().setResultStatus(JsonResult.SUCCESS);
-			return "redirect:/office/list.do";
+			return "redirect:/member/memberList.do";
 			
 		} catch (Throwable ex) {
-//			return new JsonResult().setResultStatus(JsonResult.FAILURE)
-//					.setError(ex.getMessage());
-			//return new JsonResult().setResultStatus(JsonResult.SUCCESS);
-			return "redirect:/office/list.do";
+			return "redirect:/member/memberList.do";
 		}
 	}
 	
@@ -209,38 +205,6 @@ public class MemberControl {
 		return "member/memberList";
 	}
 	
-	
-	/*
-	@RequestMapping("/ajax/list")
-	public ResponseEntity<String> ajaxList(
-			HttpServletResponse response,
-			Model model) throws Exception {
-		
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Type", "text/plain;charset=UTF-8");
-		
-		return new ResponseEntity<String>(
-				new Gson().toJson(memberDao.selectList()),
-				headers,
-				HttpStatus.OK);
-	}
-	*/
-	/*
-	@RequestMapping("/ajax/list")
-	@ResponseBody
-	public String ajaxList(
-			HttpServletResponse response,
-			Model model) throws Exception {
-		return new Gson().toJson(memberDao.selectList());
-	}
-	*/
-	/*
-	@RequestMapping("/ajax/list")
-	public String ajaxList(Model model) throws Exception {
-		model.addAttribute("members", memberDao.selectList());
-		return "ajax/member/list";
-	}
-	*/
 
 }
 
