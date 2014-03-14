@@ -12,10 +12,6 @@
 <script src = "../js/i18n/grid.locale-kr.js" type = "text/javascript"></script>
 
 
-
-
-
-
 <script>
 
     $(window.document).ready(function() {
@@ -114,18 +110,13 @@
 
     function deleteFunction()
     {
-      
       var answer  = confirm( '삭제 하시겠습니까?' );
     if( answer ) 
     {
       
       location.href = 'ajax/deleteOffice.do?no=' + $('#ono').val();
-      
     } 
-      
       return;
-      
-      alert( " ddd :  " +   $('#ono').val()   );
     }
 
     
