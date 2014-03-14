@@ -41,6 +41,7 @@
         <label class="checkbox">
           <input type="checkbox" name="checkSaveId" value="아이디기억" ${checkSaveId}>아이디기억
           <a href="office/add.do">점소가입</a>
+          <a href="member/add.do">직원가입</a>
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
       </form>
