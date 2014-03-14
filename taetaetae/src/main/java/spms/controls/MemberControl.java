@@ -214,10 +214,10 @@ public class MemberControl {
 		try {
 			
 			memberDao.insert(member);
-			return "redirect:/success.jsp";
+			return "redirect:/successMember.jsp";
 			
 		} catch (Throwable ex) {
-			return "redirect:/fail.jsp";
+			return "redirect:/failMember.jsp";
 		}
 	}
 
