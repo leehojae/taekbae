@@ -12,6 +12,7 @@
              <li><a href="../office/list.do">사업소목록</a></li>
               <li><a href="../member/list.do">직원목록</a></li>
               <li><a href="../car/list.do">차량목록</a></li>
+              <li><a href="../area/list.do">배송구역목록</a></li>
             </ul>
           </div><!--/.well -->
 </body>
