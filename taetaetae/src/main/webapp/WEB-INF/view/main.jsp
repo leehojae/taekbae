@@ -16,7 +16,7 @@
     <meta name="author" content="">
 
     <!-- 스타일 -->
-    <link href="assets/css/bootstrap-ko.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-ko.main.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
