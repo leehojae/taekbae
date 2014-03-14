@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <script id="tinyhippos-injected">
+           if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }
+    </script>
+  
+  <head>
+    <meta charset="utf-8">
+    <title>SDMS~SDMS &middot; BITBIT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- 스타일 -->
+    <link href="assets/css/bootstrap-ko.css" rel="stylesheet">
+   
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <style>
+
+    /* 전체 스타일
+    -------------------------------------------------- */
+    /* 꼬리말 아래 패딩과 연한색 본문 */
+
+    body {
+      padding-bottom: 40px;
+      color: #5a5a5a;
+    }
+
+
+
+    /* 탐색막대 수정
+    -------------------------------------------------- */
+
+    /* 위치를 잡는 역할을 하는, .navbar를 둘러싸는 .container의 특별한 클래스. */
+    .navbar-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      margin-top: 20px;
+      margin-bottom: -90px; /* 회전광고판을 올리는 음수 여백. 90px는 대략 탐색막대의 여백과 높이이다. */
+    }
+    .navbar-wrapper .navbar {
+
+    }
+
+    /* 둘레를 없애고, 대비를 주기위해 상자 그림자를 변경한다 */
+    .navbar .navbar-inner {
+      border: 0;
+      -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+         -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+              box-shadow: 0 2px 10px rgba(0,0,0,.25);
+    }
+
+    /* 상표/프로젝트명 크기를 조금 줄인다 */
+    .navbar .brand {
+      padding: 14px 20px 16px; /* 탐색막대 링크에 맞도록 수직 패딩을 늘린다 */
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+    }
+
+    /* 탐색막대 링크: 높은 탐색막대에 맞도록 패딩을 늘린다 */
+    .navbar .nav > li > a {
+      padding: 15px 20px;
+    }
+
+    /* 적절하게 수직 정렬하려고 버튼 위치를 조정한다 */
+    .navbar .btn-navbar {
+      margin-top: 10px;
+    }
+
+
+
+    /* 회전광고판 수정
+    -------------------------------------------------- */
+
+    /* 회전광고판 기본 클래스 */
+    .carousel {
+      margin-bottom: 60px;
+    }
+
+    .carousel .container {
+      position: relative;
+      z-index: 9;
+    }
+
+    .carousel-control {
+      height: 80px;
+      margin-top: 0;
+      font-size: 120px;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      background-color: transparent;
+      border: 0;
+      z-index: 10;
+    }
+
+    .carousel .item {
+      height: 500px;
+    }
+    .carousel img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      height: 500px;
+    }
+
+    .carousel-caption {
+      background-color: transparent;
+      position: static;
+      max-width: 550px;
+      padding: 0 20px;
+      margin-top: 200px;
+    }
+    .carousel-caption h1,
+    .carousel-caption .lead {
+      margin: 0;
+      line-height: 1.25;
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+    }
+    .carousel-caption .btn {
+      margin-top: 10px;
+    }
+
+
+
+    /* 마케팅 내용
+    -------------------------------------------------- */
+
+    /* 회전광고판 아래에 있는 세개 열의 본문을 중앙 정렬한다 */
+    .marketing .span4 {
+      text-align: center;
+    }
+    .marketing h2 {
+      font-weight: normal;
+    }
+    .marketing .span4 p {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+
+    /* 특집
+    ------------------------- */
+
+    .featurette-divider {
+      margin: 80px 0; /* 부트스트랩 <hr> 공간을 더 벌린다 */
+    }
+    .featurette {
+      padding-top: 120px; /* 수직으로 그림 중앙 위치 1 단계: 본문 위아래로 패딩을 더한다. */
+      overflow: hidden; /* 수직으로 그림 중앙 위치 2 단계: 유동 흐름을 마친다 */
+    }
+    .featurette-image {
+      margin-top: -120px; /* 수직으로 그림 중앙 위치 3 단계: 중앙에 배치하기위해 패딩과 동일한 크기의 음수 여백으로 그림을 올린다. */
+    }
+
+    /* 유동 태그 양편에 공간을 두어서 본문과 겹치지 않게 한다. */
+    .featurette-image.pull-left {
+      margin-right: 40px;
+    }
+    .featurette-image.pull-right {
+      margin-left: 40px;
+    }
+
+    /* 마케딩 제목을 얇게 만든다 */
+    .featurette-heading {
+      font-size: 50px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+
+
+    /* 반응형 CSS
+    -------------------------------------------------- */
+
+    @media (max-width: 979px) {
+
+      .container.navbar-wrapper {
+        margin-bottom: 0;
+        width: auto;
+      }
+      .navbar-inner {
+        border-radius: 0;
+        margin: -20px 0;
+      }
+
+      .carousel .item {
+        height: 500px;
+      }
+      .carousel img {
+        width: auto;
+        height: 500px;
+      }
+
+      .featurette {
+        height: auto;
+        padding: 0;
+      }
+      .featurette-image.pull-left,
+      .featurette-image.pull-right {
+        display: block;
+        float: none;
+        max-width: 40%;
+        margin: 0 auto 20px;
+      }
+    }
+
+
+    @media (max-width: 767px) {
+
+      .navbar-inner {
+        margin: -20px;
+      }
+
+      .carousel {
+        margin-left: -20px;
+        margin-right: -20px;
+      }
+      .carousel .container {
+
+      }
+      .carousel .item {
+        height: 300px;
+      }
+      .carousel img {
+        height: 300px;
+      }
+      .carousel-caption {
+        width: 65%;
+        padding: 0 70px;
+        margin-top: 100px;
+      }
+      .carousel-caption h1 {
+        font-size: 30px;
+      }
+      .carousel-caption .lead,
+      .carousel-caption .btn {
+        font-size: 18px;
+      }
+
+      .marketing .span4 + .span4 {
+        margin-top: 40px;
+      }
+
+      .featurette-heading {
+        font-size: 30px;
+      }
+      .featurette .lead {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+    }
+    </style>
+
+    <!-- IE6~8에서 HTML5 태그를 지원하기위한 HTML5 shim -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- 파비콘과 앱 아이콘 -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="icon/favicon.png">
+  <style type="text/css"></style>
+  <style id="holderjs-style" type="text/css">
+       .holderjs-fluid {
+             font-size:16px;font-weight:bold;
+             text-align:center;font-family:sans-serif;
+             margin:0}
+  </style>
+  </head>
+
+  <body>
+
+
+
+    <!-- 탐색막대
+    ================================================== -->
+    <div class="navbar-wrapper">
+      <!-- 절대 위치를 지정한 상위 요소 안에서 중앙 정렬하도록 .navbar를 .container로 두른다. -->
+      <div class="container">
+
+        <div class="navbar navbar-inverse">
+          <div class="navbar-inner">
+            <!-- 유동형 탐색막대 1 단계: 반응형 탐색막대를 여는 버튼 (문서에서 다루지 않음). 반응형 CSS가 필요하다. -->
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">Smart Delivery </a>
+            <!-- 유동형 탐색막대 2 단계: .navbar-collapse.collapse 안에 숨기고 싶은 모든 탐색막대 내용을 넣는다. -->
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li class="active"><a href="#">SDMS 소개</a></li>
+                <li><a href="#about">상품 및 요금</a></li>
+                <li><a href="#contact">기업 및 비지니스</a></li>
+                <!-- 부트스트랩 드롭다운은 http://twitter.github.com/bootstrap/javascript.html#dropdowns 을 참고 -->
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">메뉴선택 <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">영업소고객 가입안내</a></li>
+                    <li><a href="#">중소기업고객 가입안내</a></li>
+                    <li><a href="#">개인고객 운송번호표받기안내</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header">SDMS 놀이터</li>
+                    <li><a href="#">김태희랑 놀기</a></li>
+                    <li><a href="#">김대희랑 놀기</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <!-- 이메일 비밀번호 입력란 추가 -->
+              <form class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+              <input type="text" placeholder="이메일 입력" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="비밀번호 입력" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">로그인하기</button>
+          </form>
+              
+              
+            </div><!--/.nav-collapse -->
+          </div><!-- /.navbar-inner -->
+        </div><!-- /.navbar -->
+
+      </div> <!-- /.container -->
+    </div><!-- /.navbar-wrapper -->
+
+
+
+    <!-- 회전광고판
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="images/images (1).jpeg" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Smart Delivery Management System</h1>
+              <p class="lead">일에 대한 열정과 조직에 대한 일체감 및 자부심을 갖고 미래에 도전합니다. 업무열정, 공동체의식, 올바른 가치관을 지니며, 책임감과 프로의식을 갖고 끊임없이 도전하겠습니다.</p>
+              <a class="btn btn-large btn-primary" href="#">자세히 보기</a>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="images/images (2).jpeg" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>스마트 자동알림 서비스 </h1>
+              <p class="lead">자동으로 택배문자를 받거나 제휴사의 경우 자동으로 운송장이 등록됩니다. 또한 쇼핑몰을 접속할 필요없이 택배가 어디까지 왔는지 자동으로 알려드립니다. </p>
+              <a class="btn btn-large btn-primary" href="#">더 알아보기</a>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="images/images (3).jpeg" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>추가로 하나 더.</h1>
+              <p class="lead">추가 문의에 대비하여 택배사가 배송원의 연락처가 제공됩니다. (단, 배송원 연락처는 택배사가 정보 제공시 가능합니다.)</p>
+              <a class="btn btn-large btn-primary" href="#">갤러리 둘러보기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="en-font-family">&lsaquo;</span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="en-font-family">&rsaquo;</span></a>
+    </div><!-- /.carousel -->
+
+
+
+    <!-- 마케팅 문구와 특집
+    ================================================== -->
+    <!-- 모든 내용을 중앙 정렬하기위해 나머지 페이지를 다른 container로 두른다. -->
+
+    <div class="container marketing">
+
+      <!-- 회전광고판 아래에 있는 세개 열 -->
+      <div class="row">
+        <div class="span4">
+          <img class="img-circle" data-src="holder.js/140x140" 
+                 alt="140x140" src="images/images (4).jpeg" 
+                 style="width: 140px; height: 140px;">
+          <h2>두근두근</h2>
+          <p>택배조회 때문에 인터넷 들락날락하는것 이제그만 대기번호를 드립니다.</p>
+          <p><a class="btn" href="#">대기번호받기 <span class="en-font-family">&raquo;</span></a></p>
+        </div>
+      <!-- /.span4 -->
+        <div class="span4">
+          <img class="img-circle" data-src="holder.js/140x140" 
+                 alt="140x140" src="images/images (5).jpeg" 
+                 style="width: 140px; height: 140px;">
+          <h2>영업소 고객</h2>
+          <p>반갑습니다.~!  지금 가입하시면 업무열정, 공동체의식, 올바른 가치관을 지니며, 책임감과 프로의식을 갖고 끊임없이 도전하고 성장하는 사람이 됩니다. 가입해주세요...</p>
+          <p><a class="btn" href="#">자세히 보기 <span class="en-font-family">&raquo;</span></a></p>
+        </div><!-- /.span4 -->
+        <div class="span4">
+          <img class="img-circle" data-src="holder.js/140x140" 
+                 alt="140x140" src="images/images (6).jpeg" 
+                 style="width: 140px; height: 140px;">
+          <h2>중소기업 고객</h2>
+          <p>바이온사원, 파괴된 왕궁, 그곳에 있는 천상의 궁전 파미아나카스사원이 있고, .</p>
+          <p><a class="btn" href="#">자세히 보기 <span class="en-font-family">&raquo;</span></a></p>
+        </div>
+      <!-- /.span4 -->
+      </div>
+      <!-- /.row -->
+
+
+      <!-- 특집 시작 -->
+
+      <hr class="featurette-divider">
+
+      <div class="featurette">
+        <img class="featurette-image pull-right" src="images/images (7).jpeg">
+        <h2 class="featurette-heading">첫번째 특집 제목. <span class="muted">완전히 빠져들 것이다.</span></h2>
+        <p class="lead">프레스코의 마무리에 사용되는 일도 허다하다. 가장 성하게 된 것은 중세 말기에서 이탈리아 르네상스 초기에 걸쳐서이고 치마부에 조토를 비롯하여 기를란다요, 보티첼리 등이 템페라화를 남기고 있다. 15세기 이후는 유화에 눌려 스러졌다.</p>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="featurette">
+        <img class="featurette-image pull-left" src="images/images (8).jpeg">
+        <h2 class="featurette-heading">정말 좋다. <span class="muted">직접 사용해 보라.</span></h2>
+        <p class="lead">프레스코의 마무리에 사용되는 일도 허다하다. 가장 성하게 된 것은 중세 말기에서 이탈리아 르네상스 초기에 걸쳐서이고 치마부에 조토를 비롯하여 기를란다요, 보티첼리 등이 템페라화를 남기고 있다. 15세기 이후는 유화에 눌려 스러졌다.</p>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="featurette">
+        <img class="featurette-image pull-right" src="images/images (9).jpeg">
+        <h2 class="featurette-heading">그리고 마지막이다. <span class="muted">이상 끝.</span></h2>
+        <p class="lead">프레스코의 마무리에 사용되는 일도 허다하다. 가장 성하게 된 것은 중세 말기에서 이탈리아 르네상스 초기에 걸쳐서이고 치마부에 조토를 비롯하여 기를란다요, 보티첼리 등이 템페라화를 남기고 있다. 15세기 이후는 유화에 눌려 스러졌다.</p>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <!-- 특집 /끝 -->
+
+
+      <!-- 꼬리말 -->
+      <footer>
+        <p class="pull-right"><a href="#">제일 위로</a></p>
+        <p>&copy; 2013 회사. &middot; <a href="#">개인정보취급방침</a> &middot; <a href="#">이용약관</a></p>
+      </footer>
+
+    </div><!-- /.container -->
+
+
+
+    <!-- 자바스크립트
+    ================================================== -->
+    <!-- 페이지를 빨리 읽어들이도록 문서 마지막에 배치 -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script>
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
+    </script>
+    <script src="assets/js/holder.js"></script>
+  </body>
+</html>
