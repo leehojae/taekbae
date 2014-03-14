@@ -135,7 +135,6 @@ public class CarControl {
 	
 	@RequestMapping("/carList.do")  //chell
 	public String carList(Model model) throws Exception {
-		//model.addAttribute("offices", officeDao.selectList());
 		return "car/carList";
 	}
 	
