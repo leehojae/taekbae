@@ -134,19 +134,19 @@ public class MemberControl {
 					.setError(ex.getMessage());
 		}
 	}
-	
-	@RequestMapping(value="/ajax/add.do", method=RequestMethod.POST, 
-			produces="application/json")
-	public Object ajaxAdd(Member member) throws Exception {
-		try {
-			memberDao.insert(member);
-			return new JsonResult().setResultStatus(JsonResult.SUCCESS);
-			
-		} catch (Throwable ex) {
-			return new JsonResult().setResultStatus(JsonResult.FAILURE)
-					.setError(ex.getMessage());
-		}
-	}
+//	
+//	@RequestMapping(value="/ajax/add.do", method=RequestMethod.POST, 
+//			produces="application/json")
+//	public Object ajaxAdd(Member member) throws Exception {
+//		try {
+//			memberDao.insert(member);
+//			return new JsonResult().setResultStatus(JsonResult.SUCCESS);
+//			
+//		} catch (Throwable ex) {
+//			return new JsonResult().setResultStatus(JsonResult.FAILURE)
+//					.setError(ex.getMessage());
+//		}
+//	}
 	
 	@RequestMapping(value="/ajax/delete", produces="application/json")
 	public String ajaxDelete(int no) throws Exception {
@@ -205,6 +205,21 @@ public class MemberControl {
 		return "member/memberList";
 	}
 	
+	
+	
+	
+	@RequestMapping(value="/ajax/addMember", method=RequestMethod.POST, 
+			produces="application/json")
+	public String ajaxAdd(Member member) throws Exception {
+		try {
+			
+			memberDao.insert(member);
+			return "redirect:/success.jsp";
+			
+		} catch (Throwable ex) {
+			return "redirect:/fail.jsp";
+		}
+	}
 
 }
 
