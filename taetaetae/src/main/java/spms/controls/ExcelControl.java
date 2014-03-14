@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,9 +30,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import spms.dao.ExcelDao;
 import spms.services.RestRequest;
-import spms.services.SmsSendService;
 import spms.vo.Excel;
 import spms.vo.JsonResult;
+
+import com.kt.openplatform.sdk.KTOpenApiHandler;
 
 @Controller
 @RequestMapping("/excel")
@@ -55,8 +57,6 @@ public class ExcelControl {
 	@Autowired(required = false)
 	ExcelDao excelDao;
 	
-	@Autowired(required = false)
-	SmsSendService smsSendService;
 	
 	@RequestMapping("/delete")
 	public String delete(Model model) throws Exception {
@@ -150,6 +150,53 @@ public class ExcelControl {
 		for (String s : telList) {
 			System.err.println(s);
 		}
+		
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+
+		// 발급 받은 개발자 Key 와 Api_Secret 를 입력 String auth_key = "개발자 키를 넣어주세요";
+		// String auth_secret = "비밀키를 넣어주세요";
+		String auth_key = "2FKuieS1nQwRYE807KNXDuq3H7uwPyIUlKB939FShAyO0RbH20";
+		String auth_secret = "sodh50ncgSU9KlIZyBD08pHqPiBFZrlCm2XDIVsDrr7ZlVaz3d";
+		// api id 설정
+		String apiId = "1.0.SMS.MAKE";
+		// https 이용 여부 설정 false 로 기본 설정. boolean bSSL = false;
+		boolean bSSL = false;
+		// Make Parameters
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("sender", "01047311909");
+		params.put("receivers", "01047311909");
+//		params.put("receivers", "01047311909, "
+//							  + "01047311909, "
+//							  + "01047311909, "
+//							  + "01047311909, "
+//							  + "01047311909, "
+//							  + "01047311909, "
+//							  + "01047311909, "
+//							  + "01047311909, "
+//							  + "01047311909, "
+//							  + "01047311909, "
+//							  + "01047311909, "
+//							  + "01047311909, "
+//							  + "01047311909, "
+//							  + "01047311909, "
+//							  + "01047311909, "
+//							  + "01047311909");
+		params.put("displayaddress", "01047311909");
+		params.put("text", "문자메시지 내용을 넣어주세요");
+		// make xauth params
+		HashMap<String, String> xauth_params = new HashMap<String, String>();
+		xauth_params.put("username", "");
+		xauth_params.put("password", "");
+		
+		Class.forName("com.kt.openplatform.sdk.KTOpenApiHandler");
+		
+		KTOpenApiHandler handler = KTOpenApiHandler.createHandler(auth_key,	auth_secret);
+
+		HashMap<?, ?> r = handler.call(apiId, params, xauth_params, bSSL);
+
+		System.out.println("RESULT==>" + r);
+		
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 		
 //		smsSendService.smsSend();
 		
