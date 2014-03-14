@@ -44,11 +44,6 @@ public class AreaControl {
 		return "area/add";
 	}
 	
-	@RequestMapping("/delete")
-	public String delete(int no, Model model) throws Exception {
-		areaDao.delete(no);
-		return "redirect:list.do";
-	}
 	
 	@RequestMapping("/list")
 	public String list(Model model) throws Exception {
@@ -112,11 +107,13 @@ public class AreaControl {
 	public Object ajaxDelete(int no) throws Exception {
 		try {
 			areaDao.delete(no);
-			return new JsonResult().setResultStatus(JsonResult.SUCCESS);
+			return "redirect:/area/areaList.do";
+//			return new JsonResult().setResultStatus(JsonResult.SUCCESS);
 			
 		} catch (Throwable ex) {
-			return new JsonResult().setResultStatus(JsonResult.FAILURE)
-					.setError(ex.getMessage());
+			return "redirect:/area/areaList.do";
+//			return new JsonResult().setResultStatus(JsonResult.FAILURE)
+//					.setError(ex.getMessage());
 		}
 	}
 	
@@ -145,37 +142,12 @@ public class AreaControl {
 		
 	}
 	
-	/*
-	@RequestMapping("/ajax/list")
-	public ResponseEntity<String> ajaxList(
-			HttpServletResponse response,
-			Model model) throws Exception {
-		
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Type", "text/plain;charset=UTF-8");
-		
-		return new ResponseEntity<String>(
-				new Gson().toJson(areaDao.selectList()),
-				headers,
-				HttpStatus.OK);
+	
+	@RequestMapping("/areaList.do")  //chell
+	public String areaList(Model model) throws Exception {
+		return "area/areaList";
 	}
-	*/
-	/*
-	@RequestMapping("/ajax/list")
-	@ResponseBody
-	public String ajaxList(
-			HttpServletResponse response,
-			Model model) throws Exception {
-		return new Gson().toJson(areaDao.selectList());
-	}
-	*/
-	/*
-	@RequestMapping("/ajax/list")
-	public String ajaxList(Model model) throws Exception {
-		model.addAttribute("areas", areaDao.selectList());
-		return "ajax/area/list";
-	}
-	*/
+	
 
 }
 
