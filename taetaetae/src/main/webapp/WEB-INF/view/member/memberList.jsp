@@ -192,7 +192,6 @@ function deleteFunction()
 
 
 </table>
-	<input id="addBtn" type="button" value="등록">
 	<input id="updateBtn" type="button" value="변경" class="view">
 	<input id="delBtn" type="button" value="삭제"  onclick="deleteFunction()" />
 	<input id="cancelBtn" type="reset" value="취소">
