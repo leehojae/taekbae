@@ -412,8 +412,9 @@
             	             console.log("대기번호는 : " + data.jsonResult.data[0].state);
             	    	   alertify.success("당신의 대기번호는 " + data.jsonResult.data[0].state + "번째 입니다.");
             	           });
-            	    	   }
+            	    	   }else{
             	    		   alertify.error("잘못된 번호입력입니다.");
+            	    	   }
             	       } else {
             	           // user clicked "cancel"
             	    	   alertify.error("취소하였습니다");
