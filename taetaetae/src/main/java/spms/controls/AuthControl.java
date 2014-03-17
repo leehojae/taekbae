@@ -22,8 +22,8 @@ public class AuthControl {
 	@Autowired(required=false)
 	MemberDao memberDao;
 	
-	
-	ExcelControl excelControl = new ExcelControl();
+	@Autowired(required=false)
+	ExcelControl excelControl;
 	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String form(@CookieValue(required=false) String id, Model model) {
@@ -61,7 +61,7 @@ public class AuthControl {
 			if (member.getNo()==1){
 			return "redirect:/main.do";
 			} else{
-				return "redirect:../delivery/deliveryMember.html";
+				return "deliveryMember.html";
 			}
 		} else {
 			return "redirect:/index.jsp";
