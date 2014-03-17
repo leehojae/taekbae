@@ -124,7 +124,7 @@ public class ExcelControl {
 	public String updateRefresh(int id, int count, String[] updateList) throws Exception {
 			System.out.println(id);
 			System.out.println(count);
-			System.out.println(updateList.length);
+			System.err.println(updateList.length);
 			for (String s : updateList){
 				System.out.println(s);
 				stateReUpdate(Long.parseLong(s));
@@ -185,8 +185,8 @@ public class ExcelControl {
 		params.put("text", "문자메시지 내용을 넣어주세요");
 		// make xauth params
 		HashMap<String, String> xauth_params = new HashMap<String, String>();
-		xauth_params.put("username", "");
-		xauth_params.put("password", "");
+		xauth_params.put("username", "goodddong@gmail.com");
+		xauth_params.put("password", "!dhffpppong85");
 		
 		Class.forName("com.kt.openplatform.sdk.KTOpenApiHandler");
 		
