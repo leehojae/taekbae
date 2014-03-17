@@ -55,16 +55,14 @@ public class AuthControl {
 		
 		Member member = memberDao.selectByIdPassword(sqlparamMap);
 		System.err.println("dddd : " +  member.getNo());
-		if (member != null) {
+		{
 			excelControl.staticId  = member.getNo();
 			model.addAttribute("loginUser", member);
 			if (member.getNo()==1){
 			return "redirect:/main.do";
 			} else{
-				return "deliveryMember.html";
+				return "redirect:../delivery/deliveryMember.html";
 			}
-		} else {
-			return "redirect:/index.jsp";
 		}
   }
 	
