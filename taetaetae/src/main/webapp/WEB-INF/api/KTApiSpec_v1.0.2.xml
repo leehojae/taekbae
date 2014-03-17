@@ -1,0 +1,948 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<n1:sdk xmlns:n1="http://restapi.bizphone.co.kr/sdk/v1.0"
+    version="1.0.2">
+  <n1:oauth version="1.0">
+    <n1:signature_method>HMAC-SHA1</n1:signature_method>
+    <n1:oauth_root>/biz/oauth/1.0a</n1:oauth_root>
+    <n1:request_token_url>/request_token</n1:request_token_url>
+    <n1:authorize_url>/authorize</n1:authorize_url>
+    <n1:access_token_url>/access_token</n1:access_token_url>
+  </n1:oauth>
+  <n1:oee>
+    <n1:host>api.oaasys.com</n1:host>
+    <n1:port>80</n1:port>
+    <n1:ssl_port>443</n1:ssl_port>
+    <n1:api_root>/biz/api/</n1:api_root>
+    <n1:domain>biz</n1:domain>
+    <n1:authz_method>sign</n1:authz_method>
+  </n1:oee>
+  <n1:apis>
+    <n1:api_group id="T0100"
+        name="Call"
+        desc="Call"
+        context_name="">
+      <n1:api id="1.0.CALL.CLICK2CALL.QUERYRESULT"
+          name="getClickToCallResult"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="GET">1.0/call/click2call/queryresult</n1:rest_uri>
+        <n1:input type_ref="M1000000061"></n1:input>
+        <n1:output type_ref="M1000000062"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.CALL.CLICK2CALL.MAKE"
+          name="clickToCall"
+          type="DEFE"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="POST">1.0/call/click2call/make</n1:rest_uri>
+        <n1:input type_ref="M1000000135"></n1:input>
+        <n1:output type_ref="M1000000136"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+    </n1:api_group>
+    <n1:api_group id="T0200"
+        name="발신번호 통보"
+        desc="발신번호 통보"
+        context_name="">
+      <n1:api id="1.0.CALL.CID.SETNOTI"
+          name="setCIDNoti"
+          type="EVEN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="POST">1.0/call/cid/setnoti</n1:rest_uri>
+        <n1:input type_ref="M1000000063"></n1:input>
+        <n1:output type_ref="M1000000064"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.CALL.CID.UNSETNOTI"
+          name="unsetCIDNoti"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="POST">1.0/call/cid/unsetnoti</n1:rest_uri>
+        <n1:input type_ref="M1000000065"></n1:input>
+        <n1:output type_ref="M1000000066"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.CALL.CID.GETNOTIINFO"
+          name="getNotiInfo"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="GET">1.0/call/cid/getnotiinfo</n1:rest_uri>
+        <n1:input type_ref="M1000000079"></n1:input>
+        <n1:output type_ref="M1000000080"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.CALL.CID.SETNOTI_INTERNAL"
+          name="setCIDNoti_internal"
+          type="EVEN"
+          is_pay="false"
+          oauth_required="false">
+        <n1:rest_uri method="POST">1.0/call/cid/setnoti_internal</n1:rest_uri>
+        <n1:input type_ref="M1000000063"></n1:input>
+        <n1:output type_ref="M1000000064"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.CALL.CID.GETNOTIINFO_INTERNAL"
+          name="getNotiInfo_internal"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="false">
+        <n1:rest_uri method="GET">1.0/call/cid/getnotiinfo_internal</n1:rest_uri>
+        <n1:input type_ref="M1000000079"></n1:input>
+        <n1:output type_ref="M1000000080"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.CALL.CID.UNSETNOTI_INTERNAL"
+          name="unsetCIDNoti_internal"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="false">
+        <n1:rest_uri method="POST">1.0/call/cid/unsetnoti_internal</n1:rest_uri>
+        <n1:input type_ref="M1000000065"></n1:input>
+        <n1:output type_ref="M1000000066"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+    </n1:api_group>
+    <n1:api_group id="T0500"
+        name="음성동보"
+        desc="음성동보"
+        context_name="">
+      <n1:api id="1.0.CALL.BROADCAST.MAKE"
+          name="makeBroadcast"
+          type="EVEN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="POST">1.0/call/broadcast/make</n1:rest_uri>
+        <n1:input type_ref="M1000000117"></n1:input>
+        <n1:output type_ref="M1000000118"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.CALL.BROADCAST.QUERYRESULT"
+          name="queryBroadcastResult"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="GET">1.0/call/broadcast/queryresult</n1:rest_uri>
+        <n1:input type_ref="M1000000119"></n1:input>
+        <n1:output type_ref="M1000000120"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+    </n1:api_group>
+    <n1:api_group id="T0600"
+        name="회의통화"
+        desc="회의통화"
+        context_name="">
+      <n1:api id="1.0.CALL.VOICECONFERENCE.MAKE"
+          name="makeVoiceConference"
+          type="EVEN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="POST">1.0/call/voiceconference/make</n1:rest_uri>
+        <n1:input type_ref="M1000000095"></n1:input>
+        <n1:output type_ref="M1000000096"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.CALL.VOICECONFERENCE.MODIFYMEMBER"
+          name="modifyMember"
+          type="DEFE"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="POST">1.0/call/voiceconference/modifymember</n1:rest_uri>
+        <n1:input type_ref="M1000000097"></n1:input>
+        <n1:output type_ref="M1000000098"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.CALL.VOICECONFERENCE.QUERYMEMBER"
+          name="queryMember"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="GET">1.0/call/voiceconference/querymember</n1:rest_uri>
+        <n1:input type_ref="M1000000099"></n1:input>
+        <n1:output type_ref="M1000000100"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+    </n1:api_group>
+    <n1:api_group id="T0700"
+        name="SMS"
+        desc="SMS"
+        context_name="">
+      <n1:api id="1.0.SMS.MAKE"
+          name="sendSMS"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="POST">1.0/sms/make</n1:rest_uri>
+        <n1:input type_ref="M1000000048"></n1:input>
+        <n1:output type_ref="M1000000049"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.SMS.MAKEWITHCHECK"
+          name="sendSMSWithCheck"
+          type="EVEN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="POST">1.0/sms/makewithcheck</n1:rest_uri>
+        <n1:input type_ref="M1000000093"></n1:input>
+        <n1:output type_ref="M1000000094"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.SMS.QUERYRESULT"
+          name="getSendSMSResult"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="GET">1.0/sms/queryresult</n1:rest_uri>
+        <n1:input type_ref="M1000000054"></n1:input>
+        <n1:output type_ref="M1000000055"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.SMS.REGIST"
+          name="registSMSRecv"
+          type="EVEN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="POST">1.0/sms/regist</n1:rest_uri>
+        <n1:input type_ref="M1000000125"></n1:input>
+        <n1:output type_ref="M1000000126"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.SMS.UNREGIST"
+          name="unregistSMSRecv"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="POST">1.0/sms/unregist</n1:rest_uri>
+        <n1:input type_ref="M1000000127"></n1:input>
+        <n1:output type_ref="M1000000128"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.SMS.QUERYREGIST"
+          name="querySMSRecvRegist"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="GET">1.0/sms/queryregist</n1:rest_uri>
+        <n1:input type_ref="M1000000129"></n1:input>
+        <n1:output type_ref="M1000000130"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+    </n1:api_group>
+    <n1:api_group id="T0800"
+        name="착신전환"
+        desc="착신전환"
+        context_name="">
+      <n1:api id="1.0.CALL.CALLFWD.SET"
+          name="setCallForwarding"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="GET,POST">1.0/call/callfwd/set</n1:rest_uri>
+        <n1:input type_ref="M1000000087"></n1:input>
+        <n1:output type_ref="M1000000088"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.CALL.CALLFWD.QUERY"
+          name="queryCallForwarding"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="GET,POST">1.0/call/callfwd/query</n1:rest_uri>
+        <n1:input type_ref="M1000000091"></n1:input>
+        <n1:output type_ref="M1000000092"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.CALL.CALLFWD.UNSET"
+          name="unsetCallForwarding"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="true">
+        <n1:rest_uri method="GET,POST">1.0/call/callfwd/unset</n1:rest_uri>
+        <n1:input type_ref="M1000000089"></n1:input>
+        <n1:output type_ref="M1000000090"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+    </n1:api_group>
+    <n1:api_group id="T0900"
+        name="개발자 정보"
+        desc="개발자 정보"
+        context_name="">
+      <n1:api id="1.0.ISVINFO.GET_API_GRP1"
+          name="get_api_grp1"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="false">
+        <n1:rest_uri method="GET">1.0/isvinfo/get_api_grp1</n1:rest_uri>
+        <n1:input type_ref="M1000000479"></n1:input>
+        <n1:output type_ref="M1000000480"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.ISVINFO.GET_API_GRP2"
+          name="get_api_grp2"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="false">
+        <n1:rest_uri method="GET">1.0/isvinfo/get_api_grp2</n1:rest_uri>
+        <n1:input type_ref="M1000000481"></n1:input>
+        <n1:output type_ref="M1000000482"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+    </n1:api_group>
+    <n1:api_group id="T1000"
+        name="M2M"
+        desc="M2M"
+        context_name="">
+      <n1:api id="1.0.M2M.AUTH.CHECKJOININFO"
+          name="authCheckJoinInfo"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="false">
+        <n1:rest_uri method="GET,POST">1.0/m2m/auth/checkjoininfo</n1:rest_uri>
+        <n1:input type_ref="M1000000483"></n1:input>
+        <n1:output type_ref="M1000000484"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.M2M.AUTH.GETPHONEINFO"
+          name="authGetPhoneInfo"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="false">
+        <n1:rest_uri method="GET,POST">1.0/m2m/auth/getphoneinfo</n1:rest_uri>
+        <n1:input type_ref="M1000000489"></n1:input>
+        <n1:output type_ref="M1000000490"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.M2M.AUTH.CHECKUSESERVICE"
+          name="authCheckUseService"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="false">
+        <n1:rest_uri method="GET,POST">1.0/m2m/auth/checkuseservice</n1:rest_uri>
+        <n1:input type_ref="M1000000491"></n1:input>
+        <n1:output type_ref="M1000000492"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.M2M.AUTH.CHECKBILLSTATUS"
+          name="authCheckBillStatus"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="false">
+        <n1:rest_uri method="GET,POST">1.0/m2m/auth/checkbillstatus</n1:rest_uri>
+        <n1:input type_ref="M1000000485"></n1:input>
+        <n1:output type_ref="M1000000486"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+      <n1:api id="1.0.M2M.AUTH.CHECKADULT"
+          name="authCheckAdult"
+          type="TRAN"
+          is_pay="false"
+          oauth_required="false">
+        <n1:rest_uri method="GET,POST">1.0/m2m/auth/checkadult</n1:rest_uri>
+        <n1:input type_ref="M1000000487"></n1:input>
+        <n1:output type_ref="M1000000488"></n1:output>
+        <n1:callback xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:callback>
+        <n1:cb_msg_format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:nil="true"></n1:cb_msg_format>
+      </n1:api>
+    </n1:api_group>
+  </n1:apis>
+  <n1:types>
+    <n1:type id="default_in">
+      <n1:param name="api_key"
+          type="STRING"></n1:param>
+      <n1:param name="api_timestamp"
+          type="STRING"></n1:param>
+      <n1:param name="api_signature"
+          type="STRING"></n1:param>
+    </n1:type>
+    <n1:type id="default_out">
+      <n1:param name="result_code"
+          type="STRING"></n1:param>
+      <n1:param name="result_msg"
+          type="STRING"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000061"
+        base="default_in">
+      <n1:param name="call_id"
+          desc="호아이디"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000062"
+        base="default_out">
+      <n1:param name="call_id"
+          desc="현재 호 아이디"></n1:param>
+      <n1:param name="caller"
+          desc="발신 전화번호(QOOK인터넷전화)"></n1:param>
+      <n1:param name="callee"
+          desc="착신 전화번호(자사/타사 일반 전화번호)"></n1:param>
+      <n1:param name="start_time"
+          desc="통화 시작시간 (YYYYMMDDhhmmss)"></n1:param>
+      <n1:param name="dial_time"
+          desc="통화시도시간"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000135"
+        base="default_in">
+      <n1:param name="caller"
+          desc="발신 전화번호(QOOK인터넷전화)"></n1:param>
+      <n1:param name="callee"
+          desc="착신 전화번호(자사/타사 일반 전화번호)"></n1:param>
+      <n1:param name="cb_method"
+          desc="통보방법"></n1:param>
+      <n1:param name="cb_trgt_info"
+          desc="콜백대상정보"></n1:param>
+      <n1:param name="cb_format"
+          desc="전송포맷"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000136"
+        base="default_out">
+      <n1:param name="call_id"
+          desc="현재 호 아이디"></n1:param>
+      <n1:param name="trid"
+          desc="트랜젝션 ID"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000063"
+        base="default_in">
+      <n1:param name="subscriber"
+          desc="가입자 전화번호"></n1:param>
+      <n1:param name="cb_method"
+          desc="통보방법"></n1:param>
+      <n1:param name="cb_trgt_info"
+          desc="콜백대상정보"></n1:param>
+      <n1:param name="cb_format"
+          desc="전송포맷"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000064"
+        base="default_out">
+      <n1:param name="trid"
+          desc="트랜젝션 ID"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000065"
+        base="default_in">
+      <n1:param name="subscriber"
+          desc="가입자 전화번호"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000066"
+        base="default_out"></n1:type>
+    <n1:type id="M1000000079"
+        base="default_in">
+      <n1:param name="subscriber"
+          desc="가입자전화번호"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000080"
+        base="default_out">
+      <n1:param name="noti_info"
+          desc="설정정보"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000063"
+        base="default_in">
+      <n1:param name="subscriber"
+          desc="가입자 전화번호"></n1:param>
+      <n1:param name="cb_method"
+          desc="통보방법"></n1:param>
+      <n1:param name="cb_trgt_info"
+          desc="콜백대상정보"></n1:param>
+      <n1:param name="cb_format"
+          desc="전송포맷"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000064"
+        base="default_out">
+      <n1:param name="trid"
+          desc="트랜젝션 ID"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000079"
+        base="default_in">
+      <n1:param name="subscriber"
+          desc="가입자전화번호"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000080"
+        base="default_out">
+      <n1:param name="noti_info"
+          desc="설정정보"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000065"
+        base="default_in">
+      <n1:param name="subscriber"
+          desc="가입자 전화번호"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000066"
+        base="default_out"></n1:type>
+    <n1:type id="M1000000117"
+        base="default_in">
+      <n1:param name="caller"
+          desc="발신전화번호"></n1:param>
+      <n1:param name="callees"
+          desc="착신전화번호"></n1:param>
+      <n1:param name="file_url"
+          desc="음성파일 URL"></n1:param>
+      <n1:param name="text"
+          desc="텍스트"></n1:param>
+      <n1:param name="option"
+          desc="동보 전달방식 옵션"></n1:param>
+      <n1:param name="max_digit"
+          desc="유효 디지트 범위"></n1:param>
+      <n1:param name="cb_method"
+          desc="통보방법"></n1:param>
+      <n1:param name="cb_trgt_info"
+          desc="콜백대상정보"></n1:param>
+      <n1:param name="cb_format"
+          desc="전송포맷"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000118"
+        base="default_out">
+      <n1:param name="call_id"
+          desc="호 아이디"></n1:param>
+      <n1:param name="trid"
+          desc="트랜젝션 ID"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000119"
+        base="default_in">
+      <n1:param name="call_id"
+          desc="호 아이디"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000120"
+        base="default_out">
+      <n1:param name="call_id"
+          desc="호 아이디"></n1:param>
+      <n1:param name="caller"
+          desc="발신전화번호"></n1:param>
+      <n1:param name="callees"
+          desc="착신전화번호"></n1:param>
+      <n1:param name="callee_codes"
+          desc="착신자 개별 호결과 코드"></n1:param>
+      <n1:param name="callee_digits"
+          desc="착신자가 눌렀던 디지트"></n1:param>
+      <n1:param name="option"
+          desc="동보 전달방식 옵션"></n1:param>
+      <n1:param name="max_digit"
+          desc="유효 디지트 범위"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000095"
+        base="default_in">
+      <n1:param name="caller"
+          desc="주관전화번호"></n1:param>
+      <n1:param name="callees"
+          desc="참여전화번호"></n1:param>
+      <n1:param name="option"
+          desc="옵션"></n1:param>
+      <n1:param name="cb_method"
+          desc="통보방법"></n1:param>
+      <n1:param name="cb_trgt_info"
+          desc="콜백대상정보"></n1:param>
+      <n1:param name="cb_format"
+          desc="전송포맷"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000096"
+        base="default_out">
+      <n1:param name="call_id"
+          desc="회의통화 아이디"></n1:param>
+      <n1:param name="trid"
+          desc="트랜젝션 ID"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000097"
+        base="default_in">
+      <n1:param name="call_id"
+          desc="회의통화아이디"></n1:param>
+      <n1:param name="callee"
+          desc="참여 전화번호"></n1:param>
+      <n1:param name="action"
+          desc="참여자 추가/퇴장 여부"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000098"
+        base="default_out"></n1:type>
+    <n1:type id="M1000000099"
+        base="default_in">
+      <n1:param name="call_id"
+          desc="회의통화 아이디"></n1:param>
+      <n1:param name="caller"
+          desc="주관전화번호"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000100"
+        base="default_out">
+      <n1:param name="call_id"
+          desc="회의통화 아이디"></n1:param>
+      <n1:param name="caller"
+          desc="주관전화번호"></n1:param>
+      <n1:param name="callees"
+          desc="참여전화번호"></n1:param>
+      <n1:param name="callee_codes"
+          desc="참여자 상태"></n1:param>
+      <n1:param name="dial_time"
+          desc="dial_time"></n1:param>
+      <n1:param name="start_time"
+          desc="통화 시작시간 (YYYYMMDDhhmmss)"></n1:param>
+      <n1:param name="end_time"
+          desc="통화 종료시간 (YYYYMMDDhhmmss)"></n1:param>
+      <n1:param name="duration"
+          desc="통화시간 (초단위)"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000048"
+        base="default_in">
+      <n1:param name="sender"
+          desc="발신전화번호"></n1:param>
+      <n1:param name="receivers"
+          desc="수신전화번호"></n1:param>
+      <n1:param name="displayaddress"
+          desc="표시번호"></n1:param>
+      <n1:param name="text"
+          desc="단문메시지내용"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000049"
+        base="default_out">
+      <n1:param name="call_id"
+          desc="단문메시지ID"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000093"
+        base="default_in">
+      <n1:param name="sender"
+          desc="발신전화번호"></n1:param>
+      <n1:param name="receivers"
+          desc="수신전화번호"></n1:param>
+      <n1:param name="displayaddress"
+          desc="표시번호"></n1:param>
+      <n1:param name="text"
+          desc="단문메시지내용"></n1:param>
+      <n1:param name="cb_method"
+          desc="통보방법"></n1:param>
+      <n1:param name="cb_trgt_info"
+          desc="콜백대상정보"></n1:param>
+      <n1:param name="cb_format"
+          desc="전송포맷"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000094"
+        base="default_out">
+      <n1:param name="call_id"
+          desc="단문메시지ID"></n1:param>
+      <n1:param name="trid"
+          desc="트랜젝션 ID"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000054"
+        base="default_in">
+      <n1:param name="call_id"
+          desc="단문메시지ID"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000055"
+        base="default_out">
+      <n1:param name="call_id"
+          desc="단문메시지ID"></n1:param>
+      <n1:param name="sender"
+          desc="발신전화번호"></n1:param>
+      <n1:param name="receivers"
+          desc="수신전화번호"></n1:param>
+      <n1:param name="receiver_codes"
+          desc="수신결과"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000125"
+        base="default_in">
+      <n1:param name="subscriber"
+          desc="단문수신등록번호"></n1:param>
+      <n1:param name="cb_method"
+          desc="통보방법"></n1:param>
+      <n1:param name="cb_trgt_info"
+          desc="콜백대상정보"></n1:param>
+      <n1:param name="cb_format"
+          desc="전송포맷"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000126"
+        base="default_out">
+      <n1:param name="trid"
+          desc="트랜젝션 ID"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000127"
+        base="default_in">
+      <n1:param name="subscriber"
+          desc="단문수신해제번호"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000128"
+        base="default_out"></n1:type>
+    <n1:type id="M1000000129"
+        base="default_in">
+      <n1:param name="subscriber"
+          desc="단문수신등록조회번호"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000130"
+        base="default_out">
+      <n1:param name="status"
+          desc="등록여부"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000087"
+        base="default_in">
+      <n1:param name="subscriber"
+          desc="착신전환 설정 전화번호"></n1:param>
+      <n1:param name="forwarding_num"
+          desc="착신전환번호"></n1:param>
+      <n1:param name="forwarding_type"
+          desc="착신전환타입"></n1:param>
+      <n1:param name="forwarding_time"
+          desc="무응답 착신전환시 착신전환 시간"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000088"
+        base="default_out"></n1:type>
+    <n1:type id="M1000000091"
+        base="default_in">
+      <n1:param name="subscriber"
+          desc="가입자전화번호"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000092"
+        base="default_out">
+      <n1:param name="status"
+          desc="착신전환 설정 여부"></n1:param>
+      <n1:param name="forwarding_num"
+          desc="착신전환번호"></n1:param>
+      <n1:param name="forwarding_type"
+          desc="착신전환타입"></n1:param>
+      <n1:param name="forwarding_time"
+          desc="무응답착신전환시착신전환시간"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000089"
+        base="default_in">
+      <n1:param name="subscriber"
+          desc="착신전환설정전화번호"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000090"
+        base="default_out"></n1:type>
+    <n1:type id="M1000000479"
+        base="default_in">
+      <n1:param name="isv_api_key"
+          desc="개발자 KEY"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000480"
+        base="default_out">
+      <n1:param name="api_grp_id"
+          desc="OPC API 그룹 ID"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000481"
+        base="default_in">
+      <n1:param name="isv_api_key"
+          desc="개발자 KEY"></n1:param>
+      <n1:param name="isv_api_timestamp"
+          desc="Time Stamp"></n1:param>
+      <n1:param name="isv_api_signature"
+          desc="Signature"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000482"
+        base="default_out">
+      <n1:param name="api_grp_id"
+          desc="OPC API 그룹 ID"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000483"
+        base="default_in">
+      <n1:param name="call_ctn"
+          desc="사용자 폰 번호"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000484"
+        base="default_out"></n1:type>
+    <n1:type id="M1000000489"
+        base="default_in">
+      <n1:param name="search_type"
+          desc="조회 구분"></n1:param>
+      <n1:param name="search_value"
+          desc="조회 값"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000490"
+        base="default_out">
+      <n1:param name="model_id"
+          desc="모델ID"></n1:param>
+      <n1:param name="maker_id"
+          desc="제조사ID"></n1:param>
+      <n1:param name="maker_name"
+          desc="제조사명"></n1:param>
+      <n1:param name="com_sale_date"
+          desc="상용출시일자"></n1:param>
+      <n1:param name="sms_available"
+          desc="SMS가능여부"></n1:param>
+      <n1:param name="sound_type"
+          desc="지원되는 사운드 타입"></n1:param>
+      <n1:param name="music_type"
+          desc="노래방 지원 여부"></n1:param>
+      <n1:param name="color_type"
+          desc="지원되는 컬러 바이트 수"></n1:param>
+      <n1:param name="bell_type"
+          desc="지원되는 벨소리 타입"></n1:param>
+      <n1:param name="cdma_type"
+          desc="지원 네트웍 종류"></n1:param>
+      <n1:param name="disp_mode_name"
+          desc="LCD명(메인)"></n1:param>
+      <n1:param name="disp_format_width"
+          desc="LCD Width(픽셀)"></n1:param>
+      <n1:param name="disp_format_length"
+          desc="LCD Height(픽셀)"></n1:param>
+      <n1:param name="cont_size_width"
+          desc="컨텐츠 사이즈 넓이(픽셀)"></n1:param>
+      <n1:param name="cont_size_length"
+          desc="컨텐츠 사이즈 길이(픽셀)"></n1:param>
+      <n1:param name="annun_size_width"
+          desc="AnnunciationSize 넓이(픽셀)"></n1:param>
+      <n1:param name="annun_size_length"
+          desc="AnnunciationSize 길이(픽셀)"></n1:param>
+      <n1:param name="flash_ind"
+          desc="Flash 지원여부(Y/N)"></n1:param>
+      <n1:param name="browser_name"
+          desc="브라우저명"></n1:param>
+      <n1:param name="browser_version"
+          desc="브라우저 버전"></n1:param>
+      <n1:param name="multipack_name"
+          desc="멀티팩명"></n1:param>
+      <n1:param name="multipack_version"
+          desc="멀티팩 버전"></n1:param>
+      <n1:param name="cdma2000_ind"
+          desc="CDMA2000 가능 여부"></n1:param>
+      <n1:param name="gps_ind"
+          desc="GPS 지원여부"></n1:param>
+      <n1:param name="biz_ind"
+          desc="BIZ단말기여부"></n1:param>
+      <n1:param name="multi_ind"
+          desc="멀티팩지원여부"></n1:param>
+      <n1:param name="evdo_ind"
+          desc="EVDO여부"></n1:param>
+      <n1:param name="cbs_ind"
+          desc="CBS지원여부"></n1:param>
+      <n1:param name="mms_ind"
+          desc="MMS지원여부"></n1:param>
+      <n1:param name="fimm_ind"
+          desc="FIMM단말기여부"></n1:param>
+      <n1:param name="nespot_ind"
+          desc="넷스팟지원여부"></n1:param>
+      <n1:param name="ciss_ind"
+          desc="CISS지원여부"></n1:param>
+      <n1:param name="kb_banking_ind"
+          desc="국민은행 뱅킹서비스 지원여부"></n1:param>
+      <n1:param name="onephone_ind"
+          desc="ONEPHONE지원여부"></n1:param>
+      <n1:param name="game_ind"
+          desc="게임폰 지원여부"></n1:param>
+      <n1:param name="mp3_spt_ind"
+          desc="MP3가능여부"></n1:param>
+      <n1:param name="bell_spt_ind"
+          desc="MP3벨소시 지원여부"></n1:param>
+      <n1:param name="platform_id"
+          desc="플랫폼ID"></n1:param>
+      <n1:param name="popup_ind"
+          desc="팝업지원여부"></n1:param>
+      <n1:param name="model_name"
+          desc="단말모델명"></n1:param>
+      <n1:param name="res_param"
+          desc="구조체 파라미터"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000491"
+        base="default_in">
+      <n1:param name="sid"
+          desc="부가서비스ID"></n1:param>
+      <n1:param name="juice_cp_id"
+          desc="JUICE CPID"></n1:param>
+      <n1:param name="call_ctn"
+          desc="사용자폰번호"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000492"
+        base="default_out">
+      <n1:param name="service_ind"
+          desc="부가서비스 가입여부"></n1:param>
+      <n1:param name="user_status"
+          desc="가입자 상태"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000485"
+        base="default_in">
+      <n1:param name="call_ctn"
+          desc="사용자폰번호"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000486"
+        base="default_out">
+      <n1:param name="billing_status"
+          desc="미납여부"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000487"
+        base="default_in">
+      <n1:param name="call_ctn"
+          desc="사용자 폰 번호"></n1:param>
+    </n1:type>
+    <n1:type id="M1000000488"
+        base="default_out"></n1:type>
+  </n1:types>
+</n1:sdk>
