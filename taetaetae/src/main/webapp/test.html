@@ -4,102 +4,44 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<script type="text/javascript">
-
-var AUTHORIZATION_SERVER_URL = "https://oneid.skplanetx.com";
-
-function getUrlParameter() {
-    var ParameterObject = new Object();
-    var locate = location.href;
-
-    if (locate.indexOf("?") == -1) {
-        return ParameterObject;
-    }
-
-    var parameter = locate.split("?")[1];
-    var paramAreay = parameter.split("&");
-    for ( var i = 0; i < paramAreay.length; i++) {
-        var tem = paramAreay[i].split("=");
-        ParameterObject[tem[0]] = tem[1];
-    }
-    getUrlParameter = function() {
-        return ParameterObject;
-    }
-    return ParameterObject;
-};
-
-function hasError() {
-    var hasError = false;
-    for ( var ele in getUrlParameter()) {
-        if (ele == 'error') {
-            hasError = true;
-        }
-    }
-    if (hasError == true) {
-        alert('[' + getUrlParameter()['error'] + "] " + getUrlParameter()['error_description']);
-    }
-    return hasError;
-}
-
-var appID = "6b745f33-4cb1-3f91-b56c-a76d53741dff";
-if (window.location.hash.length == 0) {
-    if (!hasError()) {
-        var path = AUTHORIZATION_SERVER_URL+'/oauth/authorize?';
-        var queryParams = [ 'client_id=' + appID,
-                'redirect_uri=' + window.location,
-                'response_type=token', 'scope=tmap' ];
-        var query = queryParams.join('&');
-        var url = path + query;
-        self.location.href=url;
-    }
-
-} else {
-    var accessToken = window.location.hash.substring(1);
-    alert(accessToken);
-
-}
-</script>
 </head>
 <body>
-
-<!-- https://apis.skplanetx.com/tmap/routes?
-appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9&
-version=1&
-bizAppId=&
-callback=&
-startX=127.021993691851&
-startY=37.4846508839975&
-endX=126.452591430685&
-endY=36.7263867904482&
-reqCoordType=WGS84GEO
-https://apis.skplanetx.com/tmap/routes/prediction?appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9&version=1&bizAppId=&callback=
-&startX=127.021993691851&startY=37.4846508839975&endX=126.452591430685&endY=36.7263867904482&reqCoordType=WGS84GEO  -->
 <script type="text/javascript">
 
 function test(){
-	$.ajax({
-		type : "POST", 
-		url : "https://apis.skplanetx.com/tmap/routes/prediction?appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a&version=1&bizAppId=" +
-			"&startX=127.021993691851&startY=37.4846508839975&endX=126.452591430685&endY=36.7263867904482&reqCoordType=WGS84GEO&format=json", 
-		dataType : "json", 
-	          error : function(request, status, error) {
-	               //통신 에러 발생시 처리
-	               alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-	              }, 
-	          success : function(response, status, request) {
-	               //통신 성공시 처리
-	               alert("success");   
-	              }
-	});
+	
+	var params = "version=1&reqCoordType=WGS84GEO"; 
+	params += "&startX=127.021993691851&startY=37.4846508839975"; 
+	params += "&endX=126.452591430685&endY=36.7263867904482&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9"; 
+
+	$.ajax({ 
+	type : "POST", 
+	url : "https://apis.skplanetx.com/tmap/routes", 
+	data : params, 
+	dataType:"JSON", 
+	success : function(data) { 
+	alert('success') 
+	console.log(data);
+	}, 
+	error : function(xhr, status, error) { 
+	alert(error) 
+	} 
+	}); 
 };
 
 function test2(){
+	
+	var params = "version=1&reqCoordType=WGS84GEO"; 
+	  params += "&startX=127.021993691851&startY=37.4846508839975"; 
+	  params += "&endX=126.452591430685&endY=36.7263867904482&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9";
+	
+	
 	  $.ajax({
 	    type : "POST", 
-	    url : "https://apis.skplanetx.com/tmap/routes/prediction?appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9&sort=&reqCoordType=WGS84GEO&callback=?&bizAppId=&version=1", 
-	    dataType : "json", 
+	    url : "https://apis.skplanetx.com/tmap/routes/prediction?version=1&reqCoordType=WGS84GEO&startX=127.021993691851&startY=37.4846508839975&endX=126.452591430685&endY=36.7263867904482&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9&format=json", 
+	    dataType : "JSON", 
 	    contentType: "application/json;charset=utf-8", 
-	    data : {
+	    data : JSON.stringify({
 	        "routesInfo": {
 	            "departure": {
 	              "name": "test1",
@@ -118,20 +60,19 @@ function test2(){
 	            "searchOption": "00",
 	            "tollgateCarType": "car"
 	          }
-	        }, 
-	        error : function(request, status, error) {
-	             //통신 에러 발생시 처리
-	             alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-	            }, 
-	        success : function(response, status, request) {
-	             //통신 성공시 처리
-	             alert("success");   
-	            }
+	        }), 
+	        success : function(data) { 
+	        	  alert('success') 
+	        	  console.log(data);
+	        	  }, 
+	        	  error : function(xhr, status, error) { 
+	        	  alert(error) 
+	        	  } 
 	  });
 	};
 </script>
 
-<button onclick="test()">거리테스트</button>
+<button onclick="test2()">거리테스트</button>
 <h3>Choose an image:</h3>   
     <form><input type='file'  onchange="readURL(this);"  /></form>
 
