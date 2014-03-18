@@ -12,6 +12,7 @@
 <script src = "../js/i18n/grid.locale-kr.js" type = "text/javascript"></script>
 
 
+
 <script>
 
 $(window.document).ready(function() {
@@ -130,7 +131,7 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 
 function deleteFunction()
 {
-	var answer  = confirm( '삭제 하시겠습니까?' );
+	var answer  = confirm( '삭제 하시겠습니까?  ');
 	if( answer ) 
 	{
 		location.href = 'ajax/delete.do?no=' + $('#mno').val();
@@ -150,48 +151,54 @@ function deleteFunction()
 
 
 <form  method="post"  enctype="multipart/form-data">
+<input id="mno" name="mno" maxlength="15" value="0" type="hidden">
 <table id = "grid"></table>
 <div id = "pager"></div>
 
 
-<table border=1    WIDTH="635"   bgcolor="#EAEAEA">
-<tr>
-<td rowspan=3><img id="mPhoto" src="../images/images (8).jpeg" height="100"></td>
-<td>소속 :
-	<select id="officeName">
-		<option value="volvo">지점</option>
-			<option value="saab">이름</option>
-			<option value="mercedes">아이디</option>
-	</select>
-</td>
-<td>
-	직위 : <input id=mrank type="text" name="mrank">
+   	<TABLE  WIDTH="50%"  height="100">
+<TR>
+<th rowspan=8 bgcolor=#F6F6F6>
+<img id="mPhoto" src="../images/person.jpeg" height="100"><br>사진변경<input type="file" name="photoFile">
+</th>
 </tr>
 <tr>
-<td>
-	이름 : <input id=mname type="text" name="mname">
-</td>
-<td>
-	생년월일 : <input id=mpersonalNumber type="text" name="mpersonalNumber">
-</td>	
-</tr>
-<tr>
-<td>
-	전화 : <input id=mtel type="text" name="mtel">
-</td>
-<td>
-	ID : <input id=mid type="text" name="mid">
-</td>	
-</tr>
-<tr>
-<td>
-	전화 : <input id=mno type="text" name="mno">
-</td>
-	
-</tr>
+<TD WIDTH="20%" bgcolor=#E4F7BA>소속
+<TD WIDTH="53%"><select id="officeNum" name="officeNum" >
+              						<option value="" selected="selected">소속</option>
+              						<option value=" 1">양재택배</option>
+              					</select></TD>
+              					</tr>
 
+<TR>
+<TD WIDTH="20%" bgcolor=#E4F7BA>직위<br></TD>
+<TD WIDTH="53%"><select id="rank" name="rank" >
+              						<option value="" selected="selected">소속</option>
+              						<option value=" 1">양재택배</option>
+              					</select></TD>
+</TR>
+<TR>
+<TD WIDTH="20%" bgcolor=#E4F7BA>아이디</TD>
+<TD WIDTH="53%"><input id="mid" name="mid" class="a" type="text" value="" maxlength="100"><br></TD>
+</TR>
+<TR>
+<TD WIDTH="20%" bgcolor=#E4F7BA>이름</TD>
+<TD WIDTH="53%"><input id="mname" name="mname" class="a" type="text" value="" maxlength="100"><br></TD>
+</TR>
+<TR>
+<TD WIDTH="20%" bgcolor=#E4F7BA>생년월일</TD>
+<TD WIDTH="53%">
+<!-- <input type="text" id="mpersonalNumber" class="txt_input" readonly/>  -->
+<!--     <img src="../images/icon_date.gif" title="달력" alt="달력" OnClick="calendar(event, 'date2')" /> -->
+<input id="mpersonalNumber" name="mpersonalNumber" class="a" type="date" value="" maxlength="100">
+<!--  <input type="date"> -->
+</TD>
+</TR>
+<TR>
+<TD WIDTH="20%" bgcolor=#E4F7BA>전화번호</TD>
+<TD WIDTH="53%"><input id="mtel" name="mtel" class="a" type="text" value="" maxlength="100"><br></TD>
 
-</table>
+</TABLE>
 	<input id="updateBtn" type="button" value="변경" class="view">
 	<input id="delBtn" type="button" value="삭제"  onclick="deleteFunction()" />
 	<input id="cancelBtn" type="reset" value="취소">
