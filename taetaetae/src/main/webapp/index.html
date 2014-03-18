@@ -396,7 +396,6 @@
                  alt="140x140" src="images/images (4).jpeg" 
                  style="width: 140px; height: 140px;">
           <h2>두근두근</h2>
-<<<<<<< .mine
           <p>택배조회 때문에 인터넷 들락날락하는것 이제그만!!!! 대기번호를 드립니다.</p>
           <script type="text/javascript">
                function countNumber() {
@@ -410,8 +409,15 @@
             	           // user clicked "ok"
             	           $.ajaxSettings.traditional = true;
             	           $.post('excel/searchUser.do', {trcno: str}, function(data){
-            	             console.log("대기번호는 : " + data.jsonResult.data[0].state);
+            	             if (data.jsonResult.data[0] !== null){
+            	            	 if (data.jsonResult.data[0].state == 0){
+            	            		 alertify.success("이미 배달이 완료되었습니다.");
+            	            	 }else{
             	    	   alertify.success("당신의 대기번호는 " + data.jsonResult.data[0].state + "번째 입니다.");
+            	            	 }
+            	             }else{
+            	    		   alertify.error("잘못된 번호입니다.");
+            	             }
             	           });
             	    	   }else{
             	    		   alertify.error("잘못된 번호입력입니다.");
@@ -425,35 +431,6 @@
           </script>
           <p><a class="btn" onclick="countNumber()">대기번호받기 <span class="en-font-family">&raquo;</span></a></p>
           
-=======
-          <p>택배조회 때문에 인터넷 들락날락하는것 이제그만 대기번호를 드립니다.</p>
-          <script type="text/javascript">
-               function countNumber() {
-            	// prompt dialog
-            	   alertify.prompt("운송장번호입력", function (e, str) {
-            	       // str is the input text
-            	       if (e) {
-            	    	   
-            	    	   if (str.length == 13){
-            	    		   
-            	           // user clicked "ok"
-            	           $.ajaxSettings.traditional = true;
-            	           $.post('excel/searchUser.do', {trcno: str}, function(data){
-            	             console.log("대기번호는 : " + data.jsonResult.data[0].state);
-            	    	   alertify.success("당신의 대기번호는 " + data.jsonResult.data[0].state + "번째 입니다.");
-            	           });
-            	    	   }else{
-            	    		   alertify.error("잘못된 번호입력입니다.");
-            	    	   }
-            	       } else {
-            	           // user clicked "cancel"
-            	    	   alertify.error("취소하였습니다");
-            	       }
-            	   }, "");
-               }       
-          </script>
-          <p><a class="btn" onclick="countNumber()">대기번호받기 <span class="en-font-family">&raquo;</span></a></p>
->>>>>>> .r373
         </div>
       <!-- /.span4 -->
         <div class="span4">
