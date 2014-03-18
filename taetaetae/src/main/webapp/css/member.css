@@ -1,0 +1,846 @@
+@charset "euc-kr";
+@font-face {font-family:ngothic; src:url(/webfont/NanumGothic.eot);}/*  ie6~9  */
+
+/* iphone에서 폰트 크기 오류 fix */
+@media only screen and (max-device-width:480px) {
+	body {-webkit-text-size-adjust:100%;}
+}
+
+/* 초기화 */
+body.rsResume {background:#fff;}
+.rsResume {text-align:left; *zoom:1;}
+.rsResume,
+.rsResume input,
+.rsResume select,
+.rsResume textarea,
+.rsResume button,
+.rsResume table,
+.rsResume td,
+.rsResume a {font:12px/16px Verdana, Gulim, sans-serif; color:#666;}
+.rsResume button {border:0; overflow:hidden;}
+.rsResume button::-moz-focus-inner {padding:0; border:0;}
+.rsResume select {border:1px solid #adadaf;}
+.rsResume textarea {padding:5px;}
+.rsResume input,
+.rsResume select,
+.rsResume button {vertical-align:middle;}
+.rsResume label {vertical-align:baseline; cursor:default;}
+.rsResume br {letter-spacing:0;} /* IE7에서 줄바꿈 안되는 문제 fix */
+
+/* layout */
+.rsResume .rsHeaderInner,
+#rsWrap #subFooter,
+#rsWrap #footerBanner,
+#rsContainer {width:890px; margin:0 auto; position:relative;}
+#rsContainer:after {content:""; display:block; clear:both;}
+#rsContent {float:left; width:760px; position:relative;}
+#rsWrap #footerBanner {position:static;}
+
+/* common */
+.rsResume .skip,
+.rsResume #accessibility {position:absolute; left:-9999px;}
+.rsResume .offsetFix {position:relative; *zoom:1; z-index:100;}
+.rsResume .clearFix {*zoom:1;}
+.rsResume .clearFix:after {content:""; display:block; clear:both;}
+
+.rsContent .rsIcoJobType {display:inline-block; height:16px; font:bold 11px/15px Dotum, sans-serif; color:#fff; vertical-align:middle; background:url(/img/text_user/resume/bg_job_type.gif) no-repeat 0 0; position:relative; top:-1px;}
+.rsContent .rsIcoJobType .text {display:inline-block; height:14px; line-height:15px; padding:2px 3px 0 4px; vertical-align:top;}
+.rsContent .rsIcoJobType .bg {display:inline-block; height:16px; width:1px; background:url(/img/text_user/resume/bg_job_type.gif) no-repeat 100% 0; vertical-align:top;}
+
+/* IR button & icon */
+.rsResume .btnIr {overflow:hidden; background:url(/img/text_user/resume/bg_button.gif) no-repeat 0 0; vertical-align:middle;}
+.rsResume .btnIr span {position:absolute; left:-9999px !important;}
+.rsResume .icoGrade {display:inline-block; width:16px; height:17px; background:url(/img/text_user/resume/bg_icon.gif) no-repeat 0 -200px; vertical-align:middle;}
+.rsResume .icoMid {background-position:0 -250px;}
+.rsResume .icoLow {background-position:0 -300px;}
+.rsResume .btnReset {width:50px; height:19px; background-position:0 -30px;}
+.rsContent .btnArrow {width:12px; height:12px; background-position:-160px 0;}
+
+.rsResume .btnOk_1,
+.rsResume .btnCancel_1 {width:58px; height:21px;}
+.rsResume .btnOk_1 {background-position:-160px -537px; }
+.rsResume .btnCancel_1 {background-position:-226px -537px; }
+
+/* layer common, view & write 공통 */
+.rsLayer {position:absolute;}
+.rsLayer .inner {border-color:#4c5c75; border-style:solid; border-width:2px; background:#fff;}
+.rsLayerB .inner {border-width:4px;}
+.rsLayerS .inner {border-width:1px;}
+.rsLayer .lyBg {position:absolute; top:100%; left:0; width:100%; height:2px; font-size:0; line-height:0; background:#000; filter:alpha(opacity=6); opacity:0.06; _display:none;}
+.rsLayerB .lyBg {height:3px;}
+.rsLayerS2 .inner {border:1px solid #6c6c6c; color:#7d7d7d; position:relative; *zoom:1; padding:0 14px 10px 14px;}
+.rsLayerS2 .title {padding-top:14px;}
+.rsLayerS2 .lyBg {height:2px;}
+.rsLayerS2 .lyBgB {left:1px; margin-top:1px;}
+.rsLayerS2 .lyBgR {width:2px; height:100%; left:100%; top:1px; margin-left:1px; padding-bottom:2px;}
+.rsLayerS2 li {padding-left:9px; background:url(/img/text_user/resume/bu_h_bar.gif) no-repeat 0 4px;}
+.rsLayer .lyHeading {background:#f2f5f9; font-weight:bold; letter-spacing:-1px; color:#333; padding:13px 0 10px 19px;}
+.rsLayer .lyContent {padding:20px; font:11px/15px Dotum, sans-serif; letter-spacing:-1px;}
+.rsLayerB .lyContent {padding:25px;}
+.rsLayerB .lyContent2 {padding:30px 20px 20px 20px;}
+.rsLayerS .lyContent {padding:0;}
+.rsLayer .lyAction {text-align:center; padding:10px 0 0 0;}
+.rsLayerB .lyAction {padding-top:15px; margin-bottom:-1px;}
+.rsLayer .lyAction button,
+.rsLayer .lyAction a {margin-left:1px;}
+/*
+.rsLayer .btnClose {position:absolute; top:6px; right:6px; width:7px; height:7px; background:url(/img/common/btn_close_6.gif) no-repeat 0 0;}
+*/
+.rsLayer .btnClose {position:absolute; top:7px; right:7px; width:21px; height:21px; background-position:-40px 0;}
+.rsLayerS2 .btnClose {position:absolute; top:6px; right:6px; width:7px; height:7px; background:url(/img/common/btn_close_6.gif) no-repeat 0 0;}
+/* .rsLayerB .btnClose {top:7px; right:7px;} */
+.rsLayer .btnConfirm {width:58px; height:21px; background-position:-80px -150px;}
+.rsLayer .btnConfirm2 {width:58px; height:21px; background-position:-80px -120px;}
+.rsLayer .btnCancel {width:58px; height:21px; background-position:-80px -30px;}
+.rsLayer .btnConfirmCommon2 {width:74px; height:27px; background-position:0 -573px;}
+.rsLayer .btnCancelCommon2 {width:58px; height:27px; background-position:-91px -573px;}
+.rsLayer .btnRegister {width:58px; height:21px; background-position:-110px -610px;}
+.rsLayer .lyBox {border:1px solid #f1f2f5; background:#f8f8f9; *zoom:1;}
+.rsLayer .lyBox:after {content:""; display:block; clear:both;}
+
+/* header */
+#rsHeader {*zoom:1;}
+.rsView #rsHeader {background:url(/img/text_user/resume/bg_body_view.gif) repeat-x 0 70px; margin-bottom:40px;}
+.rsWrite #rsHeader {height:155px; margin-bottom:66px; background:url(/img/text_user/resume/bg_body.gif) repeat-x 0 70px;}
+#rsHeader h1 {padding-top:24px; height:68px; overflow:hidden;}
+#rsHeader h1 .logo,
+#rsHeader h1 .bar {float:left; display:inline;}
+#rsHeader h1 .bar {height:19px; width:1px; background:#dfe1e3; position:relative; margin:13px 0 0 7px;}
+#rsHeader h1 .title {position:absolute; top:-1px; left:11px;}
+#rsHeader .rsGloblaNav {position:absolute; right:-7px; top:46px; font:11px/15px Dotum, sans-serif;}
+.rsView #rsHeader .rsGloblaNav {top:20px;}
+#rsHeader .rsGloblaNav li {float:left; padding:0 7px; background:url(/img/text_user/resume/bg_bar.gif) no-repeat 0 0;}
+#rsHeader .rsGloblaNav a {font:11px/15px Dotum, sans-serif; color:#888; letter-spacing:-1px;}
+#rsHeader .rsGloblaNav .first {background:none;}
+#rsHeader .rsNav {position:absolute; right:0; top:47px;}
+.rsWrite #rsHeader .rsNav {top:103px; right:-2px;}
+#rsHeader .rsNav li {float:left; padding-left:15px;}
+#rsHeader .rsStep {overflow:hidden; background:url(/img/text_user/resume/bg_arrow.gif) no-repeat 172px 2px; *zoom:1;}
+#rsHeader .rsStep h2,
+#rsHeader .rsStep p {float:left; padding-right:89px;}
+
+/* table */
+/* view & write 공통 */
+.rsTable {border-top:1px solid #dce1eb; border-bottom:1px solid #dce1eb; width:100%; background:#fff;}
+.rsTable th,
+.rsTable td {border-top:1px solid #f1f2f5;}
+.rsTable th {padding:11px 0 0 14px; width:106px; background-color:#f8f8f9; letter-spacing:-1px; color:#758191; text-align:left; vertical-align:top;}
+.rsTable td {padding:8px 0 8px 12px; word-wrap:break-word;}
+.rsTable .first th,
+.rsTable .first td {border-top:none;}
+.rsTable .first td {padding-top:10px;}
+.rsTable th strong {color:#f60;}
+.rsTable .col2,
+.rsTable .col4 {width:246px;}
+
+/* 이력서 보기 */
+.rsTable3 {border:1px solid #dde1ec; border-top:0; width:100%; table-layout:fixed;}
+.rsTable3 th {border:1px solid #dde1ec; border-width:0 1px 1px 0; background:#f2f5fa; color:#77808f;}
+.rsTable3 th,
+.rsTable3 td {padding:10px 0 6px 0; text-align:center; letter-spacing:-1px;}
+.rsTable3 td {border:1px solid #f2f2f4; border-width:1px 1px 0 0; padding-right:8px; padding-left:8px; word-wrap:break-word;}
+.rsTable3 .colLast {border-right:0;}
+.rsTable3 .first td {border-top:0;}
+.rsTable3 td.highlight {}
+.rsTable3 td.aLeft {text-align:left; padding-left:14px;}
+.rsTable3 td.hlLeft {text-align:left; padding-left:14px;}
+.rsTable3 .pc1 {color:#6385b5;}
+.rsTable3 .pc2 {color:#6aa4f2;}
+.rsTable3 strong.pc1,
+.rsTable3 .pc2 strong {font-weight:normal;}
+.rsTable3 .userContent {} /* to-do: style reset */
+.rsTable3V2 {border-collapse:collapse;}
+.rsTable3V2 th,
+.rsTable3V2 td {border:1px solid #dde1ec;}
+.rsTable3V2 .first th,
+.rsTable3V2 .first td {border-top:0}
+
+/* table width */
+.rsSecEdu .rsTable3 .col1 {width:246px;}
+.rsSecEdu .rsTable3 .col2 {width:170px;}
+.rsSecEdu .rsTable3 .col4 {width:211px;}
+.rsSecEdu .rsTable3 .col5 {width:71px;}
+.rsSecCareer .rsTable3 .col1 {width:108px;}
+.rsSecCareer .rsTable3 .col2 {width:229px;}
+.rsSecCareer .rsTable3 .col3 {width:126px;}
+.rsSecSocial .rsTable3 .col1 {width:168px;}
+.rsSecSocial .rsTable3 .col2 {width:83px;}
+.rsSecSocial .rsTable3 .col3 {width:203px;}
+.rsSecPrize .rsTable3 .col1 {width:99px;}
+.rsSecPrize .rsTable3 .col2 {width:208px;}
+.rsSecPrize .rsTable3 .col3 {width:151px;}
+.rsSecTraining .rsTable3 .col1 {width:169px;}
+.rsSecTraining .rsTable3 .col2 {width:208px;}
+.rsSecTraining .rsTable3 .col3 {width:151px;}
+.rsSecLicense .rsTable3 .col1 {width:168px;}
+.rsSecLicense .rsTable3 .col2 {width:354px;}
+.rsSecOa .rsTable3 .col1 {width:188px;}
+.rsSecOa .rsTable3 .col2,
+.rsSecOa .rsTable3 .col3 {width:189px;}
+.rsSecOs .rsTable3 .col1 {width:169px;}
+.rsSecOs .rsTable3 .col2 {width:178px;}
+.rsSecLang .rsTable3 .col1 {width:169px;}
+.rsSecPref .rsTable3 th {width:119px;}
+.rsSecPref .rsTable3 .col5 {width:125px;}
+
+/* heading */
+.rsSection .secHeading {zoom:1; position:relative;}
+.rsSection .secHeading:after {content:""; display:block; clear:both;}
+.rsSection .secHeading img {float:left; margin-right:4px;}
+.rsSection h3.secHeading {padding-bottom:7px; border-bottom:2px solid #a4b4cd;}
+.rsSection .secHeading .detail {float:left; display:inline; color:#333; padding-left:7px; margin:15px 0 -3px 3px; font:bold 14px/15px Dotum, sans-serif; background:url(/img/text_user/resume/bg_bar2.gif) no-repeat 0 0; letter-spacing:-1px;}
+.rsSection h4.secHeading {height:20px; padding-left:14px; background:url(/img/text_user/resume/bu_sub_sec.gif) no-repeat 1px 5px;}
+.rsSection .secHeading .detail strong {color:#f60; line-height:16px;}
+.rsWrite .secHeading .detail strong,
+.rsSelectAdd .secHeading .detail strong {color:#888;}
+
+/* section */
+.rsSection {margin-bottom:49px; *zoom:1;}
+.rsWrite .rsSection {margin-bottom:64px;}
+.rsWriteStep2 .rsSection {margin-bottom:20px;}
+#rsContent .rsEdit .rsSection,
+.rsWrite .rsSecSelect .rsSection {margin-bottom:0;}
+#rsContent .rsEdit .rsSecTitle {margin-bottom:7px;}
+.rsSecPersonal .personalMeta .btnEdit {position:absolute; top:-6px; left:83px;}
+.rsSecPersonal .personalMeta2 .btnEdit {position:absolute; top:7px; right:5px;}
+
+/* section common */
+.rsSection .num {letter-spacing:0;}
+.rsSection .noLine {border-bottom:0;}
+.rsSection .miscArea {border:1px solid #dce1eb; border-top:0;}
+.rsSection .miscHeading {background:#f9f9f9; color:#768090; padding:8px 14px 6px 14px; border-bottom:1px solid #dce1eb; font-weight:bold; letter-spacing:-1px;}
+.rsSection .miscContent {padding:14px; color:#666; word-wrap:break-word; line-height:1.4;}
+.rsSection .lineSingle {display:block;}
+
+/* 이력서 제목 */
+.rsContent .rsSecTitle {background:#4a577a; margin-bottom:53px; position:relative; z-index:10;}
+.rsContent .rsSecTitle .ico {position:absolute; z-index:10; top:0; left:10px; display:none;}
+#textCo .rsSecTitle .ico,
+#listGG .rsSecTitle .ico {display:block;}
+.rsContent .rsSecTitle .title {border:1px solid #3f4d72; border-bottom:1px solid #283558; text-align:center; padding:12px 8px 10px 8px; color:#fff; font:bold 20px/24px nGothic, Dotum, sans-serif; letter-spacing:-1px; word-wrap:break-word;}
+
+/* 각오 한마디 */
+.rsContent .rsSecCoverLetter {border:1px solid #dce1eb; background:#f2f5f9; padding:10px 15px 8px 15px; margin-top:-53px; margin-bottom:53px; position:relative; z-index:0;}
+.rsContent .rsSecCoverLetter h3 {position:absolute; top:11px; left:15px;}
+.rsContent .rsSecCoverLetter p {line-height:18px; word-wrap:break-word; overflow:hidden; *zoom:1; letter-spacing:-1px; margin-left:66px;}
+
+
+/* 회원정보 */
+.rsSecPersonal .rsFsPersonal {position:relative; *zoom:1;}
+.rsSecPersonal .inner {background:#f2f5f9; border-bottom:1px solid #cedaed; position:relative; *zoom:1;}
+.rsSecPersonal .rsTable {width:603px; margin-left:157px; border:0; border-left:1px solid #d6e2ee; table-layout:fixed;}
+.rsSecPersonal .rsTable th {width:86px;}
+.rsSecPersonal .status {position:absolute; top:15px; right:0; color:#888; font-family:Dotum, sans-serif;}
+.rsPreview .rsSecPersonal .status {font:11px/15px Gulim, sans-serif;}
+.rsViewEdit .rsSecPersonal .secHeading .status {right:100px;}
+.rsSecPersonal .status strong {color:#f60;}
+.rsSecPersonal .phoneTime {position:absolute; top:0; right:0; width:67px; height:17px; padding:1px 0 0 78px; background:url(/img/text_user/resume/text_phone_time.gif) no-repeat 0 0; color:#6282b3; font-weight:bold; font-size:11px; letter-spacing:-1px; white-space:nowrap;}
+.rsSecPersonal .phoneTime .delimiter {margin:0 -1px;}
+.rsSecPersonal .basicInfo {position:relative; top:1px; float:left; display:inline; width:auto;}
+.rsSecPersonal .name {font-size:14px; font-family:Dotum, sans-serif; color:#333; letter-spacing:-1px;}
+.rsSecPersonal .gender {font-family:Dotum, sans-serif; font-weight:bold;}
+.rsSecPersonal .age {letter-spacing:-1px;}
+.rsSecPersonal .userid {color:#888;}
+.rsSecPersonal .rsItemName .delimiter {color:#ccc; margin:0 -1px;}
+.rsSecPersonal .onlineRecommend {float:left; display:inline; margin-left:10px;}
+
+.rsSecPersonal .personalMetaArea {border-bottom:2px solid #f9f9f9; border-top:2px solid #cedaed; color:#666; margin-top:-2px;}
+.rsSecPersonal .personalMeta {border:1px solid #e3e7f0; border-width:0 1px; position:relative; *zoom:1; z-index:10;}
+.rsSecPersonal .personalMeta:after {content:""; display:block; clear:both;}
+.rsSecPersonal .personalMeta dt {position:absolute; z-index:5; top:12px; left:14px;}
+.rsSecPersonal .personalMeta dd {float:left; display:inline; padding:30px 0 6px 0; width:150px; position:relative; border-right:1px solid #edeef2;}
+.rsSecPersonal .personalMeta dd .spacer {display:inline-block; height:80px; width:0; vertical-align:middle;}
+.rsSecPersonal .personalMeta dd .itemContent {display:inline-block; width:100%; vertical-align:middle; text-align:center;}
+.rsSecPersonal .personalMeta dd .itemContent strong {font-weight:normal;}
+.rsSecPersonal .personalMeta dd div.itemContent {*display:inline; text-align:left;}
+.rsSecPersonal .personalMeta dd.item4 .itemContent {width:130px; padding:0 10px; font-weight:normal;}
+.rsSecPersonal .personalMeta dd.item1 {width:156px;}
+.rsSecPersonal .personalMeta dt.item2 {left:171px;}
+.rsSecPersonal .personalMeta dt.item3 {left:332px;}
+.rsSecPersonal .personalMeta dt.item4 {left:475px;}
+.rsSecPersonal .personalMeta dt.item5 {left:627px;}
+.rsSecPersonal .personalMeta dd.item5 {width:148px; text-align:left; border-right:0;}
+.rsSecPersonal .personalMeta dd.item1 strong,
+.rsSecPersonal .personalMeta dd.item2 strong {color:#6aa4f2; font:12px/16px Gulim, sans-serif;}
+.rsSecPersonal .personalMeta dd.item2 img {vertical-align:middle; position:relative; top:-1px;}
+.rsSecPersonal .personalMeta dd.item4 span {display:inline-block; letter-spacing:-1px;}
+.rsSecPersonal .personalMeta dd.item1 .itemContent span {display:block; padding-top:2px;}
+.rsSecPersonal .personalMeta .item5 ul {font:11px/14px Dotum, sans-serif; letter-spacing:-1px; float:left; display:inline; text-align:left;}
+.rsSecPersonal .personalMeta .item5 li {height:20px; position:relative; white-space:nowrap; *float:left; *display:inline; *left:-3px;}
+.rsSecPersonal .personalMeta .item5 li:after {content:""; display:block; clear:both;}
+.rsSecPersonal .personalMeta .item5 .rsLayer {top:17px; right:0; width:214px;}
+.rsSecPersonal .personalMeta .item5 .rsLayer .inner {border:1px solid #6c6c6c; color:#7d7d7d; position:relative; *zoom:1; padding:0 14px 10px 14px; background:#fff;}
+.rsSecPersonal .personalMeta .item5 .rsLayer .title {padding-top:14px; padding-bottom:6px;}
+.rsSecPersonal .personalMeta .item5 .rsLayer strong {background:none;}
+.rsSecPersonal .personalMeta .item5 .rsLayer ul {margin-left:0; margin-bottom:-3px; float:none; display:block;}
+.rsSecPersonal .personalMeta .item5 .rsLayer li {float:none; display:block; height:auto; margin-bottom:3px; padding-left:9px; background:url(/img/text_user/resume/bu_h_bar.gif) no-repeat 0 5px;}
+.rsSecPersonal .personalMeta .item5 strong {display:inline-block; background:url(/img/text_user/resume/bg_bar.gif) no-repeat 100% 1px; margin-right:4px; padding-right:6px;}
+.rsSecPersonal .personalMeta .item5 .btnArrow {margin-left:1px;}
+.rsSecPersonal .personalMeta2 {border:1px solid #e3e7f0; border-top:0; overflow:hidden; *zoom:1;}
+.rsSecPersonal .personalMeta2 a {text-decoration:underline;}
+.rsSecPersonal .personalMeta2 dt,
+.rsSecPersonal .personalMeta2 dd {float:left; display:inline; border-top:1px solid #e3e7f0;}
+.rsSecPersonal .personalMeta2 dt {padding:12px 0 0 14px; width:76px;}
+.rsSecPersonal .personalMeta2 dd {width:668px; padding:11px 0; min-height:13px; _height:13px; position:relative;}
+.rsSecPersonal .personalMeta2 dd p {margin-right:20px;}
+.rsSecPersonal .personalMeta2 dd strong {font-family:Dotum, sans-serif;}
+.rsSecPersonal .personalMeta2 .applyPart p {*zoom:1; overflow:hidden; padding-bottom:5px;}
+.rsSecPersonal .personalMeta2 .applyPart strong {font-weight:bold; float:left; display:inline; margin-right:10px; padding-right:8px; background:url(/img/text_user/resume/bg_bar.gif) no-repeat 100% 2px;}
+.rsSecPersonal .personalMeta2 .applyPart .item {*zoom:1; overflow:hidden; display:block;}
+.rsSecPersonal .personalMeta2 .delimiter {color:#ccc;}
+.rsSecPersonal .personalMeta2 .listOptP {width:616px;}
+.rsSecPersonal .personalMeta2 .optP {float:left; overflow:hidden; width:281px; height:16px; padding:2px 0 4px 27px;background:url(/img/text_user/sprites/mtu_tpl_icon_apply.gif) no-repeat;background-position:7px -1316px; word-wrap:break-word; word-break:break-all; }
+.rsSecPersonal .personalMeta2 .optP a {text-decoration:none;}
+.rsSecPersonal .personalMeta2 .docx,
+.rsSecPersonal .personalMeta2 .doc {background-position:5px -116px;}
+.rsSecPersonal .personalMeta2 .pptx,
+.rsSecPersonal .personalMeta2 .ppt {background-position:5px -163px;}
+.rsSecPersonal .personalMeta2 .xlsx,
+.rsSecPersonal .personalMeta2 .xls {background-position:5px -208px;}
+.rsSecPersonal .personalMeta2 .pdf {background-position:5px -256px;}
+.rsSecPersonal .personalMeta2 .hwp {background-position:5px -301px;}
+.rsSecPersonal .personalMeta2 .zip {background-position:6px -526px;}
+.rsSecPersonal .personalMeta2 .jpg,
+.rsSecPersonal .personalMeta2 .jpeg {background-position:5px -621px;}
+.rsSecPersonal .personalMeta2 .gif {background-position:5px -571px;}
+.rsSecPersonal .personalMeta2 .psd {background-position:5px -672px;}
+.rsSecPersonal .personalMeta2 .png {background-position:5px -721px;}
+.rsSecPersonal .personalMeta2 .txt {background-position:5px -770px;}
+.rsSecPersonal .personalMeta2 .swf {background-position:5px -821px;}
+.rsSecPersonal .personalMeta2 .ai {background-position:5px -872px;}
+.rsSecPersonal .personalMeta2 .url {background-position:5px -971px;}
+.rsSecPersonal .personalMeta2 .rtf {background-position:5px -1086px;}
+.rsSecPersonal .personalMeta2 .gul {background-position:5px -1021px;}
+.rsSecPersonal .personalMeta2 .alz {background-position:5px -1154px;}
+.rsSecPersonal .rsItemEmail,
+.rsSecPersonal .rsItemHomepage a {letter-spacing:0;}
+.rsPreview .rsSecPersonal .personalMeta2 .listOptP {width:548px;}
+.rsPreview .rsSecPersonal .personalMeta2 .optP {width:247px;}
+
+/* 사진 */
+.rsPhotoBox {position:absolute; top:0; left:0; width:157px; height:100%; text-align:center;}
+.rsPhotoBox .spacer {display:inline-block; height:100%; width:0; vertical-align:middle;}
+.rsPhotoBox .rsPhoto {position:relative; display:inline-block; *display:inline; *zoom:1; vertical-align:middle;}
+.rsPhotoBox .rsPhoto a {display:block; padding:1px 0; width:77px; margin:0 auto; position:static;}
+.rsPhotoBox .profile {display:block; width:114px; height:144px; border:1px solid #e5e5e5; margin:0 auto 5px auto; background:#fff;}
+.rsPhotoBox .profile img {margin:7px 0 0 0; width:100px; height:130px;}
+.rsPhotoBox .rsPhoto .apply {position:absolute; top:110px; left:50%; margin-left:-34px; padding:0; width:auto;}
+
+/* 학력 */
+.rsSecEdu .colLast strong {font-weight:normal;}
+
+/* 경력 */
+.rsSecCareer .rsTable3 .even th {border:0; border-right:1px solid #f2f2f4; background:#fff;}
+.rsSecCareer .rsTable3 td.col1 {vertical-align:top; padding-top:10px;}
+.rsSecCareer .rsTable3 td.col1 span,
+.rsSecCareer .rsTable3 td.col3 span {display:block;}
+.rsPreview .rsSecCareer .rsTable3 td.col1 span {display:inline;}
+.rsPreview .rsSecCareer .rsTable3 td.col1 .pc2 {display:block;}
+.rsSecCareer .rsTable3 td.col1 .pc2 {font-size:11px; font-family:Dotum, sans-serif;}
+.rsSecCareer .rsTable3 td.col2 p {padding-bottom:1px;}
+.rsSecCareer .rsTable3 .partCode {color:#888; font-size:11px; font-family:Dotum, sans-serif; padding-top:2px; padding-bottom:0;}
+.rsSecCareer .rsTable3 .partCode img {vertical-align:middle;}
+.rsSecCareer .rsTable3 .even td {color:#888;}
+.rsSecCareer .rsTable3 .even td div {margin-bottom:-6px;}
+.rsSecCareer .rsTable3 .even td p {padding-bottom:6px;}
+
+/* 기타 */
+.rsSecTraining .rsTable3 .pc2,
+.rsSecOs .rsTable3 .pc2 {display:block; font-size:11px; font-family:Dotum, sans-serif; padding-top:2px;}
+.rsSecLang .rsTable3 .speech {padding-bottom:2px;}
+.rsSecLang .rsTable3 td.colLast strong {margin-right:3px;}
+.rsItemPref {position:relative;}
+.rsItemPref .linkSupport {position:absolute;right:10px;top:12px;text-align:right;font-size:11px;font-family:Dotum, '돋움', sans-serif;letter-spacing:-1px;line-height:11px;padding-top:1px;}
+
+/* 첨부파일, 인터뷰 */
+.rsContent .rsSecFile .rsTable3 th {width:143px;}
+.rsContent .rsSecFile .rsTable3 td {text-align:left; padding-left:23px;}
+.rsContent .rsSecFile .rsTable3 ul {overflow:hidden; *zoom:1;}
+.rsContent .rsSecFile .rsFileList li {float:left; display:inline; width:256px; height:18px; padding-top:1px; background:url(/img/text_user/resume/bg_icon.gif) no-repeat 0 -400px; padding-left:25px;}
+.rsContent .rsSecFile .rsFileList a {text-decoration:underline;}
+.rsContent .rsSecFile .rsCertList td {line-height:20px; padding-left:19px;}
+.rsContent .rsSecFile .rsCertList ul {padding-bottom:6px;}
+.rsContent .rsSecFile .rsCertList ul img {vertical-align:middle;}
+.rsContent .rsSecFile .rsCertList p {color:#6184b5; padding-top:2px;}
+.rsContent .rsSecFile .rsCertList a {margin-left:2px;}
+.rsContent .rsDfList {border:1px solid #dce1eb; border-width:0 1px;}
+.rsContent .rsDfList dt {display:block; background:#f2f5f9 url(/img/text_user/resume/bg_line_interview.gif) repeat-y 143px 0;; padding:13px 0 7px 0; border-bottom:1px solid #dce1eb; color:#768090; line-height:14px;}
+.rsContent .rsDfList dd {border-bottom:1px solid #dce1eb;}
+.rsContent .rsQnaList dt,
+.rsContent .rsQnaList dd {padding-left:163px; padding-right:10px; position:relative; *zoom:1;}
+.rsContent .rsQnaList .title {position:absolute; left:45px; top:12px; padding-top:4px; padding-left:28px; background:url(/img/text_user/resume/bg_icon.gif) no-repeat 0 -425px; text-indent:0; line-height:16px; font-weight:bold; letter-spacing:-1px;}
+.rsContent .rsQnaList dt p {}
+.rsContent .rsQnaList dd {padding-top:18px; padding-bottom:16px; padding-left:163px; line-height:20px; background:url(/img/text_user/resume/bg_line_interview.gif) repeat-y -856px 0;}
+.rsContent .rsQnaList dd .title {background-position:0 -447px; color:#e6a579; top:20px;}
+
+/* 인, 적성 검사 */
+.rsContent .rsSecJat {padding-top:95px;}
+.rsContent .rsSecJat h3.secHeading {border-bottom:2px solid #f60 !important; margin-bottom:42px;}
+.rsContent .rsSecJat h3.secHeading .viewAll {float:right; display:inline; margin-top:2px; margin-bottom:-5px;}
+.rsContent .rsSecJat h3.secHeading .viewAll img {margin-right:0;}
+.rsContent .rsSecJat h4.secHeading {background-image:url(/img/text_user/resume/bu_sub_sec2.gif); border-bottom:2px solid #dacdb6 !important;}
+.rsContent .rsSecJat h4.noLine {border-bottom:0;}
+.rsContent .rsSecJat .rsSubSec {margin-bottom:38px; position:relative; *zoom:1;}
+.rsContent .rsTable3V3 {border-collapse:collapse; border:0;}
+.rsContent .rsTable3V3 th,
+.rsContent .rsTable3V3 td {border:1px solid #eee;}
+.rsContent .rsTable3V3 th {color:#937b50; background:#fcf9f4;}
+.rsContent .rsSubSecAptSum tbody th {color:#666; background:#fff;}
+.rsContent .rsTable3V3 td {text-align:left; padding-left:14px; padding-right:14px;}
+.rsContent .rsSubSecAptSum .col1 {width:128px;}
+.rsContent .rsSubSecAptSum .col2 {width:246px;}
+.rsContent .rsSubSecStrongPoint th {width:189px;}
+.rsContent .rsSubSecStrongPoint td {text-align:center;}
+.rsContent .rsSubSecStrongPoint .col4 {width:auto !important;}
+.rsContent .rsSubSecApt th {width:127px; text-align:left; padding-left:31px;}
+.rsContent .rsResultBar {width:532px; margin-top:8px; *zoom:1; position:relative; overflow:hidden;}
+.rsContent .rsResultBar .bar {position:absolute; top:17px; left:0;}
+.rsContent .rsSubSecMature .result {position:absolute; right:0; top:28px; width:189px; border-top:2px solid #dacdb6; text-align:center;}
+.rsContent .rsSubSecMature .result span,
+.rsContent .rsSubSecMature .result strong {border:1px solid #eeeeee; display:block; color:#937b50; font-weight:bold; background:#fcf9f4; padding:10px 0 6px;}
+.rsContent .rsSubSecMature .result strong {background:#fff; font:16px/18px Gulim, sans-serif; color:#f60; font-weight:bold !important; border-top:0;}
+
+/* 자기소개서 */
+.rsSecSelf {position:relative; *zoom:1;}
+.rsSecSelf .myStyle {padding-top:11px; padding-bottom:6px; background:#f2f5f9; border:1px solid #dce1eb; border-top:0; border-bottom:0; padding-left:15px; color:#666;}
+.rsSecSelf .myStyle span {color:#6184b5;}
+.rsSecSelf .myStyle img {position:relative; top:-1px; vertical-align:middle;}
+.rsSecSelf .selfStory {border:1px solid #dce1eb; line-height:20px; color:#666; padding:12px 14px; word-wrap:break-word;}
+.rsSecSelf .rsInfo {margin-top:15px !important;}
+.rsContent .rsAgree {text-align:center; color:#666; margin-top:-8px;}
+.rsPreview .rsAgree {margin-top:36px;}
+.rsContent .rsAgree,
+.rsContent .rsAgree strong {font-size:12px; line-height:16px; font-family:Verdana, Gulim, sans-serif;}
+.rsContent .rsAgree img {display:block; margin:0 auto; margin-bottom:14px;}
+
+/* 배너 */
+.rsContent .rsBanner {margin-bottom:20px;}
+.rsContent .rsSelfStoryBanner {overflow:hidden; *zoom:1; margin-bottom:26px; padding-top:24px;}
+.rsContent .rsSelfStoryBanner a {float:left;}
+.rsContent .rsSelfStoryBanner .last {float:right;}
+
+/* 이력서 사이드바 */
+#rsSidebar,
+#devEmptyBox {position:absolute; top:0; right:0; width:120px; background:#fff; z-index:10;}
+#devEmptyBox {font-size:0; line-height:0; height:1px; background:transparent;}
+#rsSidebar .bgTop {font-size:0; line-height:0; height:1px; background:#4e5978; border-top:1px solid #303e65;}
+#rsSidebar .inner {border:1px solid #dde0e4; border-top:0; padding:1px 0 0 0;}
+#rsSidebar .lineShadow {font-size:0; line-height:0; height:2px; background:#fafafa; margin-bottom:4px;}
+#rsSidebar .tools ul {*zoom:1; margin-bottom:6px;}
+#rsSidebar .tools li {overflow:hidden; *vertical-align:bottom; margin-bottom:2px;}
+#rsSidebar .tools a {color:#8ca0bb; font:11px/17px Dotum, sans-serif;}
+#rsSidebar .btnPrint {width:120px; height:27px; background:url(/img/text_user/resume/btn_print.gif) no-repeat 0 0;}
+#rsSidebar .top {text-align:center; padding-top:5px;}
+#rsSidebar .continue {margin-left:-1px;}
+
+#rsSidebar .regDate,
+.coRsSidebar .regDate {padding:8px 0 6px 4px; background:#f3f6f9; border-bottom:1px solid #e9f1f8; font-size:11px; font-family:Dotum, sans-serif; color:#7d8391; overflow:hidden; *zoom:1;}
+#rsSidebar .regDate dt,
+.coRsSidebar .regDate dt,
+#rsSidebar .regDate dd,
+.coRsSidebar .regDate dd {float:left; display:inline; height:15px;}
+#rsSidebar .regDate dt,
+.coRsSidebar .regDate dt {color:#6184b5; width:53px; letter-spacing:-1px;}
+#rsSidebar .regDate dd,
+.coRsSidebar .regDate dd {font-family:Tahoma, Dotum, sans-serif; position:relative; top:-2px;}
+#rsSidebar .regDate dd span,
+.coRsSidebar .regDate dd span {letter-spacing:-1px;}
+
+#rsSidebar .status {text-align:center; font:11px/14px Dotum, sans-serif; letter-spacing:-1px; padding:15px 0 6px 0;}
+#rsSidebar .status span {display:block; color:#6aa4f2; padding-bottom:7px;}
+#rsSidebar .status img {vertical-align:middle; margin:-8px 0 -2px 0;}
+#rsSidebar .rsViewBanner {padding-left:16px; padding-top:11px; background:#fff; border:0; margin-bottom:5px;}
+
+#rsSidebar .supportTools {margin-top:6px; overflow:hidden; *zoom:1;}
+#rsSidebar .supportTools li {float:left;}
+
+
+
+
+/* footer */
+#rsWrap #footerBanner {margin-top:40px; border-top:3px solid #a8a8a8; text-align:center; padding:15px 0;}
+#rsWrap #footerBanner table {width:100%;}
+
+
+/* 지원자 관리, 인재정보 */
+.coResumeNew {padding-top:36px;}
+.coResumeNew #rsContent {float:left; display:inline; width:760px; position:relative;}
+.coResumeNew #emResumeNavi {display:none;}
+.coResumeNew .rsResume {*zoom:1; position:relative;}
+.coResumeNew .rsResume:after {content:""; display:block; clear:both;}
+.coResumeNew .coResumeArea,
+.ggbReadLK .coResumeNew .coResumeArea {*zoom:1; position:relative; margin:0 35px; background:url(/img/text_user/resume/co_rs_bg_resume_meta.gif) repeat-x 0 0; padding-top:30px;}
+.ggResumeView {width:890px; text-align:left; margin:0 auto;}
+.ggResumeView .coResumeNewGG {padding-top:4px; padding-bottom:9px;}
+.ggResumeView .coResumeArea {margin:0;}
+
+/* 이전, 다음 이력서 */
+.coResumeNew .prevNext {*zoom:1; margin-top:5px; border:1px solid #d6d6d6; border-width:1px 0; color:#666;}
+.coResumeNew .prevNext:after {content:""; display:block; clear:both;}
+.coResumeNew .prevNext a {color:#666;}
+.coResumeNew .prevNext a:hover,
+.coResumeNew .prevNext a:active {color:#06c;}
+.coResumeNew .prevNext dt,
+.coResumeNew .prevNext dd {float:left; display:inline; line-height:17px; padding:11px 0 6px; border-top:1px solid #e5e5e5;}
+.coResumeNew .prevNext dt {width:106px; padding-left:19px; background:#f9f9f9;}
+.coResumeNew .prevNext dd {width:821px; padding-left:14px; position:relative; z-index:0;}
+.ggResumeView .coResumeNew .prevNext dd {width:750px;}
+.coResumeNew .prevNext dd.prev {z-index:10;}
+.coResumeNew .prevNext dt a {color:#999; font-weight:bold; padding-right:11px; background:url(/Img/Common/icon_pre_1.gif) no-repeat 100% 6px;}
+.coResumeNew .prevNext dt.next a {background-image:url(/Img/Common/icon_next_1.gif);}
+.coResumeNew .prevNext dd .data1 {float:left; display:inline; width:400px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.coResumeNew .prevNext dd .data2 {float:right; display:inline; padding-right:14px; color:#999;}
+.coResumeNew .prevNext .first {border-top:0;}
+
+.coResumeNew .coRsService {*zoom:1; margin-bottom:59px; font:11px/15px Dotum, sans-serif; color:#666; margin-top:-30px;}
+.coResumeNewGG .coRsService {margin-bottom:20px; margin-top:0;}
+.coResumeNew .coRsService:after {content:""; display:block; clear:both;}
+.coResumeNew .coRsService a {font-size:11px;}
+.coResumeNew .coRsServiceItem {float:left; display:inline; width:398px; border:1px solid #edecf1; padding:15px 0 15px 72px; background:url(/img/text_user/resume/co_rs_bg_searching.gif) no-repeat 20px 18px;}
+.ggResumeView .coRsServiceItem {width:361px; letter-spacing:-1px;}
+.ggbReadLK .ggResumeView .coRsServiceItem {width:398px;}
+.coResumeNew .coRsServiceItem a,
+.coResumeNew .coRsServiceItem img {vertical-align:middle;}
+.coResumeNew .coRsServiceItem img {position:relative; top:-1px;}
+.coResumeNew .coRsServiceItem2 {float:right; background-image:url(/img/text_user/resume/co_rs_bg_sms.gif);}
+.coResumeNew .coRsServiceItem .coRsHeading {float:left; display:inline; width:86px;}
+.coResumeNew .coRsServiceItem .coRsHeading h3 {padding:5px 0 8px 0;}
+.coResumeNew .coRsServiceItem .guide {color:#888; padding-right:8px; background:url(/img/text_user/resume/co_rs_bu_arrow.gif) no-repeat 100% 2px;}
+.coResumeNew .coRsServiceItem .inner {height:66px; overflow:hidden; border-left:1px solid #f0f0f0; padding:2px 4px 0 14px;}
+.coResumeNew .coRsServiceItem .inner p {padding-bottom:6px;}
+.coResumeNew .coRsServiceItem .inner p strong {color:#6d45c6; font-weight:normal;}
+.coResumeNew .coRsServiceItem .inner li {padding:0 0 4px 9px; *padding-bottom:6px; background:url(/img/text_user/resume/co_rs_bu_square.gif) no-repeat 1px 6px;}
+.coResumeNew .coRsServiceItem .inner li img {margin:-1px 0 -3px 1px;}
+.coResumeNew .coRsServiceItem .inner li strong {font-weight:bold;}
+.coResumeNew .coRsServiceItem .inner .coRsHighlight {color:#6d45c6;}
+.coResumeNew .coRsServiceItem .inner .title {color:#666; font-weight:normal;}
+.coResumeNew .coRsServiceItem .inner .line {background:url(/img/text_user/resume/co_rs_bg_line_dot.gif) repeat-x 0 0;}
+.coResumeNew .coRsServiceItem .inner .date {padding:8px 0 0 10px;}
+.coResumeNew .coRsServiceItem .inner .date img {vertical-align:middle; margin-left:1px; top:0;}
+.coResumeNew .coRsServiceItem .inner .date strong {color:#666; font-weight:bold;}
+.coResumeNew .coRsServiceItem .inner .date span {letter-spacing:0;}
+
+/* 지원분야, 메모 */
+#rsPartMemo {margin-top:30px;}
+.coResumeMeta {padding:0 10px 6px 10px; *zoom:1; line-height:16px; font-family:Gulim, sans-serif; margin-top:-7px;}
+.coResumeMeta_1 { margin-top:0; padding-top:6px; border:1px solid #dce1eb;}
+.coResumeMeta_1 { margin-top:0; padding-top:6px; border:1px solid #dce1eb;}
+.rsPreview .coResumeMeta {background:none;}
+.coResumeMeta dl {*zoom:1;}
+.coResumeMeta dl:after {content:""; display:block; clear:both;}
+.coResumeMeta dt,
+.coResumeMeta dd {float:left; display:inline; width:58px; padding:2px 0 6px 11px; min-height:16px; _height:16px;}
+.rsPreview .coResumeMeta dd {width:540px;}
+.coResumeMeta dt {color:#333; background:url(/img/text_user/resume/co_rs_bg_resume_meta_item.gif) no-repeat 0 3px;}
+.rsPreview .coResumeMeta dt {font-weight:bold; letter-spacing:-1px; padding-left:9px; padding-right:2px;}
+.coResumeMeta dd {color:#666; width:750px;}
+.coResumeMeta dd img {vertical-align:middle; margin:-3px 0 -3px 0;}
+.coResumeMeta .grade select {vertical-align:top; margin:-1px 3px -2px 0;}
+.rsView .coResumeMeta .grade a {visibility:hidden;}
+.coResumeMeta .empty {color:#999;}
+.rsPreview .coResumeMeta_1 dd {width:538px;}
+
+/* 서칭서비스 안내 */
+.rsContent .rsSearchingInfo {height:172px; background:url(/img/text_user/resume/bg_searching.gif) no-repeat 0 -180px; position:relative; padding-left:195px; margin-top:-20px; margin-bottom:50px;}
+.rsContent .rsSearchingInfoLogin {background-position:0 0;}
+.rsContent .rsSearchingInfo h3 {padding-top:42px; padding-bottom:7px;}
+.rsContent .rsSearchingInfoLogin h3 {padding-top:34px; padding-bottom:14px;}
+.rsContent .rsSearchingInfo .action {padding-top:15px; *zoom:1;}
+.rsContent .rsSearchingInfoLogin .action {padding-top:9px;}
+
+/* 서칭 제한 안내 */
+.rsContent .rsLimitedContent {border:1px solid #dce1eb; background:#f9f9f9; text-align:center; padding:15px 0 14px; color:#666; letter-spacing:-1px; font-family:Gulim, sans-serif;}
+.rsContent .rsLimitedContent .heading {padding-bottom:5px;}
+.rsContent .rsLimitedContent .heading span {color:#6aa4f2;}
+.rsContent .rsLimitedContent .detail span {display:block; padding-top:8px;}
+.rsContent .rsInfo,
+.rsContent .rsInfo a {font:12px/16px Dotum, sans-serif;}
+.rsContent .rsInfo {border:1px solid #efeee7; background:#fffef6; color:#666; padding:5px 7px 3px 5px;*zoom:1; overflow:hidden; margin:0 !important;}
+.rsContent .rsInfo p {float:left; display:inline; background:url(/img/text_user/resume/ico_info.gif) no-repeat 0 0; padding-top:1px; padding-left:17px; padding-bottom:0 !important;}
+.rsContent .rsInfo a {float:right; display:inline; color:#6184b5; text-decoration:underline; margin-top:1px; white-space:nowrap;}
+.rsContent .rsInfo strong {font-weight:normal; letter-spacing:0; color:#6aa4f2;}
+.rsSecCareer .rsInfo {margin:1px 8px 9px 0 !important;}
+.rsSecCareer .miscArea .rsInfo {margin:7px 0 -5px 0 !important;}
+
+/* 아름다원 취업채용문화 */
+.coResumeNew .coCampaign a {position:absolute; right:0; bottom:20px; display:none;}
+.coResumeNew .coCampaign a img {display:inline-block !important;}
+.coResumeNew .top2 {position:absolute; right:43px; bottom:186px;}
+.coResumeNew .top3 {bottom:20px;}
+
+/* 액션 버튼 */
+.coResumeNew .coResumeAction {*zoom:1; overflow:hidden; text-align:right;}
+.coResumeNew .coResumeActionTop {position:absolute; top:-34px; right:0;}
+.coResumeNew .coResumeActionBottom {padding:10px 0 30px 0; background:url(/img/text_user/resume/co_rs_bg_resume_meta.gif) repeat-x 0 0;}
+.coResumeNewGG .coResumeActionBottom {text-align:left;}
+.coResumeNew .prevNext2 a {position:fixed; top:400px; left:50%;}
+.coResumeNew .prevNext2 .prev {margin-left:-500px;}
+.coResumeNew .prevNext2 .next {margin-left:458px;}
+
+/* 인재정보, 인쇄 푸터 */
+.coResumeNew .coTerm,
+.rsPreview .coTerm {border:1px solid #f2f2f2; background:#f9f9f9; font:11px/15px Dotum, sans-serif; color:#888; padding:14px; margin-bottom:20px; letter-spacing:-1px; margin-top:30px; overflow:hidden;}
+.rsPreview .coTerm em {color:#6184b5;}
+.rsPreview .coTerm strong {font-weight:normal; text-decoration:underline;}
+.rsPreview .coTerm em strong {text-decoration:none; font-weight:bold;}
+.rsPreview .coTerm li {*zoom:1;}
+.rsPreview .coTerm li span {float:left; display:inline; width:0; height:0; border:1px solid #596381; margin-right:4px; margin-top:5px; font-size:0; line-height:0;}
+.rsPreview .coTerm li p {overflow:hidden; *zoom:1;}
+
+/* 스마트매칭 인재정보 */
+.coRsTtitleSection {height:19px; border-bottom:2px solid #a4b4cd; position:relative; z-index:10;}
+.coRsTtitleSection:after {content:""; display:block; clear:both;}
+.coRsTtitleSection .title,
+.coRsTtitleSection .number {float:left; display:inline;}
+.coRsTtitleSection .viewAll {float:right; display:inline; margin:3px 3px 0 0;}
+.coRsTtitleSection .btnGuide {width:13px; height:14px; background:url(/img/common/icon_tip_1.gif) no-repeat 0 0; overflow:hidden; vertical-align:middle; overflow:hidden; margin-left:-1px; border:0;}
+.coRsTtitleSection .btnGuide span {position:absolute; left:-9999px;}
+.coRsTtitleSection .btnGuide::-moz-focus-inner {padding:0; border:0;}
+.coRsTtitleSection .number {font:11px/15px Dotum, sans-serif; margin-left:4px; margin-top:1px;}
+.coRsTtitleSection .number strong {text-decoration:underline;}
+.coRsGGListSection {padding-bottom:40px; *zoom:1;}
+.coRsGGList {line-height:17px; border-bottom:1px solid #dce1eb; letter-spacing:-1px; font-family:Verdana, Gulim, sans-serif;}
+.coRsGGList li {*zoom:1; padding:11px 15px 7px 19px; border-top:1px solid #f1f2f5; position:relative;}
+.coRsGGList li:after {content:""; display:block; clear:both;}
+.coRsGGList .first {border-top:0;}
+.coRsGGList .external img {vertical-align:middle !important; position:relative; top:-1px; margin-left:1px;}
+.coRsGGList .name {float:left; display:inline;}
+.coRsGGList .detail {float:right; display:inline; color:#999;}
+.coRsGGList li a {color:#656565; text-decoration:none;}
+.coRsGGList .bar_1 {margin:0 2px; color:#c6c6c6;}
+.coRsGGList .num {letter-spacing:-1px; font-family:Verdana,sans-serif;}
+.coRsGGListSection #devSmartMatchGuide {top:20px; left:0;}
+
+/* 지원자 관리, 인재정보 도움말 레이어 */
+.coResumeNew .coRsGuideLayer {position:absolute; border-bottom:1px solid #e6e5e3;}
+.coResumeNew .coRsGuideLayer .inner {border:1px solid #565656; background:#fff; padding:12px 12px 8px 12px; font:11px/15px Dotum, sans-serif; letter-spacing:-1px; color:#666;}
+.coResumeNew .coRsGuideLayer .arrowTop {position:absolute; top:-5px; left:16px; width:9px; height:6px; font-size:0; line-height:0; background:url(/img/text_user/resume/bg_layer_arrow_top.gif) no-repeat 0 0;}
+.coResumeNew .coRsGuideLayer .btnClose {position:absolute; right:8px; top:8px; width:7px; height:7px; background:url(/img/common/btn_close_6.gif) no-repeat 0 0;}
+.coResumeNew .coRsGuideLayer .btnClose span {position:absolute; left:-9999px;}
+
+/* 레이어 */
+.rsLayerSimple {position:absolute; border-bottom:1px solid #e6e5e3; bottom:8px;}
+.rsLayerSimple .inner {border:1px solid #565656 !important; background:#fbfbfb; padding:14px 8px 8px 9px !important; font:11px/15px Dotum, sans-serif; letter-spacing:-1px; color:#666;}
+#rsLayerPromise {top:44px; left:13px; width:226px; background:#fff; z-index:10;}
+#rsLayerPromise .inner {padding:12px 0 8px 12px;}
+#rsLayerPromise p {font-weight:bold; font-size:12px; color:#333; font:bold 12px/16px Gulim, sans-serif; padding-bottom:10px;}
+#rsLayerPromise strong {color:#e7224f;}
+#rsLayerPromise ul {line-height:18px; padding:0 0 0 18px; background:url(/img/text_user/resume/bg_num_round.gif) no-repeat 0 0; color:#666;}
+.rsLayerSimple .arrow {position:absolute; bottom:-5px; left:16px; width:7px; height:6px; font-size:0; line-height:0; background:url(/img/text_user/resume/bg_layer_arrow_b.gif) no-repeat 0 0;}
+.rsLayerSimple .arrowTop {height:5px; background-image:url(/img/text_user/resume/bg_layer_arrow_t.gif); bottom:auto; top:-4px;}
+.rsLayerSimple .arrowRight {left:auto; right:16px;}
+.rsLayerSimple .btnClose button {position:absolute; right:6px; top:6px; width:7px; height:7px; background:url(/img/common/btn_close_6.gif) no-repeat 0 0;}
+
+.rsLayerSimple .btnClose span {position:absolute; left:-9999px;}
+.coRsTooltip {position:absolute; border-bottom:1px solid #e5e5e5; background:#fbfbfb; z-index:1000;}
+.coRsTooltip .inner {display:block; border:1px solid #565656; white-space:nowrap; line-height:16px; padding:6px 8px 5px 8px; color:#666;}
+.coRsTooltip .inner strong {color:#f60; font-weight:normal;}
+.coRsTooltip .arrow {position:absolute; width:9px; height:7px; top:-6px; left:15px; font-size:0; line-height:0; background:url(/Img/Common/altBox_tab2.gif) no-repeat 0 0; overflow:hidden;}
+
+
+
+/* 지원자 관리, 인재정보 사이드바 */
+.coRsSidebar {position:absolute; top:0; right:0; border-top:2px solid #303e65; width:120px; font:11px/15px Dotum, sans-serif;}
+.coRsSidebar,
+.coRsSidebar a {color:#666; letter-spacing:-1px;}
+.coRsSidebar .date {letter-spacing:0;}
+.coRsSidebar .bg {font-size:0; line-height:0; height:2px; background:#fafafa;}
+.coRsSidebar .coRsMeta {border:1px solid #e6e9ed; *zoom:1; padding:7px 0 3px 0; margin-bottom:7px; font:11px/15px Dotum, sans-serif;}
+.coRsSidebar .coRsMeta:after {content:""; display:block; clear:both;}
+.coRsSidebar .coRsMeta a {text-decoration:underline; font:11px/15px Dotum, sans-serif;}
+.coRsSidebar .coRsMeta img {vertical-align:top; margin-top:1px;}
+.coRsSidebar .coRsMeta dt,
+.coRsSidebar .coRsMeta dd {min-height:20px; _height:20px;}
+.coRsSidebar .coRsMeta dt {padding-left:5px; float:left; display:inline; margin-right:4px;}
+.coRsSidebar .coRsMeta dd {overflow:hidden; *zoom:1;}
+.coRsSidebar .coRsMeta dt span {visibility:hidden;}
+.coRsSidebar .coRsMeta .grade {line-height:15px;}
+.coRsSidebar .coRsMeta .grade img {vertical-align:middle; margin-bottom:3px;}
+.coRsSidebar .status {margin-bottom:2px;}
+.coResumeNewGG .coRsSidebar .link {margin-bottom:7px; margin-top:2px;}
+.coRsSidebar .link li {margin-bottom:2px;}
+.coRsSidebar .coRsKeyGuide {border-bottom:2px solid #eee; padding:7px 0 10px 0; text-align:center;}
+
+.coRsSidebar .regDate {border-bottom:0;}
+.coRsSidebar .coRsInner {border:1px solid #eceff3; border-bottom-color:#e1e4e8;}
+.coRsSidebar .coRsInner .status {border-top:1px solid #e1e4e8;}
+.coRsSidebar .coRsInner .status p {text-align:center; font:11px/14px Dotum, sans-serif; letter-spacing:-1px; padding:15px 0 6px 0; color:#6aa4f2;}
+.coRsSidebar .rsfunc {display:none;} /* 기능 제거 */
+.coRsSidebar .top {padding-top:10px; text-align:center;}
+
+/* 프로모션 탑 배너 */
+.rsPromotionBanner {width:890px; position:relative; margin:-56px auto 31px auto;}
+.rsPromotionBanner .action {position:absolute; top:14px; right:17px;}
+
+/* HRP, 데브잡 */
+.hrpResumeView .nowLoc,
+.hrpGgbRead .nowLoc {border-bottom:1px solid #e6e6e6; padding-bottom:5px; margin-bottom:8px; margin-top:10px;}
+
+/* 이력서 미리보기 */
+/* 인쇄 미리보기 */
+.rsPreview {padding-bottom:20px;}
+.rsPreview .rsSection {margin-bottom:20px;}
+.rsPreview .rsSecTitle {margin-bottom:20px;}
+.rsPreview .rsSecCoverLetter {margin-top:-20px;}
+.rsPreview .rsSecPersonal .secHeading .status {top:3px;}
+.rsPreview .rsSection strong {}
+.rsPreview .rsPreviewHeader {*zoom:1; overflow:hidden; padding-bottom:7px; border-bottom:4px solid #303e65; margin-bottom:16px;}
+.rsPreview .rsPreviewHeader .time {float:left; display:inline; color:#6184b5; font:11px/15px Dotum, sans-serif; margin-top:14px; margin-bottom:-4px;}
+.rsPreview .rsPreviewHeader strong {font-weight:normal;}
+.rsPreview .rsPreviewHeader .num {font-family:Tahoma, sans-serif; color:#7d8391;}
+.rsPreview .rsPreviewHeader .action {float:right; display:inline;}
+.rsPreview .rsPreviewHeader .print {margin-left:6px;}
+.rsPreview .rsPreviewHeader2 {border:1px solid #f1f2f5; font:11px/15px Dotum, sans-serif; padding:28px 0 24px 148px; background:#f8f8f9 url(/img/text_user/resume/bg_preview.gif) no-repeat 48px 27px; margin-bottom:8px;}
+.rsPreview .rsPreviewHeader2 h1 {margin-bottom:6px;}
+.rsPreview .rsPreviewHeader2 p {padding-left:2px; letter-spacing:-1px;}
+.rsPreview .rsPreviewHeader2 strong {color:#6184b5; fo}
+.rsPreview #rsContent {width:640px; float:none;}
+.rsPreview #rsSidebar {display:none;}
+.rsPreview #rsContent .secHeading {padding-bottom:4px;}
+.rsPreview h3.secHeading .viewAll {display:none !important;}
+.rsPreview h3.secHeading .textTitle,
+.rsPreview h4.secHeading .textTitle {float:left; display:inline; padding-right:4px; font:bold 12px/16px Gulim, sans-serif; color:#4d5661; margin-top:0; height:auto;}
+/* .rsPreview h4.secHeading .textTitle {font-size:16px; line-height:19px; height:22px;} */
+.rsPreview h4.secHeading {background:none !important; padding-left:0; height:18px !important;}
+/* .rsPreview h4.secHeading .textTitle {font:bold 12px/16px Gulim, sans-serif;} */
+.rsPreview .secHeading .detail {font:11px/15px Dotum, sans-serif; font-weight:normal; margin-bottom:0; background:url(/img/text_user/resume/bg_bar.gif) no-repeat 0 2px; margin-top:0;}
+.rsPreview .secHeading .detail strong {font-weight:normal;}
+.rsPreview .rsSecPersonal .personalMeta2 a {text-decoration:none;}
+.rsPreview .rsSecSelf .selfStory {line-height:14px;}
+
+.rsPreview .rsSecPersonal .gender,
+.rsPreview .rsSecPersonal .age {font-weight:normal;}
+.rsPreview .rsSecPersonal .rsTable th {width:81px;}
+.rsPreview .rsSecPersonal .personalMeta dd,
+.rsPreview .rsSecPersonal .personalMeta strong {font:11px/15px Dotum, sans-serif !important;}
+.rsPrint #rsContent .rsSecPersonal .personalMeta *,
+.rsPrint #rsContent .rsSecPersonal .personalMeta2 * {font:12px/16px Verdana, Gulim, sans-serif !important;}
+.rsPrint #rsContent .rsSecPersonal .personalMeta2 .applyPart strong {font-weight:bold !important;}
+.rsPreview .rsSecPersonal .personalMeta dt.item2 {left:141px;}
+.rsPreview .rsSecPersonal .personalMeta dt.item3 {left:266px;}
+.rsPreview .rsSecPersonal .personalMeta dt.item4 {left:394px;}
+.rsPreview .rsSecPersonal .personalMeta dt.item5 {left:522px;}
+.rsPreview .rsSecPersonal .personalMeta dd.item4 .itemContent {width:100%; padding:0;}
+.rsPreview .rsSecPersonal .personalMeta dd {width:126px;}
+.rsPreview .rsSecPersonal .personalMeta dd.item1 {width:124px;}
+.rsPreview .rsSecPersonal .personalMeta dd.item5 {width:131px;}
+.rsPreview .rsSecPersonal .personalMeta2 dd {width:548px;}
+.rsPreview .rsSecPersonal .personalMeta dd .spacer {height:70px;}
+.rsPreview .rsSecPersonal .personalMeta .item5 li {height:15px;}
+.rsPreview .rsTable th,
+.rsPreview .rsTable td {border-color:#c6d1e3;}
+.rsPreview .rsSecPersonal .rsTable th,
+.rsPreview .rsSecPersonal .rsTable td {padding-top:7px !important; padding-bottom:7px !important;}
+.rsPreview .rsSection .rsTable3,
+.rsPreview .rsSection .rsTable3 th,
+.rsPreview .rsSection .rsTable3 td,
+.rsPreview .miscArea,
+.rsPreview .miscHeading,
+.rsPreview .miscContent {border-color:#bcc3d6 !important; line-height:14px !important;}
+.rsPreview .miscContent {padding-top:8px; padding-bottom:8px;}
+.rsPreview .rsSection .rsTable3,
+.rsPreview .rsSection .rsTable3 th,
+.rsPreview .rsSection .rsTable3 td {border-color:#bcc3d6 !important;}
+.rsPreview .rsSection .rsTable3V3 th,
+.rsPreview .rsSection .rsTable3V3 td {border-color:#eee !important;}
+.rsPreview .rsSecPersonal .personalMeta2,
+.rsPreview .rsSecPersonal .personalMeta2 dt,
+.rsPreview .rsSecPersonal .personalMeta2 dd,
+.rsPreview .rsSecPersonal .personalMeta,
+.rsPreview .rsSecPersonal .personalMeta dd {border-color:#bcc3d6 !important;}
+.rsPreview .secHeading {border-color:#a4b4cd !important;}
+.rsPreview .rsSecPersonal .personalMetaArea {border-top-width:1px; margin-top:-1px; border-top-color:#bcc3d6 !important;}
+
+.rsPreview .rsTable3 th,
+.rsPreview .rsTable3 td {padding-top:6px !important; padding-bottom:4px !important;}
+.rsPreview .rsTable3 td.hlLeft,
+.rsPreview .rsSecCareer .rsTable3 .even td {padding-left:8px;}
+.rsPreview .rsSecPersonal .rsTable {width:483px;}
+.rsPreview .rsSubSecStrongPoint th {width:156px;}
+.rsPreview .rsResultBar {width:402px; height:62px;}
+
+/* table width (print) */
+.rsPreview .rsSecEdu .rsTable3 .col1 {width:125px;}
+.rsPreview .rsSecEdu .rsTable3 .col2 {width:141px;}
+.rsPreview .rsSecEdu .rsTable3 .col4 {width:201px;}
+.rsPreview .rsSecEdu .rsTable3 .col5 {width:73px;}
+.rsPreview .rsSecCareer .rsTable3 .col1 {width:106px;}
+.rsPreview .rsSecCareer .rsTable3 .col2 {width:238px;}
+.rsPreview .rsSecCareer .rsTable3 .col3 {width:126px;}
+.rsPreview .rsSecPref .rsTable3 .col1 {width:99px;}
+.rsPreview .rsSecPref .rsTable3 .col3 {width:120px;}
+.rsPreview .rsSecPref .rsTable3 .col5 {width:122px;}
+.rsPreview .rsSecSocial .rsTable3 .col3 {width:177px;}
+.rsPreview .rsSecPrize .rsTable3 .col2 {width:161px;}
+.rsPreview .rsSecTraining .rsTable3 .col3 {width:138px;}
+.rsPreview .rsSecLicense .rsTable3 .col2 {width:270px;}
+.rsPreview .rsSecOa .rsTable3 .col1,
+.rsPreview .rsSecOa .rsTable3 .col2 {width:169px;}
+.rsPreview .rsSecOa .rsTable3 .col3 {width:153px;}
+.rsPreview .rsSecLang .rsTable3 .col1 {width:169px;}
+
+.rsPreview {padding-top:12px;}
+.rsPreview #rsLayerPromise,
+.rsPreview #rsHeader,
+.rsPreview #devEmptyBox {display:none !important;}
+.rsPreview #rsWrap,
+.rsPreview #rsHeader,
+.rsPreview #rsContainer {width:640px; !important;}
+.rsPreview #rsWrap {margin:0 auto !important;}
+.rsPreview #rsContainer {padding-bottom:0 !important; margin:0 !important; border:0;}
+
+/* 인쇄하기 */
+.rsPrint .personalMeta .item1,
+.rsPrint .personalMeta .item2,
+.rsPrint .personalMeta .item5 {display:none;}
+.rsPrint .personalMetaArea dt,
+.rsPrint .personalMetaArea dd {border-top:1px solid #bcc3d6; padding:8px 0 2px 14px; min-height:20px; _height:20px;}
+.rsPrint .personalMetaArea dt {float:left; display:inline; width:82px; position:static; top:auto; left:auto; background:#f2f5f9; border-right:1px solid #bcc3d6;}
+.rsPrint .personalMetaArea dd {float:left; display:inline; width:527px !important; display:block; border-right:0;}
+.rsPrint .personalMetaArea dt img {margin-top:2px;}
+.rsPrint .personalMetaArea dd .itemContent {text-align:left;}
+.rsPrint .personalMetaArea .spacer {display:none !important;}
+.rsPrint .personalMetaArea .item3 {border-top:0;}
+
+/* 인쇄 시에는 personalMetaArea 대신 rsTablePreviewMeta 사용함, 만일을 위해서 기존 CSS도 유지함 */
+.rsPrint .rsTablePreviewMeta {width:100%;}
+.rsPrint .rsTablePreviewMeta th,
+.rsPrint .rsTablePreviewMeta td {border:1px solid #bcc3d6; font:12px/16px Verdana,Gulim,sans-serif; height:20px; padding:8px 0 2px 14px; vertical-align:top; text-align:left;}
+.rsPrint .rsTablePreviewMeta th {background:#f2f5f9; width:82px;}
+.rsPrint .rsTablePreviewMeta td strong {font-weight:normal;}
+.rsPrint .rsTablePreviewMeta .partCode {*zoom:1; overflow:hidden; padding-bottom:5px; margin-right:20px;}
+.rsPrint .rsTablePreviewMeta .partCode strong {font-weight:bold; float:left; display:inline; margin-right:10px; padding-right:8px; background:url(/img/text_user/resume/bg_bar.gif) no-repeat 100% 2px;}
+.rsPrint .rsTablePreviewMeta .partCode .item {*zoom:1; overflow:hidden; display:block;}
+
+/* 회원정보 인쇄 */
+.rsPrint .rsSecPersonal .inner {background:#fff; border:1px solid #bcc3d6; border-width:0 1px; padding:20px 0 12px 0;}
+.rsPrint .rsSecPersonal .rsTable {border:0; width:481px !important;}
+.rsPrint #rsContent .rsSecPersonal .rsTable th,
+.rsPrint #rsContent .rsSecPersonal .rsTable td {background:none; border:0; padding-top:4px !important; padding-bottom:4px !important;}
+.rsPrint .rsSecPersonal th {font-weight:normal; color:#666;}
+.rsPrint #rsContent .rsSecPersonal .rsTable tr.first th {visibility:hidden;}
+.rsPrint #rsContent .rsSecPersonal .rsTable tr.first .basicInfo {position:relative; left:-94px; top:-6px;}
+.rsPrint .rsSecPersonal .personalMeta {border-top:1px solid #bcc3d6;}
+.rsPrint .rsSecPersonal .rsItemName .name {font:12px/16px Gulim, sans-serif; color:#666; font-weight:bold !important;}
+.rsPrint .rsSecPersonal .phoneTime {position:static; padding:0; background:none; margin-left:10px; font-weight:normal; color:#f60;}
+.rsPrint .rsSecPersonal .phoneTime .skip {width:auto; height:auto; line-height:15px; position:static; font-size:11px;}
+.rsPrint .rsCutLine {padding:41px 0 50px 0;}
+.rsPrint .rsCutLineEnd {padding-bottom:29px;}
+
+@media print {
+body, div, a, span, p, h1, h2, h3, h4, li, strong, em, th, td, dt, dd {color:#333 !important; font-family:Gulim, sans-serif !important;}
+a {text-decoration:none !important;}
+th, strong {color:#000 !important;}
+.rsContent .icoGrade {display:inline; width:auto; height:auto; background:none; vertical-align:baseline;}
+.rsContent .icoGrade .skip,
+.rsSecPersonal .phoneTime .skip {font:12px/17px Verdana, Gulim, sans-serif; height:auto; width:auto; top:auto; left:auto !important; position:static !important; overflow:visible; visibility:visible; background:none !important;}
+.rsContent .rsIcoJobType {background:none !important;}
+.rsSecPersonal .phoneTime {width:auto; padding-left:0; background:none;}
+.rsSecPersonal .phoneTime .skip {font-size:11px;}
+.rsPreviewHeader .action,
+.rsPreviewHeader2 {display:none !important;}
+.rsPreview .rsSecJat h4.secHeading {background:none; padding-left:0;}
+.rsPreview .rsSecTitle {background:none;}
+.rsPreview .rsContent .rsSecTitle .title {color:#000;}
+.rsPrint .rsCutLine {display:none;}
+}
