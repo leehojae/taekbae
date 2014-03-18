@@ -347,7 +347,7 @@
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
         <div class="item active">
-          <img src="images/images (1).jpeg" alt="">
+          <img src="images/bike1.png" alt="">
           <div class="container">
             <div class="carousel-caption">
               <h1>Smart Delivery Management System</h1>
@@ -357,7 +357,7 @@
           </div>
         </div>
         <div class="item">
-          <img src="images/images (2).jpeg" alt="">
+          <img src="images/bike2.png" alt="">
           <div class="container">
             <div class="carousel-caption">
               <h1>스마트 자동알림 서비스 </h1>
@@ -367,12 +367,12 @@
           </div>
         </div>
         <div class="item">
-          <img src="images/images (3).jpeg" alt="">
+          <img src="images/worker1.png" alt="">
           <div class="container">
             <div class="carousel-caption">
               <h1>추가로 하나 더.</h1>
               <p class="lead">추가 문의에 대비하여 택배사가 배송원의 연락처가 제공됩니다. (단, 배송원 연락처는 택배사가 정보 제공시 가능합니다.)</p>
-              <a class="btn btn-large btn-primary" href="#">갤러리 둘러보기</a>
+              <a class="btn btn-large btn-primary" href="#">좀 더 친해지기</a>
             </div>
           </div>
         </div>
@@ -396,6 +396,36 @@
                  alt="140x140" src="images/images (4).jpeg" 
                  style="width: 140px; height: 140px;">
           <h2>두근두근</h2>
+<<<<<<< .mine
+          <p>택배조회 때문에 인터넷 들락날락하는것 이제그만!!!! 대기번호를 드립니다.</p>
+          <script type="text/javascript">
+               function countNumber() {
+            	// prompt dialog
+            	   alertify.prompt("운송장번호입력", function (e, str) {
+            	       // str is the input text
+            	       if (e) {
+            	    	   
+            	    	   if (str.length == 13){
+            	    		   
+            	           // user clicked "ok"
+            	           $.ajaxSettings.traditional = true;
+            	           $.post('excel/searchUser.do', {trcno: str}, function(data){
+            	             console.log("대기번호는 : " + data.jsonResult.data[0].state);
+            	    	   alertify.success("당신의 대기번호는 " + data.jsonResult.data[0].state + "번째 입니다.");
+            	           });
+            	    	   }else{
+            	    		   alertify.error("잘못된 번호입력입니다.");
+            	    	   }
+            	       } else {
+            	           // user clicked "cancel"
+            	    	   alertify.error("취소하였습니다");
+            	       }
+            	   }, "");
+               }       
+          </script>
+          <p><a class="btn" onclick="countNumber()">대기번호받기 <span class="en-font-family">&raquo;</span></a></p>
+          
+=======
           <p>택배조회 때문에 인터넷 들락날락하는것 이제그만 대기번호를 드립니다.</p>
           <script type="text/javascript">
                function countNumber() {
@@ -423,6 +453,7 @@
                }       
           </script>
           <p><a class="btn" onclick="countNumber()">대기번호받기 <span class="en-font-family">&raquo;</span></a></p>
+>>>>>>> .r373
         </div>
       <!-- /.span4 -->
         <div class="span4">
@@ -438,7 +469,7 @@
                  alt="140x140" src="images/images (6).jpeg" 
                  style="width: 140px; height: 140px;">
           <h2>중소기업 고객</h2>
-          <p>바이온사원, 파괴된 왕궁, 그곳에 있는 천상의 궁전 파미아나카스사원이 있고, .</p>
+          <p>바이온사원, 파괴된 왕궁, 그곳에 있는 천상의 궁전 파미아나카스사원이 있고.....</p>
           <p><a class="btn" href="#">자세히 보기 <span class="en-font-family">&raquo;</span></a></p>
         </div>
       <!-- /.span4 -->
@@ -452,8 +483,8 @@
 
       <div class="featurette">
         <img class="featurette-image pull-right" src="images/images (7).jpeg">
-        <h2 class="featurette-heading">첫번째 특집 제목. <span class="muted">완전히 빠져들 것이다.</span></h2>
-        <p class="lead">프레스코의 마무리에 사용되는 일도 허다하다. 가장 성하게 된 것은 중세 말기에서 이탈리아 르네상스 초기에 걸쳐서이고 치마부에 조토를 비롯하여 기를란다요, 보티첼리 등이 템페라화를 남기고 있다. 15세기 이후는 유화에 눌려 스러졌다.</p>
+        <h2 class="featurette-heading">어서와~. <span class="muted">완전히 빠져들 것이다.</span></h2>
+        <p class="lead">Smart Delivery Management System  작업중..</p>
       </div>
 
       <hr class="featurette-divider">
@@ -461,7 +492,7 @@
       <div class="featurette">
         <img class="featurette-image pull-left" src="images/images (8).jpeg">
         <h2 class="featurette-heading">정말 좋다. <span class="muted">직접 사용해 보라.</span></h2>
-        <p class="lead">프레스코의 마무리에 사용되는 일도 허다하다. 가장 성하게 된 것은 중세 말기에서 이탈리아 르네상스 초기에 걸쳐서이고 치마부에 조토를 비롯하여 기를란다요, 보티첼리 등이 템페라화를 남기고 있다. 15세기 이후는 유화에 눌려 스러졌다.</p>
+        <p class="lead">Smart Delivery Management System  작업중..</p>
       </div>
 
       <hr class="featurette-divider">
@@ -469,7 +500,7 @@
       <div class="featurette">
         <img class="featurette-image pull-right" src="images/images (9).jpeg">
         <h2 class="featurette-heading">그리고 마지막이다. <span class="muted">이상 끝.</span></h2>
-        <p class="lead">프레스코의 마무리에 사용되는 일도 허다하다. 가장 성하게 된 것은 중세 말기에서 이탈리아 르네상스 초기에 걸쳐서이고 치마부에 조토를 비롯하여 기를란다요, 보티첼리 등이 템페라화를 남기고 있다. 15세기 이후는 유화에 눌려 스러졌다.</p>
+        <p class="lead">Smart Delivery Management System  작업중..</p>
       </div>
 
       <hr class="featurette-divider">
