@@ -34,8 +34,29 @@
           padding-right: 5px;
         }
       }
+      
+      .btn-5 {
+	background: #823aa0;
+	color: #fff;
+	height: 30px;
+	min-width: 80px;
+	line-height: 24px;
+	font-size: 12px;
+/* 	overflow: hidden; */
+/* 	-webkit-backface-visibility: hidden; */
+/* 	-moz-backface-visibility: hidden; */
+/* 	backface-visibility: hidden; */
+}
+    
+    
+    
+    <button class="btn btn-5 btn-5b icon-cog"><span>Settings</span></button>  
+      
     </style>
     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+    	<link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/loginMain.css"/> 
+	<link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/member.css"/> 
+	<link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/table/table.css"/> 
 
     <!-- IE6~8에서 HTML5 태그를 지원하기위한 HTML5 shim -->
     <!--[if lt IE 9]>
@@ -74,7 +95,21 @@
 
   <body onload="init()">
 <div class="navbar navbar-inverse navbar-fixed-top">
-         <%@ include file="../common/header.jsp"%>
+   <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="../main.do">SDMS(Smart Delivery Management System)</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+            </p>
+
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
         </div><!--/span-->
     <div class="container-fluid">
       <div class="row-fluid">
@@ -82,9 +117,69 @@
 <%--           <%@ include file="../common/leftMenu.jsp"%> --%>
         </div><!--/span-->
         <div class="span9">
-<iframe src="memberAddForm.do" 
-scrolling=no name=ce width=1200 height=600 frameborder=0 style="border-width:0px; border-color:white; border-style:solid;"></iframe>
-<!-- <iframe src="list.do" scrolling=no name=ce width=600 height=180 frameborder=0 style="border-width:0px; border-color:white; border-style:solid;"></iframe> -->
+
+<form method="post" action="ajax/addMember.do"    enctype="multipart/form-data">
+<input type='hidden'   id ='photo' name='photo' >
+   	<TABLE  id="mytable"    class="boardList">
+   	 <caption class="table_caption"><h1>SDMS 직원 가입 신청</h1></caption>
+<TR>
+
+
+<th rowspan=8 bgcolor=#F6F6F6>     
+
+<div id ="photoZone">
+<img id="mPhoto"     name="mPhoto"   src="../images/memberPhoto/bg_noimage_1.gif" height="100"><br>
+</div>
+<input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="photoUploadPopup()" />
+	<input id="delBtn" type="button" value="삭제"  onclick="initPhoto()" />
+</th>
+</tr>
+<tr>
+<TD WIDTH="20%" bgcolor=#E4F7BA>소속
+<TD WIDTH="53%"  bgcolor=#FFFF6C><select id="officeNum" name="officeNum" >
+              						<option value="" selected="selected">소속</option>
+              						<option value=" 1">양재택배</option>
+              					</select></TD>
+              					</tr>
+
+<TR>
+<TD WIDTH="20%" bgcolor=#E4F7BA>직위<br></TD>
+<TD WIDTH="53%"  bgcolor=#FFFF6C><select id="rank" name="rank" >
+              						<option value="" selected="selected">소속</option>
+              						<option value=" 1">양재택배</option>
+              					</select></TD>
+</TR>
+<TR>
+<TD WIDTH="20%" bgcolor=#E4F7BA>아이디</TD>
+<TD WIDTH="53%"  bgcolor=#FFFF6C><input id="id" name="id" class="a" type="text" value="" maxlength="100"><br></TD>
+</TR>
+<TR>
+<TD WIDTH="20%" bgcolor=#E4F7BA>비밀번호</TD>
+<TD WIDTH="53%"  bgcolor=#FFFF6C><input id="password" name="password" class="a" type="password" value="" maxlength="100"><br></TD>
+</TR>
+<TR>
+<TD WIDTH="20%" bgcolor=#E4F7BA>이름</TD>
+<TD WIDTH="53%"  bgcolor=#FFFF6C><input id="name" name="name" class="a" type="text" value="" maxlength="100"><br></TD>
+</TR>
+<TR>
+<TD WIDTH="20%" bgcolor=#E4F7BA>생년월일</TD>
+<TD WIDTH="53%"  bgcolor=#FFFF6C>
+ <input type="date"    id="personalNumber"   name="personalNumber">
+</TD>
+</TR>
+<TR>
+<TD WIDTH="20%" bgcolor=#E4F7BA>전화번호</TD>
+<TD WIDTH="53%"  bgcolor=#FFFF6C><input id="tel" name="tel" class="a" type="text" value="" maxlength="100"><br></TD>
+</TR>
+<TR>
+
+
+<th colspan=3><br><input type='submit' value='직원 등록 신청'>&nbsp;&nbsp;<input type='reset' value='취소'>
+</TR>
+
+</TABLE>
+   	
+   </form>	
 
         </div><!--/span-->
       </div><!--/row-->
@@ -97,11 +192,26 @@ scrolling=no name=ce width=1200 height=600 frameborder=0 style="border-width:0px
 
     </div><!--/.fluid-container-->
 
-    <!-- 자바스크립트
-    ================================================== -->
-    <!-- 페이지를 빨리 읽어들이도록 문서 마지막에 배치 -->
-<!--     <script src="assets/js/jquery.js"></script> -->
-
-
   </body>
+  
+  
+  
+        <script>
+      
+      function photoUploadPopup()
+      {
+      	 myWin = window.open('addImage.do', 'popwindow', 'width=300,height=300');
+      	 
+      	 photoZone = document.getElementById('photoZone');
+        
+      }
+
+      
+      
+      
+
+function initPhoto() {
+	photoZone.innerHTML = '<img id="mPhoto"   name="mPhoto" src="../images/memberPhoto/bg_noimage_1.gif" height="100"><br>';
+}
+</script>
 </html>

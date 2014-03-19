@@ -11,28 +11,28 @@
 		window.resizeTo(370,360);
 	}
 
-	//added by mj.chong 2006. 9. 26 로그인 체크 후 로그아웃 상태면 로그인 팝업
-	function goSubmit() {
-		//
-		alert("goSubmit");
-		window.close();
-		
-	}
 
 	function chkFrm() {
-		
-		var mPhoto = window.opener.document.getElementById("mPhoto");
-		mPhoto.src = document.getElementById("pathTextViewer").value;
-       
-		
-		
 		Frm = document.forms[0];
 
+		
+		var mPhoto = window.opener.document.getElementById("mPhoto");
+		var photo = window.opener.document.getElementById("photo");
+		//mPhoto.value = document.getElementById("pathTextViewer").value;
+		//mPhoto.src = "./files/"+ 
+		
+		
 		var filenm = Frm.file1.value;
 		
+	
+		var  aaa =    "../files/"+ filenm.substring(12,filenm.length);
 		
 		
-		 alert(" filenm  :" + filenm);
+		
+		mPhoto.src =aaa;
+		photo.value = aaa; 
+		
+		alert(  "photo.value  :  " +  photo.value);
 		var attachMysize = 0;
 		if (filenm==""){
 			alert("파일을 첨부해주세요!");
@@ -46,10 +46,12 @@
 			alert("이미지파일 (.gif, .jpg, .png) 만 업로드 가능합니다.");
 			return false;
 		}
-		
  		Frm.action = "setPhoto.do";
  		
 		Frm.submit();
+		
+		
+		
 		window.close();
 		
 	}
@@ -63,27 +65,6 @@
 </head>
 
 <body onload="resizeWindow();SetFilezise();">
-
-<select name="ddlNames" id="ddlNames">
-    <option value="Mudassar Khan">Mudassar Khan</option>
-    <option value="John Hammond">John Hammond</option>
-    <option value="Mike Stanley">Mike Stanley</option>
-</select>
-<br />
-<br />
-<input type="button" value="Select" onclick="SetName();" />
-<script type="text/javascript">
-    function SetName() {
-        if (window.opener != null && !window.opener.closed) {
-            var txtName = window.opener.document.getElementById("txtName");
-            txtName.value = document.getElementById("ddlNames").value;
-        }
-        window.close();
-    }
-</script>
-
-
-
 <div id="pop_wrap">     
 	<form name="FileFrm" enctype="multipart/form-data" method="post">
 	

@@ -14,7 +14,7 @@
 
 
 <script>
-
+var  ppp = null ;
 $(window.document).ready(function() {
 	
     $("#grid").jqGrid({
@@ -32,7 +32,7 @@ $(window.document).ready(function() {
         loadonce : true,                // loadonce : rowNum 설정을 사용하기 위해서 true로 지정한다.
         rowList : [10, 20, 30],       // rowList : rowNum을 선택할 수 있는 옵션을 지정한다.
 
-        colNames : [ 'no','지점', '이름', 'ID',  '직위',   '전화','생년월일','사' ],
+        colNames : [ 'no','지점', '이름', 'ID',  '직위',   '전화','생년월일','사진' ],
         colModel : [
                     
                     { name : 'no',         index : 'no',         width : 50,    align : 'center' },
@@ -42,6 +42,7 @@ $(window.document).ready(function() {
                     { name : 'rank',         index : 'rank',         width : 150,    align : 'center' },
                     { name : 'tel',         index : 'tel',         width : 150,    align : 'center' , hidden : true},
                     { name : 'personalNumber',         index : 'personalNumber',         width : 150,    align : 'center' , hidden : true},
+//                     { name : 'photo',         index : 'photo',         width : 100,    align : 'center' }
                     { name : 'photo',         index : 'photo',         width : 1,    align : 'center' , hidden : true},
                     ],
         jsonReader : {
@@ -54,9 +55,13 @@ $(window.document).ready(function() {
 },
 
 onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
- 
+
  $("#status").val("edit");
 	var $rowData = $(this).getRowData(rowid);
+	
+	 console.log( "dddddeux : "+    ($rowData['photo'])   );
+	 ppp  =   ($rowData['photo']) ;
+	 setPhoto() ;
 	$("#mno").val($rowData['no']);
 	$("#mname").val($rowData['name']);
 	$("#mofficeName").val($rowData['officeName']);
@@ -139,6 +144,21 @@ function deleteFunction()
 	return;
 }
 
+
+
+function setPhoto() {
+	
+	if(ppp == "")
+	{
+		photoZone.innerHTML = '<img id="mPhoto"   name="mPhoto" src="../images/memberPhoto/bg_noimage_1.gif" height="100"><br>';
+	}
+	else{
+		photoZone.innerHTML = '<img id="mPhoto"   name="mPhoto" src="' +   ppp   + '"height="100"><br>';
+	}	
+	
+}
+
+
 </script>
 
 <title>직원관리</title>
@@ -159,7 +179,12 @@ function deleteFunction()
    	<TABLE  WIDTH="50%"  height="100">
 <TR>
 <th rowspan=8 bgcolor=#F6F6F6>
-<img id="mPhoto" src="../images/person.jpeg" height="100"><br>사진변경<input type="file" name="photoFile">
+<div id ="photoZone">
+<img id="mPhoto"     name="mPhoto"   src="../images/memberPhoto/bg_noimage_1.gif" height="100"><br>
+</div>
+
+
+<!-- <img id="mPhoto" src="../files/ugc.jpg" height="100"><br>사진변경<input type="file" name="photoFile"> -->
 </th>
 </tr>
 <tr>
