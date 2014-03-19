@@ -8,11 +8,16 @@
     <result property="carNumber"        column="CAR_NUM"/>
     <result property="carLoad"        column="CAR_LOAD"/>
     <result property="carType"    column="CAR_TYPE"/>
+    <result property="driver"    column="DRIVER"/>
    </resultMap>
   
   <select id="selectList" resultMap="carResultMap">
-        select MNO,CAR_NUM,CAR_LOAD,CAR_TYPE
-        from CARS
+        select c.CAR_NUM,c.CAR_LOAD,c.CAR_TYPE,
+					(
+			            select  mname from members where  mno  =   c.mno 
+						
+					) AS DRIVER
+		from cars c 
     </select>
     
     <select id="selectOne" parameterType="int" resultMap="carResultMap">

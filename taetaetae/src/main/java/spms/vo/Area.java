@@ -7,6 +7,15 @@ public class Area {
 	String areaClass;
 	
 	
+	String driver;
+	public String getDriver() {
+		return driver;
+	}
+	public void setDriver(String driver) {
+		this.driver = driver;
+	}
+	
+	
 	public int getNo() {
 		return no;
 	}

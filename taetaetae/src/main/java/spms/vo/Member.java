@@ -11,7 +11,7 @@ public class Member implements Serializable {
 	protected String 		tel;
 	protected String		password;
 	protected String 		personalNumber;
-	protected int 			rank;
+	protected String 			rank;
 	protected String		photo;
 	private int  officeNum;
 	protected String 		officeName;
@@ -58,10 +58,10 @@ public class Member implements Serializable {
 		this.personalNumber = personalNumber;
 		return this;
 	}
-	public int getRank() {
+	public String getRank() {
 		return rank;
 	}
-	public Member setRank(int rank) {
+	public Member setRank(String rank) {
 		this.rank = rank;
 		return this;
 	}

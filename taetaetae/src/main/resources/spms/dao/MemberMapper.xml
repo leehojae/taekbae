@@ -17,9 +17,25 @@
   </resultMap>
 	
 	<select id="selectList" resultMap="memberResultMap">
-		select m.MNO,m.MNAME,m.ID,m.TEL,m.PERSONAL_NO,m.RANK , m.OFFICE_NUM ,
-		m.PHOTO
-		from MEMBERS m
+		select  m.MNO,m.MNAME,m.ID,m.TEL,m.PERSONAL_NO,
+		m.PHOTO,
+		
+					(
+			            select  OFFICE_NAME from office where  OFFICE_NUM  =   m.OFFICE_NUM 
+						
+					) AS OFFICE_NAME,
+						
+						(
+			            case  m.RANK
+						when 1 then '사장' 
+					    when 2 then '사무'
+					    when 3 then '배송기사'
+					    
+					    else '기타' end
+					) AS RANK
+		
+		
+		from MEMBERS m where    m.OFFICE_NUM is not null;
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultMap="memberResultMap">

@@ -8,11 +8,24 @@
     <result property="memberNo"     column="MNO"/>
     <result property="taskArea"    column="TASK_AREA"/>
     <result property="areaClass"      column="AREA_CLASS"/>
+    <result property="driver"    column="DRIVER"/>
   </resultMap>
 	
 	<select id="selectList" resultMap="areaResultMap">
-		select AREA_NUM,MNO,TASK_AREA,AREA_CLASS
-		from AREAS
+	select a.AREA_NUM,
+
+a.TASK_AREA,
+a.AREA_CLASS,
+
+
+(
+			            select  mname from members where  mno  =   a.MNO
+						
+					) AS DRIVER
+		from AREAS  a 
+
+
+
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultMap="areaResultMap">

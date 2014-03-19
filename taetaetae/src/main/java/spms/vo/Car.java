@@ -14,7 +14,13 @@ public class Car implements Serializable{
 	String carNumber;
 	int carLoad;
 	int carType;
-	Member driver;
+	String driver;
+	public String getDriver() {
+		return driver;
+	}
+	public void setDriver(String driver) {
+		this.driver = driver;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -43,7 +49,5 @@ public class Car implements Serializable{
 		this.carType = carType;
 		return this;
 	}
-	
-	
 
 }
