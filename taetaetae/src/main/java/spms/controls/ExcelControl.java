@@ -306,7 +306,7 @@ public class ExcelControl {
 			ArrayList<String> encodeResult = new ArrayList<String>();
 			ArrayList<Excel> requestResult = new ArrayList<Excel>();
 			for (int i = 0; i < addrList.size(); i++){
-				addrResult.add(addrList.get(i).getReceiverAddrRoad());
+				addrResult.add(addrList.get(i).getReceiverAddrRoad()+addrList.get(i).getReceiverAddrBun()+addrList.get(i).getReceiverAddrJi()+addrList.get(i).getReceiverAddrName());
 				System.out.println(addrResult.get(i));
 				encodeResult.add(URLEncoder.encode(addrResult.get(i), "UTF-8"));
 				System.out.println(encodeResult.get(i));
