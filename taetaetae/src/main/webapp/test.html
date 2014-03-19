@@ -11,8 +11,8 @@
 function test(){
 	
 	var params = "version=1&reqCoordType=WGS84GEO"; 
-	params += "&startX=127.021993691851&startY=37.4846508839975"; 
-	params += "&endX=126.452591430685&endY=36.7263867904482&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9"; 
+	params += "&startX=127.02807612700347&startY=37.49528869328986"; 
+	params += "&endX=127.02371071727875&endY=37.49394534776091&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9"; 
 
 	$.ajax({ 
 	type : "POST", 
@@ -20,8 +20,9 @@ function test(){
 	data : params, 
 	dataType:"JSON", 
 	success : function(data) { 
-	alert('success') 
+	alert('success'); 
 	console.log(data);
+	console.log(data.features[0].properties.totalTime);
 	}, 
 	error : function(xhr, status, error) { 
 	alert(error) 
@@ -46,14 +47,12 @@ function test2(){
 	            "departure": {
 	              "name": "test1",
 	              "lon": "127.021993691851",
-	              "lat": "37.4846508839975",
-	              "depSearchFlag": "03"
+	              "lat": "37.4846508839975"
 	            },
 	            "destination": {
 	              "name": "test2",
 	              "lon": "126.452591430685",
-	              "lat": "36.7263867904482",
-	              "destSearchFlag": "03"
+	              "lat": "36.7263867904482"
 	            },
 	            "predictionType": "arrival",
 	            "predictionTime": "2014-03-19T18:31:22+0900",
@@ -72,7 +71,7 @@ function test2(){
 	};
 </script>
 
-<button onclick="test2()">거리테스트</button>
+<button onclick="test()">거리테스트</button>
 <h3>Choose an image:</h3>   
     <form><input type='file'  onchange="readURL(this);"  /></form>
 
