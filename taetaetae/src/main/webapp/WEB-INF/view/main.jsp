@@ -188,16 +188,62 @@
 					$(document).ready(function() {
 						$('.btn').click(function() {
 							update(this);
+							
 							alert("전송완료");
-							location.reload();
+							/* location.reload(); */
 						});
 
 						function update(obj) {
 							var index = obj.parentNode.parentNode.rowIndex;
 							var row = document.getElementById("tableData").rows[index - 1];
-							$.post('excel/divide.do', {
-								id : row.cells[0].innerHTML,
-								receiverAddrRoad : row.cells[3].innerHTML
+							var params = null;
+							var datas = new Array();
+							var successData = null;
+							
+			          function timeTable (trcno, timeData){
+			                this.trcno = trcno;
+			                this.timeData = timeData;
+			              }; 
+
+							
+							$.ajax({
+								type:"POST",
+								url: "excel/divide.do",
+								data : {id : row.cells[0].innerHTML,
+								receiverAddrRoad : row.cells[3].innerHTML},
+								success : function(data){
+									console.log(data);
+									console.log(data.excelList[0].lat);
+									console.log(data.excelList.length);
+                  
+									for (var i = 0; i < data.excelList.length; i++){
+									params = null;
+									params = "version=1&reqCoordType=WGS84GEO"; 
+								  params += "&startX=127.02801704406481&startY=37.494539069596186"; 
+								  params += "&endX="+ data.excelList[i].lng+"&endY="+data.excelList[i].lat+"&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9"; 
+								  
+								  $.ajax({ 
+								  type : "POST", 
+								  url : "https://apis.skplanetx.com/tmap/routes", 
+								  data : params, 
+								  dataType:"JSON", 
+								  success : function(timeData) {
+								  	console.log(data.excelList[i] +""+ timeData.features[0].properties.totalTime);
+/*                   datas[i] = new timeTable(data.excelList[i].trcno, timeData.features[0].properties.totalTime); */
+								  }, 
+								  error : function(xhr, status, error) { 
+								  alert(error) 
+								  } 
+								  }); 
+								  
+									}
+									
+                  console.log(datas);
+									
+								},
+								error : function(e){
+									console.log(e+"error");
+								}
 							});
 						}
 					});
