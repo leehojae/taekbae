@@ -20,9 +20,19 @@
 	}
 
 	function chkFrm() {
+		
+		var mPhoto = window.opener.document.getElementById("mPhoto");
+		mPhoto.src = document.getElementById("pathTextViewer").value;
+       
+		
+		
 		Frm = document.forms[0];
 
 		var filenm = Frm.file1.value;
+		
+		
+		
+		 alert(" filenm  :" + filenm);
 		var attachMysize = 0;
 		if (filenm==""){
 			alert("파일을 첨부해주세요!");
@@ -36,9 +46,8 @@
 			alert("이미지파일 (.gif, .jpg, .png) 만 업로드 가능합니다.");
 			return false;
 		}
-		alert("1");
+		
  		Frm.action = "setPhoto.do";
-		alert("2");
  		
 		Frm.submit();
 		window.close();
@@ -54,6 +63,27 @@
 </head>
 
 <body onload="resizeWindow();SetFilezise();">
+
+<select name="ddlNames" id="ddlNames">
+    <option value="Mudassar Khan">Mudassar Khan</option>
+    <option value="John Hammond">John Hammond</option>
+    <option value="Mike Stanley">Mike Stanley</option>
+</select>
+<br />
+<br />
+<input type="button" value="Select" onclick="SetName();" />
+<script type="text/javascript">
+    function SetName() {
+        if (window.opener != null && !window.opener.closed) {
+            var txtName = window.opener.document.getElementById("txtName");
+            txtName.value = document.getElementById("ddlNames").value;
+        }
+        window.close();
+    }
+</script>
+
+
+
 <div id="pop_wrap">     
 	<form name="FileFrm" enctype="multipart/form-data" method="post">
 	
