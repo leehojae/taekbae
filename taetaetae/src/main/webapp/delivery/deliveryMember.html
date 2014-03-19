@@ -117,10 +117,10 @@ header {
 		<option>도로명</option>
 		<option>번지명</option>
 	</select>
-	<input type="button" name="버튼" value="배송처리" onclick="test()" />
+	<input type="button" name="버튼" value="배송처리" onclick="checkDelivery()" />
 	<script type="text/javascript">
   
-		function test() {
+		function checkDelivery() {
 
 			var values = $('input:checkbox:checked.checkGroup').map(function() {
 				return this.value;
