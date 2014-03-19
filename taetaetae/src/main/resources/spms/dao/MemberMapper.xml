@@ -17,7 +17,8 @@
   </resultMap>
 	
 	<select id="selectList" resultMap="memberResultMap">
-		select m.MNO,m.MNAME,m.ID,m.TEL,m.PERSONAL_NO,m.RANK , m.OFFICE_NUM 
+		select m.MNO,m.MNAME,m.ID,m.TEL,m.PERSONAL_NO,m.RANK , m.OFFICE_NUM ,
+		m.PHOTO
 		from MEMBERS m
 	</select>
 	
@@ -33,7 +34,7 @@
   
   <insert id="insert" parameterType="member">
     INSERT INTO MEMBERS(MNAME,ID,TEL,PERSONAL_NO,PHOTO, PWD ) 
-    VALUES(#{name},#{id},#{tel},#{personalNumber}   ,#{photo}       ,   #{password} )
+    VALUES(#{name},#{id},#{tel},#{personalNumber},#{photo}       ,   #{password} )
   </insert>
   
   <update id="update" parameterType="member">
