@@ -34,9 +34,11 @@ $(window.document).ready(function() {
         colModel : [
                     
                     { name : 'no',         index : 'no',         width : 70,    align : 'center' },
-                    { name : 'memberNo',         index : 'memberNo',         width : 270,    align : 'center' },
+//                     { name : 'memberNo',         index : 'memberNo',         width : 270,    align : 'center' },
+  					{ name : 'driver',         index : 'driver',         width : 130,    align : 'center' },
                     { name : 'taskArea',         index : 'taskArea',         width : 270,    align : 'center' },
                     { name : 'areaClass',         index : 'areaClass',         width : 270,    align : 'center' },
+                  
                     ],
         jsonReader : {
         	 repeatitems : false,
@@ -52,7 +54,7 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
  $("#status").val("edit");
 	var $rowData = $(this).getRowData(rowid);
 	$("#ano").val($rowData['no']);
-	$("#mno").val($rowData['memberNo']);
+	$("#driver").val($rowData['driver']);
 	$("#aTaskArea").val($rowData['taskArea']);
 	$("#aClass").val($rowData['areaClass']);
 
@@ -144,7 +146,7 @@ function deleteFunction()
 	번호 : <input id=ano type="text" name="ano">
 </td>
 <td>
-	직원 : <input id=mno type="text" name="mno">
+	직원 : <input id=driver type="text" name="driver">
 </td>	
 </tr>
 <tr>

@@ -30,12 +30,13 @@ $(window.document).ready(function() {
         loadonce : true,                // loadonce : rowNum 설정을 사용하기 위해서 true로 지정한다.
         rowList : [10, 20, 30],       // rowList : rowNum을 선택할 수 있는 옵션을 지정한다.
 
-        colNames : [ 'no','번호', '차종' ],
+        colNames : [ 'no','번호', '차종' ,  '기사'   ],
         colModel : [
                     
                     { name : 'no',         index : 'no',         width : 70,    align : 'center' },
-                    { name : 'carNumber',         index : 'officeName',         width : 270,    align : 'center' },
+                    { name : 'carNumber',         index : 'officeName',         width : 140,    align : 'center' },
                     { name : 'carType',         index : 'name',         width : 270,    align : 'center' },
+                    { name : 'driver',         index : 'driver',         width : 130,    align : 'center' },
                     ],
         jsonReader : {
         	 repeatitems : false,
@@ -53,6 +54,7 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 	$("#cno").val($rowData['no']);
 	$("#cNumber").val($rowData['carNumber']);
 	$("#cType").val($rowData['carType']);
+	$("#cDriver").val($rowData['driver']);
 
 	
 }	
@@ -146,6 +148,9 @@ function deleteFunction()
 <tr>
 <td>
 	차종 : <input id=cType type="text" name="cType">
+</td>
+<td>
+	기사  : <input id=cDriver type="text" name="cDriver">
 </td>
 	
 
