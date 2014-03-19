@@ -24,6 +24,30 @@
 
 	<body>
 
+<table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>
+            Name:&nbsp;
+        </td>
+        <td>
+            <input type="text" id="txtName" readonly="readonly" />
+        </td>
+        <td>
+            <input type="button" value="Select Name" onclick="photoUploadPopup()" />
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    var popup;
+    function SelectName() {
+        popup = window.open("Popup.htm", "Popup", "width=300,height=100");
+        popup.focus();
+    }
+</script>
+
+
+
+
 <form method="post" action="ajax/addMember.do"    enctype="multipart/form-data">
    	<TABLE  id="mytable"   WIDTH="50%"  height="100">
 <TR>
@@ -93,10 +117,11 @@
       {
       	 myWin = window.open('addImage.do', 'popwindow', 'width=300,height=300');
       	 //myWin.focus();
-      	 
       	 photoZone = document.getElementById('photoZone');
-        
-      		//photoZone.innerHTML = '<img id="mPhoto" src="../files/1395051607930_2.jpg" height="100"><br>';
+         
+   		photoZone.innerHTML = '<img id="mPhoto" src="../files/kioo.jpg" height="100"><br>';
+      	 
+      	
       }
 
       
