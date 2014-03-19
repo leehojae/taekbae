@@ -40,23 +40,7 @@ public class MemberControl {
 		return "member/add";
 	}
 	
-//	@RequestMapping(value="/add",method=RequestMethod.POST)
-//	public String add(
-//			Member member, 
-//			@RequestParam("photoFile") MultipartFile photoFile,
-//			Model model) throws Exception {
-//
-//		member.setPhoto(saveFile(photoFile));
-//		
-//		int count = memberDao.insert(member);
-//		if (count > 0) {
-//			model.addAttribute("message", "등록 성공입니다!");
-//		} else {
-//			model.addAttribute("message", "등록 실패입니다!");
-//		}
-//		
-//		return "member/add";
-//	}
+
 	
 	@RequestMapping(value="/setPhoto",method=RequestMethod.POST)
 	public String setPhoto(
@@ -117,21 +101,9 @@ public class MemberControl {
 	  String originFilename = photoFile.getOriginalFilename();
 	  log.debug("업로드 파일:" + photoFile.getName() + "=" + originFilename);
 	  
-	  String ext = originFilename.substring(
-	  		originFilename.lastIndexOf("."));
-	  
-	  String newFilename = System.currentTimeMillis() + "_" +
-	  		this.getFileCount() + ext;
-	  
 	  photoFile.transferTo(new File(servletContext.getRealPath(
-	  	//	"/Users/bit/JavaIDE/coca/WebContent/" + newFilename)));
-	  "/files/" + newFilename)));
-	  
-	// String savePath = "D:/Projects/workspace/projectName/WebContent/folderName";
-	  //String savePath ="/Users/bit/JavaIDE/coca/WebContent";
-	  
-	//  String savePath = request.getServletContext().getRealPath("/Users/bit/JavaIDE/coca/WebContent");
-	  return newFilename;
+	  		"/files/" + originFilename)));
+	  return originFilename; 
   }
 	
 	int fileCount = 0;
