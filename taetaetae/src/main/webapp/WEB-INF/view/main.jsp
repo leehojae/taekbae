@@ -188,8 +188,7 @@
 					$(document).ready(function() {
 						$('.btn').click(function() {
 							update(this);
-							
-							alert("전송완료");
+
 							/* location.reload(); */
 						});
 
@@ -199,7 +198,8 @@
 							var params = null;
 							var datas = new Array();
 							var successData = null;
-							
+							var data = null;
+							var item = null;
 			          function timeTable (trcno, timeData){
 			                this.trcno = trcno;
 			                this.timeData = timeData;
@@ -209,6 +209,8 @@
 							$.ajax({
 								type:"POST",
 								url: "excel/divide.do",
+								//async: false, 
+								global : true, 
 								data : {id : row.cells[0].innerHTML,
 								receiverAddrRoad : row.cells[3].innerHTML},
 								success : function(data){
@@ -216,28 +218,39 @@
 									console.log(data.excelList[0].lat);
 									console.log(data.excelList.length);
                   
-									for (var i = 0; i < data.excelList.length; i++){
+									for (var i = 0 ,item; item = data.excelList[i]; i++){
 									params = null;
 									params = "version=1&reqCoordType=WGS84GEO"; 
 								  params += "&startX=127.02801704406481&startY=37.494539069596186"; 
-								  params += "&endX="+ data.excelList[i].lng+"&endY="+data.excelList[i].lat+"&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9"; 
+								  params += "&endX="+ item.lng+"&endY="+item.lat+"&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9"; 
 								  
 								  $.ajax({ 
 								  type : "POST", 
 								  url : "https://apis.skplanetx.com/tmap/routes", 
+								  async: false,
+								  global : true, 
 								  data : params, 
 								  dataType:"JSON", 
 								  success : function(timeData) {
-								  	console.log(data.excelList[i] +""+ timeData.features[0].properties.totalTime);
-/*                   datas[i] = new timeTable(data.excelList[i].trcno, timeData.features[0].properties.totalTime); */
+								  	//console.log(item.trcno +""+ timeData.features[0].properties.totalTime);
+								  	
+								  	console.log(item.trcno);
+								  	//console.log(item +""+ timeData.features[0].properties.totalTime);
+								  	
+                   datas[i] = new timeTable(item.trcno, timeData.features[0].properties.totalTime);
 								  }, 
 								  error : function(xhr, status, error) { 
 								  alert(error) 
 								  } 
 								  }); 
 								  
+								  //function timeInsert(timeData){
+									  
+								  //};
+								  
 									}
-									
+						             
+						      alert("전송완료");
                   console.log(datas);
 									
 								},
@@ -245,6 +258,8 @@
 									console.log(e+"error");
 								}
 							});
+							console.log(datas);
+							
 						}
 					});
 				</script>
