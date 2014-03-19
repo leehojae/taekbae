@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -30,10 +29,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import spms.dao.ExcelDao;
 import spms.services.RestRequest;
+import spms.services.TmapCarLeadTime;
 import spms.vo.Excel;
 import spms.vo.JsonResult;
-
-import com.kt.openplatform.sdk.KTOpenApiHandler;
 
 @Controller
 @RequestMapping("/excel")
@@ -43,6 +41,7 @@ public class ExcelControl {
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	RestRequest restRequest = new RestRequest();
+	TmapCarLeadTime tmapCarLeadTime = new TmapCarLeadTime();
 	private static List<Excel> list = new ArrayList<Excel>();
 	
 	public static int staticId = 0;
@@ -151,20 +150,22 @@ public class ExcelControl {
 			System.err.println(s);
 		}
 		
+//		tmapCarLeadTime.requests();
+		
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 
 		// 발급 받은 개발자 Key 와 Api_Secret 를 입력 String auth_key = "개발자 키를 넣어주세요";
 		// String auth_secret = "비밀키를 넣어주세요";
-		String auth_key = "2FKuieS1nQwRYE807KNXDuq3H7uwPyIUlKB939FShAyO0RbH20";
-		String auth_secret = "sodh50ncgSU9KlIZyBD08pHqPiBFZrlCm2XDIVsDrr7ZlVaz3d";
-		// api id 설정
-		String apiId = "1.0.SMS.MAKE";
-		// https 이용 여부 설정 false 로 기본 설정. boolean bSSL = false;
-		boolean bSSL = false;
-		// Make Parameters
-		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("sender", "01047311909");
-		params.put("receivers", "01047311909");
+//		String auth_key = "2FKuieS1nQwRYE807KNXDuq3H7uwPyIUlKB939FShAyO0RbH20";
+//		String auth_secret = "sodh50ncgSU9KlIZyBD08pHqPiBFZrlCm2XDIVsDrr7ZlVaz3d";
+//		// api id 설정
+//		String apiId = "1.0.SMS.MAKE";
+//		// https 이용 여부 설정 false 로 기본 설정. boolean bSSL = false;
+//		boolean bSSL = false;
+//		// Make Parameters
+//		HashMap<String, String> params = new HashMap<String, String>();
+//		params.put("sender", "01047311909");
+//		params.put("receivers", "01047311909");
 //		params.put("receivers", "01047311909, "
 //							  + "01047311909, "
 //							  + "01047311909, "
@@ -181,20 +182,20 @@ public class ExcelControl {
 //							  + "01047311909, "
 //							  + "01047311909, "
 //							  + "01047311909");
-		params.put("displayaddress", "01047311909");
-		params.put("text", "문자메시지 내용을 넣어주세요");
-		// make xauth params
-		HashMap<String, String> xauth_params = new HashMap<String, String>();
-		xauth_params.put("username", "");
-		xauth_params.put("password", "");
-		
-		Class.forName("com.kt.openplatform.sdk.KTOpenApiHandler");
-		
-		KTOpenApiHandler handler = KTOpenApiHandler.createHandler(auth_key,	auth_secret);
-
-		HashMap<?, ?> r = handler.call(apiId, params, xauth_params, bSSL);
-
-		System.out.println("RESULT==>" + r);
+//		params.put("displayaddress", "01047311909");
+//		params.put("text", "문자메시지 내용을 넣어주세요");
+//		// make xauth params
+//		HashMap<String, String> xauth_params = new HashMap<String, String>();
+//		xauth_params.put("username", "");
+//		xauth_params.put("password", "");
+//		
+//		Class.forName("com.kt.openplatform.sdk.KTOpenApiHandler");
+//		
+//		KTOpenApiHandler handler = KTOpenApiHandler.createHandler(auth_key,	auth_secret);
+//
+//		HashMap<?, ?> r = handler.call(apiId, params, xauth_params, bSSL);
+//
+//		System.out.println("RESULT==>" + r);
 		
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 		
@@ -364,32 +365,32 @@ public class ExcelControl {
 	
 	@RequestMapping(value = "/divide", method = RequestMethod.POST, 
 			produces="application/json")
-	public String divideForm(Excel excel) throws Exception{
+	public ArrayList<Excel> divideForm(Excel excel) throws Exception{
 
-		Excel temp = null;
+//		Excel temp = null;
 		
 		updateDivide(excel);
 		ArrayList<Excel> coordList = (ArrayList<Excel>)excelDao.selectByIdCoord(excel.getId());
 		
-		for (int j = 0; j < coordList.size()-1; j++){
-			for (int i = 0; i < coordList.size()-j-1; i++){
-				if((distance(127.02801704406481, 37.494539069596186, coordList.get(i).getLng(), coordList.get(i).getLat()) > 
-				(distance(127.02801704406481, 37.494539069596186, coordList.get(i+1).getLng(), coordList.get(i+1).getLat())))){
-					temp = coordList.get(i+1);
-					coordList.set(i+1, coordList.get(i));
-					coordList.set(i, temp);
-				}
-			}
-		}
+//		for (int j = 0; j < coordList.size()-1; j++){
+//			for (int i = 0; i < coordList.size()-j-1; i++){
+//				if((distance(127.02801704406481, 37.494539069596186, coordList.get(i).getLng(), coordList.get(i).getLat()) > 
+//				(distance(127.02801704406481, 37.494539069596186, coordList.get(i+1).getLng(), coordList.get(i+1).getLat())))){
+//					temp = coordList.get(i+1);
+//					coordList.set(i+1, coordList.get(i));
+//					coordList.set(i, temp);
+//				}
+//			}
+//		}
+//		
+//		for (int i = 0; i < coordList.size(); i++){
+//			System.out.println(coordList.get(i).setState(i+1).getState());
+//			updateState(coordList.get(i));
+//		}
+//		
+//		coordList.clear();
 		
-		for (int i = 0; i < coordList.size(); i++){
-			System.out.println(coordList.get(i).setState(i+1).getState());
-			updateState(coordList.get(i));
-		}
-		
-		coordList.clear();
-		
-		return "redirect:../main.do";
+		return coordList;
 	}
 	
 	public void updateState(Excel excel) throws Exception {
