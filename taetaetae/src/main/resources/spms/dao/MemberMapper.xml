@@ -33,7 +33,7 @@
   
   <insert id="insert" parameterType="member">
     INSERT INTO MEMBERS(MNAME,ID,TEL,PERSONAL_NO,PHOTO, PWD ) 
-    VALUES(#{name},#{id},#{tel},#{personalNumber},#{photo}       ,   #{password} )
+    VALUES(#{name},#{id},#{tel},#{personalNumber}   ,#{photo}       ,   #{password} )
   </insert>
   
   <update id="update" parameterType="member">
