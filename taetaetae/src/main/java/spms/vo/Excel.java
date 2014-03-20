@@ -43,6 +43,7 @@ public class Excel {
 	int id;
 	double lat;
 	double lng;
+	int delayTime;
 	
 	private CommonsMultipartFile file = null;
 	
@@ -115,7 +116,16 @@ public class Excel {
 		this.pay = pay;
 		this.returnBox = returnBox;
 	}
-
+	
+	public int getDelayTime() {
+		return delayTime;
+	}
+	
+	public Excel setDelayTime(int delayTime) {
+		this.delayTime = delayTime;
+		return this;
+	}
+	
 	public long getTrcno() {
 		return trcno;
 	}
