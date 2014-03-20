@@ -54,6 +54,10 @@ public class AuthControl {
 		sqlparamMap.put("password", password);
 		
 		Member member = memberDao.selectByIdPassword(sqlparamMap);
+		if(member == null)
+		{
+			return "redirect:/failLogin.jsp";
+		}
 		System.err.println("dddd : " +  member.getNo());
 		{
 			excelControl.staticId  = member.getNo();
