@@ -138,7 +138,7 @@ public class ExcelControl {
 	
 	@RequestMapping(value = "/lngsSmsSend", method = RequestMethod.POST, 
 			produces="application/json")
-	public String lngsSmsSend(String[] lngs) throws Exception {
+	public void lngsSmsSend(String[] lngs) throws Exception {
 		ArrayList<String> telList = new ArrayList<String>();
 		
 		for (int i = 0; i < lngs.length; i++) {
@@ -201,7 +201,7 @@ public class ExcelControl {
 		
 //		smsSendService.smsSend();
 		
-		return null;
+//		return null;
 		
 	}
 	
@@ -306,7 +306,20 @@ public class ExcelControl {
 			ArrayList<String> encodeResult = new ArrayList<String>();
 			ArrayList<Excel> requestResult = new ArrayList<Excel>();
 			for (int i = 0; i < addrList.size(); i++){
-				addrResult.add(addrList.get(i).getReceiverAddrRoad()+addrList.get(i).getReceiverAddrBun()+addrList.get(i).getReceiverAddrJi()+addrList.get(i).getReceiverAddrName());
+				if (addrList.get(i).getReceiverAddrName() != null) {
+					addrResult.add(addrList.get(i).getReceiverAddrRoad()
+							+ String.valueOf(addrList.get(i)
+									.getReceiverAddrBun())
+							+ "-"+ String.valueOf(addrList.get(i)
+									.getReceiverAddrJi())
+							+ addrList.get(i).getReceiverAddrName());
+				} else {
+					addrResult.add(addrList.get(i).getReceiverAddrRoad()
+							+ String.valueOf(addrList.get(i)
+									.getReceiverAddrBun())
+							+ String.valueOf(addrList.get(i)
+									.getReceiverAddrJi()));
+				}
 				System.out.println(addrResult.get(i));
 				encodeResult.add(URLEncoder.encode(addrResult.get(i), "UTF-8"));
 				System.out.println(encodeResult.get(i));
@@ -361,7 +374,34 @@ public class ExcelControl {
 				.setData(excelDao.searchUser(Long.parseLong(trcno)));
 	}
 	
-
+	@RequestMapping(value = "/insertTime", method = RequestMethod.POST,
+			produces = "application/json")
+	public void updateTime(String trcno, String delayTime, String stateNum) throws Exception{
+		System.err.println(trcno);
+		System.err.println(delayTime);
+		System.err.println(stateNum);
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = ds.getConnection();
+			stmt = conn.prepareStatement(
+					"UPDATE EXCEL_UPLOAD SET STATE=?, DELAY_TIME=? WHERE TRCNO=?");
+			stmt.setString(1, stateNum);
+			stmt.setString(2, delayTime);
+			stmt.setString(3, trcno);
+			stmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+			
+		} finally {
+			try {stmt.close();} catch (Exception e) {}
+			try {if(conn != null) conn.close();} catch (Exception e) {}
+		}
+	}
+	
 	
 	@RequestMapping(value = "/divide", method = RequestMethod.POST, 
 			produces="application/json")
