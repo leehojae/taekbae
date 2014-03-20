@@ -25,13 +25,18 @@ $(window.document).ready(function() {
                                                 // (json 으로 외부에 요청을 보내면 보안정책에 위배되어 요청이 나가질 않는다.
                                                 //  따라서 datatype 을 jsonp로 변경하고 보내야 한다.)
 
-        mtype : 'get',                     // mtype : 데이터 전송방식을 지정한다.
+      	mtype: 'post',                 // mtype : 데이터 전송방식을 지정한다.
         height : '300px',                 // height : 그리드의 높이를 지정한다.
         pager : '#pager',               // pager : 도구 모임이 될 div 태그를 지정한다.
         rowNum : 20,                      // rowNum : 한 화면에 표시할 행 개수를 지정한다.
         loadonce : true,                // loadonce : rowNum 설정을 사용하기 위해서 true로 지정한다.
         rowList : [10, 20, 30],       // rowList : rowNum을 선택할 수 있는 옵션을 지정한다.
 
+        
+    	postData: {
+			searchKeywordA: $("#searchKeywordA").val()
+			, searchKeywordB: $("#searchKeywordB").val()
+		},
         colNames : [ 'no','지점', '이름', 'ID',  '직위',   '전화','생년월일','사진' ],
         colModel : [
                     
@@ -42,7 +47,6 @@ $(window.document).ready(function() {
                     { name : 'rank',         index : 'rank',         width : 150,    align : 'center' },
                     { name : 'tel',         index : 'tel',         width : 150,    align : 'center' , hidden : true},
                     { name : 'personalNumber',         index : 'personalNumber',         width : 150,    align : 'center' , hidden : true},
-//                     { name : 'photo',         index : 'photo',         width : 100,    align : 'center' }
                     { name : 'photo',         index : 'photo',         width : 1,    align : 'center' , hidden : true},
                     ],
         jsonReader : {
@@ -56,7 +60,7 @@ $(window.document).ready(function() {
 
 onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 
- $("#status").val("edit");
+ //$("#status").val("edit");
 	var $rowData = $(this).getRowData(rowid);
 	
 	 console.log( "dddddeux : "+    ($rowData['photo'])   );
@@ -86,7 +90,7 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 	
 	  
     $("#addBtn").click( function() {
-    	alert("dddd");
+    
     	$.ajax( 'ajax/add.do', {
     		   type: 'POST',
 			data: {
@@ -95,7 +99,6 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 				id: $('#mid').val(),
 				tel: $('#mtel').val(),
 				personalNumber: $('#mpersonalNumber').val(),
-				photo: $('#oAddr').val(),
 				officeNum: $('#oAddr').val(),
 				officeName: $('#oAddr').val(),
 				rank: $('#mrank').val()
@@ -108,8 +111,14 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
     );
     
     
+    $("#searchBT").click( function() {  
+    	
+    	fn_reloadPjtList();
+        return false;
+	});
+    
+    
     $("#updateBtn").click( function() {
-     	alert("updateBtn");
     	$.ajax( 'ajax/update.do', {
     		   type: 'POST',
 			data: {
@@ -118,7 +127,6 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 				id: $('#mid').val(),
 				tel: $('#mtel').val(),
 				personalNumber: $('#mpersonalNumber').val(),
-				photo: $('#oAddr').val(),
 				officeNum: $('#oAddr').val(),
 				officeName: $('#oAddr').val(),
 				rank: $('#mrank').val()
@@ -159,14 +167,25 @@ function setPhoto() {
 }
 
 
+
+function fn_reloadPjtList() 
+{
+	
+	
+	$("#grid").jqGrid().setGridParam({postData:{
+		searchKeywordA: $("#searchKeywordA").val(),
+		searchKeywordB: $("#searchKeywordB").val()
+	}, page:1}).trigger("reloadGrid");	
+	alert("sssss3333");
+}
+
 </script>
 
 <title>직원관리</title>
 </head>
 
 <body onload="init()">
-<table id = "grid"></table>
-<div id = "pager"></div>
+
 
 
 
@@ -175,21 +194,22 @@ function setPhoto() {
 <table id = "grid"></table>
 <div id = "pager"></div>
 
-
-   	<TABLE  WIDTH="50%"  height="100">
+<TABLE  id="mytable"    class="boardList">
 <TR>
-<th rowspan=8 bgcolor=#F6F6F6>
+
+
+<th rowspan=7 bgcolor=#F6F6F6>     
+
 <div id ="photoZone">
 <img id="mPhoto"     name="mPhoto"   src="../images/memberPhoto/bg_noimage_1.gif" height="100"><br>
 </div>
-
-
-<!-- <img id="mPhoto" src="../files/ugc.jpg" height="100"><br>사진변경<input type="file" name="photoFile"> -->
+<!-- <input  type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="photoUploadPopup()" /> -->
+<!-- 	<input id="delBtn" type="button" value="삭제"  onclick="initPhoto()" /> -->
 </th>
 </tr>
 <tr>
 <TD WIDTH="20%" bgcolor=#E4F7BA>소속
-<TD WIDTH="53%"><select id="officeNum" name="officeNum" >
+<TD WIDTH="53%"  bgcolor=#FFFF6C><select id="officeNum" name="officeNum" >
               						<option value="" selected="selected">소속</option>
               						<option value=" 1">양재택배</option>
               					</select></TD>
@@ -197,37 +217,58 @@ function setPhoto() {
 
 <TR>
 <TD WIDTH="20%" bgcolor=#E4F7BA>직위<br></TD>
-<TD WIDTH="53%"><select id="rank" name="rank" >
+<TD WIDTH="53%"  bgcolor=#FFFF6C><select id="rank" name="rank" >
               						<option value="" selected="selected">소속</option>
               						<option value=" 1">양재택배</option>
               					</select></TD>
 </TR>
 <TR>
 <TD WIDTH="20%" bgcolor=#E4F7BA>아이디</TD>
-<TD WIDTH="53%"><input id="mid" name="mid" class="a" type="text" value="" maxlength="100"><br></TD>
+<TD WIDTH="53%"  bgcolor=#FFFF6C><input id="mid" name="mid" class="a" type="text" value="" maxlength="100"><br></TD>
 </TR>
 <TR>
 <TD WIDTH="20%" bgcolor=#E4F7BA>이름</TD>
-<TD WIDTH="53%"><input id="mname" name="mname" class="a" type="text" value="" maxlength="100"><br></TD>
+<TD WIDTH="53%"  bgcolor=#FFFF6C><input id="mname" name="mname" class="a" type="text" value="" maxlength="100"><br></TD>
 </TR>
 <TR>
 <TD WIDTH="20%" bgcolor=#E4F7BA>생년월일</TD>
-<TD WIDTH="53%">
-<!-- <input type="text" id="mpersonalNumber" class="txt_input" readonly/>  -->
-<!--     <img src="../images/icon_date.gif" title="달력" alt="달력" OnClick="calendar(event, 'date2')" /> -->
-<input id="mpersonalNumber" name="mpersonalNumber" class="a" type="date" value="" maxlength="100">
-<!--  <input type="date"> -->
+<TD WIDTH="53%"  bgcolor=#FFFF6C>
+<input id="mtel" name="mtel" class="a" type="text" value="" maxlength="100">
 </TD>
 </TR>
 <TR>
 <TD WIDTH="20%" bgcolor=#E4F7BA>전화번호</TD>
-<TD WIDTH="53%"><input id="mtel" name="mtel" class="a" type="text" value="" maxlength="100"><br></TD>
+<TD WIDTH="53%"  bgcolor=#FFFF6C><input id="mtel" name="mtel" class="a" type="text" value="" maxlength="100"><br></TD>
+</TR>
 
 </TABLE>
+   	
+   
+
+  
 	<input id="updateBtn" type="button" value="변경" class="view">
 	<input id="delBtn" type="button" value="삭제"  onclick="deleteFunction()" />
 	<input id="cancelBtn" type="reset" value="취소">
-</form>
-</div>
+	</form>	
 </body>
+
+
+        <script>
+      
+      function photoUploadPopup()
+      {
+      	 myWin = window.open('updateImage.do', 'popwindow', 'width=300,height=300');
+      	 
+      	 photoZone = document.getElementById('photoZone');
+        
+      }
+
+      
+      
+      
+
+function initPhoto() {
+	photoZone.innerHTML = '<img id="mPhoto"   name="mPhoto" src="../images/memberPhoto/bg_noimage_1.gif" height="100"><br>';
+}
+</script>
 </html>
