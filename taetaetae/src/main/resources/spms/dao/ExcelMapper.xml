@@ -42,6 +42,7 @@
 		<result property="id" column="ID" />
 		<result property="lat" column="LAT" />
 		<result property="lng" column="LNG" />
+		<result property="delayTime" column="DELAY_TIME" />
 	</resultMap>
   
 	<delete id="delete">
@@ -206,7 +207,10 @@
 	<select id="selectAddr" resultMap="excelResultMap">
 	  select
 	  TRCNO, 
-    RECEIVER_ADDR_ROAD 
+    RECEIVER_ADDR_ROAD, 
+    RECEIVER_ADDR_BUN, 
+    RECEIVER_ADDR_JI, 
+    RECEIVER_ADDR_NAME 
     from EXCEL_UPLOAD
 	</select>
 	<select id="selectByIdCoord" parameterType="int" resultMap="excelResultMap">
