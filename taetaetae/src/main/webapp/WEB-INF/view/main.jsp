@@ -53,6 +53,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script type="text/javascript" src="//w2ui.com/src/w2ui-1.3.min.js"></script>
 <script type="text/javascript">
+		var datas = new Array();
 	$(function() {
 		$('.collapse').collapse('hide');
 	});
@@ -185,10 +186,10 @@
         </div>
       </div>
 				<script type="text/javascript">
+				
 					$(document).ready(function() {
 						$('.btn').click(function() {
 							update(this);
-
 							/* location.reload(); */
 						});
 
@@ -196,20 +197,16 @@
 							var index = obj.parentNode.parentNode.rowIndex;
 							var row = document.getElementById("tableData").rows[index - 1];
 							var params = null;
-							var datas = new Array();
-							var successData = null;
-							var data = null;
-							var item = null;
-			          function timeTable (trcno, timeData){
-			                this.trcno = trcno;
-			                this.timeData = timeData;
-			              }; 
-
+							
+			        function timeTable (trcno, delayTime){
+			         this.trcno = trcno;
+			         this.delayTime = delayTime;
+			        }; 
 							
 							$.ajax({
 								type:"POST",
 								url: "excel/divide.do",
-								//async: false, 
+								async: false, 
 								global : true, 
 								data : {id : row.cells[0].innerHTML,
 								receiverAddrRoad : row.cells[3].innerHTML},
@@ -217,48 +214,105 @@
 									console.log(data);
 									console.log(data.excelList[0].lat);
 									console.log(data.excelList.length);
-                  
-									for (var i = 0 ,item; item = data.excelList[i]; i++){
-									params = null;
-									params = "version=1&reqCoordType=WGS84GEO"; 
-								  params += "&startX=127.02801704406481&startY=37.494539069596186"; 
-								  params += "&endX="+ item.lng+"&endY="+item.lat+"&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9"; 
-								  
-								  $.ajax({ 
-								  type : "POST", 
-								  url : "https://apis.skplanetx.com/tmap/routes", 
-								  async: false,
-								  global : true, 
-								  data : params, 
-								  dataType:"JSON", 
-								  success : function(timeData) {
-								  	//console.log(item.trcno +""+ timeData.features[0].properties.totalTime);
-								  	
-								  	console.log(item.trcno);
-								  	//console.log(item +""+ timeData.features[0].properties.totalTime);
-								  	
-                   datas[i] = new timeTable(item.trcno, timeData.features[0].properties.totalTime);
-								  }, 
-								  error : function(xhr, status, error) { 
-								  alert(error) 
-								  } 
-								  }); 
-								  
-								  //function timeInsert(timeData){
-									  
-								  //};
-								  
-									}
-						             
-						      alert("전송완료");
-                  console.log(datas);
 									
+								function delayTime(data) {
+									 for (var i = 0 ,item; item = data.excelList[i]; i++){
+									
+									  params = null;
+									  params = "version=1&reqCoordType=WGS84GEO"; 
+								    params += "&startX=127.02801704406481&startY=37.494539069596186"; 
+								    params += "&endX="+ item.lng+"&endY="+item.lat+"&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9"; 
+								  
+								    $.ajax({ 
+								     type : "POST", 
+								     url : "https://apis.skplanetx.com/tmap/routes", 
+								     async: false, 
+								     global : true, 
+								     data : params, 
+								     dataType:"JSON", 
+								     success : function(timeData) {
+								  	
+								  	  console.log(item.trcno);
+								  	
+                      datas[i] = new timeTable(item.trcno, timeData.features[0].properties.totalTime);
+								     }, 
+								     error : function(xhr, status, error) { 
+								      alert(error) 
+								     } 
+								    }); 
+									 };
+									return datas;
+								};
+								
+									delayTime(data);
+								
+                function delayTime2(data) {
+                  for (var i = 0 ,item; item = data.excelList[i]; i++){
+                 
+                   params = null;
+                   params = "version=1&reqCoordType=WGS84GEO"; 
+                   params += "&startX=127.02801704406481&startY=37.494539069596186"; 
+                   params += "&endX="+ item.lng+"&endY="+item.lat+"&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9"; 
+                 
+                   $.ajax({ 
+                    type : "POST", 
+                    url : "https://apis.skplanetx.com/tmap/routes", 
+                    async: false, 
+                    global : true, 
+                    data : params, 
+                    dataType:"JSON", 
+                    success : function(timeData) {
+                   
+                     console.log(item.trcno);
+                   
+                     datas[i] = new timeTable(item.trcno, timeData.features[0].properties.totalTime);
+                    }, 
+                    error : function(xhr, status, error) { 
+                     alert(error) 
+                    } 
+                   }); 
+                  };
+                 return datas;
+               };
+               
+               minTimeUpdate(datas, i);
+								function minTimeUpdate(datas, count){
+										 var min = datas[0].delayTime;
+										 for (var ii = 0; ii < datas.length; ii++){
+											 if(min > datas[ii].delayTime){
+												 min = datas[ii];
+											 }
+										 }
+										 $.ajaxSettings.traditional = true;
+  									  $.ajax({
+										    type : "POST",
+										    url : "excel/insertTime.do",
+										    async: false, 
+										    global : true, 
+										    data : {trcno : min.trcno, 
+										            delayTime : min.delayTime,  
+										            stateNum : i+1}, 
+										    dataType : "JSON", 
+										    success : function(timeData) {
+									  	 
+										    },
+										    error : function(xhr, status, error) {
+										    	
+										    }
+										  });
+								};
+									 //for (var i = 0 ,item; item = data.excelList[i]; i++){
+										 console.log(min);
+										 console.log(min.trcno);
+										 console.log(min.delayTime);
+									 //}		
+									console.log(datas);
+						      alert("전송완료");
 								},
 								error : function(e){
 									console.log(e+"error");
 								}
 							});
-							console.log(datas);
 							
 						}
 					});
