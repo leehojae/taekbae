@@ -49,8 +49,8 @@
   </delete>
   
   <insert id="insert" parameterType="member">
-    INSERT INTO MEMBERS(MNAME,ID,TEL,PERSONAL_NO,PHOTO, PWD ) 
-    VALUES(#{name},#{id},#{tel},#{personalNumber},#{photo}       ,   #{password} )
+    INSERT INTO MEMBERS(MNAME,ID,TEL,PERSONAL_NO,PHOTO, PWD, OFFICE_NUM, RANK  ) 
+    VALUES(#{name},#{id},#{tel},#{personalNumber},#{photo}       ,   #{password}  ,   #{officeNum} ,   #{rank} )
   </insert>
   
   <update id="update" parameterType="member">
