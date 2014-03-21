@@ -9,6 +9,8 @@
 <link href="css/bootstrap/bootstrap.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript"
+  src="http://api.ktgis.com:10080/v3/olleh/mapAPI.js?key=T2xsZWhNYXBBUEkwMDA0OnZUMVM0TnFWZGk="></script>
 <style type="text/css">
 header {
 	width: 100%;
@@ -91,6 +93,87 @@ header {
 	function acco() {
 		$('.collapse').collapse('hide');
 	};
+
+	function init() {
+
+	  var mapOpts;
+	  var map;
+	  var clusterer;
+	  var marker;
+	  var addr;
+	  var lat;
+	  var lng;
+	  var pathValue = [];
+	  mapOpts = {
+	    zoom : 8,
+	    center : new olleh.maps.LatLng(37.490086196657664, 127.01953478052013),
+	    mapTypeId : 'ROADMAP'
+	  };
+	  map = new olleh.maps.Map(document.getElementById('map'), mapOpts);
+
+	  clusterer = new olleh.maps.overlay.MarkerClusterer({
+	    gap : 100,
+	    clusterOpts : {
+	      clickToZoom : false,
+	      clickToExpand : false
+	    }
+	  });
+	  $.getJSON('../excel/ajax/deleveryMember.do', function(data) {
+	    addr = data.jsonResult.data;
+	    for (var i = 0; i < addr.length; i++) {
+	      marker = new olleh.maps.overlay.Marker({
+	        position : new olleh.maps.LatLng(addr[i].lat, addr[i].lng)
+	      });
+	        pathValue.push(new olleh.maps.LatLng(addr[i].lat, addr[i].lng));
+	      clusterer.add(marker);
+	    }
+	    clusterer.setMap(map);
+	    
+	      var path = new olleh.maps.Path(pathValue);
+	    	
+	    	var polyline = new olleh.maps.vector.Polyline({
+	    	 map: map,
+	    	 path: path,
+	    	 strokeColor: 'blue',
+	    	 strokeOpacity: .5,
+	    	 strokeWeight: 5
+	    	});
+	    
+	    map.onEvent('click', function (event, payload) {
+	      
+	      var positions = [];
+	      var positionLats = new Array();
+	      var positionLngs = new Array();
+	      var src = event.getSource();
+	      console.log(src.getAllMarkers());
+	      var coords = src.getAllMarkers();
+	      
+	      if(confirm("문자를 전송하시겠습니까?")){
+	        for (var i = 0; i < coords.length; i++){
+	              positions[i] = new olleh.maps.LatLng.valueOf(coords[i].getPosition()).x;
+//	              positions.push({lat: new olleh.maps.LatLng.valueOf(coords[i].getPosition()).y,
+//	                lng: new olleh.maps.LatLng.valueOf(coords[i].getPosition()).x});
+	        }
+	            positions = removeArrayDuplicate(positions);
+	            console.log(positions);
+	            $.ajaxSettings.traditional = true;
+	            $.post('../excel/lngsSmsSend.do', {lngs: positions});
+	            function removeArrayDuplicate(array) {
+	              var a = {};
+	              for (var i = 0; i < array.length; i++) {
+	                if (typeof a[array[i]] == "undefined")
+	                  a[array[i]] = 1;
+	              }
+	              array.length = 0;
+	              for ( var i in a)
+	                array[array.length] = i;
+	              return array;
+	            }
+	          }
+	        });
+	  }, true);
+	}
+	
 </script>
 
 <style type="text/css">
@@ -102,11 +185,13 @@ header {
 	height: 25px !important;
 	z-index: 100;
 }
+
+
+
 </style>
 
 </head>
-<body>
-
+<body onload="init()">
 	<select>
 		<option>배송중</option>
 		<option>배송완료</option>
@@ -143,10 +228,12 @@ header {
 			});
 /*  			$.post('../excel/stateUpdate.do', {id: id, count: listLength, updateList: values}); */
  			location.reload();
+ 			
 		};
 	</script>
-	<input type="button" name="버튼" value="설정"
+	<input type="button" name="버튼" value="지도"
 		onclick="location.href='map.html'" />
 	<div class="panel-group" id="accordion"></div>
+	<div id="map" style="width: 100%; height: 768px;"></div>
 </body>
 </html>
