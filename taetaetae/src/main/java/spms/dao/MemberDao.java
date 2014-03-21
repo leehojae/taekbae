@@ -6,7 +6,7 @@ import java.util.Map;
 import spms.vo.Member;
 
 public interface MemberDao {
-	public List<Member> selectList() throws Exception;
+	public List<Member> selectList(int no) throws Exception;
 	public Member selectOne(int no) throws Exception;
 	public int insert(Member member) throws Exception;
 	public int update(Member member) throws Exception;
