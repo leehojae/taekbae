@@ -16,7 +16,7 @@
     <result property="officeName"    column="OFFICE_NAME"/>
   </resultMap>
 	
-	<select id="selectList" resultMap="memberResultMap">
+	<select id="selectList"     parameterType="int"   resultMap="memberResultMap">
 		select  m.MNO,m.MNAME,m.ID,m.TEL,m.PERSONAL_NO,
 		m.PHOTO,
 		
@@ -35,7 +35,15 @@
 					) AS RANK
 		
 		
-		from MEMBERS m where    m.OFFICE_NUM is not null;
+		from MEMBERS m where    m.OFFICE_NUM is not null
+		and  m.OFFICE_NUM = ( 
+		
+		
+		 SELECT   DISTINCT  m.OFFICE_NUM  FROM  OFFICE o, MEMBERS m where m.mno = #{no}
+		  
+		  
+		     )
+		;
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultMap="memberResultMap">
@@ -66,7 +74,7 @@
   <select id="selectByIdPassword" 
       parameterType="map" 
       resultMap="memberResultMap">
-    select MNO,MNAME,ID,PHOTO
+    select MNO,MNAME,ID,PHOTO , RANK
     from MEMBERS
     where ID=#{id} and PWD=#{password}
   </select>
