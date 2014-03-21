@@ -3,13 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style type="text/css">
+#intro {
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    margin: -150px 0 0 -75px;
+    top: 50%;
+    left: 50%;
+}
+</style>
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	 $('#intro').hide();
+});
+</script>
+
+
 </head>
 <body>
+
+<img id=intro src='images/loading.gif' />
+
 <script type="text/javascript">
 
 function test(){
-	
+  	
 	var params = "version=1&reqCoordType=WGS84GEO"; 
 	params += "&startX=127.02807612700347&startY=37.49528869328986"; 
 	params += "&endX=127.02371071727875&endY=37.49394534776091&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9"; 
@@ -19,14 +41,19 @@ function test(){
 	url : "https://apis.skplanetx.com/tmap/routes", 
 	data : params, 
 	dataType:"JSON", 
+	beforeSend : function () {
+		$('#intro').show();
+	},
 	success : function(data) { 
-	alert('success'); 
 	console.log(data);
 	console.log(data.features[0].properties.totalTime);
 	}, 
 	error : function(xhr, status, error) { 
 	alert(error) 
-	} 
+	},
+	complete : function() {
+		 $('#intro').hide();
+	}
 	}); 
 };
 
@@ -70,14 +97,13 @@ function test2(){
 	  });
 	};
 </script>
-
 <button onclick="test()">거리테스트</button>
-<h3>Choose an image:</h3>   
-    <form><input type='file'  onchange="readURL(this);"  /></form>
 
+<h3>Choose an image:</h3>   
+<form><input type='file'  onchange="readURL(this);"  /></form>
 
 <h3>preview</h3>    
-    <img id="blah" src="#" alt="your image"    /> 
+<img id="blah" src="#" alt="your image"    /> 
 
 <script type='text/javascript'>
 
