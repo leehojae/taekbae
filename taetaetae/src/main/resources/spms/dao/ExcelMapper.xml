@@ -222,7 +222,8 @@
 	</select>
 	<select id="searchUser" parameterType="long" resultMap="excelResultMap">
 	    SELECT 
-	    STATE 
+	    STATE, 
+	    DELAY_TIME 
 	    FROM EXCEL_UPLOAD WHERE TRCNO=#{value}
 	</select>
 	<select id="getTelFromLngs" parameterType="double" resultMap="excelResultMap">
