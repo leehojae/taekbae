@@ -34,6 +34,16 @@
           padding-right: 5px;
         }
       }
+      
+#introLoading {
+ position: absolute;
+ width: 300px;
+ height: 150px;
+ margin: -150px 0 0 -75px;
+ top: 50%;
+ left: 50%;
+}
+      
     </style>
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -57,14 +67,21 @@
 	$(function() {
 		$('.collapse').collapse('hide');
 	});
+$(document).ready(function(){
+	   $('#introLoading').hide();
+});
+function testMethod() {
+	$('#introLoading').show();
+  /* location.reload(); */
+};
 </script>
 <script type="text/javascript"
   src="http://api.ktgis.com:10080/v3/olleh/mapAPI.js?key=T2xsZWhNYXBBUEkwMDA0OnZUMVM0TnFWZGk="></script>
 <script type="text/javascript" src="js/map.js"></script>
+
 </head>
 
   <body onload="init()">
-
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -88,7 +105,6 @@
       <div class="row-fluid">
         <div class="span3">
           
-          
            <div class="well sidebar-nav">
             <ul class="nav nav-list">
              <li><a href="office/list.do">사업소목록</a></li>
@@ -98,19 +114,19 @@
             </ul>
           </div><!--/.well -->
           
-          
-          
         </div><!--/span-->
         <div class="span9">
 					<form role="form" enctype="multipart/form-data" action="excel/add.do"
           method="POST" id="upload_form">
 						<div class="form-group">
+						<img id=introLoading src='images/loading.gif' />
 <!-- 							<label for="exampleInputFile">File input</label> -->
 							 <input type="file" id="excelFile" name="excelFile" />
 							<button type="submit" class="btn btn-default">파일 전송</button>
 <!-- 							<p class="help-block">Example block-level help text here.</p> -->
 						</div>
 					</form>
+							<button type="button" class="test" onclick="testMethod()" >테스트</button>
 				<script type="text/javascript" src="js/excelUpload.js"></script>
 				<hr>
 				<!-- 				<div class="hero-unit">
@@ -189,6 +205,7 @@
 				
 					$(document).ready(function() {
 						$('.btn').click(function() {
+							$('#introLoading').show();
 							update(this);
 							/* location.reload(); */
 						});
@@ -197,10 +214,13 @@
 							var index = obj.parentNode.parentNode.rowIndex;
 							var row = document.getElementById("tableData").rows[index - 1];
 							var params = null;
-							
-			        function timeTable (trcno, delayTime){
+							var loopCount = null;
+			        function timeTable (trcno, delayTime, index, lat, lng){
 			         this.trcno = trcno;
 			         this.delayTime = delayTime;
+			         this.index = index;
+			         this.lat = lat;
+			         this.lng = lng;
 			        }; 
 							
 							$.ajax({
@@ -210,10 +230,13 @@
 								global : true, 
 								data : {id : row.cells[0].innerHTML,
 								receiverAddrRoad : row.cells[3].innerHTML},
+								beforeSend : function () {
+							  },
 								success : function(data){
 									console.log(data);
 									console.log(data.excelList[0].lat);
 									console.log(data.excelList.length);
+									loopCount = data.excelList.length;
 									
 								function delayTime(data) {
 									 for (var i = 0 ,item; item = data.excelList[i]; i++){
@@ -234,7 +257,7 @@
 								  	
 								  	  console.log(item.trcno);
 								  	
-                      datas[i] = new timeTable(item.trcno, timeData.features[0].properties.totalTime);
+                      datas[i] = new timeTable(item.trcno, timeData.features[0].properties.totalTime, i, item.lat, item.lng);
 								     }, 
 								     error : function(xhr, status, error) { 
 								      alert(error) 
@@ -244,14 +267,12 @@
 									return datas;
 								};
 								
-									delayTime(data);
-								
-                function delayTime2(data) {
+                function delayTime2(data, lat, lng) {
                   for (var i = 0 ,item; item = data.excelList[i]; i++){
                  
                    params = null;
                    params = "version=1&reqCoordType=WGS84GEO"; 
-                   params += "&startX=127.02801704406481&startY=37.494539069596186"; 
+                   params += "&startX="+ lng +"&startY=" + lat; 
                    params += "&endX="+ item.lng+"&endY="+item.lat+"&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9"; 
                  
                    $.ajax({ 
@@ -265,7 +286,7 @@
                    
                      console.log(item.trcno);
                    
-                     datas[i] = new timeTable(item.trcno, timeData.features[0].properties.totalTime);
+                     datas[i] = new timeTable(item.trcno, timeData.features[0].properties.totalTime, i, item.lat, item.lng);
                     }, 
                     error : function(xhr, status, error) { 
                      alert(error) 
@@ -274,46 +295,122 @@
                   };
                  return datas;
                };
+								
+                function delayTime3(data, lat, lng) {
+                 console.log("3");
+                 console.log(data);
+                   params = null;
+                   params = "version=1&reqCoordType=WGS84GEO"; 
+                   params += "&startX="+ lng +"&startY=" + lat; 
+                   params += "&endX="+ data.excelList[0].lng+"&endY="+data.excelList[0].lat+"&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9"; 
+                 
+                   $.ajax({ 
+                    type : "POST", 
+                    url : "https://apis.skplanetx.com/tmap/routes", 
+                    async: false, 
+                    global : true, 
+                    data : params, 
+                    dataType:"JSON", 
+                    success : function(timeData) {
+                    console.log("success");
+                    console.log(timeData);
+                     datas = new timeTable(data.excelList[0].trcno, timeData.features[0].properties.totalTime, 0, data.excelList[0].lat, data.excelList[0].lng);
+                    }, 
+                    error : function(xhr, status, error) { 
+                     alert(error) 
+                    } 
+                   }); 
+                   console.log("datasuccess");
+                   console.log(datas);
+                 return datas;
+               };
                
-               minTimeUpdate(datas, i);
 								function minTimeUpdate(datas, count){
 										 var min = datas[0].delayTime;
-										 for (var ii = 0; ii < datas.length; ii++){
-											 if(min > datas[ii].delayTime){
-												 min = datas[ii];
+										 for (var ii = 0, item; item = datas[ii]; ii++){
+											 if(min > item.delayTime){
+												 min = item;
 											 }
 										 }
-										 $.ajaxSettings.traditional = true;
+										  $.ajaxSettings.traditional = true;
   									  $.ajax({
-										    type : "POST",
-										    url : "excel/insertTime.do",
-										    async: false, 
+										    type   : "POST",
+										    url    : "excel/insertTime.do",
+										    async  : false, 
 										    global : true, 
-										    data : {trcno : min.trcno, 
-										            delayTime : min.delayTime,  
-										            stateNum : i+1}, 
+										    data   : {trcno     : min.trcno, 
+										              delayTime : min.delayTime,  
+										              stateNum  : count + 1}, 
 										    dataType : "JSON", 
-										    success : function(timeData) {
-									  	 
+										    success  : function(timeData) {
+									  	  
 										    },
 										    error : function(xhr, status, error) {
 										    	
 										    }
 										  });
-								};
-									 //for (var i = 0 ,item; item = data.excelList[i]; i++){
-										 console.log(min);
-										 console.log(min.trcno);
-										 console.log(min.delayTime);
-									 //}		
-									console.log(datas);
-						      alert("전송완료");
+  									  return min;
+  							};
+               
+								function lastTimeUpdate(datas, count){
+											min = datas;
+										  $.ajaxSettings.traditional = true;
+  									  $.ajax({
+										    type   : "POST",
+										    url    : "excel/insertTime.do",
+										    async  : false, 
+										    global : true, 
+										    data   : {trcno     : min.trcno, 
+										              delayTime : min.delayTime,  
+										              stateNum  : count + 1}, 
+										    dataType : "JSON", 
+										    success  : function(timeData) {
+									  	  
+										    },
+										    error : function(xhr, status, error) {
+										    	
+										    }
+										  });
+  							};
+  							
+  						  datas = delayTime(data);
+									
+								 min = minTimeUpdate(datas, 0);
+								  
+								  data.excelList.splice(min.index,1);
+								  
+								  for (var iii = 0; iii < loopCount-1; iii++){
+//								  for (var iii = 0, item; item = data.excelList[iii]; iii++){
+								    
+								    
+								  	if (iii != loopCount-2) {
+								  	
+								   datas = delayTime2(data, min.lat, min.lng);
+								  
+								   min = minTimeUpdate(datas, iii+1);
+								  	}
+								    data.excelList.splice(min.index,1);
+								    
+								    console.log(data);
+								    if (iii == loopCount-2) {
+								    	
+								      console.log(data);
+								    
+    								 datas = delayTime3(data, min.lat, min.lng);
+				 				  
+					    			  lastTimeUpdate(datas, iii+1);
+
+								    }
+								  }
 								},
 								error : function(e){
 									console.log(e+"error");
-								}
+								},
+								complete : function() {
+							     $('#introLoading').hide();
+						      alert("전송완료");
+							  }
 							});
-							
 						}
 					});
 				</script>
