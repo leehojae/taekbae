@@ -180,7 +180,7 @@ function testMethod() {
                     <td><%=rs.getString("car_num")%></td>
                     <td><%=rs.getString("task_area")%></td>
                     <td><button id="<%=rs.getString("car_num")%>" type="submit"
-                        class="btn btn-default" value="1212">Submit</button></td>
+                        class="btn btn-default" onclick="testMethod()")>Submit</button></td>
                   </tr>
                   <%
                     }
@@ -215,6 +215,7 @@ function testMethod() {
 							var row = document.getElementById("tableData").rows[index - 1];
 							var params = null;
 							var loopCount = null;
+							
 			        function timeTable (trcno, delayTime, index, lat, lng){
 			         this.trcno = trcno;
 			         this.delayTime = delayTime;
@@ -231,20 +232,22 @@ function testMethod() {
 								data : {id : row.cells[0].innerHTML,
 								receiverAddrRoad : row.cells[3].innerHTML},
 								beforeSend : function () {
-							  },
+									$('#introLoading').show();							  
+								},
 								success : function(data){
+									testMethod();
 									console.log(data);
 									console.log(data.excelList[0].lat);
 									console.log(data.excelList.length);
 									loopCount = data.excelList.length;
 									
-								function delayTime(data) {
+								  function delayTime(data) {
 									 for (var i = 0 ,item; item = data.excelList[i]; i++){
 									
 									  params = null;
 									  params = "version=1&reqCoordType=WGS84GEO"; 
 								    params += "&startX=127.02801704406481&startY=37.494539069596186"; 
-								    params += "&endX="+ item.lng+"&endY="+item.lat+"&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9"; 
+								    params += "&endX="+ item.lng+"&endY="+item.lat+"&appKey=6a18b782-3680-3c86-98b6-73887bafb90e"; 
 								  
 								    $.ajax({ 
 								     type : "POST", 
@@ -262,10 +265,10 @@ function testMethod() {
 								     error : function(xhr, status, error) { 
 								      alert(error) 
 								     } 
-								    }); 
-									 };
-									return datas;
-								};
+								      }); 
+									  };
+									    return datas;
+								  };
 								
                 function delayTime2(data, lat, lng) {
                   for (var i = 0 ,item; item = data.excelList[i]; i++){
@@ -273,7 +276,7 @@ function testMethod() {
                    params = null;
                    params = "version=1&reqCoordType=WGS84GEO"; 
                    params += "&startX="+ lng +"&startY=" + lat; 
-                   params += "&endX="+ item.lng+"&endY="+item.lat+"&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9"; 
+                   params += "&endX="+ item.lng+"&endY="+item.lat+"&appKey=6a18b782-3680-3c86-98b6-73887bafb90e"; 
                  
                    $.ajax({ 
                     type : "POST", 
@@ -302,7 +305,7 @@ function testMethod() {
                    params = null;
                    params = "version=1&reqCoordType=WGS84GEO"; 
                    params += "&startX="+ lng +"&startY=" + lat; 
-                   params += "&endX="+ data.excelList[0].lng+"&endY="+data.excelList[0].lat+"&appKey=53a2d5b1-cf76-38be-a917-e59fd79ce2a9"; 
+                   params += "&endX="+ data.excelList[0].lng+"&endY="+data.excelList[0].lat+"&appKey=6a18b782-3680-3c86-98b6-73887bafb90e"; 
                  
                    $.ajax({ 
                     type : "POST", 
@@ -328,10 +331,11 @@ function testMethod() {
 								function minTimeUpdate(datas, count){
 										 var min = datas[0].delayTime;
 										 for (var ii = 0, item; item = datas[ii]; ii++){
-											 if(min > item.delayTime){
+											 if(min >= item.delayTime){
 												 min = item;
 											 }
-										 }
+											   
+											 }
 										  $.ajaxSettings.traditional = true;
   									  $.ajax({
 										    type   : "POST",
@@ -375,33 +379,34 @@ function testMethod() {
   							
   						  datas = delayTime(data);
 									
-								 min = minTimeUpdate(datas, 0);
+								min = minTimeUpdate(datas, 0);
+								 
+								data.excelList.splice(min.index,1);
 								  
-								  data.excelList.splice(min.index,1);
-								  
-								  for (var iii = 0; iii < loopCount-1; iii++){
+								for (var iii = 0; iii < loopCount-1; iii++){
 //								  for (var iii = 0, item; item = data.excelList[iii]; iii++){
 								    
-								    
-								  	if (iii != loopCount-2) {
+								 if (iii != loopCount-2) {
 								  	
-								   datas = delayTime2(data, min.lat, min.lng);
+								  datas = delayTime2(data, min.lat, min.lng);
 								  
-								   min = minTimeUpdate(datas, iii+1);
-								  	}
-								    data.excelList.splice(min.index,1);
+								  min = minTimeUpdate(datas, iii+1);
+								  
+								  data.excelList.splice(min.index,1);
 								    
-								    console.log(data);
-								    if (iii == loopCount-2) {
+								 }
+								  console.log(data);
+								 if (iii == loopCount-2) {
 								    	
-								      console.log(data);
+								  console.log(data);
 								    
-    								 datas = delayTime3(data, min.lat, min.lng);
+    							datas = delayTime3(data, min.lat, min.lng);
 				 				  
-					    			  lastTimeUpdate(datas, iii+1);
+					    		lastTimeUpdate(datas, iii+1);
 
-								    }
-								  }
+								 }
+								 
+                 }
 								},
 								error : function(e){
 									console.log(e+"error");
@@ -411,7 +416,7 @@ function testMethod() {
 						      alert("전송완료");
 							  }
 							});
-						}
+						};
 					});
 				</script>
 				<hr>
