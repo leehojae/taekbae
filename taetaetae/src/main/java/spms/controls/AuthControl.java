@@ -62,7 +62,8 @@ public class AuthControl {
 		{
 			excelControl.staticId  = member.getNo();
 			model.addAttribute("loginUser", member);
-			if (member.getNo()==1){
+			
+			if (member.getRank().equals("1")){
 			return "redirect:/main.do";
 			} else{
 				return "redirect:../delivery/deliveryMember.html";

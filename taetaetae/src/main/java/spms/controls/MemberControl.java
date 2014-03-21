@@ -34,8 +34,14 @@ public class MemberControl {
 	@Autowired(required=false)
 	OfficeDao officeDao;
 	
+	
+	@Autowired(required=false)
+	ExcelControl excelControl;
+	
+	
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String form() {
+		
 		//return "member/addForm";
 		return "member/add";
 	}
@@ -67,6 +73,15 @@ public class MemberControl {
 		
 		return "member/add";
 	}
+	@RequestMapping(value="/updatePhoto",method=RequestMethod.POST)
+	public String updatePhoto(
+			Member member, 
+			@RequestParam("file1") MultipartFile photoFile,
+			Model model) throws Exception {
+		saveFile(photoFile);
+		
+		return "member/memberList";
+	}
 	
 	@RequestMapping("/delete")
 	public String delete(int no, Model model) throws Exception {
@@ -78,12 +93,17 @@ public class MemberControl {
 		
 		return "member/add_image";
 	}
+	@RequestMapping("/updateImage")
+	public String updateImage( ) throws Exception {
+		
+		return "member/update_image";
+	}
 	
 	
 	
 	@RequestMapping("/list")
 	public String list(Model model) throws Exception {
-		model.addAttribute("members", memberDao.selectList());
+	//	model.addAttribute("members", memberDao.selectList());
 		return "member/list";
 	}
 	
@@ -170,8 +190,10 @@ public class MemberControl {
 	@RequestMapping(value="/ajax/list", produces="application/json")
 	public Object ajaxList() throws Exception {
 		try {
+			int mno = excelControl.staticId;
+			
 			return new JsonResult().setResultStatus(JsonResult.SUCCESS) 
-					.setData(memberDao.selectList());
+					.setData(memberDao.selectList(mno ));
 			
 		} catch (Throwable ex) {
 			return new JsonResult().setResultStatus(JsonResult.FAILURE)
