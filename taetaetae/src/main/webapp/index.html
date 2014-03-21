@@ -414,6 +414,11 @@
             	            		 alertify.success("이미 배달이 완료되었습니다.");
             	            	 }else{
             	    	   alertify.success("당신의 대기번호는 " + data.jsonResult.data[0].state + "번째 입니다.");
+            	    	   console.log(data.jsonResult.data[0]);
+            	    	   console.log(data.jsonResult.data[0].delayTime);
+            	    	   var d = new Date();
+            	    	   console.log(d.getMinutes());
+            	    	   d.getSecond();
             	            	 }
             	             }else{
             	    		   alertify.error("잘못된 번호입니다.");
