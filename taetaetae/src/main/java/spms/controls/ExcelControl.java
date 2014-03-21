@@ -464,6 +464,7 @@ public class ExcelControl {
 			stmt = conn.prepareStatement(
 					"UPDATE EXCEL_UPLOAD SET ID=? WHERE RECEIVER_ADDR_ROAD LIKE ?");
 			stmt.setInt(1, excel.getId());
+//			stmt.setString(2, excel.getReceiverAddrRoad());
 			stmt.setString(2, "%" + excel.getReceiverAddrRoad() + "%");
 			stmt.executeUpdate();
 			
