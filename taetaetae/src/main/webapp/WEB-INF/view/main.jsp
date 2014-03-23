@@ -272,8 +272,13 @@ function testMethod() {
 								
                 function delayTime2(data, lat, lng) {
                   for (var i = 0 ,item; item = data.excelList[i]; i++){
-                 
-                   params = null;
+                	    if(item.lat == lat && item.lng == lng){
+                	    	params = null;
+                            params = "version=1&reqCoordType=WGS84GEO"; 
+                            params += "&startX="+ (lng+0.00000000000001) +"&startY=" + (lat+0.00000000000001); 
+                            params += "&endX="+ item.lng+"&endY="+item.lat+"&appKey=6a18b782-3680-3c86-98b6-73887bafb90e";
+                	    }
+                	 params = null;
                    params = "version=1&reqCoordType=WGS84GEO"; 
                    params += "&startX="+ lng +"&startY=" + lat; 
                    params += "&endX="+ item.lng+"&endY="+item.lat+"&appKey=6a18b782-3680-3c86-98b6-73887bafb90e"; 
