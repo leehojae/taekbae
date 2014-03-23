@@ -120,6 +120,7 @@ header {
 	  });
 	  $.getJSON('../excel/ajax/deleveryMember.do', function(data) {
 	    addr = data.jsonResult.data;
+	    console.log(addr);
 	    for (var i = 0; i < addr.length; i++) {
 	      marker = new olleh.maps.overlay.Marker({
 	        position : new olleh.maps.LatLng(addr[i].lat, addr[i].lng)
