@@ -29,7 +29,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import spms.dao.ExcelDao;
 import spms.services.RestRequest;
-import spms.services.TmapCarLeadTime;
 import spms.vo.Excel;
 import spms.vo.JsonResult;
 
@@ -41,7 +40,7 @@ public class ExcelControl {
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	RestRequest restRequest = new RestRequest();
-	TmapCarLeadTime tmapCarLeadTime = new TmapCarLeadTime();
+//	TmapCarLeadTime tmapCarLeadTime = new TmapCarLeadTime();
 	private static List<Excel> list = new ArrayList<Excel>();
 	
 	public static int staticId = 0;
@@ -374,6 +373,17 @@ public class ExcelControl {
 				.setData(excelDao.searchUser(Long.parseLong(trcno)));
 	}
 	
+	@RequestMapping(value = "/getDelayTime", method = RequestMethod.POST,
+			produces = "application/json")
+	public Object getDelayTime(String trcno) throws Exception {
+		System.err.println(trcno);
+		
+		System.out.println(excelDao.getDelayTime(Long.parseLong(trcno)));
+		
+		return excelDao.getDelayTime(Long.parseLong(trcno));
+	}
+	
+	
 	@RequestMapping(value = "/insertTime", method = RequestMethod.POST,
 			produces = "application/json")
 	public void updateTime(String trcno, String delayTime, String stateNum) throws Exception{
@@ -432,7 +442,6 @@ public class ExcelControl {
 		
 		return coordList;
 	}
-	
 	public void updateState(Excel excel) throws Exception {
 		Connection conn = null;
 		PreparedStatement stmt = null;
