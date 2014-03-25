@@ -231,5 +231,10 @@
 	    RECEIVER_TEL2 
 	    FROM EXCEL_UPLOAD WHERE LNG=#{value}
 	</select>
-	
+	<select id="getDelayTime" parameterType="long" resultType="int">
+      SELECT 
+      SUM(DELAY_TIME) 
+      FROM EXCEL_UPLOAD WHERE STATE <![CDATA[ <= ]]> (SELECT STATE FROM EXCEL_UPLOAD WHERE TRCNO=#{value})
+     <!-- FROM EXCEL_UPLOAD WHERE STATE <= (SELECT STATE FROM EXCEL_UPLOAD WHERE TRCNO=#{value}  --> 
+  </select>
 </mapper>
