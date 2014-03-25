@@ -280,7 +280,58 @@
              text-align:center;font-family:sans-serif;
              margin:0}
   </style>
-  </head>
+
+<script type="text/javascript">
+	function countNumber() {
+		// prompt dialog
+		alertify.prompt("운송장번호입력", function(e, str) {
+			// str is the input text
+			if (e) {
+
+				if (str.length == 13) {
+
+					// user clicked "ok"
+					$.ajaxSettings.traditional = true;
+					$.post('excel/searchUser.do', {
+						trcno : str
+					}, function(data) {
+						if (data.jsonResult.data[0] !== null) {
+							if (data.jsonResult.data[0].state == 0) {
+								alertify.success("이미 배달이 완료되었습니다.");
+							} else {
+								alertify.success("당신의 대기번호는 " + data.jsonResult.data[0].state
+										+ "번째 입니다.");
+
+								$.post('excel/getDelayTime.do', {
+									trcno : str
+								}, function(data) {
+									var d = new Date();
+									var newTime = new Date();
+									newTime.setMinutes(d.getMinutes()
+											+ parseInt(data.integerList[0] / 60 + data.integerList[0]
+													/ 60 * 0.3));
+									alertify.success(d.getHours() + "시" + d.getMinutes()
+											+ "분 현재시간입니다.");
+									alertify.success(newTime.getHours() + "시"
+											+ newTime.getMinutes() + "분 도착예정입니다.");
+								});
+							}
+						} else {
+							alertify.error("잘못된 번호입니다.");
+						}
+					});
+				} else {
+					alertify.error("잘못된 번호입력입니다.");
+				}
+			} else {
+				// user clicked "cancel"
+				alertify.error("취소하였습니다");
+			}
+		}, "");
+	}
+</script>
+
+</head>
 
   <body>
 
@@ -329,7 +380,7 @@
             <div class="form-group">
               <input type="password" name="password" placeholder="비밀번호 입력" class="form-control">
             </div>
-            <button type="submit" class="btn btn-success">로그인하기</button>
+            <button type="submit" class="btn btn-success">로그인</button>
           </form>
               
               
@@ -397,43 +448,7 @@
                  style="width: 140px; height: 140px;">
           <h2>두근두근</h2>
           <p>택배조회 때문에 인터넷 들락날락하는것 이제그만!!!! 대기번호를 드립니다.</p>
-          <script type="text/javascript">
-               function countNumber() {
-            	// prompt dialog
-            	   alertify.prompt("운송장번호입력", function (e, str) {
-            	       // str is the input text
-            	       if (e) {
-            	    	   
-            	    	   if (str.length == 13){
-            	    		   
-            	           // user clicked "ok"
-            	           $.ajaxSettings.traditional = true;
-            	           $.post('excel/searchUser.do', {trcno: str}, function(data){
-            	             if (data.jsonResult.data[0] !== null){
-            	            	 if (data.jsonResult.data[0].state == 0){
-            	            		 alertify.success("이미 배달이 완료되었습니다.");
-            	            	 }else{
-            	    	   alertify.success("당신의 대기번호는 " + data.jsonResult.data[0].state + "번째 입니다.");
-            	    	   console.log(data.jsonResult.data[0]);
-            	    	   console.log(data.jsonResult.data[0].delayTime);
-            	    	   var d = new Date();
-            	    	   console.log(d.getMinutes());
-            	    	   d.getSecond();
-            	            	 }
-            	             }else{
-            	    		   alertify.error("잘못된 번호입니다.");
-            	             }
-            	           });
-            	    	   }else{
-            	    		   alertify.error("잘못된 번호입력입니다.");
-            	    	   }
-            	       } else {
-            	           // user clicked "cancel"
-            	    	   alertify.error("취소하였습니다");
-            	       }
-            	   }, "");
-               }       
-          </script>
+          
           <p><a class="btn" onclick="countNumber()">대기번호받기 <span class="en-font-family">&raquo;</span></a></p>
           
         </div>
