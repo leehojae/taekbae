@@ -20,15 +20,22 @@ header {
 	height: 25px !important;
 	z-index: 100;
 }
+
+.listGroup {
+ float: left;
+}
+
+.panel-heading {
+ height: auto;
+ min-height:100px;
+}
 </style>
 <script>
 
 	$(function() {
 		var id;
 		var listLength;
-
 		load_list();
-
 	});
 
 	function load_list() {
@@ -49,13 +56,13 @@ header {
 												'<div class="panel panel-default">'
 														+ '    <div class="panel-heading">'
 														+ '       <h4 class="panel-title">'
-														+ '         <input type="checkbox" id="'
+														+ '     <div class="checkList"><input type="checkbox" id="'
 														+ (i + 1)
 														+ '" class="checkGroup" value='
 														+ records[i].trcno
-														+ '><a data-toggle="collapse" data-parent="#accordion" href="#'+records[i].receiverName+' ">'
-														+ records[i].receiverName
-														+ '&nbsp'
+														+ '></div><div class="listGroup"><a data-toggle="collapse" data-parent="#accordion" href="#'+records[i].receiverName+' ">'
+														+ '<div class="nameList">'+records[i].receiverName+'</div>'
+														+ '<div class="addrList">'
 														+ records[i].receiverAddrRoad
 														+ '&nbsp'
 														+ records[i].receiverAddrBun
@@ -64,8 +71,11 @@ header {
 														+ '&nbsp'
 														+ records[i].receiverAddrName
 														+ '&nbsp'
+														+ '</div>'
+														+ '<div class="callList">'
 														+ '<button id="tel"><a href="tel:'+ tel[0] + tel[1] + tel[2] +'">전화걸기</a></button>'
 														+ '<button id="sms"><a href="sms:01047311909?body=The SMS message.">문자보내기</a></button>'
+                            + '</div></div>'
 														/*                             + '<button id="sms"><a href="sms:'+ tel[0] + tel[1] + tel[2] +'">문자보내기</a></button>' */
 														+ '  </a>'
 														+ ' 	      </h4>'
@@ -205,7 +215,6 @@ header {
 	</select>
 	<input type="button" name="버튼" value="배송처리" onclick="checkDelivery()" />
 	<script type="text/javascript">
-  
 		function checkDelivery() {
 
 			var values = $('input:checkbox:checked.checkGroup').map(function() {
@@ -213,23 +222,26 @@ header {
 			}).get();
 			$.ajaxSettings.traditional = true;
 			$.ajax({
-				type: 'POST',
-				url: '../excel/stateUpdate.do',
-				dataType: "json",
-				data: {id: id, count: listLength, updateList: values},
-			  success: function(data) {
-			     obj = JSON.parse(data);
-			     if (obj && obj.success === true) {
-			        window.location.href = 'deliveryMember.html';
-			     }
-			   },
-			   error: function(e) {
-			     alert('배달완료');
-			   }
+				type : 'POST',
+				url : '../excel/stateUpdate.do',
+				dataType : "json",
+				data : {
+					id : id,
+					count : listLength,
+					updateList : values
+				},
+				success : function(data) {
+					obj = JSON.parse(data);
+					if (obj && obj.success === true) {
+						window.location.href = 'deliveryMember.html';
+					}
+				},
+				error : function(e) {
+					alert('배달완료');
+				}
 			});
-/*  			$.post('../excel/stateUpdate.do', {id: id, count: listLength, updateList: values}); */
- 			location.reload();
- 			
+			location.reload();
+
 		};
 	</script>
 	<input type="button" name="버튼" value="지도"
