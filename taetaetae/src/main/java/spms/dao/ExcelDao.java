@@ -14,4 +14,5 @@ public interface ExcelDao {
 	public List<Excel> selectByIdCoord(int id) throws Exception;
 	public List<Excel> searchUser(long trcno) throws Exception;
 	public List<Excel> getTelFromLngs(double d) throws Exception;
+	public List<Excel> getDelayTime(long trcno) throws Exception;
 }
