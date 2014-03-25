@@ -21,14 +21,46 @@ header {
 	z-index: 100;
 }
 
+.nameList {
+  display: inline;
+  border: 1px solid red;
+}
+
+.addrList {
+  display: inline;
+  border: 1px solid red;
+}
+
+.checkList {
+  float: left;
+  margin: 15px;
+  border: 1px solid red;
+  width: 15px;
+  height: 15px;
+}
+
+.callList {
+  border: 1px solid red;
+}
+
+input[type="checkbox"] {
+  
+}
+
 .listGroup {
  float: left;
 }
 
 .panel-heading {
  height: auto;
- min-height:100px;
+ min-height: 60px;
+ padding: 10px;
 }
+
+A:link {color:#222; text-decoration:none;}
+A:visited {color:#222; text-decoration:none;}
+A:active {color: #222; text-decoration:none; }
+A:hover {color: #000; text-decoration:none; }
 </style>
 <script>
 
@@ -66,7 +98,7 @@ header {
 														+ records[i].receiverAddrRoad
 														+ '&nbsp'
 														+ records[i].receiverAddrBun
-														+ '&nbsp'
+														+ '-'
 														+ records[i].receiverAddrJi
 														+ '&nbsp'
 														+ records[i].receiverAddrName
