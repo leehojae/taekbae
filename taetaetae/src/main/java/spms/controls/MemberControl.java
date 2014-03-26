@@ -45,6 +45,11 @@ public class MemberControl {
 		//return "member/addForm";
 		return "member/add";
 	}
+	@RequestMapping(value="/addtest",method=RequestMethod.GET)
+	public String formTest() {
+		//return "member/addForm";
+		return "member/addtest";
+	}
 	
 //	@RequestMapping(value="/add",method=RequestMethod.POST)
 //	public String add(
