@@ -22,34 +22,40 @@ header {
 }
 
 .nameList {
+  height: 20px;
+  line-height: 20px;
   display: block;
-  border: 1px solid red;
   min-height: 20px;
+  vertical-align: middle;
 }
 
 .addrList {
+  height: 20px;
+  line-height: 20px;
   display: block;
-  border: 1px solid red;
   width: auto;
   min-height: 20px;
+  vertical-align: middle;
 }
 
 .addrName {
- border: 1px solid red;
- min-height: 20px;
+  height: 20px;
+  line-height: 20px;
+  min-height: 20px;
+  vertical-align: middle;
 }
 
 .checkList {
   float: left;
   margin: 8px;
-  padding: 12px;
-  border: 1px solid red;
+  padding-top: 4px;
+  padding-bottom: 4px;
   width: 42px;
   height: 42px;
+  text-align: center;
 }
 
 .callList {
-  border: 1px solid red;
   text-align: center;
 }
 
@@ -96,13 +102,15 @@ A:hover {color: #000; text-decoration:none; }
 												      '<div class="panel panel-default">'
 														+ '<div class="panel-heading">'
 														+ '<h4 class="panel-title">'
-														+ '<div class="checkList">'
-														
+														+ '<div class="checkList" data-toggle="buttons">'
+														+ '<label class="btn btn-primary">'
 														+ '<input type="checkbox" id="'
 														+ (i + 1)
 														+ '" class="checkGroup" value='
 														+ records[i].trcno
 														+ '>'
+														+ (i + 1)
+														+ '</label>'
 														+ '</div>'
 														+ '<div class="listGroup"><a data-toggle="collapse" data-parent="#accordion" href="#'+records[i].receiverName+' ">'
 														+ '<div class="nameList">'+records[i].receiverName+'</div>'
@@ -134,8 +142,8 @@ A:hover {color: #000; text-decoration:none; }
 														+ records[i].receiverTel2
 														+ '<br>'
                             + '<div class="callList">'
-                            + '<button id="tel"><a href="tel:'+ tel[0] + tel[1] + tel[2] +'">전화걸기</a></button>'
-                            + '<button id="sms"><a href="sms:01047311909?body=The SMS message.">문자보내기</a></button>'
+                            + '<button id="tel" class="btn btn-default"><a href="tel:'+ tel[0] + tel[1] + tel[2] +'">전화걸기</a></button>'
+                            + '<button id="sms" class="btn btn-default"><a href="sms:01047311909?body=The SMS message.">문자보내기</a></button>'
                             + '</div>'
 														+ '</div>'
 														+ '</div>'
@@ -180,6 +188,15 @@ A:hover {color: #000; text-decoration:none; }
 	      marker = new olleh.maps.overlay.Marker({
 	        position : new olleh.maps.LatLng(addr[i].lat, addr[i].lng)
 	      });
+	      var icon = {
+	    		  url:'img/1395859106_lorry.png', 
+	    		  size: new olleh.maps.Size(41, 30), 
+	    		  anchor: new olleh.maps.Point(10, 30)};
+	    	marker.setIcon(icon);
+	      marker.setCaption({
+	    	  title: ''+(i+1), 
+	    	  size: 25
+	    	});
 	        pathValue.push(new olleh.maps.LatLng(addr[i].lat, addr[i].lng));
 	      clusterer.add(marker);
 	    }
@@ -242,9 +259,11 @@ header {
 	z-index: 100;
 }
 
-body { padding-top: 130px; }
+body { padding-top: 65px; }
 .navbar {
 margin-bottom: 0px;
+background-color: #f5f5f5;
+font-family: "Nanum Gothic" ;
 }
 </style>
 
@@ -258,8 +277,10 @@ margin-bottom: 0px;
 	</select> -->
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <ul class="nav nav-pills nav-justified" >
-  <li><a href="#" style="width: 100%;"><input type="button" class="btn btn-default" style="width: 100%;" value="종료" /></a></li>
-  <li><a href="#" style="width: 100%;"><input type="button" class="btn btn-default" style="width: 100%;" value="배송처리" onclick="checkDelivery()" /></a></li>
+  <li><a href="#" style="width: 100%;"><input type="button" class="btn btn-default" style="width: 50%; display: inline;" value="종료" /><input type="button" class="btn btn-default" style="width: 50%; display: inline;" value="배송처리" onclick="checkDelivery()" /></a>
+  </li>
+  <!-- <li><a href="#" style="width: 100%;"><input type="button" class="btn btn-default" style="width: 100%;" value="종료" /></a></li>
+  <li><a href="#" style="width: 100%;"><input type="button" class="btn btn-default" style="width: 100%;" value="배송처리" onclick="checkDelivery()" /></a></li>  -->
   </ul>
   </nav>
 	<script type="text/javascript">
