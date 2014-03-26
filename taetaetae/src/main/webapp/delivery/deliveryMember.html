@@ -22,21 +22,30 @@ header {
 }
 
 .nameList {
-  display: inline;
+  display: block;
   border: 1px solid red;
+  min-height: 20px;
 }
 
 .addrList {
-  display: inline;
+  display: block;
   border: 1px solid red;
+  width: auto;
+  min-height: 20px;
+}
+
+.addrName {
+ border: 1px solid red;
+ min-height: 20px;
 }
 
 .checkList {
   float: left;
-  margin: 15px;
+  margin: 8px;
+  padding: 12px;
   border: 1px solid red;
-  width: 15px;
-  height: 15px;
+  width: 42px;
+  height: 42px;
 }
 
 .callList {
@@ -44,16 +53,18 @@ header {
 }
 
 input[type="checkbox"] {
-  
+  margin-top: 0px;
 }
 
 .listGroup {
  float: left;
+ display: inline;
+ height: 60px;
 }
 
 .panel-heading {
  height: auto;
- min-height: 60px;
+ min-height: 80px;
  padding: 10px;
 }
 
@@ -101,13 +112,13 @@ A:hover {color: #000; text-decoration:none; }
 														+ '-'
 														+ records[i].receiverAddrJi
 														+ '&nbsp'
+														+ '</div>'
+														+ '<div class="addrName">'
 														+ records[i].receiverAddrName
 														+ '&nbsp'
 														+ '</div>'
-														+ '<div class="callList">'
-														+ '<button id="tel"><a href="tel:'+ tel[0] + tel[1] + tel[2] +'">전화걸기</a></button>'
-														+ '<button id="sms"><a href="sms:01047311909?body=The SMS message.">문자보내기</a></button>'
-                            + '</div></div>'
+
+                            + '</div>'
 														/*                             + '<button id="sms"><a href="sms:'+ tel[0] + tel[1] + tel[2] +'">문자보내기</a></button>' */
 														+ '  </a>'
 														+ ' 	      </h4>'
@@ -123,6 +134,10 @@ A:hover {color: #000; text-decoration:none; }
 														+ '      전화번호2 : '
 														+ records[i].receiverTel2
 														+ ' <br> '
+                            + '<div class="callList">'
+                            + '<button id="tel"><a href="tel:'+ tel[0] + tel[1] + tel[2] +'">전화걸기</a></button>'
+                            + '<button id="sms"><a href="sms:01047311909?body=The SMS message.">문자보내기</a></button>'
+                            + '</div>'
 														+ '       </div>'
 														+ ' 	    </div>'
 														+ ' 	  </div>');
