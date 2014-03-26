@@ -25,7 +25,7 @@
       .sidebar-nav {
         padding: 9px 0;
       }
-
+	
       @media (max-width: 980px) {
         /* Enable use of floated navbar text */
         .navbar-text.pull-right {
@@ -34,6 +34,15 @@
           padding-right: 5px;
         }
       }
+      
+      
+      
+       #navcontainer { /* none needed */ } 
+ ul#navlist { margin: 900; padding: 50; list-style-type: none; white-space: nowrap; } 
+ ul#navlist li { float: left; font-family: verdana, arial, sans-serif; font-size: 9px; font-weight: bold; margin: 0; padding: 5px 0 4px 0; background-color: #666; border-top: 1px solid #e0ede9; border-bottom: 1px solid #e0ede9; } 
+ #navlist a, #navlist a:link { margin: 0; padding: 5px 9px 4px 9px; color: #fff; border-right: 1px solid #d1e3db; text-decoration: none; }
+  ul#navlist li#active { color: #95bbae; background-color: #d1e3db; }
+   #navlist a:hover { color: #fff; background-color: #FE9C54; } 
     </style>
     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -65,14 +74,55 @@
     <script src="../assets/js/bootstrap-carousel.js"></script>
     <script src="../assets/js/bootstrap-typeahead.js"></script>
 <script type="text/javascript">
-	$(function() {
-		$('.collapse').collapse('hide');
-	});
-</script>
+	
+	$(window.document).ready(function() {
+		
+		$("#m1").click( function() {
+			setOfficeZone( 1) ;
+			
+		});
+		$("#m2").click( function() {
+			setOfficeZone(2) ;
+			
+		});
+		
+});
+	
+	
 
-</head>
+	
+</script>
+<style type="text/css">
+<!--
+#tabs {
+	border-bottom: .5em solid #7CCE76;
+	margin: 50;
+	padding: 100;
+	width:650px;
+}
+#tabs li { 
+	display:inline; 
+	border-top: .1em solid #7CCE76;
+	
+}
+#tabs li a {
+	text-decoration: none;
+	padding: 0.25em 1em;
+	color: #000;
+}
+#page1 #tabs li#tab1 a, #page2 #tabs li#tab2 a, #page3 #tabs li#tab3 a, .page4 li#tab1 a {
+	padding: 0.25em 1em;
+	background-color: #7CCE76;
+	color: #fff;
+}
+-->
+</style>
 
   <body onload="init()">
+  
+  
+  
+  
 <div class="navbar navbar-inverse navbar-fixed-top">
          <%@ include file="../common/header.jsp"%>
         </div><!--/span-->
@@ -82,14 +132,23 @@
         <div class="span3">
           <%@ include file="../common/leftMenu.jsp"%>
         </div><!--/span-->
-        <div class="span9">
-<iframe src="officeList.do" 
-scrolling=no name=ce width=1200 height=600 frameborder=0 style="border-width:0px; border-color:white; border-style:solid;"></iframe>
-<!-- <iframe src="list.do" scrolling=no name=ce width=600 height=180 frameborder=0 style="border-width:0px; border-color:white; border-style:solid;"></iframe> -->
+<div class="span9">
 
 
-        </div><!--/span-->
-      </div><!--/row-->
+        
+
+<div id ="officeZone">
+<div class="page4"  >
+<ul id="tabs">
+<li id="tab1"><a href="javascript:void(0)" id="m1">승인지점목록</a></li>
+<li id="tab2"><a href="javascript:void(0)" id="m2">미승인지점목록</a></li>
+</ul>
+
+<iframe src="officeList.do"  name=ce width=1200 height=600 style="border-width:0px; border-color:#7CCE76; border-style:solid;"></iframe>
+
+</div><!--/span-->
+</div>
+</div><!--/row-->
 
       <hr>
 
@@ -99,11 +158,23 @@ scrolling=no name=ce width=1200 height=600 frameborder=0 style="border-width:0px
 
     </div><!--/.fluid-container-->
 
-    <!-- 자바스크립트
-    ================================================== -->
-    <!-- 페이지를 빨리 읽어들이도록 문서 마지막에 배치 -->
-<!--     <script src="assets/js/jquery.js"></script> -->
-
 
   </body>
+<script>
+
+function setOfficeZone(i) {
+	
+	officeZone.innerHTML = '<div class="page4"  >' 
+	+ '<ul id="tabs">'
+	+ '<li id="tab2"><a href="javascript:void(0)" id="m1">승인지점목록</a></li>'
+	+ '<li id="tab1"><a href="javascript:void(0)" id="m2">미승인지점목록</a></li>'
+	+ '</ul>'
+	+ '<iframe src="../member/memberList.do"  name=ce width=1200 height=600 style="border-width:0px; border-color:#7CCE76; border-style:solid;"></iframe>'
+	+ '</div>';
+	
+}
+</script>
+  
+  
+  
 </html>
