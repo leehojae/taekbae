@@ -24,6 +24,10 @@ public class OfficeControl {
 	@Autowired(required=false)
 	OfficeDao officeDao;
 	
+	
+	@Autowired(required=false)
+	ExcelControl excelControl;
+	
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String form() {
 		return "office/addForm";
@@ -35,7 +39,11 @@ public class OfficeControl {
 			
 			Model model) throws Exception {
 
-		
+		if( excelControl.staticId == 0)
+		{
+			return "redirect:/failAccess.jsp";
+			
+		}
 		int count = officeDao.insert(office);
 		if (count > 0) {
 			model.addAttribute("message", "등록 성공입니다!");
@@ -48,6 +56,11 @@ public class OfficeControl {
 	
 	@RequestMapping("/delete")
 	public String delete(int no, Model model) throws Exception {
+		if( excelControl.staticId == 0)
+		{
+			return "redirect:/failAccess.jsp";
+			
+		}
 		officeDao.delete(no);
 		return "redirect:list.do";
 	}
@@ -59,7 +72,11 @@ public class OfficeControl {
 	}
 	@RequestMapping("/list")
 	public String list(Model model) throws Exception {
-		//model.addAttribute("offices", officeDao.selectList());
+		if( excelControl.staticId == 0)
+		{
+			return "redirect:/failAccess.jsp";
+			
+		}
 		return "office/list";
 	}
 	
@@ -92,7 +109,11 @@ public class OfficeControl {
 			produces="application/json")
 	public String ajaxAdd(Office office) throws Exception {
 		try {
-			
+			if( excelControl.staticId == 0)
+			{
+				return "redirect:/failAccess.jsp";
+				
+			}
 			System.out.println("1  :" +  office.getOfficeName());
 			System.out.println("2  :" +  office.getOfficeName());
 			officeDao.insert(office);
@@ -121,6 +142,8 @@ public class OfficeControl {
 	//produces="application/json")
 	public Object ajaxList(String keywordA , String keywordB) throws Exception {
 		try {
+			
+			
 			System.out.println("ddddA : "  +keywordA);
 			System.out.println("ddddB : "  +keywordB);
 			return new JsonResult().setResultStatus(JsonResult.SUCCESS).setData(officeDao.selectList());
@@ -138,10 +161,20 @@ public class OfficeControl {
 	@RequestMapping(value="/ajax/deleteOffice", produces="application/json")
 	public String ajaxDelete(int no) throws Exception {
 		try {
+			if( excelControl.staticId == 0)
+			{
+				return "redirect:/failAccess.jsp";
+				
+			}
 			officeDao.delete(no);
 			return "redirect:/office/officeList.do";
 			
 		} catch (Throwable ex) {
+			if( excelControl.staticId == 0)
+			{
+				return "redirect:/failAccess.jsp";
+				
+			}
 			return "redirect:/office/officeList.do";
 		}
 	}
