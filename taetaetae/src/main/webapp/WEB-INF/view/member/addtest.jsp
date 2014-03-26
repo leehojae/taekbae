@@ -46,7 +46,7 @@
 
     <!-- ace settings handler -->
 
-    <script src=".../assets/js/ace-extra.min.js"></script>
+    <script src="../assets/js/ace-extra.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
@@ -312,15 +312,14 @@
                                     <div class="input-group">
                                       <input class="input-medium date-picker" id="form-field-date" type="text" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy" />
                                       <span class="input-group-addon">
-                                        <i class="icon-calendar">
+                                        <i class="glyphicon glyphicon-calendar">
                                         </i>
                                       </span>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-
-
+  
                               <div class="space-4"></div>
 
                               <div class="form-group">
