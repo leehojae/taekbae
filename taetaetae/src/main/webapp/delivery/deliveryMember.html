@@ -50,6 +50,7 @@ header {
 
 .callList {
   border: 1px solid red;
+  text-align: center;
 }
 
 input[type="checkbox"] {
@@ -83,11 +84,7 @@ A:hover {color: #000; text-decoration:none; }
 	});
 
 	function load_list() {
-		$
-				.getJSON(
-						'../excel/ajax/deleveryMember.do',
-						function(data) {
-
+		$.getJSON('../excel/ajax/deleveryMember.do', function(data) {
 							var tel = null;
 							var records = data.jsonResult.data;
 							console.log("records : " + records);
@@ -95,16 +92,19 @@ A:hover {color: #000; text-decoration:none; }
 							id = records[0].id;
 							for (var i = 0; i < records.length; i++) {
 								tel = records[i].receiverTel1.split("-");
-								$('#accordion')
-										.append(
-												'<div class="panel panel-default">'
-														+ '    <div class="panel-heading">'
-														+ '       <h4 class="panel-title">'
-														+ '     <div class="checkList"><input type="checkbox" id="'
+								$('#accordion').append(
+												      '<div class="panel panel-default">'
+														+ '<div class="panel-heading">'
+														+ '<h4 class="panel-title">'
+														+ '<div class="checkList">'
+														
+														+ '<input type="checkbox" id="'
 														+ (i + 1)
 														+ '" class="checkGroup" value='
 														+ records[i].trcno
-														+ '></div><div class="listGroup"><a data-toggle="collapse" data-parent="#accordion" href="#'+records[i].receiverName+' ">'
+														+ '>'
+														+ '</div>'
+														+ '<div class="listGroup"><a data-toggle="collapse" data-parent="#accordion" href="#'+records[i].receiverName+' ">'
 														+ '<div class="nameList">'+records[i].receiverName+'</div>'
 														+ '<div class="addrList">'
 														+ records[i].receiverAddrRoad
@@ -118,32 +118,29 @@ A:hover {color: #000; text-decoration:none; }
 														+ records[i].receiverAddrName
 														+ '&nbsp'
 														+ '</div>'
-
                             + '</div>'
-														/*                             + '<button id="sms"><a href="sms:'+ tel[0] + tel[1] + tel[2] +'">문자보내기</a></button>' */
-														+ '  </a>'
-														+ ' 	      </h4>'
-														+ ' 	    </div>'
-														+ ' 	    <div id="'+records[i].receiverName+'" class="panel-collapse collapse in">'
-														+ ' 	      <div class="panel-body">'
-														+ '       수취인 :  '
+														+ '</a>'
+														+ '</h4>'
+														+ '</div>'
+														+ '<div id="'+records[i].receiverName+'" class="panel-collapse collapse in">'
+														+ '<div class="panel-body">'
+														+ '수취인 :  '
 														+ records[i].receiverName
-														+ ' <br> '
-														+ '      전화번호1 : '
+														+ '<br>'
+														+ '전화번호1 : '
 														+ records[i].receiverTel1
-														+ ' <br> '
-														+ '      전화번호2 : '
+														+ '<br>'
+														+ '전화번호2 : '
 														+ records[i].receiverTel2
-														+ ' <br> '
+														+ '<br>'
                             + '<div class="callList">'
                             + '<button id="tel"><a href="tel:'+ tel[0] + tel[1] + tel[2] +'">전화걸기</a></button>'
                             + '<button id="sms"><a href="sms:01047311909?body=The SMS message.">문자보내기</a></button>'
                             + '</div>'
-														+ '       </div>'
-														+ ' 	    </div>'
-														+ ' 	  </div>');
+														+ '</div>'
+														+ '</div>'
+														+ '</div>');
 							}
-
 							acco();
 						});
 	};
@@ -245,26 +242,30 @@ header {
 	z-index: 100;
 }
 
-
-
+body { padding-top: 50px; }
+.navbar {
+margin-bottom: 0px;
+}
 </style>
 
 </head>
 <body onload="init()">
-	<select>
+<!-- 	<select>
 		<option>배송중</option>
 		<option>배송완료</option>
 		<option>수취인불명</option>
 		<option>주소 불확실</option>
-	</select>
-	<select>
-		<option>도로명</option>
-		<option>번지명</option>
-	</select>
-	<input type="button" name="버튼" value="배송처리" onclick="checkDelivery()" />
+	</select> -->
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="width: 100%;">
+  <ul class="nav nav-pills nav-justified" >
+  <li style="width: 50%; display: inline-block;"><input type="button" class="btn btn-default" value="종료" /></li>
+  <li style="width: 50%; display: inline-block;"><input type="button" class="btn btn-default" value="배송처리" onclick="checkDelivery()" /></li>
+<!--   <li><a href="#" style="width: 100%;"><input type="button" class="btn btn-default" value="종료"  /></a></li>
+  <li><a href="#" style="width: 100%;"><input type="button" class="btn btn-default" value="배송처리" onclick="checkDelivery()" /></a></li> -->
+  </ul>
+  </nav>
 	<script type="text/javascript">
 		function checkDelivery() {
-
 			var values = $('input:checkbox:checked.checkGroup').map(function() {
 				return this.value;
 			}).get();
@@ -289,12 +290,11 @@ header {
 				}
 			});
 			location.reload();
-
 		};
 	</script>
-	<input type="button" name="버튼" value="지도"
-		onclick="location.href='map.html'" />
+<!-- 	<input type="button" name="버튼" value="지도"
+		onclick="location.href='map.html'" /> -->
 	<div class="panel-group" id="accordion"></div>
-	<div id="map" style="width: 100%; height: 768px;"></div>
+	<div id="map" style="width: 100%; height: 460px;"></div>
 </body>
 </html>
