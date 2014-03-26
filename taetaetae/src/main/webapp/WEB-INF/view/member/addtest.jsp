@@ -16,8 +16,10 @@
     <meta name="author" content="">
 
     <!-- 스타일 -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <link href="../assets/css/bootstrap-ko.css" rel="stylesheet">
-    <link href="../assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <!-- <link href="../assets/css/font-awesome.min.css" rel="stylesheet"> -->
     <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <script src="../js/bootstrap/bootstrap.min.js"></script>
     <script src="../assets/js/behavior.js"></script>
@@ -114,7 +116,7 @@
                                    <link rel="shortcut icon" href="../assets/ico/favicon.png">
                                    
     <link rel="stylesheet" type="text/css" href="//w2ui.com/src/w2ui-1.3.min.css" />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
     <script type="text/javascript" src="//w2ui.com/src/w2ui-1.3.min.js"></script>
         <script src="../assets/js/bootstrap-transition.js"></script>
     <script src="../assets/js/bootstrap-alert.js"></script>
@@ -131,17 +133,8 @@
     
     <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-    
-    
-<script type="text/javascript">
-  $(function() {
-    $('.collapse').collapse('hide');
-  });
-</script>
-
 </head>
-
-  <body onload="init()">
+<body>
 <div class="navbar navbar-inverse navbar-fixed-top">
    <div class="navbar-inner">
         <div class="container-fluid">
@@ -224,282 +217,257 @@
 <TD WIDTH="53%"  bgcolor=#FFFF6C><input id="tel" name="tel" class="a" type="text" value="" maxlength="100"><br></TD>
 </TR>
 <TR>
-
-
 <th colspan=3><br><input type='submit' value='직원 등록 신청'>&nbsp;&nbsp;<input type='reset' value='취소'>
 </TR>
-
 </TABLE>
-    
    </form>  
-
         </div><!--/span-->
       </div><!--/row-->
-
-
-
-
 <!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
 <!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
 <!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
 <!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
+		<form class="form-horizontal">
+			<fieldset>
+				<legend>직업가입란</legend>
+			</fieldset>
+			<div class="tab-content profile-edit-tab-content">
+				<div id="edit-basic" class="tab-pane in active">
+					<h4 class="header blue bolder smaller">General</h4>
+					<div class="row">
+						<div class="col-xs-12 col-sm-4">
+							<input type="file" />
+						</div>
 
+						<div class="vspace-xs"></div>
 
-<form class="form-horizontal">
-  <fieldset>
-    <legend>직업가입란</legend>
-  </fieldset>
-  
-  <div class="tab-content profile-edit-tab-content">
-              <div id="edit-basic" class="tab-pane in active">
-                              <h4 class="header blue bolder smaller">General</h4>
+						<div class="col-xs-12 col-sm-8">
+							<div class="form-group">
+								<label class="col-sm-4 control-label no-padding-right"
+									for="form-field-id">ID</label>
 
-                              <div class="row">
-                                <div class="col-xs-12 col-sm-4">
-                                  <input type="file" />
-                                </div>
+								<div class="col-sm-8">
+									<input class="col-xs-12 col-sm-10" type="text"
+										id="form-field-id" placeholder="ID" />
+								</div>
+							</div>
 
-                                <div class="vspace-xs"></div>
+							<div class="space-4"></div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label no-padding-right"
+									for="form-field-username">Username</label>
 
-                                <div class="col-xs-12 col-sm-8">
-                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-id">ID</label>
+								<div class="col-sm-8">
+									<input class="col-xs-12 col-sm-10" type="text"
+										id="form-field-username" placeholder="Username" />
+								</div>
+							</div>
 
-                                    <div class="col-sm-8">
-                                      <input class="col-xs-12 col-sm-10" type="text" id="form-field-id" placeholder="ID"  />
-                                    </div>
-                                  </div>
+							<div class="space-4"></div>
+							<div id="edit-password" class="tab-pane">
 
-                                  <div class="space-4"></div>
-                                  <div class="form-group">
-                                    <label class="col-sm-4 control-label no-padding-right" for="form-field-username">Username</label>
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right"
+										for="form-field-pass1">New Password</label>
 
-                                    <div class="col-sm-8">
-                                      <input class="col-xs-12 col-sm-10" type="text" id="form-field-username" placeholder="Username"  />
-                                    </div>
-                                  </div>
-                                                                  
-                                 <div class="space-4"></div>
-                                   <div id="edit-password" class="tab-pane">
+									<div class="col-sm-9">
+										<input type="password" id="form-field-pass1" />
+									</div>
+								</div>
 
-                                  <div class="form-group">
-                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">New Password</label>
+								<div class="space-4"></div>
 
-                                  <div class="col-sm-9">
-                                    <input type="password" id="form-field-pass1" />
-                                  </div>
-                                 </div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right"
+										for="form-field-pass2">Confirm Password</label>
 
-                                 <div class="space-4"></div>
+									<div class="col-sm-9">
+										<input type="password" id="form-field-pass2" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-                               <div class="form-group">
-                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-pass2">Confirm Password</label>
+					<hr />
+					<div class="form-group">
+						<label class="col-sm-3 control-label no-padding-right"
+							for="form-field-date">Birth Date</label>
 
-                                  <div class="col-sm-9">
-                                    <input type="password" id="form-field-pass2" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+						<div class="col-sm-9">
+							<div class="input-medium">
+								<div class="input-group">
+									<input class="input-medium date-picker" id="form-field-date"
+										type="text" data-date-format="dd-mm-yyyy"
+										placeholder="dd-mm-yyyy" /> <span class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="space-4"></div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label no-padding-right">Gender</label>
+						<div class="col-sm-9">
+							<label class="radio"> <input type="radio"
+								name="optionsRadios" id="optionsRadios1" value="option1"
+								checked="" /> <span class="lbl"> Male</span>
+							</label> <label class="radio"> <input type="radio"
+								name="optionsRadios" id="optionsRadios2" value="option2" /> <span
+								class="lbl"> Female</span>
+							</label>
+						</div>
+					</div>
 
-                <hr />
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-date">Birth Date</label>
+					<div class="space-4"></div>
 
-                                <div class="col-sm-9">
-                                  <div class="input-medium">
-                                    <div class="input-group">
-                                      <input class="input-medium date-picker" id="form-field-date" type="text" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy" />
-                                      <span class="input-group-addon">
-                                        <i class="glyphicon glyphicon-calendar">
-                                        </i>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-  
-                              <div class="space-4"></div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label no-padding-right"
+							for="form-field-comment">Comment</label>
+						<div class="col-lg-5">
+							<textarea class="form-control" rows="3" id="textArea"></textarea>
+							<span class="help-block">자기소개를 입력하세요~! 우리자기는 이뿌다. 이런거
+								말고...</span>
 
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right">Gender</label>
+						</div>
+					</div>
 
-                                <div class="col-sm-9">
-                                  <label class="radio">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""/>
-                                    <span class="lbl"> Male</span>
-                                  </label>
+					<div class="space"></div>
+					<h4 class="header blue bolder smaller">Contact</h4>
 
-                                  <label class="radio">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"/>
-                                    <span class="lbl"> Female</span>
-                                  </label>
-                                </div>
-                              </div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label no-padding-right"
+							for="form-field-email">Email</label>
 
-                              <div class="space-4"></div>
+						<div class="col-sm-9">
+							<span class="input-icon input-icon-right"> <input
+								type="email" id="form-field-email" value="alexdoe@gmail.com" />
+								<i class="icon-envelope"></i>
+							</span>
+						</div>
+					</div>
 
-                                <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-comment">Comment</label>
-                                <div class="col-lg-5">
-                                  <textarea class="form-control" rows="3" id="textArea"></textarea>
-                                  <span class="help-block">자기소개를 입력하세요~! 우리자기는 이뿌다. 이런거 말고...</span>
+					<div class="space-4"></div>
 
-                                </div>
-                              </div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label no-padding-right"
+							for="form-field-website">Website</label>
 
-                              <div class="space"></div>
-                              <h4 class="header blue bolder smaller">Contact</h4>
+						<div class="col-sm-9">
+							<span class="input-icon input-icon-right"> <input
+								type="url" id="form-field-website"
+								value="http://www.alexdoe.com/" /> <i class="icon-globe"></i>
+							</span>
+						</div>
+					</div>
 
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-email">Email</label>
+					<div class="space-4"></div>
 
-                                <div class="col-sm-9">
-                                  <span class="input-icon input-icon-right">
-                                    <input type="email" id="form-field-email" value="alexdoe@gmail.com" />
-                                    <i class="icon-envelope"></i>
-                                  </span>
-                                </div>
-                              </div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label no-padding-right"
+							for="form-field-phone">Phone</label>
 
-                              <div class="space-4"></div>
+						<div class="col-sm-9">
+							<span class="input-icon input-icon-right"> <input
+								class="input-medium input-mask-phone" type="text"
+								id="form-field-phone" /> <i
+								class="icon-phone icon-flip-horizontal"></i>
+							</span>
+						</div>
+					</div>
 
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-website">Website</label>
+					<div class="space"></div>
+					<h4 class="header blue bolder smaller">Office</h4>
 
-                                <div class="col-sm-9">
-                                  <span class="input-icon input-icon-right">
-                                    <input type="url" id="form-field-website" value="http://www.alexdoe.com/" />
-                                    <i class="icon-globe"></i>
-                                  </span>
-                                </div>
-                              </div>
+					<div class="form-group">
+						<label for="select"
+							class="col-sm-3 control-label no-padding-right">부서선택</label>
+						<div class="col-sm-9">
+							<select class="form-control" id="select">
+								<option>사장실</option>
+								<option>영업부</option>
+								<option>운송부</option>
+								<option>배차부</option>
+								<option>주부</option>
+								<option>부부</option>
+								<option>두부</option>
+							</select> <br> <br>
+						</div>
 
-                              <div class="space-4"></div>
+						<label for="select" class="col-sm3-2 control-label">직급선택</label>
+						<div class="col-lg-10">
+							<select class="form-control" id="select">
+								<option>사장</option>
+								<option>부장</option>
+								<option>과장</option>
+								<option>팀장</option>
+								<option>실장</option>
+								<option>사원</option>
+								<option>인턴</option>
+							</select> <br>
+						</div>
+					</div>
+					<div id="edit-password" class="tab-pane">
+						<div class="space-10"></div>
 
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-phone">Phone</label>
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right"
+								for="form-field-pass1">New Password</label>
 
-                                <div class="col-sm-9">
-                                  <span class="input-icon input-icon-right">
-                                    <input class="input-medium input-mask-phone" type="text" id="form-field-phone" />
-                                    <i class="icon-phone icon-flip-horizontal"></i>
-                                  </span>
-                                </div>
-                              </div>
+							<div class="col-sm-9">
+								<input type="password" id="form-field-pass1" />
+							</div>
+						</div>
 
-                              <div class="space"></div>
-                              <h4 class="header blue bolder smaller">Office</h4>
-                            
-                            <div class="form-group">
-      <label for="select" class="col-sm-3 control-label no-padding-right">부서선택</label>
-      <div class="col-sm-9">
-        <select class="form-control" id="select">
-          <option>사장실</option><option>영업부</option><option>운송부</option>
-          <option>배차부</option><option>주부</option><option>부부</option>
-          <option>두부</option>
-        </select>
-        <br>
-        <br>
-     </div>
-    
-     <label for="select" class="col-sm3-2 control-label">직급선택</label>
-      <div class="col-lg-10">
-        <select class="form-control" id="select">
-          <option>사장</option><option>부장</option><option>과장</option>
-          <option>팀장</option><option>실장</option><option>사원</option>
-          <option>인턴</option>
-        </select>
-        <br>
-     </div>
-                            
-                            
-                            
-                            
-                              
-                </div>
+						<div class="space-4"></div>
 
-                            
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-padding-right"
+								for="form-field-pass2">Confirm Password</label>
 
-                            <div id="edit-password" class="tab-pane">
-                              <div class="space-10"></div>
-
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">New Password</label>
-
-                                <div class="col-sm-9">
-                                  <input type="password" id="form-field-pass1" />
-                                </div>
-                              </div>
-
-                              <div class="space-4"></div>
-
-                              <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-pass2">Confirm Password</label>
-
-                                <div class="col-sm-9">
-                                  <input type="password" id="form-field-pass2" />
-                                </div>
-                              </div>
-                            </div>
-     </div>
-  
-  
-  
-  
-  
-</form>
- <hr />
+							<div class="col-sm-9">
+								<input type="password" id="form-field-pass2" />
+							</div>
+						</div>
+					</div>
+				</div>
+		</form>
+		<hr />
 <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button class="btn btn-default">취소</button>
-        <button type="submit" class="btn btn-primary">확인</button>
+<div class="col-lg-10 col-lg-offset-2">
+<button class="btn btn-default">취소</button>
+<button type="submit" class="btn btn-primary">확인</button>
 <span class="btn btn-sm" data-rel="tooltip" title="Default">Default</span>
 <span class="btn btn-warning btn-sm tooltip-warning" data-rel="tooltip" data-placement="left" title="Left Warning">Left</span>
 <span class="btn btn-success btn-sm tooltip-success" data-rel="tooltip" data-placement="right" title="Right Success">Right</span>
 <span class="btn btn-danger btn-sm tooltip-error" data-rel="tooltip" data-placement="top" title="Top Danger">Top</span>
 <span class="btn btn-info btn-sm tooltip-info" data-rel="tooltip" data-placement="bottom" title="Bottm Info">Bottom</span>
-     
-      </div>
-    </div>
-
-      <hr />
-
-      <footer>
-        <p>&copy; 비트 2014</p>
-      </footer>
-
-    </div><!--/.fluid-container-->
-
-  
-  
-  
-  
-        <script>
-      
-      function photoUploadPopup()
+</div>
+</div>
+<hr />
+<footer>
+<p>&copy; 비트 2014</p>
+</footer>
+</div><!--/.fluid-container-->
+<script type="text/javascript">
+function photoUploadPopup()
       {
          myWin = window.open('addImage.do', 'popwindow', 'width=300,height=300');
          
          photoZone = document.getElementById('photoZone');
         
-      }
-
-      
-      
+};
 
 function initPhoto() {
   photoZone.innerHTML = '<img id="mPhoto"   name="mPhoto" src="../images/memberPhoto/bg_noimage_1.gif" height="100"><br>';
-}
-
-
-      </script>
+};
+</script>
 
 
 
 
-<!-- -----------------------------------------jQuery drop jpeg file---------------------------------------------- -->
+	<!-- -----------------------------------------jQuery drop jpeg file---------------------------------------------- -->
 <!-- -----------------------------------------jQuery drop jpeg file---------------------------------------------- -->
 <!-- -----------------------------------------jQuery drop jpeg file---------------------------------------------- -->
 <!-- -----------------------------------------jQuery drop jpeg file---------------------------------------------- -->
@@ -511,7 +479,7 @@ function initPhoto() {
 
 <!-- inline scripts related to this page -->
 
-    <script type="text/javascript">
+<!-- 	<script type="text/javascript">
       jQuery(function($) {
       
         //editables on first profile page
@@ -691,7 +659,6 @@ function initPhoto() {
               // ***UPDATE AVATAR HERE*** //
               //You can replace the contents of this function with examples/profile-avatar-update.js for actual upload
       
-      
               var deferred = new $.Deferred
       
               //if value is empty, means no valid files were selected
@@ -702,7 +669,6 @@ function initPhoto() {
                 deferred.resolve();
                 return deferred.promise();
               }
-      
       
               //dummy upload
               setTimeout(function(){
@@ -730,8 +696,6 @@ function initPhoto() {
             }
           })
         }catch(e) {}
-        
-        
       
         //another option is using modals
         $('#avatar2').on('click', function(){
@@ -754,7 +718,6 @@ function initPhoto() {
             </div>\
             </form>\
           </div>'});
-          
           
           var modal = $(modal);
           modal.modal("show").on("hidden", function(){
@@ -786,12 +749,10 @@ function initPhoto() {
                 if( ( type.length > 0 && ! (/^image\/(jpe?g|png|gif)$/i).test(type) )
                     || ( type.length == 0 && ! (/\.(jpe?g|png|gif)$/i).test(file.name) )//for android default browser!
                   ) return false;
-      
                 if( file.size > 110000 ) {//~100Kb
                   return false;
                 }
               }
-      
               return true;
             }
           });
@@ -814,27 +775,16 @@ function initPhoto() {
       
               var thumb = file.next().find('img').data('thumb');
               if(thumb) $('#avatar2').get(0).src = thumb;
-      
               working = false;
             });
-            
-            
             setTimeout(function(){
               deferred.resolve();
             } , parseInt(Math.random() * 800 + 800));
-      
             return false;
           });
-              
         });
-      
-        
-      
-     
-      
         ///////////////////////////////////////////
-        $('#user-profile-3')
-        .find('input[type=file]').ace_file_input({
+        $('#user-profile-3').find('input[type=file]').ace_file_input({
           style:'well',
           btn_choose:'Change avatar',
           btn_change:null,
@@ -856,20 +806,14 @@ function initPhoto() {
                 return false;
               }
             }
-      
             return true;
           }
-        })
-        .end().find('button[type=reset]').on(ace.click_event, function(){
+        }).end().find('button[type=reset]').on(ace.click_event, function(){
           $('#user-profile-3 input[type=file]').ace_file_input('reset_input');
-        })
-        .end().find('.date-picker').datepicker().next().on(ace.click_event, function(){
+        }).end().find('.date-picker').datepicker().next().on(ace.click_event, function(){
           $(this).prev().focus();
-        })
+        });
         $('.input-mask-phone').mask('(999) 999-9999');
-      
-      
-      
         ////////////////////
         //change profile
         $('[data-toggle="buttons"] .btn').on('click', function(e){
@@ -879,13 +823,7 @@ function initPhoto() {
           $('#user-profile-'+which).parent().removeClass('hide');
         });
       });
-    </script>
+    </script> -->
+    <i class="fa fa-camera-retro"></i>
 </body>
-
-
 </html>
-        
-
-
-
-
