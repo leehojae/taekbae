@@ -281,55 +281,7 @@
              margin:0}
   </style>
 
-<script type="text/javascript">
-	function countNumber() {
-		// prompt dialog
-		alertify.prompt("운송장번호입력", function(e, str) {
-			// str is the input text
-			if (e) {
-
-				if (str.length == 13) {
-
-					// user clicked "ok"
-					$.ajaxSettings.traditional = true;
-					$.post('excel/searchUser.do', {
-						trcno : str
-					}, function(data) {
-						if (data.jsonResult.data[0] !== null) {
-							if (data.jsonResult.data[0].state == 0) {
-								alertify.success("이미 배달이 완료되었습니다.");
-							} else {
-								alertify.success("당신의 대기번호는 " + data.jsonResult.data[0].state
-										+ "번째 입니다.");
-
-								$.post('excel/getDelayTime.do', {
-									trcno : str
-								}, function(data) {
-									var d = new Date();
-									var newTime = new Date();
-									newTime.setMinutes(d.getMinutes()
-											+ parseInt(data.integerList[0] / 60 + data.integerList[0]
-													/ 60 * 0.3));
-									alertify.success(d.getHours() + "시" + d.getMinutes()
-											+ "분 현재시간입니다.");
-									alertify.success(newTime.getHours() + "시"
-											+ newTime.getMinutes() + "분 도착예정입니다.");
-								});
-							}
-						} else {
-							alertify.error("잘못된 번호입니다.");
-						}
-					});
-				} else {
-					alertify.error("잘못된 번호입력입니다.");
-				}
-			} else {
-				// user clicked "cancel"
-				alertify.error("취소하였습니다");
-			}
-		}, "");
-	}
-</script>
+<script src="js/trcNumber.js"></script>
 
 </head>
 
@@ -512,7 +464,7 @@
       <footer>
       
         <p class="pull-right"><a href="#">제일 위로</a></p>
-        <p>&copy; 2013 회사. &middot; <a href="#">개인정보취급방침</a> &middot; <a href="#">이용약관</a></p>
+        <p>&copy; 2014 회사. &middot; <a href="#">개인정보취급방침</a> &middot; <a href="#">이용약관</a></p>
       </footer>
 
     </div><!-- /.container -->
