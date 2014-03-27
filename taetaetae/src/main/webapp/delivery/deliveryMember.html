@@ -97,11 +97,13 @@ A:hover {color: #000; text-decoration:none; }
 		$.getJSON('../excel/ajax/deleveryMember.do', function(data) {
 							var tel = null;
 							var records = data.jsonResult.data;
+							var returnboxs = null;
 							console.log("records : " + records);
 							listLength = records.length;
 							id = records[0].id;
 							for (var i = 0; i < records.length; i++) {
 								tel = records[i].receiverTel1.split("-");
+								if(records[i].returnBox === 0){ returnboxs = '' }else{ returnboxs = '반품'}
 								$('#accordion').append(
 												      '<div class="panel panel-default">'
 														+ '<div class="panel-heading">'
@@ -138,6 +140,18 @@ A:hover {color: #000; text-decoration:none; }
 														+ '<div class="panel-body">'
 														+ '수취인 :  '
 														+ records[i].receiverName
+														+ '<br>'
+														+ '취급구분 : '
+														+ records[i].packing
+														+ '<br>'
+														+ '운임구분 : '
+														+ records[i].payment
+														+ '<br>'
+														+ '운임결제 : '
+														+ records[i].pay
+														+ '<br>'
+														+ '반품 : '
+														+ returnboxs
 														+ '<br>'
 														+ '전화번호1 : '
 														+ records[i].receiverTel1
@@ -222,7 +236,6 @@ A:hover {color: #000; text-decoration:none; }
 	      var positionLats = new Array();
 	      var positionLngs = new Array();
 	      var src = event.getSource();
-	      console.log(src.getAllMarkers());
 	      var coords = src.getAllMarkers();
 	      
 	      if(confirm("문자를 전송하시겠습니까?")){
@@ -232,7 +245,6 @@ A:hover {color: #000; text-decoration:none; }
 //	                lng: new olleh.maps.LatLng.valueOf(coords[i].getPosition()).x});
 	        }
 	            positions = removeArrayDuplicate(positions);
-	            console.log(positions);
 	            $.ajaxSettings.traditional = true;
 	            $.post('../excel/lngsSmsSend.do', {lngs: positions});
 	            function removeArrayDuplicate(array) {
@@ -283,8 +295,6 @@ font-family: "Nanum Gothic" ;
   <ul class="nav nav-pills nav-justified" >
   <li><a href="#" style="width: 100%;"><input type="button" class="btn btn-default" style="width: 50%; display: inline;" value="종료" /><input type="button" class="btn btn-default" style="width: 50%; display: inline;" value="배송처리" onclick="checkDelivery()" /></a>
   </li>
-  <!-- <li><a href="#" style="width: 100%;"><input type="button" class="btn btn-default" style="width: 100%;" value="종료" /></a></li>
-  <li><a href="#" style="width: 100%;"><input type="button" class="btn btn-default" style="width: 100%;" value="배송처리" onclick="checkDelivery()" /></a></li>  -->
   </ul>
   </nav>
 	<script type="text/javascript">
@@ -315,8 +325,6 @@ font-family: "Nanum Gothic" ;
 			location.reload();
 		};
 	</script>
-<!-- 	<input type="button" name="버튼" value="지도"
-		onclick="location.href='map.html'" /> -->
 	<div class="panel-group" id="accordion"></div>
 	<div id="map" style="width: 100%; height: 460px;"></div>
 </body>
