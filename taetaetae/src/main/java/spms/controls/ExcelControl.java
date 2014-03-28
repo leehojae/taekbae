@@ -263,7 +263,35 @@ public class ExcelControl {
 				if (row.getRowNum() == 0) {
 					System.out.println("====Excel to DB Insert====");
 				} else {
-
+//					System.err.println(row.getCell(0).getNumericCellValue());	
+//					System.err.println(row.getCell(1).getNumericCellValue());	
+//					System.err.println(row.getCell(2).getStringCellValue());	
+//					System.err.println(row.getCell(3).getDateCellValue());	
+//					System.err.println(row.getCell(4).getDateCellValue());	
+//					System.err.println(row.getCell(5).getStringCellValue());	
+//					System.err.println(row.getCell(6).getStringCellValue());	
+//					System.err.println(row.getCell(7).getStringCellValue());	
+//					System.err.println(row.getCell(8).getStringCellValue());	
+//					System.err.println(row.getCell(9).getStringCellValue());	
+//					System.err.println(row.getCell(10).getStringCellValue());	
+//					System.err.println(row.getCell(11).getStringCellValue());	
+//					System.err.println(row.getCell(12).getStringCellValue());	
+//					System.err.println(row.getCell(13).getStringCellValue());	
+//					System.err.println(row.getCell(14).getNumericCellValue());	
+//					System.err.println(row.getCell(15).getNumericCellValue());	
+//					System.err.println(row.getCell(16).getStringCellValue());	
+//					System.err.println(row.getCell(17).getStringCellValue());	
+//					System.err.println(row.getCell(18).getStringCellValue());	
+//					System.err.println(row.getCell(19).getStringCellValue());	
+//					System.err.println(row.getCell(20).getStringCellValue());	
+//					System.err.println(row.getCell(21).getStringCellValue());	
+//					System.err.println(row.getCell(22).getStringCellValue());	
+//					System.err.println(row.getCell(23).getNumericCellValue());	
+//					System.err.println(row.getCell(24).getStringCellValue());	
+//					System.err.println(row.getCell(25).getNumericCellValue());	
+//					System.err.println(row.getCell(26).getStringCellValue());	
+//					System.err.println(row.getCell(27).getNumericCellValue());	
+//					System.err.println(row.getCell(28).getNumericCellValue());	
 					list.add(new Excel(
 							(long) (row.getCell(0).getNumericCellValue()), 
 							(long) (row.getCell(1).getNumericCellValue()), 
@@ -297,6 +325,7 @@ public class ExcelControl {
 							));
 				}
 			}
+			System.err.println("moji");
 			file.close();
 			
 			excelDao.addExcel(list);
