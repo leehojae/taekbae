@@ -234,10 +234,26 @@
 			<div class="tab-content profile-edit-tab-content">
 				<div id="edit-basic" class="tab-pane in active">
 					<h4 class="header blue bolder smaller">General</h4>
+					
+					
+				
+					
+					
+					
 					<div class="row">
 						<div class="col-xs-12 col-sm-4">
-							<input type="file" />
+						<div class="ace-file-input ace-file-multiple">
+						<input type="file">
+						<label class="file-label" data-title="Change avatar">
+						<span class="file-name" data-title="No File ...">
+						<i class="fa fa-download fa-5x"></i>
+						</span>
+						</label>
+						
+						
 						</div>
+							
+					</div>
 
 						<div class="vspace-xs"></div>
 
@@ -291,20 +307,21 @@
 
 					<hr />
 					<div class="form-group">
-						<label class="col-sm-3 control-label no-padding-right"
-							for="form-field-date">Birth Date</label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-date">Birth Date</label>
 
-						<div class="col-sm-9">
-							<div class="input-medium">
-								<div class="input-group">
-									<input class="input-medium date-picker" id="form-field-date"
-										type="text" data-date-format="dd-mm-yyyy"
-										placeholder="dd-mm-yyyy" /> <span class="input-group-addon">
-										<i class="fa fa-calendar"></i>
-									</span>
-								</div>
-							</div>
-						</div>
+                                <div class="col-sm-9">
+										              <div class="input-medium">
+										                <div class="input-group">
+										                  <input id="personalNumber" type="date" name="personalNumber"
+										                    placeholder="yyyy-MM-dd" /> 
+										                </div>
+										              </div>
+										            </div>
+                              </div>
+
+						
+						
+						
 					</div>
 					<div class="space-4"></div>
 					<div class="form-group">
@@ -329,7 +346,7 @@
 							<textarea class="form-control" rows="3" id="textArea"></textarea>
 							<span class="help-block">자기소개를 입력하세요~! 우리자기는 이뿌다. 이런거
 								말고...</span>
-
+				
 						</div>
 					</div>
 
@@ -479,7 +496,7 @@ function initPhoto() {
 
 <!-- inline scripts related to this page -->
 
-<!-- 	<script type="text/javascript">
+  	<script type="text/javascript">
       jQuery(function($) {
       
         //editables on first profile page
@@ -823,7 +840,7 @@ function initPhoto() {
           $('#user-profile-'+which).parent().removeClass('hide');
         });
       });
-    </script> -->
+    </script> 
     <i class="fa fa-camera-retro"></i>
 </body>
 </html>
