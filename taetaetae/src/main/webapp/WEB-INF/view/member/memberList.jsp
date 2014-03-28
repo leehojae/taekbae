@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
++<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -17,129 +17,130 @@
 var  ppp = null ;
 $(window.document).ready(function() {
 	
-    $("#grid").jqGrid({
-        //url : 'http://apis.daum.net/socialpick/search?output=json',
+	$("#grid").jqGrid({
         url : 'http://localhost:9999/taetaetae/member/ajax/list.do',
-        caption : '직원 현황',    // caption : 그리드의 제목을 지정한다.
-        datatype : 'json',               // datatype : 데이터 타입을 지정한다.
-                                                // (json 으로 외부에 요청을 보내면 보안정책에 위배되어 요청이 나가질 않는다.
-                                                //  따라서 datatype 을 jsonp로 변경하고 보내야 한다.)
+		datatype: "json",
+		 colNames : ['no',      '지점', '이름', 'ID',  '직위',   '전화','생년월일','사진' ],
+		  colModel : [
+	                    
+	                    
 
-      	mtype: 'post',                 // mtype : 데이터 전송방식을 지정한다.
-        height : '300px',                 // height : 그리드의 높이를 지정한다.
-        pager : '#pager',               // pager : 도구 모임이 될 div 태그를 지정한다.
-        rowNum : 20,                      // rowNum : 한 화면에 표시할 행 개수를 지정한다.
-        loadonce : true,                // loadonce : rowNum 설정을 사용하기 위해서 true로 지정한다.
-        rowList : [10, 20, 30],       // rowList : rowNum을 선택할 수 있는 옵션을 지정한다.
+	                    { name : 'no',         index : 'no',         width : 50,    align : 'center'  , hidden : true},
+	                    { name : 'officeName',         index : 'officeName',         width : 150,    align : 'center' },
+	                    { name : 'name',         index : 'name',         width : 150,    align : 'center' },
+	                    { name : 'id',         index : 'id',         width : 110,    align : 'center' },
+	                    { name : 'rank',         index : 'rank',         width : 150,    align : 'center' },
+	                    { name : 'tel',         index : 'tel',         width : 150,    align : 'center' , hidden : true},
+	                    { name : 'personalNumber',         index : 'personalNumber',         width : 150,    align : 'center' , hidden : true},
+	                    { name : 'photo',         index : 'photo',         width : 1,    align : 'center' , hidden : true},
+	                    ],
+	                    jsonReader : {
+	                   	 repeatitems : false,
+	                        id : "no",
+	                        root : function (obj) { return obj.jsonResult.data; },
+	                        page : function (obj) { return 1; },
+	                        total : function (obj) { return 1; },
+	                        records : function (obj) {return  obj.jsonResult.data.length; }
+	           },
+	           
+	           
+	           
+	           onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 
-        
-    	postData: {
-			searchKeywordA: $("#searchKeywordA").val()
-			, searchKeywordB: $("#searchKeywordB").val()
-		},
-        colNames : [ 'no','지점', '이름', 'ID',  '직위',   '전화','생년월일','사진' ],
-        colModel : [
-                    
-                    { name : 'no',         index : 'no',         width : 50,    align : 'center' },
-                    { name : 'officeName',         index : 'officeName',         width : 150,    align : 'center' },
-                    { name : 'name',         index : 'name',         width : 150,    align : 'center' },
-                    { name : 'id',         index : 'id',         width : 110,    align : 'center' },
-                    { name : 'rank',         index : 'rank',         width : 150,    align : 'center' },
-                    { name : 'tel',         index : 'tel',         width : 150,    align : 'center' , hidden : true},
-                    { name : 'personalNumber',         index : 'personalNumber',         width : 150,    align : 'center' , hidden : true},
-                    { name : 'photo',         index : 'photo',         width : 1,    align : 'center' , hidden : true},
-                    ],
-        jsonReader : {
-        	 repeatitems : false,
-             id : "no",
-             root : function (obj) { return obj.jsonResult.data; },
-             page : function (obj) { return 1; },
-             total : function (obj) { return 1; },
-             records : function (obj) {return  obj.jsonResult.data.length; }
-},
+	        	   //$("#status").val("edit");
+	        	  	var $rowData = $(this).getRowData(rowid);
+	        	  	
+	        	  	 console.log( "dddddeux : "+    ($rowData['photo'])   );
+	        	  	 ppp  =   ($rowData['photo']) ;
+	        	  	 setPhoto() ;
+	        	  	$("#mno").val($rowData['no']);
+	        	  	$("#mname").val($rowData['name']);
+	        	  	$("#mofficeName").val($rowData['officeName']);
+	        	  	$("#mrank").val($rowData['rank']);
+	        	  	$("#mtel").val($rowData['tel']);
+	        	  	$("#mid").val($rowData['id']);
+	        	  	$("#mpersonalNumber").val($rowData['personalNumber']);
+	        	  	$("#mphoto").val($rowData['photo']);
+	        	  	
+	        	  }	,
 
-onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
-
- //$("#status").val("edit");
-	var $rowData = $(this).getRowData(rowid);
-	
-	 console.log( "dddddeux : "+    ($rowData['photo'])   );
-	 ppp  =   ($rowData['photo']) ;
-	 setPhoto() ;
-	$("#mno").val($rowData['no']);
-	$("#mname").val($rowData['name']);
-	$("#mofficeName").val($rowData['officeName']);
-	$("#mrank").val($rowData['rank']);
-	$("#mtel").val($rowData['tel']);
-	$("#mid").val($rowData['id']);
-	$("#mpersonalNumber").val($rowData['personalNumber']);
-	$("#mphoto").val($rowData['photo']);
-	
-}	
-
-    // navGrid() 메서드는 검색 및 기타기능을 사용하기위해 사용된다.
-    }).navGrid('#pager', {
-        search : true,
-        edit : true,
-        add : true,
-        del : true
-    });
-    
-    
-    
-	
-	  
-    $("#addBtn").click( function() {
-    
-    	$.ajax( 'ajax/add.do', {
-    		   type: 'POST',
-			data: {
-				no : $('#mno').val(),
-				name : $('#mname').val(),
-				id: $('#mid').val(),
-				tel: $('#mtel').val(),
-				personalNumber: $('#mpersonalNumber').val(),
-				officeNum: $('#oAddr').val(),
-				officeName: $('#oAddr').val(),
-				rank: $('#mrank').val()
-			},
-			success: function(members){
-				location.href = 'memberList.do';
-	}});
-		
-}
-    );
-    
-    
-    $("#searchBT").click( function() {  
-    	
-    	fn_reloadPjtList();
-        return false;
+	   	rowNum:10,
+	   	rowList:[10,20,30],
+	   	pager: '#pager',
+	   	sortname: 'id',
+		recordpos: 'left',
+	    viewrecords: true,
+	    sortorder: "desc",
+		multiselect: true,
+		caption: "Multi Select Example"
 	});
-    
-    
+	jQuery("#grid").jqGrid('navGrid','#pager',{add:false,del:false,edit:false,position:'right'});
+	jQuery("#m1").click( function() {
+
+		
+		var selectedMembers = new Array();
+		selectedMembers = jQuery("#grid").jqGrid('getGridParam','selarrrow');
+		
+		var answer  = confirm( '삭제 하시겠습니까?  ');
+		if( answer ) 
+			{
+			for(var i = 0; i< selectedMembers.length ; i++)
+			{
+				
+				location.href = 'ajax/delete.do?no=' + selectedMembers;
+			}	
+			}
+		
+	});
+	
     $("#updateBtn").click( function() {
     	$.ajax( 'ajax/update.do', {
     		   type: 'POST',
 			data: {
 				no : $('#mno').val(),
-				name : $('#mname').val(),
-				id: $('#mid').val(),
-				tel: $('#mtel').val(),
-				personalNumber: $('#mpersonalNumber').val(),
-				officeNum: $('#oAddr').val(),
-				officeName: $('#oAddr').val(),
-				rank: $('#mrank').val()
+				carNumber : $('#mname').val(),
+				carLoad: $('#mid').val()
+				
 			},
-			success: function(members){
-				location.href = 'memberList.do';
+			success: function(car){
+				location.href = 'carList.do';
 	}});
 		
 }
    
     );
+//     $("#addBtn").click( function() {
+//     	alert("addBtn");
+//     	$.ajax( 'ajax/add.do', {
+//     		   type: 'POST',
+// 			data: {
+// 				no : $('#mno').val(),
+// 				carNumber : $('#mname').val(),
+// 				carLoad: $('#mid').val()
+// 			},
+// 			success: function(members){
+// 				location.href = 'carList.do';
+// 	}});
+		
+// }
+   
+    
+//     );
+	
+	jQuery("#tttttt1s").click( function() {
+		jQuery("#grid").jqGrid('setSelection',"13");
+	});
+	
+	
+
     
 });
+
+
+
+jQuery("#grid").jqGrid('navGrid','#pager',{add:false,del:false,edit:false,position:'right'});
+
+
 
 
 function deleteFunction()
@@ -189,11 +190,11 @@ function fn_reloadPjtList()
 
 
 
-<form  method="post"  enctype="multipart/form-data">
+<form  method="post"   action="ajax/addMember.do"      enctype="multipart/form-data">
 <input id="mno" name="mno" maxlength="15" value="0" type="hidden">
 <table id = "grid"></table>
 <div id = "pager"></div>
-
+<input id="m1" type="button" value="삭제" />
 <TABLE  id="mytable"    class="boardList">
 <TR>
 
@@ -246,6 +247,7 @@ function fn_reloadPjtList()
    
 
   
+	<input id="addBtn" type="submit" value="등록" class="view">
 	<input id="updateBtn" type="button" value="변경" class="view">
 	<input id="delBtn" type="button" value="삭제"  onclick="deleteFunction()" />
 	<input id="cancelBtn" type="reset" value="취소">
