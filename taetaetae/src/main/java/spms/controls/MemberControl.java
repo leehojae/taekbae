@@ -170,9 +170,14 @@ public class MemberControl {
 	}
 
 	@RequestMapping(value="/ajax/delete", produces="application/json")
-	public String ajaxDelete(int no) throws Exception {
+	public String ajaxDelete(int[] no) throws Exception {
 		try {
-			memberDao.delete(no);
+			System.out.println("dddd : "+ no.length);
+			
+			for(int i = 0; i< no.length; i++)
+			{	
+				memberDao.delete(no[i]);
+			}
 			return "redirect:/member/memberList.do";
 			
 		} catch (Throwable ex) {

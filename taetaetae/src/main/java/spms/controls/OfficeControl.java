@@ -70,6 +70,11 @@ public class OfficeControl {
 		//model.addAttribute("offices", officeDao.selectList());
 		return "office/officeList";
 	}
+	@RequestMapping("/nonOfficeList.do")
+	public String nonOfficeList(Model model) throws Exception {
+		//model.addAttribute("offices", officeDao.selectList());
+		return "office/nonOfficeList";
+	}
 	@RequestMapping("/list")
 	public String list(Model model) throws Exception {
 		if( excelControl.staticId == 0)
@@ -78,6 +83,15 @@ public class OfficeControl {
 			
 		}
 		return "office/list";
+	}
+	@RequestMapping("/nonApplist")
+	public String nonApplist(Model model) throws Exception {
+		if( excelControl.staticId == 0)
+		{
+			return "redirect:/failAccess.jsp";
+			
+		}
+		return "office/nonApplist";
 	}
 	
 	@RequestMapping("/read")
@@ -101,6 +115,23 @@ public class OfficeControl {
 					.setError(ex.getMessage());
 		}
 	}
+	@RequestMapping(value="/ajax/approval",
+			method=RequestMethod.GET, 
+			produces="application/json")
+	public String approval(int[] no)throws Exception {
+		try {
+			
+			
+			for(int i = 0; i< no.length; i++)
+			{	
+				officeDao.approval(no[i]);
+			}
+			return "redirect:/office/nonOfficeList.do";
+		} catch (Throwable ex) {
+			return "redirect:/office/nonOfficeList.do";
+		}
+	}
+	
 
 
 
@@ -138,22 +169,24 @@ public class OfficeControl {
 	}
 	
 	@RequestMapping(value="/ajax/officeList.do", produces="application/json" )
-	//@RequestMapping(value = "/ajax/officeList.do", method = RequestMethod.GET, 
-	//produces="application/json")
 	public Object ajaxList(String keywordA , String keywordB) throws Exception {
 		try {
-			
-			
-			System.out.println("ddddA : "  +keywordA);
-			System.out.println("ddddB : "  +keywordB);
 			return new JsonResult().setResultStatus(JsonResult.SUCCESS).setData(officeDao.selectList());
-					
 			
 		} catch (Throwable ex) {
 			return new JsonResult().setResultStatus(JsonResult.FAILURE)
 					.setError(ex.getMessage());
 		}
-		
+	}
+	@RequestMapping(value="/ajax/officeNewList.do", produces="application/json" )
+	public Object ajaxNewList(String keywordA , String keywordB) throws Exception {
+		try {
+			return new JsonResult().setResultStatus(JsonResult.SUCCESS).setData(officeDao.selectNewList());
+			
+		} catch (Throwable ex) {
+			return new JsonResult().setResultStatus(JsonResult.FAILURE)
+					.setError(ex.getMessage());
+		}
 	}
 	
 	
