@@ -335,6 +335,7 @@ function testMethod() {
            <div class="well sidebar-nav">
             <ul class="nav nav-list">
              <li><a href="office/list.do">사업소목록</a></li>
+             <li><a href="office/nonApplist.do">미승인 사업소목록</a></li>
               <li><a href="member/list.do">직원목록</a></li>
               <li><a href="car/list.do">차량목록</a></li>
               <li><a href="area/list.do">배송구역목록</a></li>
