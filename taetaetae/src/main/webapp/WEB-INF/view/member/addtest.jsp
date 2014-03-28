@@ -152,77 +152,11 @@
         </div>
       </div>
         </div><!--/span-->
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-<%--           <%@ include file="../common/leftMenu.jsp"%> --%>
-        </div><!--/span-->
-        <div class="span9">
 
 
 
 
 
-<form method="post" action="ajax/addMember.do"    enctype="multipart/form-data">
-<input type='hidden'   id ='photo' name='photo' >
-    <TABLE  id="mytable"    class="boardList">
-     <caption class="table_caption"><h1>SDMS 직원 가입 신청</h1></caption>
-<TR>
-
-
-<th rowspan=8 bgcolor=#F6F6F6>     
-
-<div id ="photoZone">
-<img id="mPhoto"     name="mPhoto"   src="../images/memberPhoto/bg_noimage_1.gif" height="100"><br>
-</div>
-<input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="photoUploadPopup()" />
-  <input id="delBtn" type="button" value="삭제"  onclick="initPhoto()" />
-</th>
-</tr>
-<tr>
-<TD WIDTH="20%" bgcolor=#E4F7BA>소속
-<TD WIDTH="53%"  bgcolor=#FFFF6C><select id="officeNum" name="officeNum" >
-                          <option value="" selected="selected">소속</option>
-                          <option value=" 1">양재택배</option>
-                        </select></TD>
-                        </tr>
-
-<TR>
-<TD WIDTH="20%" bgcolor=#E4F7BA>직위<br></TD>
-<TD WIDTH="53%"  bgcolor=#FFFF6C><select id="rank" name="rank" >
-                          <option value="" selected="selected">소속</option>
-                          <option value=" 1">양재택배</option>
-                        </select></TD>
-</TR>
-<TR>
-<TD WIDTH="20%" bgcolor=#E4F7BA>아이디</TD>
-<TD WIDTH="53%"  bgcolor=#FFFF6C><input id="id" name="id" class="a" type="text" value="" maxlength="100"><br></TD>
-</TR>
-<TR>
-<TD WIDTH="20%" bgcolor=#E4F7BA>비밀번호</TD>
-<TD WIDTH="53%"  bgcolor=#FFFF6C><input id="password" name="password" class="a" type="password" value="" maxlength="100"><br></TD>
-</TR>
-<TR>
-<TD WIDTH="20%" bgcolor=#E4F7BA>이름</TD>
-<TD WIDTH="53%"  bgcolor=#FFFF6C><input id="name" name="name" class="a" type="text" value="" maxlength="100"><br></TD>
-</TR>
-<TR>
-<TD WIDTH="20%" bgcolor=#E4F7BA>생년월일</TD>
-<TD WIDTH="53%"  bgcolor=#FFFF6C>
- <input type="date"    id="personalNumber"   name="personalNumber">
-</TD>
-</TR>
-<TR>
-<TD WIDTH="20%" bgcolor=#E4F7BA>전화번호</TD>
-<TD WIDTH="53%"  bgcolor=#FFFF6C><input id="tel" name="tel" class="a" type="text" value="" maxlength="100"><br></TD>
-</TR>
-<TR>
-<th colspan=3><br><input type='submit' value='직원 등록 신청'>&nbsp;&nbsp;<input type='reset' value='취소'>
-</TR>
-</TABLE>
-   </form>  
-        </div><!--/span-->
-      </div><!--/row-->
 <!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
 <!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
 <!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
@@ -233,25 +167,58 @@
       </fieldset>
       <div class="tab-content profile-edit-tab-content">
         <div id="edit-basic" class="tab-pane in active">
+        
+        
+        <div class="space"></div>
+          <h4 class="header blue bolder smaller">Office</h4>
+
+<!--           <div class="form-group"> -->
+<!--             <label for="select" -->
+<!--               class="col-sm-3 control-label no-padding-right">부서선택</label> -->
+<!--             <div class="col-sm-9"> -->
+<!--               <select class="form-control" id="select"> -->
+<!--                 <option>사장실</option> -->
+<!--                 <option>영업부</option> -->
+<!--                 <option>운송부</option> -->
+<!--                 <option>배차부</option> -->
+<!--                 <option>주부</option> -->
+<!--                 <option>부부</option> -->
+<!--                 <option>두부</option> -->
+<!--               </select> <br>  -->
+<!--             </div> -->
+<!--            </div> -->
+            <input class="col-xs-12 col-sm-2" type="text"
+                    id="form-field-username" placeholder="사업소번호" />
+           <div class="space"></div>
+           <br>
+           <div class="form-group">
+<!--             <label for="select" -->
+<!--               class="col-sm-3 control-label no-padding-right">직책선택</label> -->
+            <div class="col-sm-9">
+              <select class="form-control" id="select">
+                <option>사장</option>
+                <option>부장</option>
+                <option>과장</option>
+                <option>팀장</option>
+                <option>실장</option>
+                <option>사원</option>
+                <option>인턴</option>
+              </select> <br> 
+            </div>
+           </div>
+        
+        
+        
           <h4 class="header blue bolder smaller">General</h4>
                     
           <div class="row">
             <div class="col-xs-12 col-sm-4">
-            <div class="ace-file-input ace-file-multiple">
-            <input type="file" >
-            <label class="file-label" data-title="사진 등록 누르세요" >
-            <span class="file-name" data-title="No File ..." style="text-align:center;" 
-                  onclick="photoUploadPopup()">
-            <i class="fa fa-download fa-5x"></i>
-            </span>
-            </label>
-            
-            
-            </div>
-            <div>
+            <div id ="photoZone">
+<img id="mPhoto"     name="mPhoto"   src="../images/memberPhoto/bg_noimage_1.gif" height="100"><br>
+</div>
+<input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="photoUploadPopup()" />
+<input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="등록취소" onclick="initPhoto()" />
      
-          <button class="btn btn-cancel">등록취소</button>
-            </div>
           </div>
           
 
@@ -397,42 +364,7 @@
             </div>
           </div>
 
-          <div class="space"></div>
-          <h4 class="header blue bolder smaller">Office</h4>
-
-          <div class="form-group">
-            <label for="select"
-              class="col-sm-3 control-label no-padding-right">부서선택</label>
-            <div class="col-sm-9">
-              <select class="form-control" id="select">
-                <option>사장실</option>
-                <option>영업부</option>
-                <option>운송부</option>
-                <option>배차부</option>
-                <option>주부</option>
-                <option>부부</option>
-                <option>두부</option>
-              </select> <br> 
-            </div>
-           </div>
-           
-           <div class="space"></div>
-           
-           <div class="form-group">
-            <label for="select"
-              class="col-sm-3 control-label no-padding-right">부서선택</label>
-            <div class="col-sm-9">
-              <select class="form-control" id="select">
-                <option>사장</option>
-                <option>부장</option>
-                <option>과장</option>
-                <option>팀장</option>
-                <option>실장</option>
-                <option>사원</option>
-                <option>인턴</option>
-              </select> <br> 
-            </div>
-           </div>
+          
 
          
         
