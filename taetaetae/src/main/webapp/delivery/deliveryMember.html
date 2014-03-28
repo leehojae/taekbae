@@ -76,14 +76,19 @@ input[type="checkbox"] {
  padding: 10px;
 }
 
-.panel-group {
-  margin-bottom: 5px;
+.panel-default > .panel-heading {
+  background-color: #fff;
+  border-color: transparent;;
 }
 
-A:link {color:#222; text-decoration:none;}
+.btn-primary {
+  border-color: transparent;
+}
+
+/* A:link {color:#222; text-decoration:none;}
 A:visited {color:#222; text-decoration:none;}
 A:active {color: #222; text-decoration:none; }
-A:hover {color: #000; text-decoration:none; }
+A:hover {color: #000; text-decoration:none; } */
 </style>
 <script>
 
@@ -105,7 +110,7 @@ A:hover {color: #000; text-decoration:none; }
 								tel = records[i].receiverTel1.split("-");
 								if(records[i].returnBox === 0){ returnboxs = '' }else{ returnboxs = '반품'}
 								$('#accordion').append(
-												      '<div class="panel panel-default">'
+												      '<div class="panel panel-default" style="margin: 0px;">'
 														+ '<div class="panel-heading">'
 														+ '<h4 class="panel-title">'
 														+ '<div class="checkList" data-toggle="buttons">'
@@ -118,7 +123,7 @@ A:hover {color: #000; text-decoration:none; }
 														+ (i + 1)
 														+ '</label>'
 														+ '</div>'
-														+ '<div class="listGroup"><a data-toggle="collapse" data-parent="#accordion" href="#'+records[i].receiverName+' ">'
+														+ '<div class="listGroup"><a data-toggle="collapse" style="color: #000;" data-parent="#accordion" href="#'+records[i].receiverName+' ">'
 														+ '<div class="nameList">'+records[i].receiverName+'</div>'
 														+ '<div class="addrList">'
 														+ records[i].receiverAddrRoad
@@ -159,9 +164,10 @@ A:hover {color: #000; text-decoration:none; }
 														+ '전화번호2 : '
 														+ records[i].receiverTel2
 														+ '<br>'
+														+ '<br>'
                             + '<div class="callList">'
-                            + '<button id="tel" class="btn btn-default"><a href="tel:'+ tel[0] + tel[1] + tel[2] +'">전화걸기</a></button>'
-                            + '<button id="sms" class="btn btn-default"><a href="sms:01047311909?body=The SMS message.">문자보내기</a></button>'
+                            + '<button id="tel" class="btn btn-default"><a href="tel:'+ tel[0] + tel[1] + tel[2] +'" style="color: #ffffff">전화걸기</a></button>'
+                            + '<button id="sms" class="btn btn-default"><a href="sms:01047311909?body=The SMS message." style="color: #ffffff">문자보내기</a></button>'
                             + '</div>'
 														+ '</div>'
 														+ '</div>'
@@ -275,12 +281,40 @@ header {
 	z-index: 100;
 }
 
-body { padding-top: 65px; }
+body { padding-top: 50px; }
+body { color: #000; }
 .navbar {
 margin-bottom: 0px;
 background-color: #f5f5f5;
 font-family: "Nanum Gothic" ;
 }
+
+.btn-primary {
+color: #ffffff;
+background-color: #b9d9f5;
+border-color: transparent;
+}
+
+.btn-default {
+color: #ffffff;
+background-color: #b9d9f5;
+box-shadow: 0 2px 0 #94bfe4;
+}
+
+.btn:hover, .btn:focus, .btn:active, .btn.active, .open .dropdown-toggle.btn {
+color: #ffffff;
+background-color: #b0d3f1;
+border-color: transparent;
+}
+
+label.btn:hover, label.btn:focus, label.btn:active, label.btn.active, label.open label.dropdown-toggle.btn {
+color: #000000;
+}
+
+.panel-group {
+  margin-bottom: 0px;
+}
+
 </style>
 
 </head>
@@ -292,8 +326,9 @@ font-family: "Nanum Gothic" ;
 		<option>주소 불확실</option>
 	</select> -->
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <ul class="nav nav-pills nav-justified" >
-  <li><a href="#" style="width: 100%;"><input type="button" class="btn btn-default" style="width: 50%; display: inline;" value="종료" /><input type="button" class="btn btn-default" style="width: 50%; display: inline;" value="배송처리" onclick="checkDelivery()" /></a>
+  <ul class="nav nav-pills nav-justified" id="customNav">
+  <li><input type="button" class="btn btn-default" style="width: 50%; height: 49px; display: inline;" value="로그아웃" /><input type="button" class="btn btn-default" style="width: 50%; height: 49px; display: inline;" value="배송처리" onclick="checkDelivery()" />
+<!-- <li><a href="#" style="width: 100%;"><input type="button" class="btn btn-default" style="width: 50%; display: inline;" value="종료" /><input type="button" class="btn btn-default" style="width: 50%; display: inline;" value="배송처리" onclick="checkDelivery()" /></a>  -->  
   </li>
   </ul>
   </nav>
