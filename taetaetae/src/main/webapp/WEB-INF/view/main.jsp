@@ -354,7 +354,6 @@ function testMethod() {
 <!--              <p class="help-block">Example block-level help text here.</p> -->
             </div>
           </form>
-              <button type="button" class="test" onclick="testMethod()" >테스트</button>
         <script type="text/javascript" src="js/excelUpload.js"></script>
         <hr>
         <!--        <div class="hero-unit">
