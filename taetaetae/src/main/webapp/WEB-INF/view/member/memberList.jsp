@@ -11,10 +11,7 @@
 <script src = "../js/jquery.jqGrid.min.js" type = "text/javascript"></script>
 <script src = "../js/i18n/grid.locale-kr.js" type = "text/javascript"></script>
 
-
-
 <script>
-var  ppp = null ;
 $(window.document).ready(function() {
 	
 	$("#grid").jqGrid({
@@ -72,7 +69,7 @@ $(window.document).ready(function() {
 	    viewrecords: true,
 	    sortorder: "desc",
 		multiselect: true,
-		caption: "Multi Select Example"
+		caption: "직원 목록"
 	});
 	jQuery("#grid").jqGrid('navGrid','#pager',{add:false,del:false,edit:false,position:'right'});
 	jQuery("#m1").click( function() {
@@ -109,23 +106,6 @@ $(window.document).ready(function() {
 }
    
     );
-//     $("#addBtn").click( function() {
-//     	alert("addBtn");
-//     	$.ajax( 'ajax/add.do', {
-//     		   type: 'POST',
-// 			data: {
-// 				no : $('#mno').val(),
-// 				carNumber : $('#mname').val(),
-// 				carLoad: $('#mid').val()
-// 			},
-// 			success: function(members){
-// 				location.href = 'carList.do';
-// 	}});
-		
-// }
-   
-    
-//     );
 	
 	jQuery("#tttttt1s").click( function() {
 		jQuery("#grid").jqGrid('setSelection',"13");
