@@ -19,7 +19,11 @@
   
   <select id="selectList" resultMap="officeResultMap">
 		select OFFICE_NUM,OFFICE_NAME,OFFICE_TEL,OFFICE_POST_NUM,OFFICE_ADDR,OFFICE_FAX
-		from OFFICE
+		from OFFICE where APPROVAl=1
+</select>
+  <select id="selectNewList" resultMap="officeResultMap">
+		select OFFICE_NUM,OFFICE_NAME,OFFICE_TEL,OFFICE_POST_NUM,OFFICE_ADDR,OFFICE_FAX
+		from OFFICE where APPROVAl=0
 </select>
 	
   <select id="selectOne" parameterType="int" resultMap="officeResultMap">
@@ -41,6 +45,11 @@
   
   <delete id="delete" parameterType="int">
     delete from OFFICE where OFFICE_NUM=#{no}
+  </delete>
+  <delete id="approval" parameterType="int">
+      update OFFICE set  APPROVAL= 1
+    
+    where OFFICE_NUM=#{no}
   </delete>
 </mapper>
 
