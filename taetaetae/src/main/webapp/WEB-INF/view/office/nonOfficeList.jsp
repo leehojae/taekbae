@@ -11,7 +11,6 @@
 <script src = "../js/jquery.jqGrid.min.js" type = "text/javascript"></script>
 <script src = "../js/i18n/grid.locale-kr.js" type = "text/javascript"></script>
 
-
 <script>
 
     $(window.document).ready(function() {
@@ -23,14 +22,13 @@
     	
         $("#grid").jqGrid({   //   keywordA=' + $('#searchKeywordA').val()+'keywordB=' + $('#searchKeywordB').val()
             //url : 'http://apis.daum.net/socialpick/search?output=json',
-           url : 'http://localhost:9999/taetaetae/office//ajax/officeList.do',
+           url : 'http://localhost:9999/taetaetae/office//ajax/officeNewList.do',
            // url : 'http://localhost:9999/taetaetae/office//ajax/officeList.do?keywordA=' + $('#searchKeywordA').val()+'&keywordB=' + $('#searchKeywordB').val(),
-            caption : '승인 지점 목록',    // caption : 그리드의 제목을 지정한다.
             datatype : 'json',               // datatype : 데이터 타입을 지정한다.
                                                     // (json 으로 외부에 요청을 보내면 보안정책에 위배되어 요청이 나가질 않는다.
                                                     //  따라서 datatype 을 jsonp로 변경하고 보내야 한다.)
  
-            mtype : 'get',                     // mtype : 데이터 전송방식을 지정한다.
+            mtype : 'post',                     // mtype : 데이터 전송방식을 지정한다.
             height : '300px',                 // height : 그리드의 높이를 지정한다.
             pager : '#pager',               // pager : 도구 모임이 될 div 태그를 지정한다.
             rowNum : 20,                      // rowNum : 한 화면에 표시할 행 개수를 지정한다.
@@ -41,9 +39,9 @@
             	keywordA: $("#searchKeywordA").val(),
             	keywordB: $("#searchKeywordB").val()},
             // colNames : 열의 이름을 지정한다.
-            colNames : [ '사업자번호','지점명', '전화', '우편번호',  '주소',   '팩스' ],
+            colNames : ['NO', '사업자번호','지점명', '전화', '우편번호',  '주소',   '팩스' ],
             colModel : [
-                        
+                        { name : 'officeNum',         index : 'no',         width : 50,    align : 'center'  , hidden : true},
                         { name : 'officeNum',         index : 'officeNum',         width : 150,    align : 'center' },
                         { name : 'officeName',         index : 'officeName',         width : 250,    align : 'center' },
                         { name : 'officeTel',         index : 'officeTel',         width : 250,    align : 'center' },
@@ -57,7 +55,7 @@
                       },
             jsonReader : {
                repeatitems : false,
-                 id : "no",
+                 id : "officeNum",
                  root : function (obj) { return obj.jsonResult.data; },
                  page : function (obj) { return 1; },
                  total : function (obj) { return 1; },
@@ -75,15 +73,52 @@
     $("#oAddr").val($rowData['officeAddr']);
     $("#oFax").val($rowData['officeFax']);
     
-  } 
- 
-        // navGrid() 메서드는 검색 및 기타기능을 사용하기위해 사용된다.
-        }).navGrid('#pager', {
-            search : true,
-            edit : true,
-            add : true,
-            del : true
-        });
+  } ,
+	rowNum:10,
+   	rowList:[10,20,30],
+   	pager: '#pager',
+   	sortname: 'id',
+	recordpos: 'left',
+    viewrecords: true,
+    sortorder: "desc",
+	multiselect: true,
+	caption: "미승인 사업소 목록"
+});
+jQuery("#grid").jqGrid('navGrid','#pager',{add:false,del:false,edit:false,position:'right'});
+jQuery("#m1").click( function() {
+
+	
+	var selectedOffice = new Array();
+	selectedOffice = jQuery("#grid").jqGrid('getGridParam','selarrrow');
+	
+	var answer  = confirm( '삭제 하시겠습니까?  ');
+	if( answer ) 
+		{
+		for(var i = 0; i< selectedOffice.length ; i++)
+		{
+			
+			location.href = 'ajax/delete.do?no=' + selectedOffice;
+		}	
+		}
+	
+});
+jQuery("#m2").click( function() {
+
+	
+	var selectedOffice = new Array();
+	selectedOffice = jQuery("#grid").jqGrid('getGridParam','selarrrow');
+	
+	var answer  = confirm( '승인 하시겠습니까?  ');
+	if( answer ) 
+		{
+		for(var i = 0; i< selectedOffice.length ; i++)
+		{
+			alert(selectedOffice[i]);
+			location.href = 'ajax/approval.do?no=' + selectedOffice;
+		}	
+		}
+	
+});
         
       
         $("#updateBtn").click( function() {
@@ -128,9 +163,11 @@
 <body >
 <div id="content" style=" float:left;">
   <form  method="post"  enctype="multipart/form-data">
-
+	<input id="m1" type="button" value="삭제" />
+    <input id="m2" type="button" value="승인" />
     <table id = "grid"></table>
     <div id = "pager"></div>
+    
    <table border=1    WIDTH="635"   bgcolor="#EAEAEA">
   <tr>
   <td>
@@ -157,6 +194,7 @@
   </td> 
   </tr>
 </table>
+<input id="m2" type="button" value="승인" />
     <input id="updateBtn" type="button" value="변경"  />
     <input id="delBtn" type="button" value="삭제"    onclick="deleteFunction( )" />
     <input id="cancelBtn" type="reset" value="취소" />
