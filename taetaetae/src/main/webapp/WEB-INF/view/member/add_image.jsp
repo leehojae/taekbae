@@ -11,25 +11,25 @@
 		window.resizeTo(370,360);
 	}
 
-
 	function chkFrm() {
 		Frm = document.forms[0];
 
 		
 		var mPhoto = window.opener.document.getElementById("mPhoto");
-		var photo = window.opener.document.getElementById("photo");
+		var photo = window.opener.document.getElementById("photoZone");
 		//mPhoto.value = document.getElementById("pathTextViewer").value;
 		//mPhoto.src = "./files/"+ 
 		
 		
 		var filenm = Frm.file1.value;
+		var aaa = "/taetaetae/files/" + filenm.substring(12,filenm.length);
+/* 		var aaa = "/files/"+ filenm.substring(12,filenm.length); */
 		
-	
-		var  aaa =    "../files/"+ filenm.substring(12,filenm.length);
+		console.log(aaa);
 		
+		console.log(photo);
 		
-		
-		mPhoto.src =aaa;
+		mPhoto.src = aaa;
 		photo.value = aaa; 
 		
 		alert(  "photo.value  :  " +  photo.value);

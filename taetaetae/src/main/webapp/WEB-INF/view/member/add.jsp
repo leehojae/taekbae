@@ -133,6 +133,16 @@
     
     <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    
+<script type="text/javascript">
+$(function(){
+  $.getJSON('../office/ajax/officeAllList.do', function(data){
+    var data = data.jsonResult.data;  
+    		console.log(data);
+  });
+});
+</script>
+    
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -173,13 +183,18 @@
         <h4 class="header blue bolder smaller">Office</h4>
          
             <div class="form-group">
-              <label for="select"
-                class="col-sm-3 control-label no-padding-right">소속</label>
-              <div class="col-sm-9">
-                <input  type="text"
-                      id="form-field-username" placeholder="사업자번호" />
-                      <input id="delBtn" type="button" value="검색"  onclick="searchCompany()" />
-              </div>
+            <label for="select" class="col-sm-3 control-label no-padding-right">소속</label>
+            <div class="col-sm-9">
+            
+            <select>
+            <option>1
+            </option>
+            </select>
+            
+            
+<!--             <input type="text" id="form-field-username" placeholder="사업자번호" />
+            <input id="delBtn" type="button" value="검색"  onclick="searchCompany()" /> -->
+            </div>
              
            </div>   
             
@@ -210,15 +225,14 @@
         
           <h4 class="header blue bolder smaller">General</h4>
                     
-          <div class="row">
-            <div class="col-xs-12 col-sm-4">
-            <div id ="photoZone">
-<img id="mPhoto"     name="mPhoto"   src="../images/memberPhoto/bg_noimage_1.gif" height="100"><br>
+<div class="row">
+<div class="col-xs-12 col-sm-4">
+<div id ="photoZone">
+<img id="mPhoto" name="mPhoto" src="../images/memberPhoto/bg_noimage_1.gif" style="width: 161px; height: 161px;"><br>
 </div>
 <input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="photoUploadPopup()" />
 <input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="등록취소" onclick="initPhoto()" />
-     
-          </div>
+</div>
           
 
 
@@ -408,14 +422,13 @@
 <footer>
 <p>&copy; 비트 2014</p>
 </footer>
-</div><!--/.fluid-container-->
+<!--/.fluid-container-->
 <script type="text/javascript">
 function photoUploadPopup()
-      {
+{
          myWin = window.open('addImage.do', 'popwindow', 'width=300,height=300');
          
          photoZone = document.getElementById('photoZone');
-        
 };
 function searchCompany()
       {
