@@ -161,7 +161,7 @@
 <!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
 <!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
 <!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
-    <form class="form-horizontal" >
+    <form class="form-horizontal" method="post" action="ajax/addMember.do" enctype="multipart/form-data" >
       <fieldset>
         <legend>직업가입란</legend>
       </fieldset>
@@ -172,16 +172,16 @@
         
         <h4 class="header blue bolder smaller">Office</h4>
          
-	          <div class="form-group">
-	            <label for="select"
-	              class="col-sm-3 control-label no-padding-right">사업자번호입력</label>
-	            <div class="col-sm-9">
-	              <input class="col-xs-12 col-sm-2" type="text"
-	                    id="form-field-username" placeholder="사업자번호" />
-	            </div>
-	         </div>   
-	         
-	         <div class="form-group">
+            <div class="form-group">
+              <label for="select"
+                class="col-sm-3 control-label no-padding-right">사업자번호입력</label>
+              <div class="col-sm-9">
+                <input class="col-xs-12 col-sm-2" type="text"
+                      id="form-field-username" placeholder="사업자번호" />
+              </div>
+           </div>   
+
+           <div class="form-group">
               <label for="select"
                 class="col-sm-3 control-label no-padding-right">직원번호입력</label>
               <div class="col-sm-9">
