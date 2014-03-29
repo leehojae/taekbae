@@ -208,6 +208,17 @@ public class OfficeControl {
 		}
 	}
 	
+	@RequestMapping(value="/ajax/officeAllList.do", produces="application/json" )
+	public Object ajaxList() throws Exception {
+		try {
+			return new JsonResult().setResultStatus(JsonResult.SUCCESS).setData(officeDao.selectAllList());
+			
+		} catch (Throwable ex) {
+			return new JsonResult().setResultStatus(JsonResult.FAILURE)
+					.setError(ex.getMessage());
+		}
+	}
+	
 	@RequestMapping(value="/ajax/officeList.do", produces="application/json" )
 	public Object ajaxList(String keywordA , String keywordB) throws Exception {
 		try {

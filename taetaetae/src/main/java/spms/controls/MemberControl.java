@@ -2,6 +2,8 @@ package spms.controls;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 
@@ -15,10 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import spms.dao.MemberDao;
+import spms.dao.OfficeDao;
 import spms.vo.JsonResult;
 import spms.vo.Member;
-import spms.vo.Office;
-import spms.dao.OfficeDao;
 
 @Controller
 @RequestMapping("/member")
@@ -74,6 +75,7 @@ public class MemberControl {
 			Member member, 
 			@RequestParam("file1") MultipartFile photoFile,
 			Model model) throws Exception {
+		System.err.println("asdfasdf");
 		saveFile(photoFile);
 		
 		return "member/add";
@@ -147,9 +149,24 @@ public class MemberControl {
 	  String originFilename = photoFile.getOriginalFilename();
 	  log.debug("업로드 파일:" + photoFile.getName() + "=" + originFilename);
 	  
+	  String ext = originFilename.substring(
+		  		originFilename.lastIndexOf("."));
+	  
+	  Date dt = new Date();
+	  System.out.println(dt.toString());
+	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_hh:mm:ss a"); 
+	  System.out.println(sdf.format(dt).toString());
+	  
+	  String newFilename = sdf.format(dt).toString() + "_" +
+		  		this.getFileCount() + ext;
+	  
+//	  String newFilename = System.currentTimeMillis() + "_" +
+//			  this.getFileCount() + ext;
+//	  
 	  photoFile.transferTo(new File(servletContext.getRealPath(
-	  		"/files/" + originFilename)));
-	  return originFilename; 
+	  		"/files/" + newFilename)));
+	  
+	  return newFilename; 
   }
 	
 	int fileCount = 0;
