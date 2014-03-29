@@ -11,8 +11,22 @@ public class Office  implements Serializable {
 	private String officePostNum;
 	private String officeAddr;
 	private String officeFax;
+	private String officeCEO;
+	private String approval;
 	
 	
+	public String getApproval() {
+		return approval;
+	}
+	public void setApproval(String approval) {
+		this.approval = approval;
+	}
+	public String getOfficeCEO() {
+		return officeCEO;
+	}
+	public void setOfficeCEO(String officeCEO) {
+		this.officeCEO = officeCEO;
+	}
 	public int getOfficeNum() {
 		return officeNum;
 	}
