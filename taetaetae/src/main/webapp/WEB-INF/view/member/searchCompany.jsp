@@ -1,66 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="ko"><head>
 <meta http-equiv="Content-type" content="text/html;charset=euc-kr">
 <title>SDMS 직원 증명사진  :: 이미지 첨부</title>
 <link rel="stylesheet" href="http://t.static.blog.naver.net/mylog/versioning/common/css/paper-140562.css" type="text/css">
 <script type="text/javascript" src="http://t.static.blog.naver.net/mylog/versioning/add_image-832127.js"></script>
 <script language="javascript">
+
+
 	//added by mj.chong 2006. 10. 16, IE7
 	function resizeWindow() {
 		window.resizeTo(370,360);
 	}
 
 
-	function chkFrm() {
+	function search(){
+		
+		
 		Frm = document.forms[0];
-
-		
-		var mPhoto = window.opener.document.getElementById("mPhoto");
-		var photo = window.opener.document.getElementById("photo");
-		//mPhoto.value = document.getElementById("pathTextViewer").value;
-		//mPhoto.src = "./files/"+ 
 		
 		
-		var filenm = Frm.file1.value;
-		
-	
-		var  aaa =    "../files/"+ filenm.substring(12,filenm.length);
-		
-		
-		
-		mPhoto.src =aaa;
-		photo.value = aaa; 
-		
-		alert(  "photo.value  :  " +  photo.value);
-		var attachMysize = 0;
-		if (filenm==""){
-			alert("파일을 첨부해주세요!");
-			return false;
-		}else if(filenm.indexOf("%") >=0 ){
-			alert("파일명에 '%'문자를 포함할 수 없습니다. 파일명을 변경하신후  다시 올려주세요.");
-			return false;
-		}
-		var ext = filenm.slice(filenm.lastIndexOf(".")+1).toLowerCase();
-		if  (!(ext == "gif" || ext == "jpg" || ext == "png")){
-			alert("이미지파일 (.gif, .jpg, .png) 만 업로드 가능합니다.");
-			return false;
-		}
- 		Frm.action = "setPhoto.do";
+		if(Frm.searchKsearcheywordA.value  == "")
+		{
+			alert("검색할 사업자 번호를 입력해 주세요.");
+			return ;
+		}	
+		Frm.action = "../office/searchCompany.do?no=" + Frm.searchKsearcheywordA.value;
  		
 		Frm.submit();
+	}
+	
+	function chkFrm() {
 		
+		var officeName = window.opener.document.getElementById("officeName");
+		var officeNum = window.opener.document.getElementById("officeNum"); 
 		
+/* 		Frm = document.forms[0];
+		
+		var filenm = Frm.file1.value; */
+ 		
+		 var getOfficeName = document.getElementById("hiddenOfficeName").innerHTML;
+ 		 var getOfficeNumber = document.getElementById("officeNumber").innerHTML;
+		alert("getOfficeName :"  + getOfficeName   + ", dddd :  " + getOfficeNumber );
+		officeNum.value = getOfficeNumber;
+		officeName.value = getOfficeName; 
 		
 		window.close();
 		
 	}
 
-	function SetFilezise() {
-		var attachAllsize = "0";
-
-		document.FileFrm.attachAllsize.value = attachAllsize;
-	}
+	
 </script>
 </head>
 
@@ -85,12 +75,52 @@
 		<div class="file_section">
 	
 			<p>사업소번호를 검색해주세요</span></p>
-			<input type="text" id="pathTextViewer" class="text"> 
-			<input id="updateBtn" type="button" value="찾아보기" onclick="chkFrm()" />
+			<input id="searchKsearcheywordA"/>
+<!-- 			<input type="text" id="search" class="text">  -->
+			<input id="updateBtn" type="button" value="찾아보기" onclick="search()" />
+<!-- 			<br> -->
+<%-- 			<input type='text' name='officeNum'  value='${office.officeNum}'  readonly='true' > --%>
+<!-- 			<br> -->
+<%-- 			<input type='text' name='officeNum'  value='${office.officeName}'  readonly='true' > --%>
+<!-- 			<br> -->
+			
+			
+<style type="text/css">	
+#hiddenOfficeName  {
+position: inherit;
+opacity: 100;
+}
+#officeNumber  {
+position: inherit;
+opacity: 100;
+}
+</style>
+<c:choose>
+ <c:when test="${   office.officeName ==null}">
+ <br>
+시스템에 등록된 사업소의 사업자번호를 입력해주세요
+ </c:when>
+ <c:when test="${   office.officeName !='' }">
+  <br>
+ <div>사업자번호  <span id="officeNumber">${office.officeNum}</span> 으로 검색한 결과  <span id="hiddenOfficeName" >${office.officeName}</span> 사업소가 나왔습니다. </div>
+  <%-- 사업자번호  ${office.officeNum} 으로 검색한 결과  ${office.officeName} 사업소가 나왔습니다. --%>
+ </c:when>
+ <c:otherwise>
+<%--   사업자번호      ${office.officeNum} 으로 검색한    사업소가 없습니다.  --%>
+ </c:otherwise>
+</c:choose>
+			
+
+			
+
+			
 		</div>
 		
 		
 	</div>
+	
+	
+
 <!-- 	<div style="margin:0 20px;padding:12px 0 15px;line-height:0;text-align:center;word-spacing:-2px"><a href="#" id="submitBtn" class="_returnFalse" onclick="goSubmit()" tabindex="0"><img src="http://blogimgs.naver.net/imgs/btn_ok1.gif" style="cursor:pointer;visibility:visible" name="sbtn" id="sbtn"></a> -->
 <div style="margin:0 20px;padding:12px 0 15px;line-height:0;text-align:center;word-spacing:-2px">
 	<input id="updateBtn" type="button" value="등록하기" onclick="chkFrm()" />
