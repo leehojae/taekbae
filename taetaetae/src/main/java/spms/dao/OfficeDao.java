@@ -6,6 +6,7 @@ import java.util.Map;
 import spms.vo.Office;
 
 public interface OfficeDao {
+	public List<Office> selectAllList() throws Exception;
 	public List<Office> selectList() throws Exception;
 	public List<Office> selectNewList() throws Exception;
 	public Office selectOne(int no) throws Exception;
