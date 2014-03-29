@@ -18,6 +18,11 @@
     VALUES(#{officeNum},#{officeName},#{officeTel},#{officePostNum},#{officeAddr},#{officeFax}   )
   </insert>
   
+  <select id="selectAllList" resultMap="officeResultMap">
+		select OFFICE_NUM,OFFICE_NAME,OFFICE_TEL,OFFICE_POST_NUM,OFFICE_ADDR,OFFICE_FAX
+		from OFFICE where APPROVAl=1
+</select>
+  
   <select id="selectList" resultMap="officeResultMap">
 		select OFFICE_NUM,OFFICE_NAME,OFFICE_TEL,OFFICE_POST_NUM,OFFICE_ADDR,OFFICE_FAX
 		from OFFICE where APPROVAl=1
