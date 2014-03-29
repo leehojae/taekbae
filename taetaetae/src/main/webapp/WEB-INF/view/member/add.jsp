@@ -226,7 +226,7 @@ $(function(){
           <h4 class="header blue bolder smaller">General</h4>
                     
 <div class="row">
-<div class="col-xs-12 col-sm-4">
+<div class="col-xs-12 col-sm-4" style="text-align: center">
 <div id ="photoZone">
 <img id="mPhoto" name="mPhoto" src="../images/memberPhoto/bg_noimage_1.gif" style="width: 161px; height: 161px;"><br>
 </div>
