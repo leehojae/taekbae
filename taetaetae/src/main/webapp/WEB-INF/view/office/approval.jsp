@@ -95,19 +95,19 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
-
+      <div class="span3">
+          <%@ include file="../common/myOfficeLeftMenu.jsp"%>
         </div><!--/span-->
         <div class="span9">
 
 <table border='0' width='550' align='center' bgcolor='#686868' cellspacing='1' cellpadding='0'>
-<form method="post" action="ajax/addOffice.do">
+
 
 
 	
       <table border='0' cellpadding='0' cellspacing='0' width='40%'>
         <tr>
-          <td bgcolor='#f4f4f4' width='8%' height='30'   style='text-align: center;'><h1>SDMS 기업 회원 가입 </h1></td>
+          <td bgcolor='#f4f4f4' width='8%' height='30'   style='text-align: center;'><h1>기업 회원 승인 현황 </h1></td>
          
         </tr>
       </table>
@@ -115,7 +115,7 @@
         <tr>
           <td bgcolor='#f4f4f4' width='8%' height='30'>&nbsp;사업자번호 <font color='red'><b>*</b></font></td>
          
-          <td width='74%'><input type='text' name='officeNum' size='20' maxlength='20'>
+          <td width='74%'><input type='text' name='officeNum'  value='${office.officeNum}'  readonly='true' >
           </td>
         </tr>
       </table>
@@ -123,14 +123,15 @@
         <tr>
           <td bgcolor='#f4f4f4' width='8%' height='30'>&nbsp;상호명 <font color='red'><b>*</b></font></td>
          
-          <td width='74%'><input type='text' name='officeName' size='20'></td>
+          <td width='74%'><input type='text' name='officeName'   value='${office.officeName}'  readonly='true' ></td>
         </tr>
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>
           <td bgcolor='#f4f4f4' width='8%' height='30'>&nbsp;대표자명 <font color='red'><b>*</b></font></td>
          
-          <td width='74%'><input type='text' name='officeCEO' size='20' maxlength='20'>
+          <td width='74%'><input type='text' name='officeCEO'    value='${office.officeCEO}'  readonly='true' >
+
           </td>
         </tr>
       </table>
@@ -139,7 +140,7 @@
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>  
           <td bgcolor='#f4f4f4' width='8%' height='30'>&nbsp;우편번호</td>  
-         <td width='74%'><input type='text' name='officePostNum' size='20'></td>
+         <td width='74%'><input type='text' name='officePostNum'   value='${office.officePostNum}'  readonly='true' ></td>
           </td>  
         </tr>  
       </table>
@@ -147,40 +148,40 @@
         <tr>  
           <td bgcolor='#f4f4f4' width='8%' height='30'>&nbsp;주소</td>  
          
-          <td width='74%'><input type='text' name='officeAddr' size='50'>&nbsp; </td>  
+          <td width='74%'><input type='text' name='officeAddr' size='50'   value='${office.officeAddr}'  readonly='true' >&nbsp; </td>  
         </tr>  
      </table>
      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>
           <td bgcolor='#f4f4f4' width='8%' height='30'>&nbsp;전화번호 <font color='red'><b>*</b></font></td>
          
-          <td width='74%'><input type='text' name='officeTel' size='20'></td>
+          <td width='74%'><input type='text' name='officeTel' size='20'    value='${office.officeTel}'  readonly='true' ></td>
         </tr>
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>
           <td bgcolor='#f4f4f4' width='8%' height='30'>&nbsp;팩스 <font color='red'><b>*</b></font></td>
          
-          <td width='74%'><input type='text' name='officeFax' size='20'></td>
+          <td width='74%'><input type='text' name='officeFax' size='20'  value='${office.officeFax}'  readonly='true' ></td>
         </tr>
       </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='40%'>
+      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>
-          <td bgcolor='#f4f4f4' width='8%' height='30'   style='text-align: center;'>
-          	 <input id="delBtn" type="submit" value="다음"  />
-    			<input id="cancelBtn" type="reset" value="취소" />
-          
-          </td>
+          <td bgcolor='#f4f4f4' width='8%' height='30'>&nbsp;승인여부 <font color='red'><b>*</b></font></td>
          
+          <td width='74%'><font color='red'>
+          ${office.approval}</font></td>
+<!--           <td width='74%'><font color='red'> -->
+<%--           <input type='text' name='officeFax' size='20'  value='${office.approval}'  readonly='true' ></font></td> --%>
         </tr>
       </table>
-      </form>
 
 <%--   <%@ include file="officeList.jsp"%> --%>
 
         </div><!--/span-->
       </div><!--/row-->
 
+      <hr>
 
       <footer>
         <p>&copy; 비트 2014</p>
