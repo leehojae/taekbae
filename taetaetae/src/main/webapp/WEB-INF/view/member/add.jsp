@@ -136,10 +136,8 @@
 </tr>
 <tr>
 <TD WIDTH="20%" bgcolor=#E4F7BA>소속
-<TD WIDTH="53%"  bgcolor=#FFFF6C><select id="officeNum" name="officeNum" >
-              						<option value="" selected="selected">소속</option>
-              						<option value=" 1">양재택배</option>
-              					</select></TD>
+<TD WIDTH="53%"  bgcolor=#FFFF6C><input id="id" name="id" class="a" type="text" value="" maxlength="100">
+<input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="photoUploadPopup()" /></TD>
               					</tr>
 
 <TR>

@@ -42,10 +42,7 @@
 </tr>
 <tr>
 <TD WIDTH="20%" bgcolor=#E4F7BA>소속
-<TD WIDTH="53%"><select id="officeNum" name="officeNum" >
-              						<option value="" selected="selected">소속</option>
-              						<option value=" 1">양재택배</option>
-              					</select></TD>
+<TD WIDTH="53%"><input id="id" name="id" class="a" type="text" value="" maxlength="100"></TD>
               					</tr>
 
 <TR>
