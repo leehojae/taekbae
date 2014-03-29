@@ -9,9 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import spms.dao.MemberDao;
 import spms.dao.OfficeDao;
 import spms.vo.JsonResult;
 import spms.vo.Office;
+import spms.vo.Member;
 
 @Controller
 @RequestMapping("/office")
@@ -23,6 +25,10 @@ public class OfficeControl {
 	
 	@Autowired(required=false)
 	OfficeDao officeDao;
+	
+	
+	@Autowired(required=false)
+	MemberDao memberDao;
 	
 	
 	@Autowired(required=false)
@@ -84,6 +90,15 @@ public class OfficeControl {
 		}
 		return "office/list";
 	}
+	@RequestMapping("/myOffice")
+	public String myOffice(Model model) throws Exception {
+		if( excelControl.staticId == 0)
+		{
+			return "redirect:/failAccess.jsp";
+			
+		}
+		return "office/myOffice";
+	}
 	@RequestMapping("/nonApplist")
 	public String nonApplist(Model model) throws Exception {
 		if( excelControl.staticId == 0)
@@ -98,8 +113,27 @@ public class OfficeControl {
 	public String read(int no, Model model) throws Exception {
 		Office office = officeDao.selectOne(no);
 		model.addAttribute("office", office);
-		return "office/updateForm";
+//		return "member/updateForm";
+		return "member/addOfficeMember";
+		
 	}
+	@RequestMapping("/approval")
+	public String approval(Model model) throws Exception {
+		//int i = excelControl.staticId;
+		
+		Member m = memberDao.selectOne(excelControl.staticId);
+		
+		
+		
+		Office office = officeDao.selectOne(   m.getOfficeNum() );
+		model.addAttribute("office", office);
+//		return "member/updateForm";
+		return "office/approval";
+		
+	}
+	
+	
+
 	
 
 	
@@ -140,20 +174,26 @@ public class OfficeControl {
 			produces="application/json")
 	public String ajaxAdd(Office office) throws Exception {
 		try {
-			if( excelControl.staticId == 0)
-			{
-				return "redirect:/failAccess.jsp";
-				
-			}
+			
+			
+			 //String ceo  =new String(office.getOfficeCEO().getBytes("8859_1"),"EUC-KR ");
+
+			 String ceo = office.getOfficeCEO();
+			
+			
+			//String url  =  "redirect:/addedOffice.jsp?officeName=" + office.getOfficeName() +  "&ceo="+ ceo+"&no="+ office.getOfficeNum();
+			String url  =  "redirect:/office/read.do?no="+ office.getOfficeNum();
 			System.out.println("1  :" +  office.getOfficeName());
 			System.out.println("2  :" +  office.getOfficeName());
 			officeDao.insert(office);
-			return "redirect:/success.jsp";
+			//return "redirect:/success.jsp";
+			return url;
 			
 		} catch (Throwable ex) {
 			return "redirect:/fail.jsp";
 		}
 	}
+
 
 	
 	@RequestMapping(value="/ajax/readOffice", produces="application/json")

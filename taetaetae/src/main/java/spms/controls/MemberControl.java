@@ -245,6 +245,12 @@ public class MemberControl {
 		try {
 			
 			memberDao.insert(member);
+			
+			if(  member.getRank().equals("100") )
+			{
+				return "redirect:/successAddOffice.jsp";
+			}
+			
 			return "redirect:/successMember.jsp";
 			
 		} catch (Throwable ex) {
