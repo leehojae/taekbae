@@ -96,13 +96,13 @@ A:hover {color: #000; text-decoration:none; } */
 </style>
 <script>
 
-	$(function() {
+$(function() {
 		var id;
 		var listLength;
 		load_list();
-	});
+});
 
-	function load_list() {
+function load_list() {
 		$.getJSON('../excel/ajax/deleveryMember.do', function(data) {
 							var tel = null;
 							var records = data.jsonResult.data;
@@ -179,13 +179,13 @@ A:hover {color: #000; text-decoration:none; } */
 							}
 							acco();
 						});
-	};
+};
 
-	function acco() {
+function acco() {
 		$('.collapse').collapse('hide');
-	};
+};
 
-	function init() {
+function init() {
 
 	  var mapOpts;
 	  var map;
@@ -271,8 +271,7 @@ A:hover {color: #000; text-decoration:none; } */
 	          }
 	        });
 	  }, true);
-	}
-	
+}
 </script>
 
 <style type="text/css">
@@ -286,7 +285,9 @@ header {
 }
 
 body { padding-top: 40px; }
+
 body { color: #000; }
+
 .navbar {
 margin-bottom: 0px;
 background-color: #f5f5f5;
@@ -337,8 +338,8 @@ color: #000000;
   </li>
   </ul>
   </nav>
-	<script type="text/javascript">
-		function checkDelivery() {
+<script type="text/javascript">
+function checkDelivery() {
 			var values = $('input:checkbox:checked.checkGroup').map(function() {
 				return this.value;
 			}).get();
@@ -363,9 +364,9 @@ color: #000000;
 				}
 			});
 			location.reload();
-		};
-	</script>
-	<div class="panel-group" id="accordion"></div>
-	<div id="map" style="width: 100%; height: 460px;"></div>
+};
+</script>
+  <div class="panel-group" id="accordion"></div>
+  <div id="map" style="width: 100%; height: 460px;"></div>
 </body>
 </html>
