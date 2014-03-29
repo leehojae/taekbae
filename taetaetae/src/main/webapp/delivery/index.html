@@ -12,6 +12,7 @@
 <style type="text/css">
 h3 {
 	color: #3498db;
+  font-weight: 200;
 }
 
 .section-title {
@@ -34,6 +35,7 @@ transition: border-left-color 0.5s, box-shadow 0.5s, background-color 0.5s;
 border: 1px solid #e0e0e0;
 background-color: #ffffff;
 }
+
 .input-group {
 position: relative;
 display: table;
@@ -44,10 +46,12 @@ border-radius: 0;
 .input-group-addon:first-child {
 border-right: 0;
 }
+
 .input-group .form-control:first-child, .input-group-addon:first-child, .input-group-btn:first-child > .btn, .input-group-btn:first-child > .dropdown-toggle, .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
 border-top-right-radius: 0;
 border-bottom-right-radius: 0;
 }
+
 .input-group-addon {
 padding: 6px 12px;
 font-size: 14px;
@@ -65,6 +69,7 @@ width: 1%;
 white-space: nowrap;
 vertical-align: middle;
 }
+
 .input-group-addon, .input-group-btn, .input-group .form-control {
 display: table-cell;
 border-radius: 0;
@@ -96,6 +101,18 @@ white-space: nowrap;
 -webkit-user-select: none;
 }
 
+.btn-primary {
+color: #ffffff;
+background-color: #2ecc71;
+border: none;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+color: #ffffff;
+background-color: #47a447;
+border-color: #398439;
+}
+
 .checkbox-text {
 line-height: 24px;
 padding-left: 5px;
@@ -105,64 +122,27 @@ font-weight: 300;
 color: #95a5a6;
 }
 
-</style>
+.form-signin input[type="password"] {
+margin-bottom: 0px;
+}
 
+</style>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
     <body>
       <div class="container">
       <form class="form-signin" action="../auth/login.do" method="post">
-        <h2 class="form-signin-heading">Member Login</h2>
-        <input type="text" name="id" class="form-control" placeholder="아이디" autofocus>
-        <input type="password" name="password" class="form-control" placeholder="암호">
-        <label class="checkbox">
-          <input type="checkbox" name="checkSaveId" value="아이디기억">아이디기억
-        </label>
+        <h3 class="form-signin-heading">Member Login</h3>
+        <div class="input-group">
+        <span class="input-group-addon " style="height: 44px;"><i class="fa fa-user"></i></span><input type="text" name="id" class="form-control" placeholder="아이디" autofocus>
+        </div>
+        <div class="input-group">
+        <span class="input-group-addon " ><i class="fa fa-key" style="width: 11px;"></i></span><input type="password" name="password" class="form-control" placeholder="암호">
+        </div>
+        <label class="check" style="margin: 5px;"><input type="checkbox" name="checkSaveId" value="check"></label>아이디기억
+        <br><br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
-      </form>
-    </div>
-    
-    <div class="login-form-section">
-                <div class="login-content  animated bounceIn" data-animation="bounceIn">
-                    <form>
-                        <div class="section-title">
-                            <h3>LogIn to your Account</h3>
-                        </div>
-                        <div class="textbox-wrap">
-                            <div class="input-group">
-                                <span class="input-group-addon "><i class="glyphicon glyphicon-user"></i></span>
-                                <input type="text" required="required" class="form-control" placeholder="Username">
-                            </div>
-                        </div>
-                        <div class="textbox-wrap">
-                            <div class="input-group">
-                                <span class="input-group-addon "><i class="glyphicon glyphicon-warning-sign"></i></span>
-                                <input type="password" required="required" class="form-control " placeholder="Password">
-                            </div>
-                        </div>
-                        <div class="login-form-action clearfix">
-                            <div class="checkbox pull-left">
-                                <div class="custom-checkbox">
-                                    <div class="icheckbox_square-blue checked" style="position: relative;"><input type="checkbox" checked="" name="iCheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background-color: rgb(255, 255, 255); border: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background-color: rgb(255, 255, 255); border: 0px; opacity: 0; background-position: initial initial; background-repeat: initial initial;"></ins></div>
-                                </div>
-                                <span class="checkbox-text pull-left">&nbsp;Remember Me</span>
-                            </div>
-                            <button type="submit" class="btn btn-success pull-right green-btn">LogIn &nbsp; <i class="icon-chevron-right"></i></button>
-                        </div>
-                    </form>
-                </div>
-                <div class="login-form-links link1  animated fadeInLeftBig" data-animation="fadeInLeftBig" data-animation-delay=".2s" style="-webkit-animation: 0.2s;">
-                    <h4 class="blue">Don't have an Account?</h4>
-                    <span>No worry</span>
-                    <a href="#demo2" class="blue">Click Here</a>
-                    <span>to Register</span>
-                </div>
-                <div class="login-form-links link2  animated fadeInRightBig" data-animation="fadeInRightBig" data-animation-delay=".4s" style="-webkit-animation: 0.4s;">
-                    <h4 class="green">Forget your Password?</h4>
-                    <span>Dont worry</span>
-                    <a href="#demo3" class="green">Click Here</a>
-                    <span>to Get New One</span>
-                </div>
-            </div>
-    
+       </form>
+	     </div>
     </body>
 </html>
