@@ -38,11 +38,6 @@ public class OfficeControl {
 	public String form() {
 		return "office/addForm";
 	}
-	@RequestMapping(value="/addtest",method=RequestMethod.GET)
-	public String formTest() {
-		//return "member/addForm";
-		return "member/addtest";
-	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String add(
@@ -138,8 +133,15 @@ public class OfficeControl {
 	}
 	
 	
-
-	
+	@RequestMapping("/searchCompany")
+	public String searchCompany(int no   ,   Model model) throws Exception {
+		
+		Office office = officeDao.selectOne(  no );
+		model.addAttribute("office", office);
+//		return "member/updateForm";
+		return "member/searchCompany";
+		
+	}
 
 	
 	@RequestMapping(value="/ajax/updateOffice", method=RequestMethod.POST, 
@@ -206,17 +208,6 @@ public class OfficeControl {
 		try {
 			return new JsonResult().setResultStatus(JsonResult.SUCCESS) 
 					.setData(officeDao.selectOne(no));
-			
-		} catch (Throwable ex) {
-			return new JsonResult().setResultStatus(JsonResult.FAILURE)
-					.setError(ex.getMessage());
-		}
-	}
-	
-	@RequestMapping(value="/ajax/officeAllList.do", produces="application/json" )
-	public Object ajaxList() throws Exception {
-		try {
-			return new JsonResult().setResultStatus(JsonResult.SUCCESS).setData(officeDao.selectAllList());
 			
 		} catch (Throwable ex) {
 			return new JsonResult().setResultStatus(JsonResult.FAILURE)
