@@ -1,12 +1,8 @@
-//var btn = w2obj.grid.prototype.buttons;
-//btn['reload'].icon = 'icon/icon-repeat';
-//btn['columns'].icon = 'icon-layers';
 
 	$('#grid').w2grid(
 			{
 				name : 'grid',
 				header : '금일 작업리스트',
-				// url: 'data/list.json',
 				multiSearch : true,
 				fixedBody : true,
 				
@@ -26,9 +22,6 @@
 						{ type: 'break' }
 					],
 					onClick: function (target, data) {
-						console.log(target);
-						console.log(data);
-						console.log(data.item.items);
 						
 						switch (data.subItem) {
 						case '강남대로':
@@ -71,12 +64,6 @@
 							w2ui.grid.search('receiverAddrRoad', '효령로');
 							break;
 						}
-						
-						
-//						if (data.subItem == '강남대로') {
-//							console.log("ok");
-//							w2ui.grid.search('receiverAddrRoad', '강남대로');
-//						}
 						
 					}
 				},
