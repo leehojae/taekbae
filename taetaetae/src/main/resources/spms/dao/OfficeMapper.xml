@@ -10,11 +10,13 @@
     <result property="officePostNum"      column="OFFICE_POST_NUM"/>
     <result property="officeAddr" column="OFFICE_ADDR"/>
     <result property="officeFax" column="OFFICE_FAX"/>
+    <result property="officeCEO" column="OFFICE_CEO"/>
+    <result property="approval" column="APPROVAL"/>
   </resultMap>
 
   <insert id="insert" parameterType="office">
-    INSERT INTO OFFICE(OFFICE_NUM,OFFICE_NAME,OFFICE_TEL,OFFICE_POST_NUM,OFFICE_ADDR,OFFICE_FAX) 
-    VALUES(#{officeNum},#{officeName},#{officeTel},#{officePostNum},#{officeAddr},#{officeFax})
+    INSERT INTO OFFICE(OFFICE_NUM,OFFICE_NAME,OFFICE_TEL,OFFICE_POST_NUM,OFFICE_ADDR,OFFICE_FAX  , OFFICE_CEO) 
+    VALUES(#{officeNum},#{officeName},#{officeTel},#{officePostNum},#{officeAddr},#{officeFax}  ,#{officeCEO} )
   </insert>
   
   <select id="selectList" resultMap="officeResultMap">
@@ -27,7 +29,18 @@
 </select>
 	
   <select id="selectOne" parameterType="int" resultMap="officeResultMap">
-    select OFFICE_NUM,OFFICE_NAME,OFFICE_TEL,OFFICE_POST_NUM,OFFICE_ADDR,OFFICE_FAX
+    select OFFICE_NUM,OFFICE_NAME,OFFICE_TEL,OFFICE_POST_NUM,OFFICE_ADDR,OFFICE_FAX , OFFICE_CEO 
+    
+    ,
+	(
+			            case  APPROVAL
+						when 0 then '승인중' 
+					    when 1 then '승인완료'
+					    
+					    else '기타' end
+					) AS APPROVAL
+	
+	
 		from OFFICE
     where OFFICE_NUM=#{value}
   </select>
