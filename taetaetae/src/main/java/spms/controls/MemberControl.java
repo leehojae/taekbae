@@ -98,6 +98,11 @@ public class MemberControl {
 		
 		return "member/add_image";
 	}
+	@RequestMapping("/searchCompany")
+	public String searchCompany( ) throws Exception {
+		
+		return "member/searchCompany";
+	}
 	@RequestMapping("/updateImage")
 	public String updateImage( ) throws Exception {
 		
