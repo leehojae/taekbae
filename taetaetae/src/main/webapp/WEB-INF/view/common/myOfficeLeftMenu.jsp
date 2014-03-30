@@ -9,9 +9,12 @@
 <body>
  <div class="well sidebar-nav">
             <ul class="nav nav-list">
-             <li><a href="../office/approval.do">승인현황</a></li>
-              <li><a href="../member/list.do">가입 직원 현황</a></li>
-              <li><a href="../area/list.do">배송구역 현황</a></li>
+<!--              <li><a href="../office/approval.do">승인현황</a></li>
+             <li><a href="../office/list.do">사업소목록</a></li>
+             <li><a href="../office/nonApplist.do">미승인 사업소목록</a></li>  -->
+             <li><a href="../member/list.do">직원목록</a></li>
+             <li><a href="../car/list.do">차량목록</a></li>
+             <li><a href="../area/list.do">배송구역목록</a></li>
             </ul>
           </div><!--/.well -->
 </body>
