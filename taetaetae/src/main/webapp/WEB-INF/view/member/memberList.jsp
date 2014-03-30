@@ -123,6 +123,12 @@ jQuery("#grid").jqGrid('navGrid','#pager',{add:false,del:false,edit:false,positi
 
 
 
+function addFunction()
+{
+		location.href = 'add.do' ;
+}
+
+
 function deleteFunction()
 {
 	var answer  = confirm( '삭제 하시겠습니까?  ');
@@ -132,6 +138,7 @@ function deleteFunction()
 	}	
 	return;
 }
+
 
 
 
@@ -169,7 +176,7 @@ function fn_reloadPjtList()
 
 
 
-
+<input id="addBtn" type="submit" value="등록"   onclick="addFunction()" />
 <form  method="post"   action="ajax/addMember.do"      enctype="multipart/form-data">
 <input id="mno" name="mno" maxlength="15" value="0" type="hidden">
 <table id = "grid"></table>
@@ -227,7 +234,6 @@ function fn_reloadPjtList()
    
 
   
-	<input id="addBtn" type="submit" value="등록" class="view">
 	<input id="updateBtn" type="button" value="변경" class="view">
 	<input id="delBtn" type="button" value="삭제"  onclick="deleteFunction()" />
 	<input id="cancelBtn" type="reset" value="취소">
