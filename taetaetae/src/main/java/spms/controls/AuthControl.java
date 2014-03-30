@@ -64,14 +64,23 @@ public class AuthControl {
 			model.addAttribute("loginUser", member);
 			
 			if (member.getRank().equals("1")){
-			return "redirect:/main.do";
-			} 
-			if (member.getRank().equals("100")){
-				return "redirect:/office/myOffice.do";
-				} 
-			else{
-				return "redirect:../delivery/deliveryMember.html";
+				return "redirect:/supermain.do";
 			}
+			
+			if (member.getRank().equals("2")){
+				return "redirect:/main.do";
+			} 
+			
+			else {
+				return "redirect:../delivery/deliveryMember.html";
+			} 
+			
+//			if (member.getRank().equals("100")){
+//				return "redirect:/office/myOffice.do";
+//				} 
+//			else{
+//				return "redirect:../delivery/deliveryMember.html";
+//			}
 		}
   }
 	
