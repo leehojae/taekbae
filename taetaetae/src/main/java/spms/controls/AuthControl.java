@@ -67,8 +67,12 @@ public class AuthControl {
 				return "redirect:/supermain.do";
 			}
 			
-			if (member.getRank().equals("2")){
-				return "redirect:/main.do";
+			else if (member.getRank().equals("2")){
+				return "redirect:/secondMain.do";
+			} 
+			
+			else if (member.getRank().equals("3")){
+				return "redirect:/thirdMain.do";
 			} 
 			
 			else {
