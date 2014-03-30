@@ -13,10 +13,15 @@ public class MainControl {
 	
 	/* JSP에게 전달할 값과 뷰 이름을 함께 리턴 */
 	@RequestMapping("/main")
-  public String execute(Model model) throws Exception {
+  public String executeMain(Model model) throws Exception {
 		model.addAttribute("pageTitle", "SPMS 메인6");
 		return "main";
   }
+	
+	@RequestMapping("/supermain")
+	  public String executeSuper(Model model) throws Exception {
+			return "supermain";
+	  }
 	
 	/* JSP에게 전달할 값과 뷰 이름을 함께 리턴 */
 	/*
