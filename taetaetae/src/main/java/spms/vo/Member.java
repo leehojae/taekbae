@@ -15,6 +15,32 @@ public class Member implements Serializable {
 	protected String		photo;
 	private int  officeNum;
 	protected String 		officeName;
+	protected String 		email;
+	protected String 		addresss;
+	
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAddresss() {
+		return addresss;
+	}
+
+	public void setAddresss(String addresss) {
+		this.addresss = addresss;
+	}
+
+	
+	
+	
+
+
+	
 	
 	@Override
 	public String toString() {
