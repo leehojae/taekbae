@@ -22,6 +22,14 @@ public class MainControl {
 	  public String executeSuper(Model model) throws Exception {
 			return "supermain";
 	  }
+	@RequestMapping("/secondMain")
+	public String secondMain(Model model) throws Exception {
+		return "secondMain";
+	}
+	@RequestMapping("/thirdMain")
+	public String thirdMain(Model model) throws Exception {
+		return "thirdMain";
+	}
 	
 	/* JSP에게 전달할 값과 뷰 이름을 함께 리턴 */
 	/*
