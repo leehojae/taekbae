@@ -94,7 +94,14 @@
 /*  backface-visibility: hidden; */
 }
     
-    
+    #idcheck{
+ background: #823aa0;
+  color: #fff;
+  height: 25px;
+  min-width: 80px;
+  line-height: 24px;
+  font-size: 12px;
+}
     
       
     </style>
@@ -144,131 +151,55 @@ $(function(){
 </script>
     
 </head>
-<body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-   <div class="navbar-inner">
-        <div class="container-fluid">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="../main.do">SDMS(Smart Delivery Management System)</a>
-          <div class="nav-collapse collapse">
-            <p class="navbar-text pull-right">
-            </p>
+<body class="tab-content profile-edit-tab-content">
 
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-        </div><!--/span-->
-
-
-
-
-
-<!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
-<!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
-<!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
-<!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
-    <form class="form-horizontal" method="post" action="ajax/addMember.do" enctype="multipart/form-data" >
-      <fieldset>
-        <legend>직업가입란</legend>
-      </fieldset>
-      
-      <div class="tab-content profile-edit-tab-content">
+<!--     <form class="form-horizontal" method="post" action="ajax/addMember.do" enctype="multipart/form-data" > -->
+<!--     <form class="form-horizontal" method="post" enctype="multipart/form-data" > -->
+     <Form  class="form-horizontal"   action="ajax/addMember.do"     method="post"     enctype="multipart/form-data">
+<!--  onSubmit="formCheck();return false"> -->
+    
+    
+      <div >
         <div id="edit-basic" class="tab-pane in active">
         
         
-        <h4 class="header blue bolder smaller">Office</h4>
-         
-            <div class="form-group">
-            <label for="select" class="col-sm-3 control-label no-padding-right">소속</label>
-            <div class="col-sm-9">
-            
-            <select>
-            <option>1
-            </option>
-            </select>
-            
-            
-<!--             <input type="text" id="form-field-username" placeholder="사업자번호" />
-            <input id="delBtn" type="button" value="검색"  onclick="searchCompany()" /> -->
-            </div>
-             
-           </div>   
-            
+         <h4 class="header blue bolder smaller">Office Info(  ${loginUser.name} ) </h4>
+         <input type=hidden    id=officeNum name = "officeNum" value=" ${loginUser.officeNum}">
            <div class="form-group">
             <label for="select"
-              class="col-sm-3 control-label no-padding-right">직급선택</label>
+              class="col-sm-3 control-label no-padding-right">직책선택</label>
             <div class="col-sm-9">
 
-              <select  id="select">
-                <option>직책선택</option>
-                <option>대표</option>
-                <option>배송기사</option>
-
-              <select class="form-control" id="select">
-                <option>사장-(1급)</option>
-                <option>부장-(3급)</option>
-                <option>과장-(4급)</option>
-                <option>팀장-(5급)</option>
-                <option>실장-(6급)</option>
-                <option>사원-(7급)</option>
-                <option>인턴-(9급)</option>
-
-              </select> <br> 
+              <select   id=rank name = "rank" >
+                <option value="2">영업소관리자</option>
+                <option value="3">배송기사</option>
+                
+              </select>
+               <br> 
             </div>
            </div>
-        
-        
-        
-          <h4 class="header blue bolder smaller">General</h4>
-                    
-<div class="row">
-<div class="col-xs-12 col-sm-4" style="text-align: center">
-<div id ="photoZone">
-<img id="mPhoto" name="mPhoto" src="../images/memberPhoto/bg_noimage_1.gif" style="width: 161px; height: 161px;"><br>
-</div>
-<input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="photoUploadPopup()" />
-<input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="등록취소" onclick="initPhoto()" />
-</div>
+                <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"
+              for="form-field-email">아이디</label>
+
+            <div class="col-sm-9">
+              <span class="input-icon input-icon-right" > <input
+                 id="id"  name = "id"   placeholder="영문 숫자 포함 10자 이내" />
+                 <input type="button"    id="idcheck" value="중복확인"   onclick="idCheck()" />
+              </span>
+            </div>
+          </div>
           
-
-
-            <div class="vspace-xs"></div>
-
-            <div class="col-xs-12 col-sm-8">
-              <div class="form-group">
-                <label class="col-sm-4 control-label no-padding-right"
-                  for="form-field-id">아이디</label>
-
-                <div class="col-sm-8">
-                  <input class="col-xs-12 col-sm-10" type="text"
-                    id="form-field-id" placeholder="아이디" />
-                </div>
-              </div>
-
-              <div class="space-4"></div>
-              <div class="form-group">
-                <label class="col-sm-4 control-label no-padding-right"
-                  for="form-field-username">사용자이름</label>
-
-                <div class="col-sm-8">
-                  <input class="col-xs-12 col-sm-10" type="text"
-                    id="form-field-username" placeholder="사용자이름" />
-                </div>
-              </div>
-
-              <div class="space-4"></div>
-              <div id="edit-password" class="tab-pane">
+          
+          
+           <div id="edit-password" class="tab-pane">
 
                 <div class="form-group">
                   <label class="col-sm-3 control-label no-padding-right"
                     for="form-field-pass1">비밀번호</label>
 
                   <div class="col-sm-9">
-                    <input type="password" id="form-field-pass1" />
+                    <input type="password"   id="password"  name = "password"    />
                   </div>
                 </div>
 
@@ -279,15 +210,47 @@ $(function(){
                     for="form-field-pass2">비밀번호 확인</label>
 
                   <div class="col-sm-9">
-                    <input type="password" id="form-field-pass2" />
+                    <input type="password"  id="passwordRe"  name = "passwordRe"    /> 
                   </div>
                 </div>
               </div>
+   
+        
+        
+        
+          <h4 class="header blue bolder smaller">General</h4>
+                    
+<div class="row">
+<div class="col-xs-12 col-sm-4" style="text-align: center">
+<div id ="photoZone">
+<img id="mPhoto" name="photo" src="../images/memberPhoto/bg_noimage_1.gif" style="width: 161px; height: 161px;"><br>
+</div>
+<input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="photoUploadPopup()" />
+<input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="등록취소" onclick="initPhoto()" />
+</div>
+          
+
+
+            <div class="vspace-xs"></div>
+
+            <div class="col-xs-12 col-sm-8">
+              
+
+              <div class="space-4"></div>
+                <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"
+              for="form-field-email">이름</label>
+
+            <div class="col-sm-9">
+              <span class="input-icon input-icon-right" >
+               <input  id="name"  name = "name"  />
+                
+              </span>
             </div>
           </div>
-
-          <hr />
-          <div class="form-group">
+          
+          
+            <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-date">생년월일</label>
 
                                 <div class="col-sm-9">
@@ -299,83 +262,72 @@ $(function(){
                                   </div>
                                 </div>
                               </div>
-
-            
-            
-            
-          </div>
-          <div class="space-4"></div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right">성별</label>
-            <div class="col-sm-9">
-              <label class="radio"> <input type="radio"
-                name="optionsRadios" id="optionsRadios1" value="option1"
-                checked="" /> <span class="lbl"> 남</span>
-              </label> <label class="radio"> <input type="radio"
-                name="optionsRadios" id="optionsRadios2" value="option2" /> <span
-                class="lbl"> 여</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="space-4"></div>
+                              
+                              
+                              
+                              
+                              <h4 class="header blue bolder smaller">Contact</h4>
 
           <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right"
-              for="form-field-comment">소개글</label>
-            <div class="col-lg-5">
-              <textarea class="form-control" rows="3" id="textArea"></textarea>
-              <span class="help-block">자기소개를 입력하세요~! 500자 이내</span>
-        
-            </div>
-          </div>
+                <label class="col-sm-4 control-label no-padding-right"
+                  for="form-field-username">주소</label>
 
-          <div class="space-4"></div>
-          <h4 class="header blue bolder smaller">Contact</h4>
-
-          <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right"
-              for="form-field-email">이메일<i class="fa fa-envelope-o"></i></label>
-
-            <div class="col-sm-9">
-              <span class="input-icon input-icon-right" > <input
-                type="email" id="form-field-email" placeholder="ooo@bit.com" />
-                
-              </span>
-            </div>
-          </div>
+                <div class="col-sm-8">
+                  <input class="col-xs-12 col-sm-10" type="text"
+                    id="addresss"  name = "addresss"  placeholder="주소를 입력해 주세요" />
+                </div>
+              </div>
           
-          
-         
-
-          <div class="space-4"></div>
-
-          <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right"
-              for="form-field-website">SNS<i class="fa fa-twitter"></i></label>
-
-            <div class="col-sm-9">
-              <span class="input-icon input-icon-right"> <input
-                type="url" id="form-field-website"
-                placeholder="ooo@bit.com" /> 
-              </span>
-            </div>
-          </div>
-
-          <div class="space-4"></div>
 
           <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right"
               for="form-field-phone">핸드폰번호</label>
 
             <div class="col-sm-9">
-              <span class="input-icon input-icon-right"> <input
-                class="input-medium input-mask-phone" type="text"
-                id="form-field-phone" /> <i
-                class="icon-phone icon-flip-horizontal"></i>
+              <span class="input-icon input-icon-right"> 
+              
+              <select id="hp1" name="hp1" >
+					   <option value="010"  selected> 010 </option>
+					   <option value="011"> 011 </option>
+					   <option value="016"> 016 </option>
+					   <option value="017"> 017 </option>
+					   <option value="018"> 018 </option>
+					   <option value="019"> 019 </option>
+					</select>
+					-
+					<input type="text" id="hp2" name="hp2" size="4" maxlength="4">
+					-
+					<input type="text" id="hp3" name="hp3" size="4" maxlength="4">
+					<input type="hidden" id="tel" name="tel" >
+              
               </span>
             </div>
           </div>
+              
+          
+          
+           
+           
+           
+           
+
+              <div class="space-4"></div>
+             
+            </div>
+          </div>
+
+          <hr />
+            
+        
+
+            
+            
+            
+          </div>
+          <div class="space-4"></div>
+
+          <div class="space-4"></div>
+          
 
           
 
@@ -384,44 +336,24 @@ $(function(){
           <div id="edit-password" class="tab-pane">
             <div class="space-10"></div>
 
-            <div class="form-group">
-              <label class="col-sm-3 control-label no-padding-right"
-                for="form-field-pass1">New Password</label>
-
-              <div class="col-sm-9">
-                <input type="password" id="form-field-pass1" />
-              </div>
-            </div>
+         
 
             <div class="space-4"></div>
 
-            <div class="form-group">
-              <label class="col-sm-3 control-label no-padding-right"
-                for="form-field-pass2">Confirm Password</label>
-
-              <div class="col-sm-9">
-                <input type="password" id="form-field-pass2" />
-              </div>
-            </div>
           </div>
         </div>
-    </form>
-    <hr />
+
 <div class="form-group">
 <div class="col-lg-10 col-lg-offset-2">
+<!-- <button type="submit" class="btn btn-primary"  >dddd직원등록</button> -->
+
+<button type="submit" class="btn btn-primary"   >직원등록</button>
+<!-- <button type="submit" class="btn btn-primary"   onclick="javascript:formCheck();">직원등록</button> -->
 <button class="btn btn-default">취소</button>
-<button type="submit" class="btn btn-primary">확인</button>
-<span class="btn btn-sm" data-rel="tooltip" title="Default">Default</span>
-<span class="btn btn-warning btn-sm tooltip-warning" data-rel="tooltip" data-placement="left" title="Left Warning">Left</span>
-<span class="btn btn-success btn-sm tooltip-success" data-rel="tooltip" data-placement="right" title="Right Success">Right</span>
-<span class="btn btn-danger btn-sm tooltip-error" data-rel="tooltip" data-placement="top" title="Top Danger">Top</span>
-<span class="btn btn-info btn-sm tooltip-info" data-rel="tooltip" data-placement="bottom" title="Bottm Info">Bottom</span>
 </div>
 </div>
 <hr />
-<footer>
-<p>&copy; 비트 2014</p>
-</footer>
+    </form>
 <!--/.fluid-container-->
 <script type="text/javascript">
 function photoUploadPopup()
@@ -437,13 +369,97 @@ function searchCompany()
          photoZone = document.getElementById('photoZone');
         
 };
+function idCheck()
+{
+	
+	var idcheck = document.getElementById('id'); 
+	
+	if (idcheck.value == '' || idcheck.value == null) {
+		alert('ID를 입력하세요');
+		return false;
+	}
+	
+//	myWin = window.open('searchCompany.do', 'popwindow', 'width=300,height=300');
+          myWin = window.open('idCheck.do?id=' + idcheck.value, 'popwindow', 'width=300,height=300');
+         
+         
+        
+};
 
 function initPhoto() {
   photoZone.innerHTML = '<img id="mPhoto"   name="mPhoto" src="../images/memberPhoto/bg_noimage_1.gif" height="100"><br>';
 };
+
+
+
+function formCheck() {
+	
+	Frm = document.forms[0];
+	var id = document.getElementById('id');
+	var password = document.getElementById('password');
+	var passwordRe = document.getElementById('passwordRe');
+	var password_check = document.getElementById('password_check');
+
+	
+	
+	var name = document.getElementById('name');
+	var personalNumber = document.getElementById('personalNumber');
+	var addresss = document.getElementById('addresss');
+	
+	
+	
+	var hp1 = document.getElementById('hp1'); 
+	var hp2 = document.getElementById('hp2'); 
+	var hp3 = document.getElementById('hp3'); 
+	var hp = hp1.value + "-" + hp2.value + "-" + hp3.value;
+	
+	/*핸드폰 번호 길이 체크*/
+	
+	
+	if (id.value == '' || id.value == null) {
+		alert('ID를 입력하세요');
+		focus.member_id;
+		return false;
+	}
+
+	if (password.value == '' || password.value == null) {
+		alert('비밀번호를 입력하세요');
+		focus.password;
+		return false;
+	}
+	
+	
+	/*비밀번호와 비밀번호확인란 같은지 확인*/
+	if (password.value != passwordRe.value){
+		alert("비밀번호와 비밀번호 확인란이 다릅니다.");
+		focus.passowrd;
+		return false;
+	}
+	
+		/*핸드폰 번호 길이 체크*/
+	if(hp2.value.length<=2 || hp3.value.length!=4){
+		alert("휴대폰번호를 제대로 입력해주세요");
+		focus.hp2;
+		return false;
+	}
+		/*핸드폰이 숫자만 들어가는지 체크*/
+		if(isNaN(hp2.value) || isNaN(hp3.value))
+	{
+		alert("휴대폰번호는 숫자만 들어갈 수 있습니다.");
+		return false;
+	}
+		/**/
+	if (hp2.value.length > 2 || hp3.value.length==4){
+		document.getElementById("tel").value = hp;
+	}
+	
+	Frm.action = "../office/searchCompany.do?no=" + Frm.searchKsearcheywordA.value;
+		alert("dwrewr");
+	Frm.submit();
+	
+}
+
 </script>
-
-
 
 </body>
 </html>
