@@ -52,6 +52,13 @@
     where MNO=#{value}
   </select>
   
+  
+	<select id="searchid" parameterType="String" resultMap="memberResultMap">
+    select MNO,MNAME,ID, PWD,TEL,PERSONAL_NO,RANK,PHOTO, OFFICE_NUM
+    from MEMBERS
+    where ID=#{value}
+  </select>
+  
   <delete id="delete" parameterType="int">
     delete from MEMBERS where MNO=#{no}
   </delete>
@@ -74,8 +81,8 @@
   <select id="selectByIdPassword" 
       parameterType="map" 
       resultMap="memberResultMap">
-    select MNO,MNAME,ID,PHOTO , RANK
-    from MEMBERS
+    select MNO,MNAME,ID,PHOTO , RANK, OFFICE_NUM
+    from MEMBERS 
     where ID=#{id} and PWD=#{password}
   </select>
   
