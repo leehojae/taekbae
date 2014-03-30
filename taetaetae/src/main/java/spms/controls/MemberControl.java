@@ -20,6 +20,7 @@ import spms.dao.MemberDao;
 import spms.dao.OfficeDao;
 import spms.vo.JsonResult;
 import spms.vo.Member;
+import spms.vo.Office;
 
 @Controller
 @RequestMapping("/member")
@@ -42,7 +43,6 @@ public class MemberControl {
 	
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String form() {
-		
 		//return "member/addForm";
 		return "member/add";
 	}
@@ -52,23 +52,6 @@ public class MemberControl {
 		return "member/addtest";
 	}
 	
-//	@RequestMapping(value="/add",method=RequestMethod.POST)
-//	public String add(
-//			Member member, 
-//			@RequestParam("photoFile") MultipartFile photoFile,
-//			Model model) throws Exception {
-//
-//		member.setPhoto(saveFile(photoFile));
-//		
-//		int count = memberDao.insert(member);
-//		if (count > 0) {
-//			model.addAttribute("message", "등록 성공입니다!");
-//		} else {
-//			model.addAttribute("message", "등록 실패입니다!");
-//		}
-//		
-//		return "member/add";
-//	}
 	
 	@RequestMapping(value="/setPhoto",method=RequestMethod.POST)
 	public String setPhoto(
@@ -105,6 +88,22 @@ public class MemberControl {
 		
 		return "member/searchCompany";
 	}
+	
+	
+	
+	@RequestMapping("/idCheck")
+	public String idCheck( String id   ,   Model model) throws Exception {
+		
+		Member member = memberDao.searchid(  id );
+		
+		model.addAttribute("member", member);
+
+		return "member/idCheck";
+		
+	}
+	
+	
+	
 	@RequestMapping("/updateImage")
 	public String updateImage( ) throws Exception {
 		
@@ -265,15 +264,14 @@ public class MemberControl {
 			produces="application/json")
 	public String ajaxAdd(Member member) throws Exception {
 		try {
-			
 			memberDao.insert(member);
 			
 			if(  member.getRank().equals("100") )
 			{
 				return "redirect:/successAddOffice.jsp";
 			}
-			
-			return "redirect:/successMember.jsp";
+			return "redirect:/member/memberList.do";
+//			return "redirect:../list.do";
 			
 		} catch (Throwable ex) {
 			return "redirect:/failMember.jsp";

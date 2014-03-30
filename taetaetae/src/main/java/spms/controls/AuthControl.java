@@ -75,12 +75,6 @@ public class AuthControl {
 				return "redirect:../delivery/deliveryMember.html";
 			} 
 			
-//			if (member.getRank().equals("100")){
-//				return "redirect:/office/myOffice.do";
-//				} 
-//			else{
-//				return "redirect:../delivery/deliveryMember.html";
-//			}
 		}
   }
 	
