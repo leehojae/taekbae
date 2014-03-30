@@ -79,7 +79,7 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
-          <%@ include file="../common/leftMenu.jsp"%>
+          <%@ include file="../common/myOfficeLeftMenu.jsp"%>
         </div><!--/span-->
         <div class="span9">
 <iframe src="memberList.do" 
