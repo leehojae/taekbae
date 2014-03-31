@@ -46,7 +46,8 @@ $(window.document).ready(function() {
 
 	        	   //$("#status").val("edit");
 	        	  	var $rowData = $(this).getRowData(rowid);
-	        	  	
+	        	  	alert("eeee");
+	        	  	 location.href = "../office/nonApplist.do";
 	        	  	 console.log( "dddddeux : "+    ($rowData['photo'])   );
 	        	  	 ppp  =   ($rowData['photo']) ;
 	        	  	 setPhoto() ;
@@ -190,7 +191,7 @@ function fn_reloadPjtList()
 <title>직원관리</title>
 </head>
 
-<body>
+<body onload="init()">
 
 
 
