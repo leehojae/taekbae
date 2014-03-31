@@ -9,9 +9,8 @@
 </head>
 <body>
 
-
  <c:choose>
-       <c:when test="${ loginUser.rank  == '1'}">
+         <c:when test="${  '1'  eq  loginUser.rank  }">
          <div class="well sidebar-nav">
             <ul class="nav nav-list">
           
@@ -20,7 +19,7 @@
             </ul>
           </div><!--/.well -->
        </c:when>
-       <c:when test="${ loginUser.rank  == '2'}">
+       <c:when test="${  '2'  eq  loginUser.rank  }">
          <div class="well sidebar-nav">
             <ul class="nav nav-list">
            
@@ -32,19 +31,16 @@
             </ul>
           </div><!--/.well -->
        </c:when>
-       <c:when test="${ loginUser.rank  == '3'}">
+          <c:when test="${  '3'  eq  loginUser.rank  }">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li><a href="http://localhost:9999/taetaetae/thirdMain.do">영업소정보</a></li>
+              <li><a href="http://localhost:9999/taetaetae/thirdMain.do">영업소정보3</a></li>
               <li><a href="../member/list.do">직원 목록</a></li>
               <li><a href="../car/list.do">차량 목록</a></li>
               <li><a href="../area/list.do">배송구역 목록</a></li>
             </ul>
           </div><!--/.well -->
        </c:when>
-       <c:otherwise>
-           a, b, c 가 아닌 다른거근영...
-       </c:otherwise>
    </c:choose>
 
 
