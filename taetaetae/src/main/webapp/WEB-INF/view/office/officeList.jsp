@@ -36,7 +36,7 @@ $(function (){
                                                     //  따라서 datatype 을 jsonp로 변경하고 보내야 한다.)
             autowidth:true,  
             mtype : 'get',                     // mtype : 데이터 전송방식을 지정한다.
-            height : '300px',                 // height : 그리드의 높이를 지정한다.
+            height : 'auto',                 // height : 그리드의 높이를 지정한다.
             pager : '#pager',               // pager : 도구 모임이 될 div 태그를 지정한다.
             rowNum : 20,                      // rowNum : 한 화면에 표시할 행 개수를 지정한다.
             loadonce : true,                // loadonce : rowNum 설정을 사용하기 위해서 true로 지정한다.
@@ -70,9 +70,10 @@ $(function (){
  },
 
  onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
-   
+	
    $("#status").val("edit");
     var $rowData = $(this).getRowData(rowid);
+    location.href = "updateOffice.do?no="+($rowData['officeNum']) ;
     $("#ono").val($rowData['officeNum']);
     $("#oname").val($rowData['officeName']);
     $("#oTel").val($rowData['officeTel']);
@@ -157,32 +158,6 @@ $(function (){
   $("td").css("width", "100%");
 });
 </script>
-   <table border=1 width="100%" bgcolor="#EAEAEA">
-  <tr>
-  <td>
-    사업자번호 : <input id=ono type="text" name="ono">
-  </td>
-  <td>
-    점소명 : <input id=oname type="text" name="oname">
-  </td> 
-  </tr>
-  <tr>
-  <td>
-    전화 : <input id=oTel type="text" name="oTel">
-  </td>
-  <td>
-    우편번호 : <input id=oPostNum type="text" name="oPostNum">
-  </td> 
-  </tr>
-  <tr>
-  <td>
-    팩스 : <input id=oFax type="text" name="oFax">
-  </td>
-  <td>
-    주소 : <input id=oAddr type="text" name="oAddr">
-  </td> 
-  </tr>
-</table>
     <input id="updateBtn" type="button" value="변경"  />
     <input id="delBtn" type="button" value="삭제"    onclick="deleteFunction( )" />
     <input id="cancelBtn" type="reset" value="취소" />
