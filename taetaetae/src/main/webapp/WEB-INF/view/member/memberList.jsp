@@ -168,11 +168,29 @@ function fn_reloadPjtList()
 }
 
 </script>
+<style type="text/css">
 
+.ui-jqgrid-labels > th {
+  font-size: 12px;
+}
+
+.ui-widget-content > td, .jqgrow ui-row-ltr > td {
+  font-size: 12px;
+}
+
+#pager_left {
+  font-size: 12px;
+}
+
+#pager_center > table > tbody > tr > td {
+  font-size: 12px;
+}
+
+</style>
 <title>직원관리</title>
 </head>
 
-<body onload="init()">
+<body>
 
 
 
