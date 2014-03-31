@@ -41,7 +41,7 @@
             // colNames : 열의 이름을 지정한다.
             colNames : ['NO', '사업자번호','지점명', '전화', '우편번호',  '주소',   '팩스' ],
             colModel : [
-                        { name : 'officeNum',         index : 'no',         width : 50,    align : 'center'  , hidden : true},
+                        { name : 'officeNo',         index : 'no',         width : 50,    align : 'center'  , hidden : true},
                         { name : 'officeNum',         index : 'officeNum',         width : 150,    align : 'center' },
                         { name : 'officeName',         index : 'officeName',         width : 250,    align : 'center' },
                         { name : 'officeTel',         index : 'officeTel',         width : 250,    align : 'center' },
@@ -161,13 +161,38 @@ jQuery("#m2").click( function() {
 </head>
 
 <body >
-<div id="content" style=" float:left;">
+<div id="content" style=" float:left; width: 100%;">
   <form  method="post"  enctype="multipart/form-data">
 	<input id="m1" type="button" value="삭제" />
     <input id="m2" type="button" value="승인" />
     <table id = "grid"></table>
     <div id = "pager"></div>
-    
+<script type="text/javascript">
+$(function (){
+  $("#gbox_grid").css("width", "100%");
+  $("#gview_grid").css("width", "100%");
+  $(".ui-jqgrid-titlebar .ui-jqgrid-caption .ui-widget-header .ui-corner-top .ui-helper-clearfix").css("width", "100%");
+  $(".ui-state-default .ui-jqgrid-hdiv").css("width", "100%");
+  $(".ui-jqgrid-labels").css("width", "100%");
+  $(".ui-state-default .ui-jqgrid-hdiv").css("width", "100%");
+  $(".ui-jqgrid .ui-jqgrid-hdiv").css("width", "100%");
+  $(".ui-jqgrid-htable").css("width", "100%");
+  $(".ui-jqgrid-bdiv").css("width", "100%");
+  $(".ui-jqgrid-hbox").css("width", "100%");
+  $(".ui-state-default .ui-th-column .ui-th-ltr").css("width", "100%");
+  $("#pager").css("width", "100%");
+  $("#pg_pager").css("width", "100%");
+  $("#grid_cb").css("width", "100%");
+  $("#grid").css("width", "100%");
+  $("#grid_officeNo").css("width", "100%");
+  $("#grid_officeNum").css("width", "100%");
+  $("#grid_officeName").css("width", "100%");
+  $("#grid_officeTel").css("width", "100%");
+  $("tr").css("width", "100%");
+  $("td").css("width", "100%");
+  $("content").css("width", "100%");
+});
+</script>
    <table border=1    WIDTH="635"   bgcolor="#EAEAEA">
   <tr>
   <td>
