@@ -38,6 +38,13 @@ public class OfficeControl {
 	public String form() {
 		return "office/addForm";
 	}
+
+	@RequestMapping(value="/addtest",method=RequestMethod.GET)
+	public String formTest() {
+		//return "member/addForm";
+		return "office/addtest";
+	}
+
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String add(
