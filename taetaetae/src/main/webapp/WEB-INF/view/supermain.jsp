@@ -101,6 +101,7 @@
           
         </div><!--/span-->
         <div class="span9">
+        <iframe src="office/officeList.do" name="ce" width="100%" height="600" style="border-width:0px; border-color:#7CCE76; border-style:solid;"></iframe>
         <div class="row-fluid">
           </div><!--/row-->
         </div><!--/span-->
