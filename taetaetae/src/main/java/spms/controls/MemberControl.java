@@ -266,7 +266,7 @@ public class MemberControl {
 		try {
 			memberDao.insert(member);
 			
-			if(  member.getRank().equals("100") )
+			if(  member.getRank().equals("3") )
 			{
 				return "redirect:/successAddOffice.jsp";
 			}
