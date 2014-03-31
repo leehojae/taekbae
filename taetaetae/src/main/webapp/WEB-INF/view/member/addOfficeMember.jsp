@@ -290,11 +290,9 @@
                   for="form-field-officefax"><font color="white">.</font></label><br>
                 <img  src="../images/infoadd.png">
           </div>      
-                <div class="col-sm-4" style="text-align:right;">
-                  <label class="checkbox">
-                  <input type="checkbox"> 정보동의에 체크하세요.
-                  
-                  </label>
+                <div class="col-md-8" style="text-align:right;">
+                  <input type="checkbox"> 정보동의 체크
+                 </input>
                 </div>
           
     
