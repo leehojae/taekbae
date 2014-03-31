@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/jquery-ui-1.10.1.custom.css"/>
 <link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/ui.jqgrid.css"/>  
+<link href="../assets/css/bootstrap-ko.css" rel="stylesheet">
  
 <script src = "../js/jquery-1.7.2.min.js" type = "text/javascript"></script> 
 <script src = "../js/jquery.jqGrid.min.js" type = "text/javascript"></script>
@@ -175,6 +176,22 @@ function fn_reloadPjtList()
 
 #pager_center > table > tbody > tr > td {
   font-size: 12px;
+}
+
+input[type="radio"], input[type="checkbox"] {
+  margin: 0px;
+}
+
+body {
+  margin: 10px;
+}
+
+.ui-pg-input {
+  width: 20px;
+}
+
+.ui-pg-selbox {
+  width: 100%;
 }
 
 </style>
