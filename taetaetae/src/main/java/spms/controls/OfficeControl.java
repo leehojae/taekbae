@@ -39,10 +39,10 @@ public class OfficeControl {
 		return "office/addForm";
 	}
 
-	@RequestMapping(value="/addtest",method=RequestMethod.GET)
+	@RequestMapping(value="/joongso",method=RequestMethod.GET)
 	public String formTest() {
 		//return "member/addForm";
-		return "office/addtest";
+		return "office/joongso";
 	}
 
 	
