@@ -322,7 +322,11 @@ color: #000000;
 }
 
 </style>
-
+<script type="text/javascript">
+function logout(){
+	location.replace("index.html");
+}
+</script>
 </head>
 <body onload="init()">
 <!-- 	<select>
@@ -333,7 +337,7 @@ color: #000000;
 	</select> -->
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <ul class="nav nav-pills nav-justified" id="customNav">
-  <li><input type="button" class="btn btn-default" style="width: 50%; height: 40px; display: inline;" value="로그아웃" /><input type="button" class="btn btn-default" style="width: 50%; height: 40px; display: inline;" value="배송처리" onclick="checkDelivery()" />
+  <li><input type="button" class="btn btn-default" style="width: 50%; height: 40px; display: inline;" value="로그아웃" onclick="logout()"/><input type="button" class="btn btn-default" style="width: 50%; height: 40px; display: inline;" value="배송처리" onclick="checkDelivery()" />
 <!-- <li><a href="#" style="width: 100%;"><input type="button" class="btn btn-default" style="width: 50%; display: inline;" value="종료" /><input type="button" class="btn btn-default" style="width: 50%; display: inline;" value="배송처리" onclick="checkDelivery()" /></a>  -->  
   </li>
   </ul>
