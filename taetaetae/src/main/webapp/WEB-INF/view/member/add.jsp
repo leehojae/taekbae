@@ -94,14 +94,14 @@
 /*  backface-visibility: hidden; */
 }
     
-    #idcheck{
- background: #823aa0;
-  color: #fff;
-  height: 25px;
-  min-width: 80px;
-  line-height: 24px;
-  font-size: 12px;
-}
+/*     #idcheck{ */
+/*  background: #823aa0; */
+/*   color: #fff; */
+/*   height: 25px; */
+/*   min-width: 80px; */
+/*   line-height: 24px; */
+/*   font-size: 12px; */
+/* } */
     
       
     </style>
@@ -141,15 +141,7 @@
     <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     
-<script type="text/javascript">
-$(function(){
-  $.getJSON('../office/ajax/officeAllList.do', function(data){
-    var data = data.jsonResult.data;  
-    		console.log(data);
-  });
-});
-</script>
-    
+  
 </head>
 <body class="tab-content profile-edit-tab-content">
 
@@ -159,8 +151,8 @@ $(function(){
 <!--  onSubmit="formCheck();return false"> -->
     
     
-      <div >
-        <div id="edit-basic" class="tab-pane in active">
+      <div class="tab-content profile-edit-tab-content"> <!-- 등록폼 네모 테두리 -->
+       <div id="edit-basic" class="tab-pane in active">
         
         
          <h4 class="header blue bolder smaller">Office Info(  ${loginUser.name} ) </h4>
@@ -178,41 +170,43 @@ $(function(){
                <br> 
             </div>
            </div>
+                
                 <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right"
-              for="form-field-email">아이디</label>
+                    <label class="col-sm-4 control-label no-padding-right"
+                    for="form-field-email">아이디</label>
 
-            <div class="col-sm-9">
-              <span class="input-icon input-icon-right" > <input
-                 id="id"  name = "id"   placeholder="영문 숫자 포함 10자 이내" />
-                 <input type="button"    id="idcheck" value="중복확인"   onclick="idCheck()" />
-              </span>
-            </div>
-          </div>
+                  <div class="col-sm-8">
+<!--                     <span class="input-icon input-icon-right" >  -->
+                    <span class="class="btn btn-sm" data-rel="tooltip" title="Default"" > 
+                      <input id="id"  name = "id"   placeholder="영문 숫자 포함 10자 이내" />
+                      <input type="button"  value="중복확인" onclick="idCheck()" />
+                    </span>
+                  </div>
+                </div>
           
           
           
            <div id="edit-password" class="tab-pane">
 
                 <div class="form-group">
-                  <label class="col-sm-3 control-label no-padding-right"
+                  <label class="col-sm-4 control-label no-padding-right"
                     for="form-field-pass1">비밀번호</label>
 
-                  <div class="col-sm-9">
+                  <div class="col-sm-8">
                     <input type="password"   id="password"  name = "password"    />
                   </div>
                 </div>
 
                 <div class="space-4"></div>
 
-                <div class="form-group">
-                  <label class="col-sm-3 control-label no-padding-right"
-                    for="form-field-pass2">비밀번호 확인</label>
+<!--                 <div class="form-group"> -->
+<!--                   <label class="col-sm-3 control-label no-padding-right" -->
+<!--                     for="form-field-pass2">비밀번호 확인</label> -->
 
-                  <div class="col-sm-9">
-                    <input type="password"  id="passwordRe"  name = "passwordRe"    /> 
-                  </div>
-                </div>
+<!--                   <div class="col-sm-9"> -->
+<!--                     <input type="password"  id="passwordRe"  name = "passwordRe"    />  -->
+<!--                   </div> -->
+<!--                 </div> -->
               </div>
    
         
@@ -229,78 +223,73 @@ $(function(){
 <input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="등록취소" onclick="initPhoto()" />
 </div>
           
-
-
             <div class="vspace-xs"></div>
 
+            
             <div class="col-xs-12 col-sm-8">
-              
-
-              <div class="space-4"></div>
-                <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right"
-              for="form-field-email">이름</label>
-
-            <div class="col-sm-9">
-              <span class="input-icon input-icon-right" >
-               <input  id="name"  name = "name"  />
-                
-              </span>
-            </div>
-          </div>
-          
-          
+            
+            <div class="space-4"></div>
+            <div class="space-4"></div>
+            
             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-date">생년월일</label>
+              <label class="col-sm-3 control-label no-padding-right"
+                     for="form-field-email">이름</label>
 
-                                <div class="col-sm-9">
-                                  <div class="input-medium">
-                                    <div class="input-group">
-                                      <input id="personalNumber" type="date" name="personalNumber"
+              <div class="col-sm-8">
+                 <input  id="name"  name = "name"  />
+                
+                 
+              </div>
+           </div>
+           
+            <div class="space-4"></div>
+            <div class="space-4"></div>
+            
+                 <div class="form-group">
+                 <label class="col-sm-3 control-label no-padding-right" for="form-field-date">생년월일</label>
+
+                 <div class="col-sm-8">
+<!--                  <div class="input-medium"> -->
+<!--                  <div class="input-group"> -->
+                 <input class="col-xs-3" id="personalNumber" type="date" name="personalNumber"
                                         placeholder="yyyy-MM-dd" /> 
-                                    </div>
-                                  </div>
+<!--                                     </div> -->
+<!--                                   </div> -->
                                 </div>
                               </div>
+                              </div>
+                              </div>
+      <div class="space-4"></div>
                               
                               
-                              
-                              
-                              <h4 class="header blue bolder smaller">Contact</h4>
+           <h4 class="header blue bolder smaller">Contact</h4>
 
           <div class="form-group">
                 <label class="col-sm-4 control-label no-padding-right"
                   for="form-field-username">주소</label>
 
                 <div class="col-sm-8">
-                  <input class="col-xs-12 col-sm-10" type="text"
+                  <input class="col-xs-10 col-sm-8" type="text"
                     id="addresss"  name = "addresss"  placeholder="주소를 입력해 주세요" />
                 </div>
               </div>
           
 
           <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right"
+            <label class="col-sm-1 control-label no-padding-right"
               for="form-field-phone">핸드폰번호</label>
 
-            <div class="col-sm-9">
-              <span class="input-icon input-icon-right"> 
+            <div class="col-sm-8">
+            <span>
+            <input class="col-sm-1" type="text" id="hp1"  name = "hp1"  placeholder="010" >
+            <input class="col-sm-1" type="text" id="hp2"  name = "hp2"  placeholder="1234" >
+            <input class="col-sm-1" type="text" id="hp3"  name = "hp3"  placeholder="5678" />
+            
+            </span>
               
-              <select id="hp1" name="hp1" >
-					   <option value="010"  selected> 010 </option>
-					   <option value="011"> 011 </option>
-					   <option value="016"> 016 </option>
-					   <option value="017"> 017 </option>
-					   <option value="018"> 018 </option>
-					   <option value="019"> 019 </option>
-					</select>
-					-
-					<input type="text" id="hp2" name="hp2" size="4" maxlength="4">
-					-
-					<input type="text" id="hp3" name="hp3" size="4" maxlength="4">
-					<input type="hidden" id="tel" name="tel" >
-              
-              </span>
+                
+           
+             
             </div>
           </div>
               
@@ -351,6 +340,8 @@ $(function(){
 <!-- <button type="submit" class="btn btn-primary"   onclick="javascript:formCheck();">직원등록</button> -->
 <button class="btn btn-default">취소</button>
 </div>
+</div>
+
 </div>
 <hr />
     </form>
