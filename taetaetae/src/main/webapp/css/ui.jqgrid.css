@@ -1,5 +1,6 @@
 .ui-jqgrid {
-	position: relative
+	position: relative;
+	width: 100%;
 }
 
 .ui-jqgrid .ui-jqgrid-view {
