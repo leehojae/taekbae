@@ -14,6 +14,11 @@
 
 <script>
 
+
+$(function (){
+  $("#gbox_grid").css("width", "100%");
+});
+
     $(window.document).ready(function() {
       
     	  $("#searchBtn").click( function() {
@@ -29,7 +34,7 @@
             datatype : 'json',               // datatype : 데이터 타입을 지정한다.
                                                     // (json 으로 외부에 요청을 보내면 보안정책에 위배되어 요청이 나가질 않는다.
                                                     //  따라서 datatype 을 jsonp로 변경하고 보내야 한다.)
- 
+            autowidth:true,  
             mtype : 'get',                     // mtype : 데이터 전송방식을 지정한다.
             height : '300px',                 // height : 그리드의 높이를 지정한다.
             pager : '#pager',               // pager : 도구 모임이 될 div 태그를 지정한다.
@@ -44,7 +49,7 @@
             colNames : [ '사업자번호','지점명', '전화', '우편번호',  '주소',   '팩스' ],
             colModel : [
                         
-                        { name : 'officeNum',         index : 'officeNum',         width : 150,    align : 'center' },
+                        { name : 'officeNum',         index : 'officeNum',         width :  150,    align : 'center' },
                         { name : 'officeName',         index : 'officeName',         width : 250,    align : 'center' },
                         { name : 'officeTel',         index : 'officeTel',         width : 250,    align : 'center' },
                         { name : 'officePostNum',         index : 'officePostNum',         width : 150,    align : 'center'  , hidden : true},
@@ -126,12 +131,33 @@
 </head>
 
 <body >
-<div id="content" style=" float:left;">
+<div id="content" style=" float:left; width: 100%;">
   <form  method="post"  enctype="multipart/form-data">
 
-    <table id = "grid"></table>
+    <table id = "grid" style="width: 100%;"></table>
     <div id = "pager"></div>
-   <table border=1    WIDTH="635"   bgcolor="#EAEAEA">
+<script type="text/javascript">
+$(function (){
+  $("#gbox_grid").css("width", "100%");
+  $("#gview_grid").css("width", "100%");
+  $(".ui-jqgrid-titlebar .ui-jqgrid-caption .ui-widget-header .ui-corner-top .ui-helper-clearfix").css("width", "100%");
+  $(".ui-state-default .ui-jqgrid-hdiv").css("width", "100%");
+  $(".ui-jqgrid-labels").css("width", "100%");
+  $(".ui-state-default .ui-jqgrid-hdiv").css("width", "100%");
+  $(".ui-jqgrid .ui-jqgrid-hdiv").css("width", "100%");
+  $(".ui-jqgrid-htable").css("width", "100%");
+  $(".ui-jqgrid-bdiv").css("width", "100%");
+  $(".ui-jqgrid-hbox").css("width", "100%");
+  $("#pager").css("width", "100%");
+  $("#grid").css("width", "100%");
+  $("#grid_officeNum").css("width", "100%");
+  $("#grid_officeName").css("width", "100%");
+  $("#grid_officeTel").css("width", "100%");
+  $("tr").css("width", "100%");
+  $("td").css("width", "100%");
+});
+</script>
+   <table border=1 width="100%" bgcolor="#EAEAEA">
   <tr>
   <td>
     사업자번호 : <input id=ono type="text" name="ono">
