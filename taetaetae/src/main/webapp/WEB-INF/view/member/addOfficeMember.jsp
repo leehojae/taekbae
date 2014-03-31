@@ -170,6 +170,7 @@
         
         <h4 class="header blue bolder smaller">&nbsp;&nbsp;Office</h4>
          <input type="hidden" name="rank" value="3">
+           <input type="hidden" id="name" name="name" class="a" type="text"     value='${office.officeName}'  maxlength="100">
             <div class="form-group">
               <label for="select"
                 class="col-sm-3 control-label no-padding-right">사업자번호입력</label>
