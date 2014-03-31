@@ -124,6 +124,16 @@ public class OfficeControl {
 		return "member/addOfficeMember";
 		
 	}
+	
+	
+	@RequestMapping("/updateOffice")
+	public String updateOffice(int no, Model model) throws Exception {
+		Office office = officeDao.selectOne(no);
+		model.addAttribute("office", office);
+//		return "member/updateForm";
+		return "office/updateForm";
+		
+	}
 	@RequestMapping("/approval")
 	public String approval(Model model) throws Exception {
 		//int i = excelControl.staticId;
@@ -153,14 +163,13 @@ public class OfficeControl {
 	
 	@RequestMapping(value="/ajax/updateOffice", method=RequestMethod.POST, 
 			produces="application/json")
-	public Object update(Office office) throws Exception {
+	public String  update(Office office) throws Exception {
 		try {
 			 officeDao.update(office);
-			return new JsonResult().setResultStatus(JsonResult.SUCCESS);
+			 return "redirect:/office/officeList.do";
 			
 		} catch (Throwable ex) {
-			return new JsonResult().setResultStatus(JsonResult.FAILURE)
-					.setError(ex.getMessage());
+			return "redirect:/office/officeList.do";
 		}
 	}
 	@RequestMapping(value="/ajax/approval",
@@ -248,11 +257,6 @@ public class OfficeControl {
 	@RequestMapping(value="/ajax/deleteOffice", produces="application/json")
 	public String ajaxDelete(int no) throws Exception {
 		try {
-			if( excelControl.staticId == 0)
-			{
-				return "redirect:/failAccess.jsp";
-				
-			}
 			officeDao.delete(no);
 			return "redirect:/office/officeList.do";
 			
