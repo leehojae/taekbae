@@ -76,8 +76,9 @@ public class MemberControl {
 	@RequestMapping("/delete")
 	public String delete(int no, Model model) throws Exception {
 		memberDao.delete(no);
-		return "redirect:list.do";
+		return "member/memberList";
 	}
+	
 	@RequestMapping("/addImage")
 	public String addImage( ) throws Exception {
 		
@@ -128,21 +129,37 @@ public class MemberControl {
 	
 	@RequestMapping(value="/update",method=RequestMethod.POST)
   public String update(Member member, 
-  		@RequestParam(value="photoFile",required=false) MultipartFile photoFile,
   		Model model) throws Exception {
-		
-		if (photoFile.getSize() > 0) {
-			member.setPhoto( saveFile(photoFile) );
-		}
-		
+		System.err.println(member);
+
 		int count = memberDao.update(member);
-		if (count > 0) {
-			model.addAttribute("message", "변경 성공입니다!");
-		} else {
-			model.addAttribute("message", "해당 번호의 회원 정보를 찾을 수 없습니다!");
-		}
-		return "member/update";
+//		if (count > 0) {
+//			model.addAttribute("message", "변경 성공입니다!");
+//		} else {
+//			model.addAttribute("message", "해당 번호의 회원 정보를 찾을 수 없습니다!");
+//		}
+		return "member/memberList";
+		//return "member/update";
   }
+//	
+//	@RequestMapping(value="/update",method=RequestMethod.POST)
+//	public String update(Member member, 
+//			@RequestParam(value="photoFile",required=false) MultipartFile photoFile,
+//			Model model) throws Exception {
+//		System.err.println(member);
+//		System.err.println(photoFile);
+//		if (photoFile.getSize() > 0) {
+//			member.setPhoto( saveFile(photoFile) );
+//		}
+//		
+//		int count = memberDao.update(member);
+//		if (count > 0) {
+//			model.addAttribute("message", "변경 성공입니다!");
+//		} else {
+//			model.addAttribute("message", "해당 번호의 회원 정보를 찾을 수 없습니다!");
+//		}
+//		return "member/update";
+//	}
 
 	private String saveFile(MultipartFile photoFile) throws IOException {
 	  String originFilename = photoFile.getOriginalFilename();
