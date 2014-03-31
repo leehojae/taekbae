@@ -46,19 +46,9 @@ $(window.document).ready(function() {
 
 	        	   //$("#status").val("edit");
 	        	  	var $rowData = $(this).getRowData(rowid);
-	        	  	alert("eeee");
-	        	  	 location.href = "../office/nonApplist.do";
+	        	  	
+	        	  	 location.href = "read.do?no="+($rowData['no']) ;
 	        	  	 console.log( "dddddeux : "+    ($rowData['photo'])   );
-	        	  	 ppp  =   ($rowData['photo']) ;
-	        	  	 setPhoto() ;
-	        	  	$("#mno").val($rowData['no']);
-	        	  	$("#mname").val($rowData['name']);
-	        	  	$("#mofficeName").val($rowData['officeName']);
-	        	  	$("#mrank").val($rowData['rank']);
-	        	  	$("#mtel").val($rowData['tel']);
-	        	  	$("#mid").val($rowData['id']);
-	        	  	$("#mpersonalNumber").val($rowData['personalNumber']);
-	        	  	$("#mphoto").val($rowData['photo']);
 	        	  	
 	        	  }	,
 
