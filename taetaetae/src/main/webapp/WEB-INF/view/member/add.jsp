@@ -159,7 +159,7 @@
          <input type=hidden    id=officeNum name = "officeNum" value=" ${loginUser.officeNum}">
            <div class="form-group">
             <label for="select"
-              class="col-sm-3 control-label no-padding-right">직책선택</label>
+              class="col-sm-3 control-label no-padding-right">관리자선택</label>
             <div class="col-sm-9">
 
               <select   id=rank name = "rank" >

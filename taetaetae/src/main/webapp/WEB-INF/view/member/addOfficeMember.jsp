@@ -169,34 +169,38 @@
         
         
         <h4 class="header blue bolder smaller">&nbsp;&nbsp;Office</h4>
+        
+         <div class="row">
+        <div class="span6">
          <input type="hidden" name="rank" value="3">
            <input type="hidden" id="name" name="name" class="a" type="text"     value='${office.officeName}'  maxlength="100">
             <div class="form-group">
               <label for="select"
-                class="col-sm-3 control-label no-padding-right">사업자번호입력</label>
-              <div class="col-sm-9">
-                <input class="col-xs-12 col-sm-2" 
+                class="col-sm-4 control-label no-padding-right">사업자번호입력</label>
+              <div class="col-sm-8">
+                <input class="col-xs-12 col-sm-10" 
                        type='text' name='officeNum'    id ='officeNum'    value='${office.officeNum}'  readonly='true'  placeholder="'-'없이 입력하세요." />
               </div>
            </div>   
 
            <div class="form-group">
               <label for="select"
-                class="col-sm-3 control-label no-padding-right">상호명</label>
-              <div class="col-sm-9">
-                <input class="col-xs-12 col-sm-2" type="text"
+                class="col-sm-4 control-label no-padding-right">회사명</label>
+              <div class="col-sm-8">
+                <input class="col-xs-12 col-sm-10" type="text"
                     id ='officeName'  name='officeName'   value='${office.officeName}'  readonly='true'  />
               </div>
            </div> 
            <div class="form-group">
               <label for="select"
-                class="col-sm-3 control-label no-padding-right">우편번호</label>
-              <div class="col-sm-9">
-                <input class="col-xs-12 col-sm-2" type="text"
+                class="col-sm-4 control-label no-padding-right">우편번호</label>
+              <div class="col-sm-8">
+                <input class="col-xs-12 col-sm-10" type="text"
                       id="officePostNum"  name="officePostNum" value='${office.officePostNum}'  readonly='true' />
               </div>
            </div> 
-           
+           </div>
+           <div class="span6">
              <div class="form-group">
                 <label class="col-sm-4 control-label no-padding-right"
                   for="form-field-username">주소</label>
@@ -212,8 +216,8 @@
                   for="form-field-username">전화번호</label>
 
                 <div class="col-sm-8">
-                 <input class="col-xs-12 col-sm-2" type="text"
-                  id='officeTel'   name='officeTel'  size='20'    value='${office.officeTel}'  readonly='true' />
+                 <input class="col-xs-12 col-sm-10" type="text"
+                  id='officeTel'   name='officeTel'    value='${office.officeTel}'  readonly='true' />
                 </div>
               </div>
                <div class="form-group">
@@ -221,11 +225,14 @@
                   for="form-field-username">팩스</label>
 
                 <div class="col-sm-8">
-                  <input class="col-xs-12 col-sm-2" type="text"
+                  <input class="col-xs-12 col-sm-10" type="text"
                      name='officeFax'    id='officeFax'   value='${office.officeFax}'  readonly='true' />
                 </div>
               </div>
           </div>
+        </div>
+  
+  </div> <!--  row클래스 끝 -->
   
     <h4 class="header blue bolder smaller">&nbsp;&nbsp;&nbsp;&nbsp;ID/PW</h4>
     
@@ -274,13 +281,34 @@
 <!--             </div> -->
     
     
+     <div class="space-4"></div>
+        
+          <h4 class="header blue bolder smaller">개인정보처리 동의</h4>
+                    
+          <div class="form-group">
+                <label class="col-sm-4 control-label no-padding-right"
+                  for="form-field-officefax"><font color="white">.</font></label><br>
+                <img  src="../images/infoadd.png">
+          </div>      
+                <div class="col-sm-4" style="text-align:right;">
+                  <label class="checkbox">
+                  <input type="checkbox"> 정보동의에 체크하세요.
+                  
+                  </label>
+                </div>
+          
+    
+    </div>
+    
+    
     
 <div class="form-group">
 <div class="col-lg-10 col-lg-offset-2">
 <button type="submit" class="btn btn-primary">승인요청</button>
-  </form>
+ 
 </div>
 </div>
+ </form>
 <hr />
 <script type="text/javascript">
 

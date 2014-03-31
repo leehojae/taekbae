@@ -169,71 +169,79 @@
         
         
         <h4 class="header blue bolder smaller">&nbsp;&nbsp;Office</h4>
-         
+         <div class="row">
+            <div class="span6">
             <div class="form-group">
-              <label for="select"
-                class="col-sm-3 control-label no-padding-right">사업자번호입력</label>
-              <div class="col-sm-9">
-                <input class="col-xs-12 col-sm-2" 
+              <label for="form-field-officenum"
+                class="col-sm-4 control-label no-padding-right">사업자등록번호</label>
+              <div class="col-sm-8">
+                <input class="col-xs-12 col-sm-10" 
                        type='text' name='officeNum'    id ='officeNum'   placeholder="'-'없이 입력하세요." />
+                   <br>    <span class="help-block">(영업소 사업자등록번호를 입력하세요)</span>
               </div>
            </div>   
 
            <div class="form-group">
-              <label for="select"
-                class="col-sm-3 control-label no-padding-right">상호명</label>
-              <div class="col-sm-9">
-                <input class="col-xs-12 col-sm-2" type="text"
-                    id ='officeName'  name='officeName'  placeholder="직원번호" />
+              <label for="form-field-officename"
+                class="col-sm-4 control-label no-padding-right">회사명</label>
+              <div class="col-sm-8">
+                <input class="col-xs-12 col-sm-10" type="text"
+                    id ='officeName'  name='officeName'  placeholder="회사명" />
               </div>
            </div> 
            <div class="form-group">
-              <label for="select"
-                class="col-sm-3 control-label no-padding-right">우편번호</label>
-              <div class="col-sm-9">
-                <input class="col-xs-12 col-sm-2" type="text"
-                      id="officePostNum"  name="officePostNum" placeholder="직원번호" />
+              <label for="form-field-officepostnum"
+                class="col-sm-4 control-label no-padding-right">우편번호</label>
+              <div class="col-sm-8">
+                <input class="col-xs-12 col-sm-10" type="text"
+                      id="officePostNum"  name="officePostNum" placeholder="우편번호" />
               </div>
            </div> 
+           </div>
            
+           <div class="span6">
              <div class="form-group">
                 <label class="col-sm-4 control-label no-padding-right"
-                  for="form-field-username">주소</label>
+                  for="form-field-addr">주소</label>
 
                 <div class="col-sm-8">
                   <input class="col-xs-12 col-sm-10" type="text"
-                    id="form-field-username" placeholder="사용자이름" />
+                    id="form-field-addr" placeholder="대표회사주소" />
                 </div>
               </div>
               
                <div class="form-group">
                 <label class="col-sm-4 control-label no-padding-right"
-                  for="form-field-username">전화번호</label>
+                  for="form-field-tel">전화번호</label>
 
                 <div class="col-sm-8">
-                 <input class="col-xs-12 col-sm-2" type="text"
-                    id='officePostNum'   name='officePostNum'  placeholder="직원번호" />
+                 <input class="col-xs-12 col-sm-10" type="text"
+                    id='officePostNum'   name='officePostNum'  placeholder="전화번호" />
                 </div>
               </div>
                <div class="form-group">
                 <label class="col-sm-4 control-label no-padding-right"
-                  for="form-field-username">팩스</label>
+                  for="form-field-fax">팩스</label>
 
                 <div class="col-sm-8">
-                  <input class="col-xs-12 col-sm-2" type="text"
-                     name='officeFax'    id='officeFax'   placeholder="직원번호" />
+                  <input class="col-xs-12 col-sm-10" type="text"
+                     name='officeFax'    id='officeFax'   placeholder="팩스번호" />
                 </div>
               </div>
           </div>
-  
+        </div>
     <hr />
 <div class="form-group">
 <div class="col-lg-10 col-lg-offset-2">
 <button class="btn btn-default">취소</button>
 <button type="submit" class="btn btn-primary">다음</button>
+  </div>
+  </div>
+ 
+  </div>
+  
   </form>
-</div>
-</div>
+
 <hr />
 <script type="text/javascript">
 
