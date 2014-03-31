@@ -110,7 +110,7 @@
 <!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
     
     
-    <form class="form-horizontal" method="post" action="ajax/addOffice.do">
+    <form class="form-horizontal" method="post" action="/taetaetae/office/add.do">
       
       <div class="tab-content profile-edit-tab-content">
       <fieldset>

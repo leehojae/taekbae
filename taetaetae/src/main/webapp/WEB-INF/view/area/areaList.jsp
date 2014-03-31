@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/jquery-ui-1.10.1.custom.css"/>
 <link rel = "stylesheet" type = "text/css" media = "screen" href = "../css/ui.jqgrid.css"/>  
+<link href="../assets/css/bootstrap-ko.css" rel="stylesheet">
  
 <script src = "../js/jquery-1.7.2.min.js" type = "text/javascript"></script> 
 <script src = "../js/jquery.jqGrid.min.js" type = "text/javascript"></script>
@@ -126,6 +127,20 @@ function deleteFunction()
 </script>
 
 <title>직원관리</title>
+
+<style type="text/css">
+body {
+  margin: 10px;
+}
+
+.ui-pg-input {
+  width: 20px;
+}
+
+.ui-pg-selbox {
+  width: 100%;
+}
+</style>
 </head>
 
 <body onload="init()">
@@ -172,31 +187,20 @@ $(function (){
 });
 </script>
 
-<table border=1    WIDTH="635"   bgcolor="#EAEAEA">
-
+<table class="table">
 <tr>
-<td>
-	번호 : <input id=ano type="text" name="ano">
-</td>
-<td>
-	직원 : <input id=driver type="text" name="driver">
-</td>	
+<td><div style="width: 64px; display: inline-block;">번&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp호 : </div><input id=ano type="text" name="ano" style="margin: 0px;"></td>
+<td><div style="width: 64px; display: inline-block;">직&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp원 : </div><input id=driver type="text" name="driver" style="margin: 0px;"></td>	
 </tr>
 <tr>
-<td>
-	배송구역 : <input id=aTaskArea type="text" name="aTaskArea">
-</td>
-<td>
-	배송클래스 : <input id=aClass type="text" name="aClass">
-</td>
-	
-
+<td><div style="width: 64px; display: inline-block;">배송구역 : </div><input id=aTaskArea type="text" name="aTaskArea" style="margin: 0px;"></td>
+<td><div style="width: 64px; display: inline-block;">클&nbsp래&nbsp스 : </div><input id=aClass type="text" name="aClass" style="margin: 0px;"></td>
 </tr>
 </table>
-	<input id="addBtn" type="button" value="등록">
-	<input id="updateBtn" type="button" value="변경" class="view">
-	<input id="delBtn" type="button" value="삭제"  onclick="deleteFunction()" />
-	<input id="cancelBtn" type="reset" value="취소">
+	<input id="addBtn" class="btn btn-default" type="button" value="등록">
+	<input id="updateBtn" class="btn btn-default" type="button" value="변경" class="view">
+	<input id="delBtn" class="btn btn-default" type="button" value="삭제"  onclick="deleteFunction()" />
+	<input id="cancelBtn" class="btn btn-default" type="reset" value="취소">
 </form>
 </div>
 </body>

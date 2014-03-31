@@ -72,7 +72,7 @@
 
 </head>
 
-  <body onload="init()">
+  <body>
 
       <div class="navbar navbar-inverse navbar-fixed-top">
          <%@ include file="../common/header.jsp"%>
