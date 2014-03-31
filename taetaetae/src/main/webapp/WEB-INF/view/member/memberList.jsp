@@ -181,6 +181,39 @@ function fn_reloadPjtList()
 <input id="mno" name="mno" maxlength="15" value="0" type="hidden">
 <table id = "grid"></table>
 <div id = "pager"></div>
+<script type="text/javascript">
+$(function (){
+  $("#gbox_grid").css("width", "100%");
+  $("#gview_grid").css("width", "100%");
+  $(".ui-jqgrid-titlebar .ui-jqgrid-caption .ui-widget-header .ui-corner-top .ui-helper-clearfix").css("width", "100%");
+  $(".ui-state-default .ui-jqgrid-hdiv").css("width", "100%");
+  $(".ui-jqgrid-labels").css("width", "100%");
+  $(".ui-state-default .ui-jqgrid-hdiv").css("width", "100%");
+  $(".ui-jqgrid .ui-jqgrid-hdiv").css("width", "100%");
+  $(".ui-jqgrid-htable").css("width", "100%");
+  $(".ui-jqgrid-bdiv").css("width", "100%");
+  $(".ui-jqgrid-hbox").css("width", "100%");
+  $(".ui-state-default .ui-th-column .ui-th-ltr").css("width", "100%");
+  $("#pager").css("width", "100%");
+  $("#pg_pager").css("width", "100%");
+  $("#grid_cb").css("width", "100%");
+  $("#grid").css("width", "100%");
+  $("#grid > tbody > tr > td").css("width", "100%");
+  $("#grid_officeNo").css("width", "100%");
+  $("#grid_name").css("width", "100%");
+  $("#grid_id").css("width", "100%");
+  $("#grid_rank").css("width", "100%");
+  $("#grid_tel").css("width", "100%");
+  $("#grid_officeNum").css("width", "100%");
+  $("#grid_officeName").css("width", "100%");
+  $("#grid_officeTel").css("width", "100%");
+  $("#grid_no").css("width", "100%");
+  $("#jqgh_grid_cb").css("width", "100%");
+/*   $("tr").css("width", "100%");
+  $("td").css("width", "100%"); */
+  $("content").css("width", "100%");
+});
+</script>
 <input id="m1" type="button" value="삭제" />
 <TABLE  id="mytable"    class="boardList">
 <TR>
