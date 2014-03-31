@@ -171,14 +171,14 @@ $(function(){
             <div class="col-sm-9">
 
               <select   id=rank name = "rank" >
-                <option value="2">영업소관리자</option>
-                <option value="3">배송기사</option>
-                
+                <option value="1" ${member.rank == 1 ? "selected" : ""}>본사관리자</option>
+                <option value="2" ${member.rank == 2 ? "selected" : ""}>영업소관리자</option>
+                <option value="3" ${member.rank == 3 ? "selected" : ""}>배송기사</option>
               </select>
                <br> 
             </div>
            </div>
-                <div class="form-group">
+<!--                 <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right"
               for="form-field-email">아이디</label>
 
@@ -188,11 +188,11 @@ $(function(){
                  <input type="button"    id="idcheck" value="중복확인"   onclick="idCheck()" />
               </span>
             </div>
-          </div>
+          </div> -->
           
           
           
-           <div id="edit-password" class="tab-pane">
+<!--            <div id="edit-password" class="tab-pane">
 
                 <div class="form-group">
                   <label class="col-sm-3 control-label no-padding-right"
@@ -213,17 +213,14 @@ $(function(){
                     <input type="password"  id="passwordRe"  name = "passwordRe"    /> 
                   </div>
                 </div>
-              </div>
-   
-        
-         value='${office.officeName}'
+              </div> -->
         
           <h4 class="header blue bolder smaller">General</h4>
                     
 <div class="row">
 <div class="col-xs-12 col-sm-4" style="text-align: center">
 <div id ="photoZone">
-<img id="mPhoto" name="photo" src="../images/memberPhoto/bg_noimage_1.gif" style="width: 161px; height: 161px;"><br>
+<img id="mPhoto" name="photo" src="/taetaetae/files/${member.photo}" style="width: 161px; height: 161px;"><br>
 </div>
 <input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="photoUploadPopup()" />
 <input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="등록취소" onclick="initPhoto()" />
@@ -268,7 +265,7 @@ $(function(){
                               
                               <h4 class="header blue bolder smaller">Contact</h4>
 
-          <div class="form-group">
+<!--           <div class="form-group">
                 <label class="col-sm-4 control-label no-padding-right"
                   for="form-field-username">주소</label>
 
@@ -276,7 +273,7 @@ $(function(){
                   <input class="col-xs-12 col-sm-10" type="text"
                     id="addresss"  name = "addresss"  placeholder="주소를 입력해 주세요" />
                 </div>
-              </div>
+              </div> -->
           
 
           <div class="form-group">
@@ -284,7 +281,9 @@ $(function(){
               for="form-field-phone">핸드폰번호</label>
 
             <div class="col-sm-9">
-              <span class="input-icon input-icon-right"> 
+            <input class="col-xs-12 col-sm-10" type="text"
+                    id="hp"  name = "hp"  placeholder="번호를 입력해 주세요" value='${member.tel}' />
+<!--               <span class="input-icon input-icon-right"> 
               
               <select id="hp1" name="hp1" >
              <option value="010"  selected> 010 </option>
@@ -300,7 +299,7 @@ $(function(){
           <input type="text" id="hp3" name="hp3" size="4" maxlength="4">
           <input type="hidden" id="tel" name="tel" >
               
-              </span>
+              </span> -->
             </div>
           </div>
               
