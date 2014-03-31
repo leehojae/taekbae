@@ -153,7 +153,7 @@ public class MemberControl {
 	  
 	  Date dt = new Date();
 	  System.out.println(dt.toString());
-	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_hh:mm:ss a"); 
+	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_hh_mm_ss"); 
 	  System.out.println(sdf.format(dt).toString());
 	  
 	  String newFilename = sdf.format(dt).toString() + "_" +
