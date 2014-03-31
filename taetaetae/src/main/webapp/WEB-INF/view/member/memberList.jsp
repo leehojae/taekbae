@@ -1,4 +1,4 @@
-+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -181,15 +181,8 @@ function fn_reloadPjtList()
 <title>직원관리</title>
 </head>
 
-<body onload="init()">
+<body>
 
-
-
-<input id="addBtn" type="submit" value="등록"   onclick="addFunction()" />
-<form  method="post"   action="ajax/addMember.do"      enctype="multipart/form-data">
-<input id="mno" name="mno" maxlength="15" value="0" type="hidden">
-<table id = "grid"></table>
-<div id = "pager"></div>
 <script type="text/javascript">
 $(function (){
   $("#gbox_grid").css("width", "100%");
@@ -223,82 +216,12 @@ $(function (){
   $("content").css("width", "100%");
 });
 </script>
-<input id="m1" type="button" value="삭제" />
-<TABLE  id="mytable"    class="boardList">
-<TR>
+<input class="btn btn-default" id="m1" type="button" value="삭제" />
+<input class="btn btn-default" id="addBtn" type="submit" value="등록"   onclick="addFunction()" />
+<table id = "grid"></table>
+<div id = "pager"></div>
+<input id="mno" name="mno" maxlength="15" value="0" type="hidden">
 
-
-<th rowspan=7 bgcolor=#F6F6F6>     
-
-<div id ="photoZone">
-<img id="mPhoto"     name="mPhoto"   src="../images/memberPhoto/bg_noimage_1.gif" height="100"><br>
-</div>
-<!-- <input  type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="photoUploadPopup()" /> -->
-<!-- 	<input id="delBtn" type="button" value="삭제"  onclick="initPhoto()" /> -->
-</th>
-</tr>
-<tr>
-<TD WIDTH="20%" bgcolor=#E4F7BA>소속
-<TD WIDTH="53%"  bgcolor=#FFFF6C><select id="officeNum" name="officeNum" >
-              						<option value="" selected="selected">소속</option>
-              						<option value=" 1">양재택배</option>
-              					</select></TD>
-              					</tr>
-
-<TR>
-<TD WIDTH="20%" bgcolor=#E4F7BA>직위<br></TD>
-<TD WIDTH="53%"  bgcolor=#FFFF6C><select id="rank" name="rank" >
-              						<option value="" selected="selected">소속</option>
-              						<option value=" 1">양재택배</option>
-              					</select></TD>
-</TR>
-<TR>
-<TD WIDTH="20%" bgcolor=#E4F7BA>아이디</TD>
-<TD WIDTH="53%"  bgcolor=#FFFF6C><input id="mid" name="mid" class="a" type="text" value="" maxlength="100"><br></TD>
-</TR>
-<TR>
-<TD WIDTH="20%" bgcolor=#E4F7BA>이름</TD>
-<TD WIDTH="53%"  bgcolor=#FFFF6C><input id="mname" name="mname" class="a" type="text" value="" maxlength="100"><br></TD>
-</TR>
-<TR>
-<TD WIDTH="20%" bgcolor=#E4F7BA>생년월일</TD>
-<TD WIDTH="53%"  bgcolor=#FFFF6C>
-<input id="mtel" name="mtel" class="a" type="text" value="" maxlength="100">
-</TD>
-</TR>
-<TR>
-<TD WIDTH="20%" bgcolor=#E4F7BA>전화번호</TD>
-<TD WIDTH="53%"  bgcolor=#FFFF6C><input id="mtel" name="mtel" class="a" type="text" value="" maxlength="100"><br></TD>
-</TR>
-
-</TABLE>
-   	
-   
-
-  
-	<input id="updateBtn" type="button" value="변경" class="view">
-	<input id="delBtn" type="button" value="삭제"  onclick="deleteFunction()" />
-	<input id="cancelBtn" type="reset" value="취소">
-	</form>	
 </body>
 
-
-        <script>
-      
-      function photoUploadPopup()
-      {
-      	 myWin = window.open('updateImage.do', 'popwindow', 'width=300,height=300');
-      	 
-      	 photoZone = document.getElementById('photoZone');
-        
-      }
-
-      
-      
-      
-
-function initPhoto() {
-	photoZone.innerHTML = '<img id="mPhoto"   name="mPhoto" src="../images/memberPhoto/bg_noimage_1.gif" height="100"><br>';
-}
-</script>
 </html>

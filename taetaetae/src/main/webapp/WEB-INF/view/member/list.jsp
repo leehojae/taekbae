@@ -66,6 +66,24 @@
     <script src="../assets/js/bootstrap-typeahead.js"></script>
 <script type="text/javascript">
 	$(function() {
+		
+/* 		function memberForm() {
+	    alert("12");
+	  
+	    var string = $("form[name=memberForm]").serialize();
+	  
+	    $.ajax({   
+	        type: "POST",  
+	        url: "/taetaetae/member/ajax/update.do",   
+	        data: string,   //&a=xxx 식으로 나옴
+	        success: function(responseText, statusText, xhr, $form){
+	          alert("성공");
+	          location.reload();
+	        }
+	    });
+	  }; */
+		
+		
 		$('.collapse').collapse('hide');
 	});
 </script>

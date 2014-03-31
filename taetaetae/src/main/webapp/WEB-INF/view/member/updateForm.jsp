@@ -56,13 +56,6 @@
     <script src="assets/js/html5shiv.js"></script>
     <script src="assets/js/respond.min.js"></script>
     <![endif]-->
-
-
-    
-    
-    
-    
-    
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -147,6 +140,22 @@ $(function(){
     var data = data.jsonResult.data;  
         console.log(data);
   });
+
+  function memberUpForm() {
+    alert("12");
+	
+    var string = $("form[name=memberForm]").serialize();
+  
+	  $.ajax({   
+	  	  type: "POST",  
+	  	  url: "/taetaetae/member/ajax/update.do",   
+	  	  data: string,   //&a=xxx 식으로 나옴
+	  	  success: function(responseText, statusText, xhr, $form){
+	  	    alert("성공");
+	  	    location.reload();
+	  	  }
+	  });
+	};
 });
 </script>
     
@@ -155,22 +164,18 @@ $(function(){
 
 <!--     <form class="form-horizontal" method="post" action="ajax/addMember.do" enctype="multipart/form-data" > -->
 <!--     <form class="form-horizontal" method="post" enctype="multipart/form-data" > -->
-     <Form  class="form-horizontal"   action="ajax/addMember.do"     method="post"     enctype="multipart/form-data">
+<!--      <Form  class="form-horizontal"   action="ajax/addMember.do"     method="post"     enctype="multipart/form-data"> -->
+     <Form name="memberForm" class="form-horizontal" action="update.do" method="post"     enctype="multipart/form-data">
 <!--  onSubmit="formCheck();return false"> -->
-    
-    
       <div >
         <div id="edit-basic" class="tab-pane in active">
-        
-        
          <h4 class="header blue bolder smaller">Office Info(  ${loginUser.name} ) </h4>
-         <input type=hidden    id=officeNum name = "officeNum" value=" ${loginUser.officeNum}">
+         <input type=hidden  id=officeNum name = "officeNum" value=" ${loginUser.officeNum}">
            <div class="form-group">
             <label for="select"
               class="col-sm-3 control-label no-padding-right">직책선택</label>
             <div class="col-sm-9">
-
-              <select   id=rank name = "rank" >
+              <select id=rank name="rank">
                 <option value="1" ${member.rank == 1 ? "selected" : ""}>본사관리자</option>
                 <option value="2" ${member.rank == 2 ? "selected" : ""}>영업소관리자</option>
                 <option value="3" ${member.rank == 3 ? "selected" : ""}>배송기사</option>
@@ -189,8 +194,6 @@ $(function(){
               </span>
             </div>
           </div> -->
-          
-          
           
 <!--            <div id="edit-password" class="tab-pane">
 
@@ -216,55 +219,65 @@ $(function(){
               </div> -->
         
           <h4 class="header blue bolder smaller">General</h4>
-                    
 <div class="row">
 <div class="col-xs-12 col-sm-4" style="text-align: center">
 <div id ="photoZone">
-<img id="mPhoto" name="photo" src="/taetaetae/files/${member.photo}" style="width: 161px; height: 161px;"><br>
+<img id="mPhoto" src="/taetaetae/files/${member.photo}" style="width: 161px; height: 161px;"><br>
+<input type="hidden" name="photo" value="${member.photo}">
 </div>
 <input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="photoUploadPopup()" />
 <input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="등록취소" onclick="initPhoto()" />
 </div>
-          
-
 
             <div class="vspace-xs"></div>
-
             <div class="col-xs-12 col-sm-8">
-              
-
               <div class="space-4"></div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"
+              for="form-field-email">회원번호</label>
+
+            <div class="col-sm-9">
+              <span class="input-icon input-icon-right" >
+               <input name="no" value='${member.no}' readonly/>
+              </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"
+              for="form-field-email">아이디</label>
+
+            <div class="col-sm-9">
+              <span class="input-icon input-icon-right" >
+               <input name="id" value='${member.id}' readonly/>
+              </span>
+            </div>
+          </div>
                 <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right"
               for="form-field-email">이름</label>
 
             <div class="col-sm-9">
               <span class="input-icon input-icon-right" >
-               <input  id="name"  name = "name"   value='${member.name}' />
-                
+               <input id="name" name="name" value='${member.name}' />
               </span>
             </div>
           </div>
-          
-          
             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-date">생년월일</label>
-
                                 <div class="col-sm-9">
                                   <div class="input-medium">
                                     <div class="input-group">
-                                      <input id="personalNumber" type="date" name="personalNumber"    value='${member.personalNumber}'
+                                      <input id="personalNumber" type="date" name="personalNumber" value='${member.personalNumber}'
                                         placeholder="yyyy-MM-dd" /> 
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                              
-                              
-                              
-                              
-                              <h4 class="header blue bolder smaller">Contact</h4>
-
+ 
+              <div class="space-4"></div>
+            </div>
+          </div>
+                                       <h4 class="header blue bolder smaller">Contact</h4>
 <!--           <div class="form-group">
                 <label class="col-sm-4 control-label no-padding-right"
                   for="form-field-username">주소</label>
@@ -281,8 +294,7 @@ $(function(){
               for="form-field-phone">핸드폰번호</label>
 
             <div class="col-sm-9">
-            <input class="col-xs-12 col-sm-10" type="text"
-                    id="hp"  name = "hp"  placeholder="번호를 입력해 주세요" value='${member.tel}' />
+            <input class="col-xs-12 col-sm-10" type="text" name = "tel" placeholder="번호를 입력해 주세요" value='${member.tel}' />
 <!--               <span class="input-icon input-icon-right"> 
               
               <select id="hp1" name="hp1" >
@@ -302,56 +314,43 @@ $(function(){
               </span> -->
             </div>
           </div>
-              
-          
-          
-           
-           
-           
-           
-
-              <div class="space-4"></div>
-             
-            </div>
-          </div>
-
-          <hr />
-            
-        
-
-            
-            
-            
           </div>
           <div class="space-4"></div>
-
           <div class="space-4"></div>
-          
-
-          
-
-         
-        
           <div id="edit-password" class="tab-pane">
             <div class="space-10"></div>
-
-         
-
             <div class="space-4"></div>
-
           </div>
         </div>
-
+<hr />
 <div class="form-group">
 <div class="col-lg-10 col-lg-offset-2">
 <!-- <button type="submit" class="btn btn-primary"  >dddd직원등록</button> -->
+<script type="text/javascript">
+function memberUpForm() {
+  alert("12");
 
-<button type="submit" class="btn btn-primary"   >직원등록</button>
-<!-- <button type="submit" class="btn btn-primary"   onclick="javascript:formCheck();">직원등록</button> -->
-<button class="btn btn-default">취소</button>
+  var string = $("form[name=memberForm]").serialize();
+
+  $.ajax({   
+      type: "POST",  
+      url: "/taetaetae/member/ajax/update.do",   
+      data: string,   //&a=xxx 식으로 나옴
+      success: function(responseText, statusText, xhr, $form){
+        alert("성공");
+        location.reload();
+      }
+  });
+};
+</script>
+<button type="submit" class="btn btn-primary">변경</button>
+<!-- <button type="submit" class="btn btn-primary" onclick="memberUpForm()">변경</button>  -->
+<a class="btn btn-primary" href='delete.do?no=${member.no}'>삭제</a>
+<!-- <button type="submit" class="btn btn-primary" onclick="javascript:formCheck();">직원등록</button> -->
+<!-- <button type="button" class="btn btn-default" onclick="javascript:window.top.location('/taetaetae/member/list.do')">목록으로</button> -->
+<a target="_parent" class="btn btn-default" href="/taetaetae/member/list.do">목록으로</a>
 </div>
 </div>
-<hr />
     </form>
 <!--/.fluid-container-->
 <script type="text/javascript">
