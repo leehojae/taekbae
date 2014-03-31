@@ -138,7 +138,7 @@
         
 
 
-<iframe src="officeList.do"  name=ce width=1200 height=600 style="border-width:0px; border-color:#7CCE76; border-style:solid;"></iframe>
+<iframe src="officeList.do"  name=ce width=100% height=600 style="border-width:0px; border-color:#7CCE76; border-style:solid;"></iframe>
 
 
 </div><!--/row-->
