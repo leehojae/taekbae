@@ -85,7 +85,7 @@
         </div><!--/span-->
         <div class="span9">
 <iframe src="areaList.do" 
-scrolling=no name=ce width=1200 height=600 frameborder=0 style="border-width:0px; border-color:white; border-style:solid;"></iframe>
+scrolling=no name=ce width=100% height=600 frameborder=0 style="border-width:0px; border-color:white; border-style:solid;"></iframe>
 <!-- <iframe src="list.do" scrolling=no name=ce width=600 height=180 frameborder=0 style="border-width:0px; border-color:white; border-style:solid;"></iframe> -->
 
 
