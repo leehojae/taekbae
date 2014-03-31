@@ -78,6 +78,12 @@ public class OfficeControl {
 		return "redirect:list.do";
 	}
 	
+	@RequestMapping("/officeState.do")
+	public String officeState(Model model) throws Exception {
+		//model.addAttribute("offices", officeDao.selectList());
+		return "office/officeState";
+	}
+	
 	@RequestMapping("/officeList.do")
 	public String officeList(Model model) throws Exception {
 		//model.addAttribute("offices", officeDao.selectList());
@@ -125,7 +131,6 @@ public class OfficeControl {
 		
 	}
 	
-	
 	@RequestMapping("/updateOffice")
 	public String updateOffice(int no, Model model) throws Exception {
 		Office office = officeDao.selectOne(no);
@@ -139,8 +144,6 @@ public class OfficeControl {
 		//int i = excelControl.staticId;
 		
 		Member m = memberDao.selectOne(excelControl.staticId);
-		
-		
 		
 		Office office = officeDao.selectOne(   m.getOfficeNum() );
 		model.addAttribute("office", office);
