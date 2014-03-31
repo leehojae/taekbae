@@ -134,7 +134,7 @@
     <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 </head>
-<body>
+<body style="padding-top: 0px;">
 <!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
     <form class="form-horizontal" method="post"     action="../member/ajax/addMember.do"   >
         <h4 class="header blue bolder smaller">&nbsp;&nbsp;Office</h4>

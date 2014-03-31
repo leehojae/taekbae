@@ -118,7 +118,7 @@
 -->
 </style>
 
-  <body onload="init()">
+<body>
   
   
   
