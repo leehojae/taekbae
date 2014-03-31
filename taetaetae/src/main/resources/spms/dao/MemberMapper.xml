@@ -70,10 +70,10 @@
   
   <update id="update" parameterType="member">
     update MEMBERS set 
-      MNAME=#{name},
-      ID=#{id},
-      TEL=#{tel},
-      PERSONAL_NO=#{personalNumber},
+      MNAME=#{name}, 
+      ID=#{id}, 
+      TEL=#{tel}, 
+      PERSONAL_NO=#{personalNumber}, 
       PHOTO=#{photo} 
     where MNO=#{no}
   </update>
