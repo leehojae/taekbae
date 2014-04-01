@@ -147,7 +147,7 @@
 
 <!--     <form class="form-horizontal" method="post" action="ajax/addMember.do" enctype="multipart/form-data" > -->
 <!--     <form class="form-horizontal" method="post" enctype="multipart/form-data" > -->
-     <Form  class="form-horizontal"   action="ajax/addMember.do"     method="post"     enctype="multipart/form-data">
+     <Form  class="form-horizontal"      method="post"   action="ajax/addMember.do"   enctype="multipart/form-data"   onSubmit="formCheck();return false">
 <!--  onSubmit="formCheck();return false"> -->
     
     
@@ -155,21 +155,9 @@
        <div id="edit-basic" class="tab-pane in active">
         
         
-         <h4 class="header blue bolder smaller">Office Info(  ${loginUser.name} ) </h4>
+         <h4 class="header blue bolder smaller">Office Info</h4>
          <input type=hidden    id=officeNum name = "officeNum" value=" ${loginUser.officeNum}">
-           <div class="form-group">
-            <label for="select"
-              class="col-sm-3 control-label no-padding-right">관리자선택</label>
-            <div class="col-sm-9">
-
-              <select   id=rank name = "rank" >
-                <option value="2">영업소관리자</option>
-                <option value="3">배송기사</option>
-                
-              </select>
-               <br> 
-            </div>
-           </div>
+          <input type="hidden" name="rank" value="4">
                 
                 <div class="form-group">
                     <label class="col-sm-4 control-label no-padding-right"
@@ -237,8 +225,6 @@
 
               <div class="col-sm-8">
                  <input  id="name"  name = "name"  />
-                
-                 
               </div>
            </div>
            
@@ -270,7 +256,16 @@
 
                 <div class="col-sm-8">
                   <input class="col-xs-10 col-sm-8" type="text"
-                    id="addresss"  name = "addresss"  placeholder="주소를 입력해 주세요" />
+                    id="addresss"  name ="addresss"  placeholder="주소를 입력해 주세요" />
+                </div>
+              </div>
+          <div class="form-group">
+                <label class="col-sm-4 control-label no-padding-right"
+                  for="form-field-username">이메일</label>
+                <div class="col-sm-8">
+                   <input  id="email"  name ="email"  />
+<!--                   <input type="text" -->
+<!--                     id="email"  name ="email"  placeholder="email 주소를 입력해 주세요" /> -->
                 </div>
               </div>
           
@@ -284,51 +279,20 @@
             <input class="col-sm-1" type="text" id="hp1"  name = "hp1"  placeholder="010" >
             <input class="col-sm-1" type="text" id="hp2"  name = "hp2"  placeholder="1234" >
             <input class="col-sm-1" type="text" id="hp3"  name = "hp3"  placeholder="5678" />
-            
+             <input type="hidden"   id="tel" name="tel">
             </span>
-              
-                
-           
-             
             </div>
           </div>
-              
-          
-          
-           
-           
-           
-           
-
               <div class="space-4"></div>
-             
             </div>
           </div>
-
           <hr />
-            
-        
-
-            
-            
-            
           </div>
           <div class="space-4"></div>
-
           <div class="space-4"></div>
-          
-
-          
-
-         
-        
           <div id="edit-password" class="tab-pane">
             <div class="space-10"></div>
-
-         
-
             <div class="space-4"></div>
-
           </div>
         </div>
 
@@ -337,7 +301,7 @@
 <!-- <button type="submit" class="btn btn-primary"  >dddd직원등록</button> -->
 
 <button type="submit" class="btn btn-primary"   >직원등록</button>
-<!-- <button type="submit" class="btn btn-primary"   onclick="javascript:formCheck();">직원등록</button> -->
+<!-- <button class="btn btn-primary"   onclick="javascript:formCheck();">직원등록</button> -->
 <button class="btn btn-default">취소</button>
 </div>
 </div>
@@ -389,7 +353,6 @@ function formCheck() {
 	var id = document.getElementById('id');
 	var password = document.getElementById('password');
 	var passwordRe = document.getElementById('passwordRe');
-	var password_check = document.getElementById('password_check');
 
 	
 	
@@ -402,8 +365,9 @@ function formCheck() {
 	var hp1 = document.getElementById('hp1'); 
 	var hp2 = document.getElementById('hp2'); 
 	var hp3 = document.getElementById('hp3'); 
+	var tel = document.getElementById('tel'); 
 	var hp = hp1.value + "-" + hp2.value + "-" + hp3.value;
-	
+	document.getElementById("tel").value = hp;
 	/*핸드폰 번호 길이 체크*/
 	
 	
@@ -418,14 +382,13 @@ function formCheck() {
 		focus.password;
 		return false;
 	}
-	
-	
-	/*비밀번호와 비밀번호확인란 같은지 확인*/
-	if (password.value != passwordRe.value){
-		alert("비밀번호와 비밀번호 확인란이 다릅니다.");
-		focus.passowrd;
+	if (addresss.value == '' || addresss.value == null) {
+		alert('주소를 입력하세요');
+		focus.addresss;
 		return false;
 	}
+	
+	
 	
 		/*핸드폰 번호 길이 체크*/
 	if(hp2.value.length<=2 || hp3.value.length!=4){
@@ -439,14 +402,10 @@ function formCheck() {
 		alert("휴대폰번호는 숫자만 들어갈 수 있습니다.");
 		return false;
 	}
-		/**/
-	if (hp2.value.length > 2 || hp3.value.length==4){
-		document.getElementById("tel").value = hp;
-	}
+		
+			
+		Frm.submit();
 	
-	Frm.action = "../office/searchCompany.do?no=" + Frm.searchKsearcheywordA.value;
-		alert("dwrewr");
-	Frm.submit();
 	
 }
 
