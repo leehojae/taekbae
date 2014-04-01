@@ -78,6 +78,13 @@
     where MNO=#{no}
   </update>
   
+  
+  <update id="rankUpdate" parameterType="int">
+    update MEMBERS set 
+      RANK= 2
+    where OFFICE_NUM=#{no}
+  </update>
+  
   <select id="selectByIdPassword" 
       parameterType="map" 
       resultMap="memberResultMap">
