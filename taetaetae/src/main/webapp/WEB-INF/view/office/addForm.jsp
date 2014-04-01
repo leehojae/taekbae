@@ -175,8 +175,8 @@
               <label for="form-field-officenum"
                 class="col-sm-4 control-label no-padding-right">사업자등록번호</label>
               <div class="col-sm-8">
-                <input class="col-xs-12 col-sm-10" 
-                       type='text' name='officeNum'    id ='officeNum'   placeholder="'-'없이 입력하세요." />
+                <input class="col-xs-12 col-sm-10"    
+                       type='text' name='officeNum'    id ='officeNum'    onKeyPress="NumObj(this);"   placeholder="'-'없이 숫자만 입력하세요." />
                    <br>    <span class="help-block">(영업소 사업자등록번호를 입력하세요)</span>
               </div>
            </div>   
@@ -234,7 +234,7 @@
 <div class="form-group">
 <div class="col-lg-10 col-lg-offset-2">
 <button class="btn btn-default">취소</button>
-<button type="submit" class="btn btn-primary">다음</button>
+<button class="btn btn-primary"    onclick="validateCheck()" />다음</button>
   </div>
   </div>
  
@@ -245,6 +245,49 @@
 <hr />
 <script type="text/javascript">
 
+
+function validateCheck(){
+	Frm = document.forms[0];
+	 checkBizID(bizID)  ;
+	
+	
+	Frm.submit();
+}
+
+
+function checkBizID(bizID)  //사업자등록번호 체크 
+{ 
+    // bizID는 숫자만 10자리로 해서 문자열로 넘긴다. 
+    var checkID = new Array(1, 3, 7, 1, 3, 7, 1, 3, 5, 1); 
+    var tmpBizID, i, chkSum=0, c2, remander; 
+     bizID = bizID.replace(/-/gi,''); 
+
+     for (i=0; i<=7; i++) chkSum += checkID[i] * bizID.charAt(i); 
+     c2 = "0" + (checkID[8] * bizID.charAt(8)); 
+     c2 = c2.substring(c2.length - 2, c2.length); 
+     chkSum += Math.floor(c2.charAt(0)) + Math.floor(c2.charAt(1)); 
+     remander = (10 - (chkSum % 10)) % 10 ; 
+
+    if (Math.floor(bizID.charAt(9)) == remander) return true ; // OK! 
+      return false; 
+} 
+
+
+
+
+function NumObj(obj){
+
+	   if (event.keyCode >= 48 && event.keyCode <= 57) { //숫자키만 입력
+
+	    return true;
+
+	   } else {
+
+	   event.returnValue = false;
+
+	  }
+	 
+	 }
 function initPhoto() {
   photoZone.innerHTML = '<img id="mPhoto"   name="mPhoto" src="../images/memberPhoto/bg_noimage_1.gif" height="100"><br>';
 };
