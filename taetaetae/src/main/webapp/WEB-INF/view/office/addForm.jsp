@@ -133,6 +133,54 @@
     
     <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript">
+    function BusinessNumber(str) {
+    	var str = str.value
+    	        // 사업자번호 오류검증
+    	        // 아래 공식으로 계산후 10의 배수가 나오면 검증일치
+    	        var num = new Array();
+    	            num[0] = 1;
+    	            num[1] = 3;
+    	            num[2] = 7;
+    	            num[3] = 1;
+    	            num[4] = 3;
+    	            num[5] = 7;
+    	            num[6] = 1;
+    	            num[7] = 3;
+    	            num[8] = 5;
+    	        var totalNumber = 0;
+    	        var _num        = 0;
+    	        for (i = 0; i < str.length-1; i++) {
+    	            _num = parseInt(str.charAt(i)) * num[i];
+    	            _num = "" + _num;
+    	            if (i < 8) {
+    	                totalNumber = totalNumber + parseInt(_num.charAt(_num.length-1));
+    	            } else {
+    	                totalNumber = (_num.charAt(_num.length-2) == "") ? totalNumber + 0 : totalNumber + parseInt(_num.charAt(_num.length-2));
+    	                totalNumber = totalNumber + parseInt(_num.charAt(_num.length-1));
+    	            }
+    	        }
+    	        totalNumber = totalNumber + parseInt(str.charAt(str.length-1));
+    	        var num1    = str.substring(0,3);
+    	        var num2    = str.substring(3,5);
+    	        var num3    = str.substring(5,10);
+    	        if (str == "") {
+    	            alert("사업자번호를 입력하세요.");
+    	            return false;
+    	        } else if (num1.length != 3 || num2.length != 2 || num3.length != 5) {
+    	            alert("유효하지 않은 사업자 번호입니다.");
+    	            return false;
+    	        } else if (!this.numberChecked(str)) {
+    	            alert("유효하지 않은 사업자 번호입니다.");
+    	            return false;
+    	        } else if (totalNumber%10 != 0) {
+    	            alert("유효하지 않은 사업자 번호입니다.");
+    	            return false;
+    	        } else {
+    	            return true;
+    	        }
+    	    }
+    </script>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -165,8 +213,6 @@
   
       
       <div class="tab-content profile-edit-tab-content">
-      
-        
         
         <h4 class="header blue bolder smaller">&nbsp;&nbsp;Office</h4>
          <div class="row">
@@ -176,7 +222,7 @@
                 class="col-sm-4 control-label no-padding-right">사업자등록번호</label>
               <div class="col-sm-8">
                 <input class="col-xs-12 col-sm-10"    
-                       type='text' name='officeNum'    id ='officeNum'    onKeyPress="NumObj(this);"   placeholder="'-'없이 숫자만 입력하세요." />
+                       type='text' name='officeNum' id ='officeNum' onblur="BusinessNumber(this)"   placeholder="'-'없이 숫자만 입력하세요." />
                    <br>    <span class="help-block">(영업소 사업자등록번호를 입력하세요)</span>
               </div>
            </div>   
@@ -234,7 +280,7 @@
 <div class="form-group">
 <div class="col-lg-10 col-lg-offset-2">
 <button class="btn btn-default">취소</button>
-<button class="btn btn-primary"    onclick="validateCheck()" />다음</button>
+<button type="submit" class="btn btn-primary">다음</button>
   </div>
   </div>
  
