@@ -24,7 +24,8 @@
             //url : 'http://apis.daum.net/socialpick/search?output=json',
            url : 'http://localhost:9999/taetaetae/office//ajax/officeNewList.do',
            // url : 'http://localhost:9999/taetaetae/office//ajax/officeList.do?keywordA=' + $('#searchKeywordA').val()+'&keywordB=' + $('#searchKeywordB').val(),
-            datatype : 'json',               // datatype : 데이터 타입을 지정한다.
+              caption : '미승인 지점 목록',    // caption : 그리드의 제목을 지정한다.
+        		   datatype : 'json',               // datatype : 데이터 타입을 지정한다.
                                                     // (json 으로 외부에 요청을 보내면 보안정책에 위배되어 요청이 나가질 않는다.
                                                     //  따라서 datatype 을 jsonp로 변경하고 보내야 한다.)
  
@@ -39,10 +40,10 @@
             	keywordA: $("#searchKeywordA").val(),
             	keywordB: $("#searchKeywordB").val()},
             // colNames : 열의 이름을 지정한다.
-            colNames : ['NO', '사업자번호','지점명', '전화', '우편번호',  '주소',   '팩스' ],
+             colNames : [ '사업자번호','지점명', '전화', '우편번호',  '주소',   '팩스' ],
             colModel : [
-                        { name : 'officeNo',         index : 'no',         width : 50,    align : 'center'  , hidden : true},
-                        { name : 'officeNum',         index : 'officeNum',         width : 150,    align : 'center' },
+                        
+                        { name : 'officeNum',         index : 'officeNum',         width :  150,    align : 'center' },
                         { name : 'officeName',         index : 'officeName',         width : 250,    align : 'center' },
                         { name : 'officeTel',         index : 'officeTel',         width : 250,    align : 'center' },
                         { name : 'officePostNum',         index : 'officePostNum',         width : 150,    align : 'center'  , hidden : true},
@@ -55,7 +56,7 @@
                       },
             jsonReader : {
                repeatitems : false,
-                 id : "officeNum",
+                 id : "no",
                  root : function (obj) { return obj.jsonResult.data; },
                  page : function (obj) { return 1; },
                  total : function (obj) { return 1; },
@@ -66,6 +67,8 @@
    
    $("#status").val("edit");
     var $rowData = $(this).getRowData(rowid);
+    location.href = "updateOffice.do?no="+($rowData['officeNum']) ;
+    
     $("#ono").val($rowData['officeNum']);
     $("#oname").val($rowData['officeName']);
     $("#oTel").val($rowData['officeTel']);
@@ -74,15 +77,6 @@
     $("#oFax").val($rowData['officeFax']);
     
   } ,
-	rowNum:10,
-   	rowList:[10,20,30],
-   	pager: '#pager',
-   	sortname: 'id',
-	recordpos: 'left',
-    viewrecords: true,
-    sortorder: "desc",
-	multiselect: true,
-	caption: "미승인 사업소 목록"
 });
 jQuery("#grid").jqGrid('navGrid','#pager',{add:false,del:false,edit:false,position:'right'});
 jQuery("#m1").click( function() {
@@ -163,8 +157,8 @@ jQuery("#m2").click( function() {
 <body >
 <div id="content" style=" float:left; width: 100%;">
   <form  method="post"  enctype="multipart/form-data">
-	<input id="m1" type="button" value="삭제" />
-    <input id="m2" type="button" value="승인" />
+<!-- 	<input id="m1" type="button" value="삭제" /> -->
+<!--     <input id="m2" type="button" value="승인" /> -->
     <table id = "grid"></table>
     <div id = "pager"></div>
 <script type="text/javascript">
@@ -193,36 +187,6 @@ $(function (){
   $("content").css("width", "100%");
 });
 </script>
-   <table border=1    WIDTH="635"   bgcolor="#EAEAEA">
-  <tr>
-  <td>
-    사업자번호 : <input id=ono type="text" name="ono">
-  </td>
-  <td>
-    점소명 : <input id=oname type="text" name="oname">
-  </td> 
-  </tr>
-  <tr>
-  <td>
-    전화 : <input id=oTel type="text" name="oTel">
-  </td>
-  <td>
-    우편번호 : <input id=oPostNum type="text" name="oPostNum">
-  </td> 
-  </tr>
-  <tr>
-  <td>
-    팩스 : <input id=oFax type="text" name="oFax">
-  </td>
-  <td>
-    주소 : <input id=oAddr type="text" name="oAddr">
-  </td> 
-  </tr>
-</table>
-<input id="m2" type="button" value="승인" />
-    <input id="updateBtn" type="button" value="변경"  />
-    <input id="delBtn" type="button" value="삭제"    onclick="deleteFunction( )" />
-    <input id="cancelBtn" type="reset" value="취소" />
   </form>
 </div>
 </body>
