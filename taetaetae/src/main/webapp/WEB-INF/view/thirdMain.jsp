@@ -103,7 +103,7 @@
           
         </div><!--/span-->
         <div class="span9">
-      <iframe src="office/approval.do"  name=ce width=2000 height=600 style="border-width:0px; border-color:#7CCE76; border-style:solid;"></iframe>
+      <iframe src="office/approval.do"  name=ce width=90% height=600 style="overflow-x: hidden; border-width:0px; border-color:#ffffff; border-style:solid;"></iframe>
         <div class="row-fluid">
           </div><!--/row-->
         </div><!--/span-->
