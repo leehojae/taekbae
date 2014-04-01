@@ -281,8 +281,13 @@ public class MemberControl {
 	
 	@RequestMapping(value="/ajax/addMember", method=RequestMethod.POST, 
 			produces="application/json")
-	public String ajaxAdd(Member member) throws Exception {
+	public String ajaxAdd(Member member, @RequestParam("photoFile") MultipartFile photoFile) throws Exception {
 		try {
+			
+			member.setPhoto(saveFile(photoFile));
+			member.toString();
+			System.err.println(member.toString());
+			System.err.println(member.getPhoto());
 			memberDao.insert(member);
 			
 			if(  member.getRank().equals("3") )
