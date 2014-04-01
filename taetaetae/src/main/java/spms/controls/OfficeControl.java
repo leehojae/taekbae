@@ -289,6 +289,7 @@ public class OfficeControl {
 	public String approvalOffice(int no) throws Exception {
 		try {
 			officeDao.approvalOffice(no);
+			memberDao.rankUpdate(no);
 			return "redirect:/office/nonOfficeList.do";
 			
 		} catch (Throwable ex) {
