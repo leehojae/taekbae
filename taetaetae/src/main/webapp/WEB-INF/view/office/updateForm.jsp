@@ -171,6 +171,7 @@
            
 <div class="form-group">
 <div class="col-lg-10 col-lg-offset-2">
+<button type="button" class="btn btn-primary"  onclick="approvalOffice()">승인</button>
 <button class="btn btn-default" type="submit">수정</button>
 <button type="button" class="btn btn-primary"  onclick="deleteOffice()">삭제</button>
 <span class="btn btn-warning btn-sm tooltip-warning" data-rel="tooltip" data-placement="left" title="Left Warning"   onclick="back( )">목록</span>
@@ -189,12 +190,20 @@ function back(){
 	window.history.back(); 
 }
 function deleteOffice()  {
-	alert(${office.officeNum});
       var answer  = confirm( '삭제 하시겠습니까?' );
     if( answer ) 
     {
       
       location.href = 'ajax/deleteOffice.do?no=' + ${office.officeNum};
+    } 
+      return;
+    }
+function approvalOffice()  {
+      var answer  = confirm( '승인 하시겠습니까?' );
+    if( answer ) 
+    {
+      
+      location.href = 'ajax/approvalOffice.do?no=' + ${office.officeNum};
     } 
       return;
     }

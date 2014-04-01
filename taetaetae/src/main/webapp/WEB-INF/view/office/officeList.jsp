@@ -158,9 +158,6 @@ $(function (){
   $("td").css("width", "100%");
 });
 </script>
-    <input id="updateBtn" type="button" value="변경"  />
-    <input id="delBtn" type="button" value="삭제"    onclick="deleteFunction( )" />
-    <input id="cancelBtn" type="reset" value="취소" />
   </form>
 </div>
 </body>
