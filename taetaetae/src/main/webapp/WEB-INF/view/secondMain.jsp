@@ -383,7 +383,8 @@ function testMethod() {
                 </thead>
                 <tbody id="tableData">
                   <%
-                    Class.forName("com.mysql.jdbc.Driver");
+                  String no = request.getParameter("no");  
+                  Class.forName("com.mysql.jdbc.Driver");
                     Connection conn = null;
                     PreparedStatement pstmt = null;
                     ResultSet rs = null;
@@ -393,10 +394,13 @@ function testMethod() {
                       String dbUser = "spms";
                       String dbPwd = "spms";
                       conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPwd);
-
+                      String  selectQuery =   "SELECT a.MNAME, a.OFFICE_NUM,   a.OFFICE_NUM, b.CAR_NUM, c.TASK_AREA FROM MEMBERS a, CARS b, AREAS c WHERE a.MNO = b.MNO AND a.MNO=c.MNO AND a.OFFICE_NUM=  " + no;
+                     	 System.out.println(  " selectQuery  : " +  selectQuery );
                       pstmt = conn
-                          .prepareStatement("SELECT a.MNAME, b.CAR_NUM, c.TASK_AREA FROM MEMBERS a, CARS b, AREAS c WHERE a.MNO = b.MNO AND a.MNO=c.MNO");
+                          .prepareStatement( selectQuery);
                       rs = pstmt.executeQuery();
+                     
+                     
                       int count = 0;
                       while (rs.next()) {
                         count++;
