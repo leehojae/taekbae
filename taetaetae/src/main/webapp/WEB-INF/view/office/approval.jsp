@@ -95,7 +95,10 @@
 }
     
     
-    
+body {
+	overflow-x: auto;
+	overflow-x: hidden;
+}
       
     </style>
 <!--     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
