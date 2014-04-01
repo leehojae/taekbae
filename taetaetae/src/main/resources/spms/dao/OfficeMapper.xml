@@ -63,6 +63,11 @@
   <delete id="delete" parameterType="int">
     delete from OFFICE where OFFICE_NUM=#{no}
   </delete>
+  <update id="approvalOffice" parameterType="int">
+       update OFFICE set  APPROVAL= 1
+    
+    where OFFICE_NUM=#{no}
+  </update>
   <delete id="approval" parameterType="int">
       update OFFICE set  APPROVAL= 1
     
