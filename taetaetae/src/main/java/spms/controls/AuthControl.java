@@ -68,7 +68,7 @@ public class AuthControl {
 			}
 			
 			else if (member.getRank().equals("2")){
-				return "redirect:/secondMain.do";
+				return "redirect:/secondMain.do?no=" +member.getOfficeNum() ;
 			} 
 			
 			else if (member.getRank().equals("3")){
