@@ -285,13 +285,13 @@ public class MemberControl {
 			
 			if(  member.getRank().equals("3") )
 			{
-				return "redirect:/successAddOffice.jsp";
+				return "redirect:/member/memberList.do";
 			}
 			return "redirect:/member/memberList.do";
 //			return "redirect:../list.do";
 			
 		} catch (Throwable ex) {
-			return "redirect:/failMember.jsp";
+			return "redirect:/member/memberList.do";
 		}
 	}
 
