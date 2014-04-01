@@ -169,10 +169,26 @@ public class OfficeControl {
 	public String  update(Office office) throws Exception {
 		try {
 			 officeDao.update(office);
-			 return "redirect:/office/officeList.do";
+			
+//			 Office office1  =  officeDao.selectOne(   office.getOfficeNum() ).;
+//			 Office office1  =  officeDao.selectOne(office.getOfficeNum());
+			 String office1  =  officeDao.selectOne(office.getOfficeNum()).getApproval();
+			 
+			 
+			 if(   office1.equals("1") )
+			 {
+				 return "redirect:/office/officeList.do";
+			 }
+			 return "redirect:/office/nonOfficeList.do";
+		
 			
 		} catch (Throwable ex) {
-			return "redirect:/office/officeList.do";
+			String office1  =  officeDao.selectOne(office.getOfficeNum()).getApproval();
+			 if(   office1.equals("1") )
+			 {
+				 return "redirect:/office/officeList.do";
+			 }
+			 return "redirect:/office/nonOfficeList.do";
 		}
 	}
 	@RequestMapping(value="/ajax/approval",
@@ -201,13 +217,10 @@ public class OfficeControl {
 	public String ajaxAdd(Office office) throws Exception {
 		try {
 			
-			
-			 //String ceo  =new String(office.getOfficeCEO().getBytes("8859_1"),"EUC-KR ");
 
 			 String ceo = office.getOfficeCEO();
 			
 			
-			//String url  =  "redirect:/addedOffice.jsp?officeName=" + office.getOfficeName() +  "&ceo="+ ceo+"&no="+ office.getOfficeNum();
 			String url  =  "redirect:/office/read.do?no="+ office.getOfficeNum();
 			System.out.println("1  :" +  office.getOfficeName());
 			System.out.println("2  :" +  office.getOfficeName());
@@ -262,6 +275,21 @@ public class OfficeControl {
 		try {
 			officeDao.delete(no);
 			return "redirect:/office/officeList.do";
+			
+		} catch (Throwable ex) {
+			if( excelControl.staticId == 0)
+			{
+				return "redirect:/failAccess.jsp";
+				
+			}
+			return "redirect:/office/officeList.do";
+		}
+	}
+	@RequestMapping(value="/ajax/approvalOffice", produces="application/json")
+	public String approvalOffice(int no) throws Exception {
+		try {
+			officeDao.approvalOffice(no);
+			return "redirect:/office/nonOfficeList.do";
 			
 		} catch (Throwable ex) {
 			if( excelControl.staticId == 0)
