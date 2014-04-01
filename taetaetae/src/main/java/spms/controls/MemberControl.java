@@ -290,7 +290,8 @@ public class MemberControl {
 			return "redirect:/member/memberList.do";
 //			return "redirect:../list.do";
 			
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
+			ex.printStackTrace();
 			return "redirect:/member/memberList.do";
 		}
 	}
