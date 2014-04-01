@@ -16,23 +16,33 @@ public class Member implements Serializable {
 	private int  officeNum;
 	protected String 		officeName;
 	protected String 		email;
-	protected String 		addresss;
+	protected String 		address;
 	
+	
+	public int getOfficeNum() {
+		return officeNum;
+	}
+	public Member setOfficeNum(int officeNum) {
+		this.officeNum = officeNum;
+		return this;
+	}
 	
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public Member setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 
-	public String getAddresss() {
-		return addresss;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAddresss(String addresss) {
-		this.addresss = addresss;
+	public Member setAddress(String address) {
+		this.address = address;
+		return this;
 	}
 
 	
@@ -59,13 +69,7 @@ public class Member implements Serializable {
 		
 	}
 	
-	public int getOfficeNum() {
-		return officeNum;
-	}
-	public Member setOfficeNum(int officeNum) {
-		this.officeNum = officeNum;
-		return this;
-	}
+	
 	public String getPersonalNumber() {
 		return personalNumber;
 	}
