@@ -103,11 +103,29 @@
 /*   font-size: 12px; */
 /* } */
 #updateBtn {
-  width: 20px;
-margin-right: 0px;
-display: inline;
-vertical-align: middle;
-line-height: 1px;
+position: relative;
+-moz-opacity: 0;
+filter: alpha(opacity: 0);
+z-index: 2;
+opacity: 0;
+width: 100%;
+left: 0px;
+display: none;
+}
+
+
+#fakeBtn {
+float: right;
+z-index: 1;
+}
+#addFile{
+float: left;
+width: 50%;
+}
+#cancelFile{
+float: right;
+width: 50%;
+text-align: left;
 }
       
     </style>
@@ -163,6 +181,77 @@ $("#updateBtn").change(function(){
   readURL(this);
 });
 </script>
+
+
+
+<script>
+var blank="http://localhost:9999/taetaetae/images/memberPhoto/bg_noimage_1.gif";
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#mPhoto')
+            .attr('src', e.target.result);
+            //.height(200);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+    else {
+      var img = input.value;
+        $('#mPhoto').attr('src',img);
+        //$('#mPhoto').attr('src',img).height(200);
+    }
+    //$("#x").show().css("margin-right","10px");
+}
+$(document).ready(function() {
+  $("#x").click(function() {
+    $("#img_prev").attr("src",blank);
+    $("#x").hide();  
+  });
+});
+</script>
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+           <style type="text/css">
+        div.fileinputs {
+            position: relative;
+            width: 20px;
+        }
+
+        div.fakefile {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 1;
+        }
+
+        div.fakefile input[type=button] {
+            /* enough width to completely overlap the real hidden file control */
+            cursor: pointer;
+            width: 148px;
+        }
+
+        div.fileinputs input.file {
+            position: relative;
+            text-align: right;
+            -moz-opacity:0 ;
+            filter:alpha(opacity: 0);
+            opacity: 0;
+            z-index: 2;
+        }
+        
+#addFile {
+  display: inline-block;
+  width: 50%;
+  float: left;
+}
+        
+        
+    </style>
   
 </head>
 <body class="tab-content profile-edit-tab-content">
@@ -193,7 +282,8 @@ $("#updateBtn").change(function(){
                   </div>
                 </div>
           
-          
+
+
           
            <div id="edit-password" class="tab-pane">
 
@@ -230,9 +320,15 @@ $("#updateBtn").change(function(){
 </div>
 
 
-
-<input id="updateBtn" type="file"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" />
+<div id="fileInputs">
+<div id="addFile">
+<input id="updateBtn" type="file" name="photoFile" class="btn btn-5 btn-5a icon-cog"  value="사진등록" onchange="readURL(this);" />
+<input id="fakeBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="document.getElementById('updateBtn').click();"/>
+</div>
+<div id="cancelFile">
 <input id="cancelBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="등록취소" onclick="initPhoto()" />
+</div>
+</div>
 </div>
           
             <div class="vspace-xs"></div>
