@@ -233,11 +233,11 @@ $(function (){
   $("content").css("width", "100%");
 });
 </script>
-<input class="btn btn-default" id="m1" type="button" value="삭제" />
-<input class="btn btn-default" id="addBtn" type="submit" value="등록"   onclick="addFunction()" />
 <table id = "grid"></table>
 <div id = "pager"></div>
 <input id="mno" name="mno" maxlength="15" value="0" type="hidden">
+<input class="btn btn-default" id="m1" type="button" value="삭제" />
+<input class="btn btn-default" id="addBtn" type="submit" value="등록"   onclick="addFunction()" />
 
 </body>
 
