@@ -82,7 +82,7 @@
   <update id="rankUpdate" parameterType="int">
     update MEMBERS set 
       RANK= 2
-    where OFFICE_NUM=#{no}
+    where OFFICE_NUM=#{no}  and RANK= 3
   </update>
   
   <select id="selectByIdPassword" 
