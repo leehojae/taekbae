@@ -294,7 +294,7 @@ function telChk(obj) {
 
                 <div class="col-sm-8">
                   <input class="col-xs-12 col-sm-10" type="text"
-                     name='officeFax'    id='officeFax'   placeholder="팩스번호" onblur="telChk(this)" />
+                     name='officeFax' id='officeFax' placeholder="팩스번호" onblur="telChk(this)" />
                 </div>
               </div>
           </div>

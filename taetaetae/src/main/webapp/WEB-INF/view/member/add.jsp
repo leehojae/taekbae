@@ -102,7 +102,13 @@
 /*   line-height: 24px; */
 /*   font-size: 12px; */
 /* } */
-    
+#updateBtn {
+  width: 20px;
+margin-right: 0px;
+display: inline;
+vertical-align: middle;
+line-height: 1px;
+}
       
     </style>
 <!--     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
@@ -140,7 +146,23 @@
     
     <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-    
+<script type="text/javascript">
+function readURL(input) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      
+      reader.onload = function (e) {
+          $('#mPhoto').attr('src', e.target.result);
+      }
+      
+      reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#updateBtn").change(function(){
+  readURL(this);
+});
+</script>
   
 </head>
 <body class="tab-content profile-edit-tab-content">
@@ -156,7 +178,6 @@
         
         
          <h4 class="header blue bolder smaller">Office Info</h4>
-         <input type=hidden    id=officeNum name = "officeNum" value=" ${loginUser.officeNum}">
           <input type="hidden" name="rank" value="4">
                 
                 <div class="form-group">
@@ -207,8 +228,11 @@
 <div id ="photoZone">
 <img id="mPhoto" name="photo" src="../images/memberPhoto/bg_noimage_1.gif" style="width: 161px; height: 161px;"><br>
 </div>
-<input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="photoUploadPopup()" />
-<input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="등록취소" onclick="initPhoto()" />
+
+
+
+<input id="updateBtn" type="file"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" />
+<input id="cancelBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="등록취소" onclick="initPhoto()" />
 </div>
           
             <div class="vspace-xs"></div>

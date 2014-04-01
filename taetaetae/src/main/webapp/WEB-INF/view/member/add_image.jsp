@@ -5,6 +5,7 @@
 <title>SDMS 직원 증명사진  :: 이미지 첨부</title>
 <link rel="stylesheet" href="http://t.static.blog.naver.net/mylog/versioning/common/css/paper-140562.css" type="text/css">
 <script type="text/javascript" src="http://t.static.blog.naver.net/mylog/versioning/add_image-832127.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 <script language="javascript">
 	//added by mj.chong 2006. 10. 16, IE7
 	function resizeWindow() {
@@ -15,6 +16,7 @@
 		Frm = document.forms[0];
 
 		
+		var fileName = window.opener.document.getElementById("fileName");
 		var mPhoto = window.opener.document.getElementById("mPhoto");
 		var photo = window.opener.document.getElementById("photoZone");
 		//mPhoto.value = document.getElementById("pathTextViewer").value;
@@ -46,13 +48,29 @@
 			alert("이미지파일 (.gif, .jpg, .png) 만 업로드 가능합니다.");
 			return false;
 		}
- 		Frm.action = "setPhoto.do";
+/*  		Frm.action = "setPhoto.do"; */
  		
-		Frm.submit();
+ 		console.log(Frm);
+ 		
+ 		console.log(Frm.file1);
+ 		
+ 		var file = Frm.file1
+ 		
+ 		var formData = new FormData();
+ 		formData.append("file1", file);
+
+ 		var xhr = new XMLHttpRequest();
+ 		xhr.open("POST", "setPhoto.do", false);
+ 		xhr.setRequestHeader("enctype", "multipart/form-data");
+ 		xhr.send(formData);
+ 		
+ 		
+/* 		Frm.submit(); */
 		
 		
+		/* fileName.value; */
 		
-		window.close();
+/* 	  window.close(); */
 		
 	}
 
@@ -65,6 +83,7 @@
 </head>
 
 <body onload="resizeWindow();SetFilezise();">
+
 <div id="pop_wrap">     
 	<form name="FileFrm" enctype="multipart/form-data" method="post">
 	
@@ -86,7 +105,8 @@
 	
 	
 			<span><input type="file" name="file1" onchange="$('pathTextViewer').value=this.value"></span>
-			<input type="text" id="pathTextViewer" class="text" readonly="" value=""> <img src="http://blogimgs.naver.net/imgs/btn_fnd.gif" width="61" height="23" alt="찾아보기">
+			<input type="text" id="pathTextViewer" class="text" readonly="" value=""> 
+			<img src="http://blogimgs.naver.net/imgs/btn_fnd.gif" width="61" height="23" alt="찾아보기">
 		</div>
 		<p><em>500K</em>미만의 파일만 등록할 수 있습니다. (파일명은 영문,숫자만 가능)<br><span>영문, 숫자가 아닐경우 이미지가 안보일 수 있습니다.</span></p>
 		
