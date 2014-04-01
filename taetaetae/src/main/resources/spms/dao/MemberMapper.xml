@@ -27,8 +27,9 @@
 						
 						(
 			            case  m.RANK
-						when 1 then '사장' 
-					    when 2 then '사무'
+						when 1 then '시스템관리자' 
+					    when 2 then '영업소관리자 '
+					    when 3 then '영업소관리자 '
 					    when 3 then '배송기사'
 					    
 					    else '기타' end
