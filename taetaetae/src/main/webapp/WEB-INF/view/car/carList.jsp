@@ -14,6 +14,10 @@
 
 <script>
 
+
+
+
+
 $(window.document).ready(function() {
 	
     $("#grid").jqGrid({
@@ -31,10 +35,11 @@ $(window.document).ready(function() {
         loadonce : true,                // loadonce : rowNum 설정을 사용하기 위해서 true로 지정한다.
         rowList : [10, 20, 30],       // rowList : rowNum을 선택할 수 있는 옵션을 지정한다.
 
-        colNames : [ 'no','번호', '차종' ,  '기사'   ],
+        colNames : [ 'no','번호', '차종' ,  '담당기사'   ],
         colModel : [
                     
-                    { name : 'no',         index : 'no',         width : 70,    align : 'center' },
+                    { name : 'no',         index : 'no',         width : 70,    align : 'center'  },
+//                     { name : 'no',         index : 'no',         width : 70,    align : 'center'  , hidden : true},
                     { name : 'carNumber',         index : 'officeName',         width : 140,    align : 'center' },
                     { name : 'carType',         index : 'name',         width : 270,    align : 'center' },
                     { name : 'driver',         index : 'driver',         width : 130,    align : 'center' },
@@ -56,6 +61,10 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 	$("#cNumber").val($rowData['carNumber']);
 	$("#cType").val($rowData['carType']);
 	$("#cDriver").val($rowData['driver']);
+	
+	
+	
+	
 
 	
 }	
@@ -119,6 +128,13 @@ function deleteFunction()
 	}	
 	return;
 }
+function myFunction()
+{
+	//myWin = window.open('../member/memberList.do', 'popwindow', 'width=300,height=300');
+	myWin = window.open('../member/memberPopup.do', 'popwindow', 'width=300,height=450');
+	frm.cno.focus();
+	return;
+}
 
 </script>
 <style type="text/css">
@@ -142,7 +158,7 @@ body {
 
 
 
-<form  method="post"  enctype="multipart/form-data">
+<form  method="post"   name="frm" enctype="multipart/form-data">
 <table id = "grid" style="width: 100%;"></table>
 <div id = "pager" style="width: 100%;"></div>
 <script type="text/javascript">
@@ -187,8 +203,14 @@ $(function (){
 </tr>
 <tr>
 <td><div style="width : 64px; display: inline-block; vertical-align: middle;">차종 : </div><input id=cType type="text" name="cType" style="margin: 0px;"></td>
-<td><div style="width : 64px; display: inline-block; vertical-align: middle;">기&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp사 : </div><input id=cDriver type="text" name="cDriver" style="margin: 0px;"></td>
+<td><div style="width : 64px; display: inline-block; vertical-align: middle;">기&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp사 : 
+</div><input id=cDriver type="text" name="cDriver" style="margin: 0px;"   onfocus="myFunction()" ></td>
 </tr>
+<!-- <tr> -->
+<!-- <td><div style="width : 64px; display: inline-block; vertical-align: middle;">차ddd종 : </div> -->
+<!-- <input id=memberNo  type="text" name="memberNo" style="margin: 0px;"></td> -->
+
+<!-- </tr> -->
 </table>
 <input id="addBtn" class="btn btn-default" type="button" value="등록">
 <input id="updateBtn" class="btn btn-default" type="button" value="변경" class="view">
