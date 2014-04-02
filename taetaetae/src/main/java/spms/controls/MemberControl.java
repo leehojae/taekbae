@@ -91,6 +91,11 @@ public class MemberControl {
 		
 		return "member/searchCompany";
 	}
+	@RequestMapping("/memberPopup")
+	public String memberPopup( ) throws Exception {
+		
+		return "member/memberPopup";
+	}
 	
 	
 	
