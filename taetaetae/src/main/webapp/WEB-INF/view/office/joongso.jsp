@@ -82,8 +82,13 @@
     <!-- 파비콘과 앱 아이콘 -->
    <link rel="shortcut icon" href="../icon/favicon.png">
    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
-
-
+<!-- <script type="text/javascript">
+function hello() {
+	alert("가입을 축하합니다!");
+	location.href
+}
+</script> -->
+</head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
    <div class="navbar-inner">
@@ -447,7 +452,8 @@ SDMS 위치정보 이용약관(선택)
 <div class="form-group" >
 <div class="col-md-5 col-md-offset-7">
 <button class="btn btn-default">취소</button>
-<button type="submit" class="btn btn-primary">확인</button>
+<a href="/taetaetae/index.html" class="btn btn-primary" onclick="alert('가입을 축하합니다!')">확인</a>
+<!-- <button type="button" class="btn btn-primary" onclick="alert('가입을 축하합니다!')">확인</button> -->
 <!-- <span class="btn btn-sm" data-rel="tooltip" title="Default">Default</span> -->
 <!-- <span class="btn btn-warning btn-sm tooltip-warning" data-rel="tooltip" data-placement="left" title="Left Warning">Left</span> -->
 <!-- <span class="btn btn-success btn-sm tooltip-success" data-rel="tooltip" data-placement="right" title="Right Success">Right</span> -->

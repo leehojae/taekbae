@@ -268,6 +268,7 @@ $(document).ready(function() {
         
          <h4 class="header blue bolder smaller">Office Info</h4>
           <input type="hidden" name="rank" value="4">
+          <input type="hidden" name="officeNum" value="${loginUser.officeNum}">
                 
                 <div class="form-group">
                     <label class="col-sm-4 control-label no-padding-right"

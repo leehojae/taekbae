@@ -48,7 +48,7 @@
 			alert("이미지파일 (.gif, .jpg, .png) 만 업로드 가능합니다.");
 			return false;
 		}
-/*  		Frm.action = "setPhoto.do"; */
+    Frm.action = "setPhoto.do";
  		
  		console.log(Frm);
  		
@@ -56,21 +56,11 @@
  		
  		var file = Frm.file1
  		
- 		var formData = new FormData();
- 		formData.append("file1", file);
-
- 		var xhr = new XMLHttpRequest();
- 		xhr.open("POST", "setPhoto.do", false);
- 		xhr.setRequestHeader("enctype", "multipart/form-data");
- 		xhr.send(formData);
  		
- 		
-/* 		Frm.submit(); */
+    Frm.submit();
 		
 		
-		/* fileName.value; */
-		
-/* 	  window.close(); */
+    window.close(); 
 		
 	}
 
@@ -79,6 +69,26 @@
 
 		document.FileFrm.attachAllsize.value = attachAllsize;
 	}
+	
+	function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#mPhoto')
+            .attr('src', e.target.result);
+            //.height(200);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+    else {
+      var img = input.value;
+        $('#mPhoto').attr('src',img);
+        //$('#mPhoto').attr('src',img).height(200);
+    }
+    //$("#x").show().css("margin-right","10px");
+}
 </script>
 </head>
 

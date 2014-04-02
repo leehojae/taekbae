@@ -275,7 +275,7 @@ function telChk(obj) {
 
                 <div class="col-sm-8">
                   <input class="col-xs-12 col-sm-10" type="text"
-                    id="form-field-addr" placeholder="대표회사주소" />
+                    id="form-field-addr" name="officeAddr" placeholder="대표회사주소" />
                 </div>
               </div>
               
@@ -285,7 +285,7 @@ function telChk(obj) {
 
                 <div class="col-sm-8">
                  <input class="col-xs-12 col-sm-10" type="text"
-                    id='officePostNum' name='officePostNum' placeholder="전화번호" onblur="telChk(this)"/>
+                    id='officeTel' name='officeTel' placeholder="전화번호" onblur="telChk(this)"/>
                 </div>
               </div>
                <div class="form-group">

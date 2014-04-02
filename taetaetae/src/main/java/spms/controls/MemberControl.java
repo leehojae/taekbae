@@ -68,7 +68,7 @@ public class MemberControl {
 	@RequestMapping(value="/updatePhoto",method=RequestMethod.POST)
 	public String updatePhoto(
 			Member member, 
-			@RequestParam("file1") MultipartFile photoFile,
+			@RequestParam("photoFile") MultipartFile photoFile,
 			Model model) throws Exception {
 		saveFile(photoFile);
 		
@@ -130,18 +130,31 @@ public class MemberControl {
 	}
 	
 	@RequestMapping(value="/update",method=RequestMethod.POST)
-  public String update(Member member, 
+  public String update(Member member, @RequestParam("photoFile") MultipartFile photoFile,  
   		Model model) throws Exception {
-		System.err.println(member);
-
-		int count = memberDao.update(member);
-//		if (count > 0) {
-//			model.addAttribute("message", "변경 성공입니다!");
-//		} else {
-//			model.addAttribute("message", "해당 번호의 회원 정보를 찾을 수 없습니다!");
-//		}
-		return "member/memberList";
-		//return "member/update";
+		try {
+			if (photoFile.getSize() != 0){
+				member.setPhoto(saveFile(photoFile));
+				
+			}else {
+				member.setPhoto(member.getPhoto());
+			}
+			member.toString();
+			System.err.println(member.toString());
+			System.err.println(member.getPhoto());
+			memberDao.update(member);
+			
+			if(  member.getRank().equals("3") )
+			{
+				return "redirect:/member/memberList.do";
+			}
+			return "redirect:/member/memberList.do";
+//			return "redirect:../list.do";
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return "redirect:/member/memberList.do";
+		}
   }
 //	
 //	@RequestMapping(value="/update",method=RequestMethod.POST)
@@ -278,6 +291,29 @@ public class MemberControl {
 	
 	
 	
+	
+	@RequestMapping(value="/ajax/addOfficeMember", method=RequestMethod.POST, 
+			produces="application/json")
+	public String ajaxAdd(Member member) throws Exception {
+		try {
+			
+			member.toString();
+			System.err.println(member.toString());
+			System.err.println(member.getPhoto());
+			memberDao.insert(member);
+			
+			if(  member.getRank().equals("3") )
+			{
+				return "redirect:/success.jsp";
+			}
+			return "redirect:/success.jsp";
+//			return "redirect:../list.do";
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return "redirect:/fail.jsp";
+		}
+	}
 	
 	@RequestMapping(value="/ajax/addMember", method=RequestMethod.POST, 
 			produces="application/json")

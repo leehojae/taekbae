@@ -95,7 +95,32 @@
   line-height: 24px;
   font-size: 12px;
 }
-    
+
+
+#updateBtn {
+position: relative;
+-moz-opacity: 0;
+filter: alpha(opacity: 0);
+z-index: 2;
+opacity: 0;
+width: 100%;
+left: 0px;
+display: none;
+}
+
+#fakeBtn {
+float: right;
+z-index: 1;
+}
+#addFile{
+float: left;
+width: 50%;
+}
+#cancelFile{
+float: right;
+width: 50%;
+text-align: left;
+}    
       
     </style>
 <!--     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
@@ -171,7 +196,7 @@ $(function(){
         <div id="edit-basic" class="tab-pane in active">
          <h4 class="header blue bolder smaller">Office Info(  ${loginUser.name} ) </h4>
          <input type=hidden  id=officeNum name = "officeNum" value=" ${loginUser.officeNum}">
-           <div class="form-group">
+<%--            <div class="form-group">
             <label for="select"
               class="col-sm-3 control-label no-padding-right">직책선택</label>
             <div class="col-sm-9">
@@ -182,7 +207,7 @@ $(function(){
               </select>
                <br> 
             </div>
-           </div>
+           </div> --%>
 <!--                 <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right"
               for="form-field-email">아이디</label>
@@ -218,15 +243,24 @@ $(function(){
                 </div>
               </div> -->
         
-          <h4 class="header blue bolder smaller">General</h4>
+<!--           <h4 class="header blue bolder smaller">General</h4> -->
 <div class="row">
 <div class="col-xs-12 col-sm-4" style="text-align: center">
 <div id ="photoZone">
 <img id="mPhoto" src="/taetaetae/files/${member.photo}" style="width: 161px; height: 161px;"><br>
 <input type="hidden" name="photo" value="${member.photo}">
 </div>
-<input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="photoUploadPopup()" />
-<input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="등록취소" onclick="initPhoto()" />
+<div id="fileInputs">
+<div id="addFile">
+<input id="updateBtn" type="file" name="photoFile" class="btn btn-5 btn-5a icon-cog"  value="사진등록" onchange="readURL(this);" />
+<input id="fakeBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="document.getElementById('updateBtn').click();"/>
+</div>
+<div id="cancelFile">
+<input id="cancelBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="등록취소" onclick="initPhoto()" />
+</div>
+</div>
+<!-- <input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="사진등록" onclick="photoUploadPopup()" />
+<input id="updateBtn" type="button"  class="btn btn-5 btn-5a icon-cog"  value="등록취소" onclick="initPhoto()" /> -->
 </div>
 
             <div class="vspace-xs"></div>
@@ -455,6 +489,26 @@ function formCheck() {
     alert("dwrewr");
   Frm.submit();
   
+}
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+          $('#mPhoto')
+          .attr('src', e.target.result);
+          //.height(200);
+      };
+
+      reader.readAsDataURL(input.files[0]);
+  }
+  else {
+    var img = input.value;
+      $('#mPhoto').attr('src',img);
+      //$('#mPhoto').attr('src',img).height(200);
+  }
+  //$("#x").show().css("margin-right","10px");
 }
 
 </script>

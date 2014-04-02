@@ -27,7 +27,7 @@
 
   <body>
 
-   <META HTTP-EQUIV="Refresh" CONTENT="3; URL=index.jsp">
+   <META HTTP-EQUIV="Refresh" CONTENT="3; URL=index.html">
    사업소 관리 등록이 실패되었습니다.
   </body>
 </html>
