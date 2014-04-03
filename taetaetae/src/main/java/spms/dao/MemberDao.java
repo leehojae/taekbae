@@ -7,6 +7,8 @@ import spms.vo.Member;
 
 public interface MemberDao {
 	public List<Member> selectList(int no) throws Exception;
+	public List<Member> carlessMember(int no) throws Exception;
+	public List<Member> carNessMember(int no) throws Exception;
 	public Member selectOne(int no) throws Exception;
 	public int rankUpdate(int no) throws Exception;
 	public Member searchid(String id) throws Exception;

@@ -9,6 +9,7 @@ public interface CarDao {
 	public Car selectOne(int no) throws Exception;
 	public int insert(Car car) throws Exception;
 	public int update(Car car) throws Exception;
+	public int updateMno(Car car) throws Exception;
 	public int delete(int no) throws Exception;
 }
 
