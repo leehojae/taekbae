@@ -39,7 +39,7 @@
 	
  		
 	 var getOfficeName = document.getElementById("search").innerHTML;
-	 alert(getOfficeName);
+	 
 		id.value = getOfficeName;
 		window.close();
 		

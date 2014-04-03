@@ -13,13 +13,13 @@
    </resultMap>
   
   <select id="selectList" resultMap="carResultMap">
-        select c.CAR_NUM,  c.CAR_TYPE,   c.CAR_Model,
-					(
-			            select  mname from members where  mno  =   c.MNO 
-						
-					) AS DRIVER,
-					 c.MNO  as no
-		from cars c 
+      select c.CAR_NUM,  c.CAR_TYPE,   c.CAR_Model,
+                    (
+                        select  mname from MEMBERS where  mno  =   c.MNO 
+                        
+                    ) AS DRIVER,
+                     c.MNO  as no
+        from CARS c 
     </select>
     
   
