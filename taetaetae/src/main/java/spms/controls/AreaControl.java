@@ -24,10 +24,10 @@ public class AreaControl {
 	@Autowired(required=false)
 	AreaDao areaDao;
 	
-	@RequestMapping(value="/add",method=RequestMethod.GET)
-	public String form() {
-		return "area/addForm";
-	}
+//	@RequestMapping(value="/add",method=RequestMethod.GET)
+//	public String form() {
+//		return "area/addForm";
+//	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String add(
@@ -81,6 +81,7 @@ public class AreaControl {
 			produces="application/json")
 	public Object ajaxUpdate(Area area) throws Exception {
 		try {
+			System.err.println(area.getMemberNo());
 			areaDao.update(area);
 			return new JsonResult().setResultStatus(JsonResult.SUCCESS);
 			

@@ -74,12 +74,31 @@ public class CarControl {
 	}
 
 	@RequestMapping(value = "/ajax/update", method = RequestMethod.POST, produces = "application/json")
-	public Object ajaxUpdate(Car car) throws Exception {
+	public Object ajaxUpdate(Car car, int no) throws Exception {
 		try {
-			carDao.update(car);
+			Car temp = new Car();
+			
+			
+			
+			if(  car.getMnoUpdate() != car.getNo() )
+			{
+				temp.setNo( car.getNo());
+				temp.setCarModel(car.getCarModel());
+				temp.setCarNumber(car.getCarNumber());
+				temp.setCarType(car.getCarType());
+				
+				carDao.delete(car.getMnoUpdate());
+				
+				carDao.insert(temp);
+			}
+			else{
+				carDao.update(car);
+			}
+			
 			return new JsonResult().setResultStatus(JsonResult.SUCCESS);
 
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
+			ex.printStackTrace();
 			return new JsonResult().setResultStatus(JsonResult.FAILURE)
 					.setError(ex.getMessage());
 		}

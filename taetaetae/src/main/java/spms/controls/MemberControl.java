@@ -96,6 +96,11 @@ public class MemberControl {
 		
 		return "member/memberPopup";
 	}
+	@RequestMapping("/memberPopupArea")
+	public String memberPopupArea( ) throws Exception {
+		
+		return "member/memberPopupArea";
+	}
 	
 	
 	
@@ -262,6 +267,34 @@ public class MemberControl {
 			
 			return new JsonResult().setResultStatus(JsonResult.SUCCESS) 
 					.setData(memberDao.selectList(mno ));
+			
+		} catch (Throwable ex) {
+			return new JsonResult().setResultStatus(JsonResult.FAILURE)
+					.setError(ex.getMessage());
+		}
+		
+	}
+	@RequestMapping(value="/ajax/carlessMember", produces="application/json")
+	public Object ajaxCarlessMember() throws Exception {
+		try {
+			int mno = excelControl.staticId;
+			
+			return new JsonResult().setResultStatus(JsonResult.SUCCESS) 
+					.setData(memberDao.carlessMember(mno ));
+			
+		} catch (Throwable ex) {
+			return new JsonResult().setResultStatus(JsonResult.FAILURE)
+					.setError(ex.getMessage());
+		}
+		
+	}
+	@RequestMapping(value="/ajax/carNessMember", produces="application/json")
+	public Object ajaxCarNessMember() throws Exception {
+		try {
+			int mno = excelControl.staticId;
+			
+			return new JsonResult().setResultStatus(JsonResult.SUCCESS) 
+					.setData(memberDao.carNessMember(mno ));
 			
 		} catch (Throwable ex) {
 			return new JsonResult().setResultStatus(JsonResult.FAILURE)
