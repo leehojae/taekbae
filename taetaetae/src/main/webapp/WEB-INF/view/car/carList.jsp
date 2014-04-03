@@ -12,11 +12,9 @@
 <script src = "../js/jquery.jqGrid.min.js" type = "text/javascript"></script>
 <script src = "../js/i18n/grid.locale-kr.js" type = "text/javascript"></script>
 
-<script>
 
 
-
-
+<script type="text/javascript">
 
 $(window.document).ready(function() {
 	
@@ -35,13 +33,13 @@ $(window.document).ready(function() {
         loadonce : true,                // loadonce : rowNum 설정을 사용하기 위해서 true로 지정한다.
         rowList : [10, 20, 30],       // rowList : rowNum을 선택할 수 있는 옵션을 지정한다.
 
-        colNames : [ 'no','번호', '차종' ,  '담당기사'   ],
+        colNames : [ 'no','차량번호', '차종' ,  '모델명'   , '담당기사'   ],
         colModel : [
                     
-                    { name : 'no',         index : 'no',         width : 70,    align : 'center'  },
-//                     { name : 'no',         index : 'no',         width : 70,    align : 'center'  , hidden : true},
-                    { name : 'carNumber',         index : 'officeName',         width : 140,    align : 'center' },
-                    { name : 'carType',         index : 'name',         width : 270,    align : 'center' },
+                    { name : 'no',         index : 'no',         width : 70,    align : 'center'  , hidden : true},
+                    { name : 'carNumber',         index : 'carNumber',         width : 140,    align : 'center' },
+                    { name : 'carType',         index : 'carType',         width : 270,    align : 'center' },
+                    { name : 'carModel',         index : 'carModel',         width : 270,    align : 'center' },
                     { name : 'driver',         index : 'driver',         width : 130,    align : 'center' },
                     ],
         jsonReader : {
@@ -57,55 +55,47 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
  
  $("#status").val("edit");
 	var $rowData = $(this).getRowData(rowid);
-	$("#cno").val($rowData['no']);
-	$("#cNumber").val($rowData['carNumber']);
-	$("#cType").val($rowData['carType']);
+	$("#carNumber").val($rowData['carNumber']);
+	$("#carType").val($rowData['carType']);
+	$("#carModel").val($rowData['carModel']);
 	$("#cDriver").val($rowData['driver']);
-	
-	
-	
-	
+	$("#mno").val($rowData['no']);
+	$("#mnoUpdate").val($rowData['no']);
 
-	
 }	
-
-    // navGrid() 메서드는 검색 및 기타기능을 사용하기위해 사용된다.
+// navGrid() 메서드는 검색 및 기타기능을 사용하기위해 사용된다.
     }).navGrid('#pager', {
         search : true,
         edit : true,
         add : true,
         del : true
     });
-    
-    
-    
-	
 	  
     $("#addBtn").click( function() {
     	$.ajax( 'ajax/add.do', {
     		   type: 'POST',
 			data: {
+
 				no : $('#mno').val(),
-				carNumber : $('#mname').val(),
-				carLoad: $('#mid').val()
+				carNumber : $('#carNumber').val(),
+				carModel: $('#carModel').val(),
+				carType: $('#carType').val(),
+				driver: $('#cDriver').val()
 			},
-			success: function(members){
+			success: function(car){
 				location.href = 'carList.do';
 	}});
 		
 }
-   
     
     );
+    $("#delBtn").click( function() {
     
-    
-    $("#updateBtn").click( function() {
-    	$.ajax( 'ajax/update.do', {
+    	$.ajax( 'ajax/delete.do', {
     		   type: 'POST',
 			data: {
-				no : $('#mno').val(),
-				carNumber : $('#mname').val(),
-				carLoad: $('#mid').val()
+
+				no : $('#mno').val()
 				
 			},
 			success: function(car){
@@ -113,30 +103,30 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 	}});
 		
 }
-   
-    );
     
+    );
+    $("#updateBtn").click( function() {
+    
+    	$.ajax( 'ajax/update.do', {
+    		   type: 'POST',
+			data: {
+
+				no : $('#mno').val(),
+				carNumber : $('#carNumber').val(),
+				carModel: $('#carModel').val(),
+				carType: $('#carType').val(),
+				mnoUpdate: $('#mnoUpdate').val()
+				
+			},
+			success: function(car){
+				location.href = 'carList.do';
+	}});
+}
+    );
 });
 
-
-function deleteFunction()
-{
-	var answer  = confirm( '삭제 하시겠습니까?' );
-	if( answer ) 
-	{
-		location.href = 'ajax/delete.do?no=' + $('#mno').val();
-	}	
-	return;
-}
-function myFunction()
-{
-	//myWin = window.open('../member/memberList.do', 'popwindow', 'width=300,height=300');
-	myWin = window.open('../member/memberPopup.do', 'popwindow', 'width=300,height=450');
-	frm.cno.focus();
-	return;
-}
-
 </script>
+
 <style type="text/css">
 .ui-pg-input {
   width: 20px;
@@ -158,7 +148,7 @@ body {
 
 
 
-<form  method="post"   name="frm" enctype="multipart/form-data">
+<form  method="post"   name="frm"  id="frm"   onSubmit="formCheck();return false">
 <table id = "grid" style="width: 100%;"></table>
 <div id = "pager" style="width: 100%;"></div>
 <script type="text/javascript">
@@ -198,24 +188,32 @@ $(function (){
 
 <table class="table">
 <tr>
-<td><div style="width : 64px; display: inline-block; vertical-align: middle;">번호 : </div><input id=cno type="text" name="cno" style="margin: 0px;"></td>
-<td><div style="width : 64px; display: inline-block; vertical-align: middle;">차량번호 : </div><input id=cNumber type="text" name="cNumber" style="margin: 0px;"></td>	
+<td><div style="width : 64px; display: inline-block; vertical-align: middle;">차량번호  : </div><input id=carNumber type="text" name="cNumber" style="margin: 0px;"></td>
+<td><div style="width : 64px; display: inline-block; vertical-align: middle;">모델 : </div><input id=carModel type="text" name="carModel" style="margin: 0px;"></td>	
 </tr>
 <tr>
-<td><div style="width : 64px; display: inline-block; vertical-align: middle;">차종 : </div><input id=cType type="text" name="cType" style="margin: 0px;"></td>
+<td><div style="width : 64px; display: inline-block; vertical-align: middle;">차종 : </div><input id=carType type="text" name="carType" style="margin: 0px;"></td>
 <td><div style="width : 64px; display: inline-block; vertical-align: middle;">기&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp사 : 
 </div><input id=cDriver type="text" name="cDriver" style="margin: 0px;"   onfocus="myFunction()" ></td>
 </tr>
-<!-- <tr> -->
-<!-- <td><div style="width : 64px; display: inline-block; vertical-align: middle;">차ddd종 : </div> -->
-<!-- <input id=memberNo  type="text" name="memberNo" style="margin: 0px;"></td> -->
-
-<!-- </tr> -->
+<tr>
 </table>
-<input id="addBtn" class="btn btn-default" type="button" value="등록">
+<input id=idDD  type="hidden" name="idDD" style="margin: 0px;">
+<input id=mno  type="hidden" name="mno" style="margin: 0px;">   
+<input id=mnoUpdate  type="hidden" name="mnoUpdate" style="margin: 0px;">   
+ <input  id="addBtn" class="btn btn-default"   type="button"   value="등록"  >
 <input id="updateBtn" class="btn btn-default" type="button" value="변경" class="view">
-<input id="delBtn" class="btn btn-default" type="button" value="삭제"  onclick="deleteFunction()" />
+ <input  id="delBtn"  class="btn btn-default"   type="button"   value="삭제" onclick="deleteFunction()">
 <input id="cancelBtn" class="btn btn-default" type="reset" value="취소">
 </form>
 </body>
+<script type="text/javascript">
+function myFunction()
+{
+	myWin = window.open('../member/memberPopup.do', 'popwindow', 'width=300,height=450');
+	frm.carNumber.focus();
+	return;
+}
+
+</script>
 </html>
