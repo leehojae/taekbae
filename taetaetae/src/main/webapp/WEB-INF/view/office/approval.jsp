@@ -139,7 +139,7 @@ body {
 </head>
 <body style="padding-top: 0px;">
 <!--  -------------------------------------------------사용자 정보 입력 1------------------------------------------------- -->
-    <form class="form-horizontal" method="post"     action="../member/ajax/addMember.do"   >
+    <form class="form-horizontal" method="post"     action="ajax/updateOfficeDetail.do"   >
         <h4 class="header blue bolder smaller">&nbsp;&nbsp;Office</h4>
          <input type="hidden" name="rank" value="3">
            <input type="hidden" id="name" name="name" class="a" type="text"     value='${office.officeName}'  maxlength="100">
