@@ -47,6 +47,23 @@
 		;
 	</select>
 	
+	<select id="carlessMember"     parameterType="int"   resultMap="memberResultMap">
+	select t1.mno as no, t1.mname as name   ,  t1.rank as rank   , t1.ID as id  
+from members t1 left outer join cars t2 using (MNO)
+where t1.rank=4 and t1.OFFICE_NUM = (select office_num from members where mno= #{no}) and t2.mno is null;
+	
+	
+<!-- 		select t1.mno as no , t1.mname as name   , t1.ID as id   -->
+<!-- 		from members t1 left outer join cars t2 using (MNO) -->
+<!-- 		where t1.rank=4 and t1.OFFICE_NUM = (select office_num from members where mno=   #{no} ) and t2.mno is null; -->
+	</select>
+	
+	<select id="carNessMember"     parameterType="int"   resultMap="memberResultMap">
+		select t1.mno as no , t1.mname as name   , t1.ID as id  
+		from members t1 left outer join cars t2 using (MNO)
+		where t1.rank=4 and t1.OFFICE_NUM = (select office_num from members where mno=   #{no} ) and t2.mno is not null;
+	</select>
+	
 	<select id="selectOne" parameterType="int" resultMap="memberResultMap">
     select MNO,MNAME,ID, PWD,TEL,PERSONAL_NO,RANK,PHOTO, OFFICE_NUM
     from MEMBERS

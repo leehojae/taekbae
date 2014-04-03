@@ -5,21 +5,24 @@
 <mapper namespace="spms.dao.CarDao">
   <resultMap type="car" id="carResultMap">
     <id     property="no"           column="MNO"/>
+    <id     property="mnoUpdate"           column="MNOUPDATE"/>
     <result property="carNumber"        column="CAR_NUM"/>
-    <result property="carLoad"        column="CAR_LOAD"/>
+    <result property="carModel"        column="CAR_Model"/>
     <result property="carType"    column="CAR_TYPE"/>
     <result property="driver"    column="DRIVER"/>
    </resultMap>
   
   <select id="selectList" resultMap="carResultMap">
-        select c.CAR_NUM,c.CAR_LOAD,c.CAR_TYPE,
+        select c.CAR_NUM,  c.CAR_TYPE,   c.CAR_Model,
 					(
-			            select  mname from members where  mno  =   c.mno 
+			            select  mname from members where  mno  =   c.MNO 
 						
 					) AS DRIVER,
-					 c.mno as no
+					 c.MNO  as no
 		from cars c 
     </select>
+    
+  
     
     <select id="selectOne" parameterType="int" resultMap="carResultMap">
     select MNO,CAR_NUM,CAR_LOAD,CAR_TYPE
@@ -28,21 +31,40 @@
   </select>
   
   <delete id="delete" parameterType="int" >
-    delete from CARS where CAR_NUM=#{carNumber}
+    delete from CARS where MNO=#{value}
   </delete>
   
   <insert id="insert" parameterType="car" >
-    INSERT INTO CARS(MNO,CAR_NUM,CAR_LOAD,CAR_TYPE) 
-    VALUES(#{no},#{carNumber},#{carLoad},#{carType})
+    INSERT INTO CARS(
+    MNO,
+    CAR_NUM,
+    CAR_Model,
+    CAR_TYPE
+    ) 
+    VALUES(
+    #{no},
+    #{carNumber},
+    #{carModel},
+    #{carType}
+    )
   </insert>
   
   <update id="update" parameterType="car" >
     update CARS set 
       MNO=#{no},
       CAR_NUM=#{carNumber},
-      CAR_LOAD=#{carLoad},
+      CAR_Model=#{carModel},
       CAR_TYPE=#{carType}
-    where CAR_NUM=#{carNumber}
+    where  MNO=#{no}
+  </update>
+  
+  <update id="updateMno" parameterType="car" >
+    update CARS set 
+      MNO=#{mnoUpdate},
+      CAR_NUM=#{carNumber},
+      CAR_Model=#{carModel},
+      CAR_TYPE=#{carType}
+    where  MNO=#{no}
   </update>
 </mapper>
 

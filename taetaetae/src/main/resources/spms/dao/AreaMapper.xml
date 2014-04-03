@@ -12,16 +12,16 @@
   </resultMap>
 	
 	<select id="selectList" resultMap="areaResultMap">
-	select a.AREA_NUM,
+	select 
+	a.AREA_NUM,
 
-a.TASK_AREA,
-a.AREA_CLASS,
-
-
-(
+			a.TASK_AREA,
+			a.AREA_CLASS,
+			(
 			            select  mname from members where  mno  =   a.MNO
-						
-					) AS DRIVER
+					) AS DRIVER,
+					a.AREA_NUM,
+					a.MNO
 		from AREAS  a 
 
 
