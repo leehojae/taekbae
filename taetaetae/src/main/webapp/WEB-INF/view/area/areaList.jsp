@@ -15,6 +15,9 @@
 <script>
 
 $(window.document).ready(function() {
+		
+
+	
 	
     $("#grid").jqGrid({
         //url : 'http://apis.daum.net/socialpick/search?output=json',
@@ -31,14 +34,16 @@ $(window.document).ready(function() {
         loadonce : true,                // loadonce : rowNum 설정을 사용하기 위해서 true로 지정한다.
         rowList : [10, 20, 30],       // rowList : rowNum을 선택할 수 있는 옵션을 지정한다.
 
-        colNames : [ 'no','직원', '구역' , '배송클래스' ],
+        colNames : [ '일련번호',  'd배송클래스' , '구역' , '담당기사', 'memberNo'  ],
         colModel : [
                     
                     { name : 'no',         index : 'no',         width : 70,    align : 'center' },
-//                     { name : 'memberNo',         index : 'memberNo',         width : 270,    align : 'center' },
-  					{ name : 'driver',         index : 'driver',         width : 130,    align : 'center' },
+//                     { name : 'no',         index : 'no',         width : 70,    align : 'center' , hidden : true},
+  				  { name : 'areaClass',         index : 'areaClass',         width : 270,    align : 'center' },
                     { name : 'taskArea',         index : 'taskArea',         width : 270,    align : 'center' },
-                    { name : 'areaClass',         index : 'areaClass',         width : 270,    align : 'center' },
+                	{ name : 'driver',         index : 'driver',         width : 130,    align : 'center' },
+                	{ name : 'memberNo',         index : 'memberNo',         width : 130,    align : 'center' },
+                  
                   
                     ],
         jsonReader : {
@@ -58,6 +63,7 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 	$("#driver").val($rowData['driver']);
 	$("#aTaskArea").val($rowData['taskArea']);
 	$("#aClass").val($rowData['areaClass']);
+	$("#memberNo").val($rowData['memberNo']);
 
 	
 }	
@@ -69,17 +75,13 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
         add : true,
         del : true
     });
-    
-    
-    
-	
 	  
     $("#addBtn").click( function() {
     	$.ajax( 'ajax/add.do', {
     		   type: 'POST',
 			data: {
-// 				no : $('#ano').val(),
-				memberNo : $('#mno').val(),
+
+				memberNo : $('#memberNo').val(),
 				taskArea: $('#aTaskArea').val(),
 				areaClass: $('#aClass').val()
 			},
@@ -87,42 +89,40 @@ onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 				location.href = 'areaList.do';
 	}});
 		
-}
-   
-    
-    );
-    
+} );
     
     $("#updateBtn").click( function() {
+
     	$.ajax( 'ajax/update.do', {
-    		   type: 'POST',
+ 		   type: 'POST',
 			data: {
-			no : $('#ano').val(),
-				memberNo : $('#mno').val(),
-				taskArea: $('#aTaskArea').val(),
-				areaClass: $('#aClass').val()
-				
+
+							no : $('#ano').val(),
+				memberNo : $('#memberNo').val(),
+ 				taskArea: $('#aTaskArea').val(),
+ 				areaClass: $('#aClass').val()
 			},
-			success: function(car){
+			success: function(members){
 				location.href = 'areaList.do';
 	}});
 		
-}
-   
-    );
+} );
+//     $("#delBtn").click( function() {
+    	
+// 	function deleteFunction()
+// 	{
+// 		var answer  = confirm( '삭제 하시겠습니까?' );
+// 		if( answer ) 
+// 		{
+			
+// 			location.href = 'ajax/delete.do?no=' + $('#ano').val();
+// 		}	
+// 		return;
+// 	}
+//     } );
     
 });
 
-
-function deleteFunction()
-{
-	var answer  = confirm( '삭제 하시겠습니까?' );
-	if( answer ) 
-	{
-		location.href = 'ajax/delete.do?no=' + $('#ano').val();
-	}	
-	return;
-}
 
 </script>
 
@@ -143,13 +143,13 @@ body {
 </style>
 </head>
 
-<body onload="init()">
+<body>
 <table id = "grid"></table>
 <div id = "pager"></div>
 
 
 
-<form  method="post"  enctype="multipart/form-data">
+<form  method="post"  name="frm"  id="frm"  >
 <table id = "grid" style="width: 100%;"></table>
 <div id = "pager" style="width: 100%;"></div>
 <script type="text/javascript">
@@ -189,19 +189,50 @@ $(function (){
 
 <table class="table">
 <tr>
-<td><div style="width: 64px; display: inline-block;">번&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp호 : </div><input id=ano type="text" name="ano" style="margin: 0px;"></td>
-<td><div style="width: 64px; display: inline-block;">직&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp원 : </div><input id=driver type="text" name="driver" style="margin: 0px;"></td>	
+<td><div style="width: 64px; display: inline-block;">클&nbsp래&nbsp스 : </div><input id=aClass type="text" name="aClass" style="margin: 0px;"></td>
+<td><div style="width: 64px; display: inline-block;">배송구역 : </div><input id=aTaskArea type="text" name="aTaskArea" style="margin: 0px;"></td>
 </tr>
 <tr>
-<td><div style="width: 64px; display: inline-block;">배송구역 : </div><input id=aTaskArea type="text" name="aTaskArea" style="margin: 0px;"></td>
-<td><div style="width: 64px; display: inline-block;">클&nbsp래&nbsp스 : </div><input id=aClass type="text" name="aClass" style="margin: 0px;"></td>
+<td>
+	<div style="width: 64px; display: inline-block;">
+		직&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp원 :
+	 </div>
+	 <input id="driver" type="text" name="driver" style="margin: 0px;"   onfocus="myFunction()" >
+</td>	
 </tr>
 </table>
+	 <input id=ano  type="hidden" name="ano" style="margin: 0px;">
+	<input id=idDD  type="hidden" name="idDD" style="margin: 0px;">
+	<input id=mno  type="hidden" name="mno" style="margin: 0px;">
+	<input id=memberNo  type="hidden" name="memberNo" style="margin: 0px;">  
 	<input id="addBtn" class="btn btn-default" type="button" value="등록">
 	<input id="updateBtn" class="btn btn-default" type="button" value="변경" class="view">
-	<input id="delBtn" class="btn btn-default" type="button" value="삭제"  onclick="deleteFunction()" />
+	<input id="delBtn" class="btn btn-default" type="button" value="삭제"  onclick="deleteFunction();" />
+<!-- 	<input id="delBtn" class="btn btn-default" type="button" value="삭제"  onclick="deleteFunction();" /> -->
 	<input id="cancelBtn" class="btn btn-default" type="reset" value="취소">
 </form>
-</div>
 </body>
+<script type="text/javascript">
+function myFunction()
+{
+	myWin = window.open('../member/memberPopupArea.do', 'popwindow', 'width=300,height=450');
+	frm.aTaskArea.focus();
+	return;
+}
+
+
+function deleteFunction()
+{
+	var answer  = confirm( '삭제 하시겠습니까?' );
+	if( answer ) 
+	{
+		
+		location.href = 'ajax/delete.do?no=' + $('#ano').val();
+	}	
+	return;
+}
+
+
+
+</script>
 </html>
