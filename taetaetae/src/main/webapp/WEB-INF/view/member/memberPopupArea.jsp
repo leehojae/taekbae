@@ -23,16 +23,15 @@
 
 	
 	function chkFrm(no, id, name) {
-	//	alert(   no + ",   "  + id+ ",   "  +  name   );
  	var idDD = window.opener.document.getElementById("idDD");
-	var cDriver = window.opener.document.getElementById("cDriver");
-	var memberNo = window.opener.document.getElementById("mno");
+	var cDriver = window.opener.document.getElementById("driver");
+	var memberNo = window.opener.document.getElementById("memberNo");
 	
  		memberNo.value = no;
  		idDD.value = id;
-
- 		//cDriver.value = name;
  		cDriver.value = name;
+ 		//cDriver.value = name;
+ 		
 //  		id.value = id;
 //  		memberNo.value = no;
 	
@@ -51,7 +50,7 @@
 $(window.document).ready(function() {
 	
 	$("#grid").jqGrid({
-        url : 'http://localhost:9999/taetaetae/member/ajax/carlessMember.do',
+        url : 'http://localhost:9999/taetaetae/member/ajax/carNessMember.do',
 		datatype: "json",
 		 autowidth:true,  
          mtype : 'get',                     // mtype : 데이터 전송방식을 지정한다.
@@ -86,17 +85,25 @@ $(window.document).ready(function() {
 	           onCellSelect: function(rowid, iCol, nCol, cellcontent, event) {
 	        	   $("#status").val("edit");
 	        	  	var $rowData = $(this).getRowData(rowid);
+// 	        	  	alert(   "ddd : "+   ($rowData['name'])  +  ",    ddd : "+     ($rowData['no'])  +  ",    ddd : "+     ($rowData['id'])    );
 	        	  	chkFrm( ($rowData['no']),  ($rowData['id']),  ($rowData['name']));
+	        	  	// location.href = "read.do?no="+($rowData['no']) ;
+	        	  	// location.href = "read.do?no="+($rowData['no']) ;
 	        	  	 console.log( "dddddeux : "+    ($rowData['photo'])   );
 	        	  	 
 	        	  	 
 	        	  	 $('#mno').val()
+// 	        	 	var $rowData = $(this).getRowData(rowid);
+// 	        	 	$("#cno").val($rowData['no']);
+// 	        	 	$("#cNumber").val($rowData['carNumber']);
+// 	        	 	$("#cType").val($rowData['carType']);
+// 	        	 	$("#cDriver").val($rowData['driver']);
 	        	  	 
 	        	  	 
 	        	  	
 	        	  }	,
 
-		caption: "차량 미할당 기사 목록"
+		caption: "차량 할당 기사 목록"
 	});
 	jQuery("#grid").jqGrid('navGrid','#pager',{add:false,del:false,edit:false,position:'right'});
 	jQuery("#m1").click( function() {
