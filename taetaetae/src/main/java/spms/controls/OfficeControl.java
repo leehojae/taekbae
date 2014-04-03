@@ -179,6 +179,14 @@ public class OfficeControl {
 			 {
 				 return "redirect:/office/officeList.do";
 			 }
+			 else if(   office1.equals("2") )
+			 {
+				 return "redirect:/office/approval.do";
+			 }
+			 else if(   office1.equals("3") )
+			 {
+				 return "redirect:/office/approval.do";
+			 }
 			 return "redirect:/office/nonOfficeList.do";
 		
 			
@@ -191,6 +199,24 @@ public class OfficeControl {
 			 return "redirect:/office/nonOfficeList.do";
 		}
 	}
+	
+	
+	
+	@RequestMapping(value="/ajax/updateOfficeDetail", method=RequestMethod.POST, 
+			produces="application/json")
+	public String  updateOfficeDetail(Office office) throws Exception {
+		try {
+			 officeDao.update(office);
+			 
+			 return "redirect:/office/approval.do";
+			
+			
+		} catch (Throwable ex) {
+			 return "redirect:/office/approval.do";
+		}
+	}
+	
+	
 	@RequestMapping(value="/ajax/approval",
 			method=RequestMethod.GET, 
 			produces="application/json")
