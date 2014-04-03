@@ -3,26 +3,28 @@ package spms.vo;
 import java.io.Serializable;
 
 public class Car implements Serializable{
-  private static final long serialVersionUID = 1L;
 	
-	public static final int MINIBUS = 0;
-	public static final int ONETON = 1;
-	public static final int FIVETON = 2;
-	public static final int REFRIGERATED = 3;
-	
-	int no;
+	int no; // mno
+	int mnoUpdate;
 	String carNumber;
-	int carLoad;
-	int carType;
+	String carModel;
+	
+
+	String carType;
 	String driver;
-	public String getDriver() {
-		return driver;
-	}
-	public void setDriver(String driver) {
-		this.driver = driver;
-	}
+	
+	
+	
+	
+	
 	public int getNo() {
 		return no;
+	}
+	public int getMnoUpdate() {
+		return mnoUpdate;
+	}
+	public void setMnoUpdate(int mnoUpdate) {
+		this.mnoUpdate = mnoUpdate;
 	}
 	public Car setNo(int no) {
 		this.no = no;
@@ -35,19 +37,27 @@ public class Car implements Serializable{
 		this.carNumber = carNumber;
 		return this;
 	}
-	public int getCarLoad() {
-		return carLoad;
+	public String getCarModel() {
+		return carModel;
 	}
-	public Car setCarLoad(int carLoad) {
-		this.carLoad = carLoad;
+	public Car setCarModel(String carModel) {
+		this.carModel = carModel;
 		return this;
 	}
-	public int getCarType() {
+	public String getCarType() {
 		return carType;
 	}
-	public Car setCarType(int carType) {
+	public Car setCarType(String carType) {
 		this.carType = carType;
 		return this;
 	}
-
+	public String getDriver() {
+		return driver;
+	}
+	public Car setDriver(String driver) {
+		this.driver = driver;
+		return this;
+	}
+	
+	
 }
